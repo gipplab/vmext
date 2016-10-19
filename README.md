@@ -1,4 +1,4 @@
-# htw-citeplag-node #
+# htw-citeplag-node
 Node.js API to support rendering of (merged) abstract-syntax-trees
 
 # Setup
