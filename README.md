@@ -1,7 +1,7 @@
 # htw-citeplag-node
 Node.js API to support rendering of (merged) abstract-syntax-trees
 
-# Setup
+## Setup
 run the following commands in project root:
-* `npm install`
-* `npm start`
+1. `npm install`
+2. `npm start`
