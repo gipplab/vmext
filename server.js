@@ -3,6 +3,7 @@ const express = require('express'),
       path = require('path'),
       app = express(),
       compression = require('compression'),
+      bodyParser = require('body-parser'),
 
       winston = require('winston'),
       logger = require('./lib/logger'),
@@ -10,6 +11,8 @@ const express = require('express'),
 
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 // serve static content only from 'public' dir
 app.use(express.static(path.join(__dirname, 'public')));
