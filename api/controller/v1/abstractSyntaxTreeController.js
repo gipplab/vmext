@@ -1,12 +1,13 @@
 'use strict';
 
 const path = require('path'),
-      BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError'));
+      BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError')),
+      ConflictError = require(path.join(process.cwd(), 'errorHandler', 'ConflictError'));
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
-    if (!req.body.data) return next(new BadRequestError("request body is empty or not application/json encoded!"));
-    if (!req.query.type) return next(new BadRequestError(`Query parameter: "type" is empty or not in [svg | pdf]`));
-    res.json(req.get('Accept'));
+    if (!req.body) return next(new BadRequestError("request body is empty or not application/json encoded!"));
+    console.log(req.query);
+    res.send(req.body);
   }
 };
