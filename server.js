@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: false})); // url-form encoded data
 
 // serve static content only from 'public' dir
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api', require('./api/routes/publicAPIRoutes'));
+app.use('/api', require('./api/versions'));
 
 // global errorHandler ============================================
 require(path.join(__dirname, 'errorHandler','ErrorHandler'))(app);
