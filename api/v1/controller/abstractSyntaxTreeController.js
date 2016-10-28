@@ -2,14 +2,13 @@
 
 const path = require('path'),
       xmlParser = require(path.join(process.cwd(), 'lib', 'xmlParser')),
-      BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError')),
-      ConflictError = require(path.join(process.cwd(), 'errorHandler', 'ConflictError'));
+      BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError'));
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
-    if (!req.body) return next(new BadRequestError("request body is empty or not application/json encoded!"));
+    if (!req.body.mathml) return next(new BadRequestError("form-data is missing field: mathml!"));
     xmlParser.parseXML(req.body.mathml, (err, result) => {
-      if (err) return next(new ConflictError('XML- Parsing Error'));
+      if (err) return next(err);
       res.json(result);
     });
   }
