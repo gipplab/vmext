@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path'),
-      xmlParser = require(path.join(process.cwd(), 'lib', 'xmlParser')),
+      xmlParser = require(path.join(process.cwd(), 'lib', 'MathMLParser')),
       BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError'));
 
 module.exports = class AbstractSyntaxTreeController {
