@@ -5,6 +5,6 @@ let path = require('path'),
     multer = require('multer'),
     upload = multer(),
     requestValidator = require(path.join(process.cwd(), 'lib', 'requestValidator')),
-    astController = require('../controller/abstractSyntaxTreeController');
+    astController = require('../controller/AbstractSyntaxTreeController');
 
 astRouter.post('/render', upload.none(), requestValidator.multiPartFormData, astController.renderAst);

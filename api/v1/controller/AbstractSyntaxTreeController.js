@@ -7,7 +7,8 @@ const path = require('path'),
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
     if (!req.body.mathml) return next(new BadRequestError("form-data is missing field: mathml!"));
-    xmlParser.parseXML(req.body.mathml, (err, result) => {
+
+    (new xmlParser(req.body.mathml)).parse((err, result) => {
       if (err) return next(err);
       res.json(result);
     });
