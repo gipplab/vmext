@@ -2,7 +2,9 @@
 
 const path = require('path'),
       xmlParser = require(path.join(process.cwd(), 'lib', 'MathMLParser')),
-      BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError'));
+      SVGRenderer = require(path.join(process.cwd(), 'lib', 'SVGRenderer')),
+      BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError')),
+      NotAcceptableError = require(path.join(process.cwd(), 'errorHandler', 'NotAcceptableError'));
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
@@ -10,7 +12,13 @@ module.exports = class AbstractSyntaxTreeController {
 
     (new xmlParser(req.body.mathml)).parse((err, result) => {
       if (err) return next(err);
-      res.json(result);
+      if (req.accepts('image/svg+xml')) {
+        SVGRenderer.renderSVG(result, (svg) => {
+          res.send(svg);
+        });
+      } else if(req.accepts('application/json')){
+        res.json(result);
+      } else return next(new NotAcceptableError(`Request needs to accept application/json or image/svg+xml`));
     });
   }
 };
