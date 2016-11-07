@@ -1,0 +1,16 @@
+html
+  head
+    title Abstract Syntax Tree
+
+    link(rel='stylesheet' type='text/css' href='../css/bootstrap.min.css')
+  body
+    .container
+      h1.heading MathML -- AST Renderer
+      .row
+        .col-md-6
+          div Enter valid MathML:
+          form(action='/api/v1/ast/render', method='post', enctype='multipart/form-data' target='renderedAST')
+            textarea(rows=25, cols=70, name='mathml')
+            input(type='submit', value='Render')
+        .col-md-6.abstract-syntax-tree
+          iframe(name='renderedAST', style='width:100%;height:70%')
