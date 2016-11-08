@@ -12,11 +12,11 @@ module.exports = class AbstractSyntaxTreeController {
 
     (new xmlParser(req.body.mathml)).parse((err, result) => {
       if (err) return next(err);
-      if (req.accepts('image/svg+xml')) {
+      if (req.body.type === 'svg'){
         SVGRenderer.renderSVG(result, (svg) => {
           res.send(svg);
         });
-      } else if(req.accepts('application/json')){
+      } else if(req.body.type === 'json'){
         res.json(result);
       } else return next(new NotAcceptableError(`Request needs to accept application/json or image/svg+xml`));
     });
