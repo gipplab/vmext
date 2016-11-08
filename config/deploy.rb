@@ -34,16 +34,3 @@ append :linked_dirs, 'logs', 'node_modules'
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
-namespace :deploy do
-  task :build_and_restart do
-    on roles :app do
-      within current_path do
-        puts 'Installing node modules...'
-        execute :yarn
-      end
-    end
-  end
-
-  after :deploy, 'deploy:build_and_restart'
-end
