@@ -62,3 +62,42 @@ server '134.34.205.176',
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+namespace :deploy do
+  task :build do
+    on roles :app do
+      within current_path do
+        puts 'Installing node modules...'
+        execute :yarn
+      end
+    end
+  end
+
+  task :start do
+    on roles(:app) do
+      execute :sudo, :start, 'pds-node'
+    end
+  end
+
+  task :stop do
+    on roles(:app) do
+      begin
+        execute :sudo, :stop, 'pds-node'
+      rescue StandardError => e
+        info "Server stop failed. This probably means it wasn't running."
+      end
+    end
+  end
+
+  task :restart do
+    invoke 'deploy:stop'
+    invoke 'deploy:start'
+  end
+
+end
+
+after 'deploy:publishing', 'deploy:build'
+after 'deploy:published', 'deploy:restart'
+
+after 'deploy:rollback', 'deploy:build'
+after 'deploy:rollback', 'deploy:restart'
