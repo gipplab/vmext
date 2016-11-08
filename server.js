@@ -5,7 +5,7 @@ const express = require('express'),
       compression = require('compression'),
       bodyParser = require('body-parser'),
       winston = require('winston'),
-      //logger = require('./lib/logger'),
+      logger = require('./lib/logger'),
       log_general = winston.loggers.get('general'),
 
       SVGRenderer = require('./lib/SVGRenderer');
