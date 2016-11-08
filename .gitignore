@@ -20,3 +20,4 @@ npm-debug.log*
 # App specific files #
 ######################
 logs
+log/

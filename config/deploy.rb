@@ -40,10 +40,10 @@ namespace :deploy do
     on roles :app do
       within current_path do
         puts 'Installing node modules...'
-        execute :npm, 'install --no-optional'
+        execute :yarn
       end
     end
   end
 
-  after :deploy, :build_and_restart
+  after :deploy, 'deploy:build_and_restart'
 end
