@@ -8,7 +8,7 @@ const express = require('express'),
       logger = require('./lib/logger'),
       log_general = winston.loggers.get('general'),
 
-      SVGRenderer = require('./lib/SVGRenderer');
+      MathJaxRenderer = require('./lib/MathJaxRenderer');
 
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());

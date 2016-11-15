@@ -8,3 +8,5 @@ let path = require('path'),
     astController = require('../controller/AbstractSyntaxTreeController');
 
 astRouter.post('/render', upload.none(), requestValidator.multiPartFormData, astController.renderAst);
+
+astRouter.post('/renderMML', astController.renderMML);
