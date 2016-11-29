@@ -4,18 +4,16 @@
 .DS_Store?
 ._*
 
-
-# Node files         #
-######################
-node_modules
-npm-debug.log*
-
-
 # IDE files          #
 ######################
 .idea/
 .vscode/
 
+# Node files         #
+######################
+node_modules
+npm-debug.log*
+yarn-error.log
 
 # App specific files #
 ######################

@@ -8,8 +8,7 @@ const log = require('./lib/logger');
 
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
-
-app.use(bodyParser.urlencoded({extended: false})); // url-form encoded data
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
 app.set('views', './public/html');
@@ -23,10 +22,9 @@ app.get('/', (req, res, next) => {
 });
 
 // global errorHandler ============================================
-require(path.join(__dirname, 'errorHandler','ErrorHandler'))(app);
+require(path.join(__dirname, 'errorHandler', 'ErrorHandler'))(app);
 
 // set up server ==================================================
 let server = app.listen(process.env.PORT || 4001, () => {
-    let host = (server.address().port === 4001)? 'localhost' : server.address().address;
-    log.info(`server started, listening on ${host}:${server.address().port}`);
+  log.info(`server started, listening on port: ${server.address().port}`);
 });
