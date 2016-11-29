@@ -14,3 +14,7 @@ To install all dependencies, head to project root and simply run:
 - `yarn`
 
 Now you can run the server with `yarn start`
+
+## Debugging
+
+To debug the app using ChromeDevTools, run `yarn run debug` and then copy the link into a browser.
