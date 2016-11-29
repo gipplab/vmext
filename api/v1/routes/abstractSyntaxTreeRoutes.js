@@ -1,7 +1,7 @@
 'use strict'
 const path = require('path');
 const express = require('express');
-const astRouter = module.exports = express.Router({mergeParams: true});
+const astRouter = module.exports = express.Router({ mergeParams: true });
 const multer = require('multer');
 const upload = multer();
 const RequestValidator = require(path.join(process.cwd(), 'lib', 'RequestValidator'));
