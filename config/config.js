@@ -5,5 +5,8 @@ module.exports = {
         exceptions : '#nodejs_exceptions'
       }
     },
-    log_dir: '/logs'
+    logs: {
+      dir: '/logs',
+      level: (process.env.NODE_ENV === 'production') ? 'info' : 'debug'
+  },
 };

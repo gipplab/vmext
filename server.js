@@ -1,14 +1,10 @@
 'use strict';
-const express = require('express'),
-      path = require('path'),
-      app = module.exports = express(),
-      compression = require('compression'),
-      bodyParser = require('body-parser'),
-      winston = require('winston'),
-      logger = require('./lib/logger'),
-      log_general = winston.loggers.get('general'),
-
-      MathJaxRenderer = require('./lib/MathJaxRenderer');
+const express = require('express');
+const path = require('path');
+const app = module.exports = express();
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const log = require('./lib/logger');
 
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
@@ -32,5 +28,5 @@ require(path.join(__dirname, 'errorHandler','ErrorHandler'))(app);
 // set up server ==================================================
 let server = app.listen(process.env.PORT || 4001, () => {
     let host = (server.address().port === 4001)? 'localhost' : server.address().address;
-    log_general.info(`server started, listening on ${host}:${server.address().port}`);
+    log.info(`server started, listening on ${host}:${server.address().port}`);
 });
