@@ -16,6 +16,7 @@ app.set('views', './public/html');
 // serve static content only from 'public' dir
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', require('./api/versions'));
+app.use('/api/docs', express.static(path.join(__dirname, 'config', 'apiDoc')));
 
 app.get('/', (req, res, next) => {
   res.render('index');

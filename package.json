@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "debug": "node --inspect --debug-brk server.js"
+    "debug": "node --inspect --debug-brk server.js",
+    "docs": "apidoc -i ./api -o ./config/apiDoc/"
   },
   "author": "HTW",
   "license": "MIT",
@@ -35,5 +36,9 @@
     "eslint": "^3.9.1",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0"
+  },
+  "apidoc": {
+    "name": "API Documentation",
+    "description": "REST API specification for htw-citeplag-node"
   }
 }

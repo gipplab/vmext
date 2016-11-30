@@ -26,7 +26,8 @@ module.exports = class AbstractSyntaxTreeController {
   }
 
   static renderMML(req, res, next) {
-    MathJaxRenderer.renderMML(req.body.mml, (err, svg) => {
+    MathJaxRenderer.renderMML(req.body.mathml, (err, svg) => {
+      if (err) return next(err);
       res.send(svg);
     });
   }

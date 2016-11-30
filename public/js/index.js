@@ -5,7 +5,7 @@ function callAPI(evt) {
   let formData = new FormData();
   const accept = document.querySelector('.option-svg').checked ? 'image/svg+xml': 'application/json';
   formData.append('mathml', document.querySelector('#textarea').value);
-  fetch('/api/v1/ast/render', {
+  fetch('/api/v1/math/renderAST', {
     method: 'POST',
     headers: new Headers({
       'Accept': accept,

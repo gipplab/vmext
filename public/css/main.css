@@ -6,3 +6,7 @@
 .renderedAST {
    height: 100%;
 }
+
+a {
+  margin-left: 1em;
+}
