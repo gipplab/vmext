@@ -1,10 +1,9 @@
 'use strict';
-const path = require('path');
-const MathMLParser = require(path.join(process.cwd(), 'lib', 'MathMLParser'));
-const SVGRenderer = require(path.join(process.cwd(), 'lib', 'SVGRenderer'));
-const MathJaxRenderer = require(path.join(process.cwd(), 'lib', 'MathJaxRenderer'));
-const BadRequestError = require(path.join(process.cwd(), 'errorHandler', 'BadRequestError'));
-const NotAcceptableError = require(path.join(process.cwd(), 'errorHandler', 'NotAcceptableError'));
+const MathMLParser = require('app/lib/MathMLParser');
+const SVGRenderer = require('app/lib/SVGRenderer');
+const MathJaxRenderer = require('app/lib/MathJaxRenderer');
+const BadRequestError = require('app/errorHandler/BadRequestError');
+const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
