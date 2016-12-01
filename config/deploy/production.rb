@@ -73,6 +73,17 @@ namespace :deploy do
     end
   end
 
+  task :symlink do
+    on roles :app do
+      within current_path do
+        puts 'Setting app symlink...'
+        execute :cd 'node_modules'
+        execute :rm 'app'
+        execute :ln,  '-sf', current_path, 'app'
+      end
+    end
+  end
+
   task :start do
     on roles(:app) do
       execute :sudo, :start, 'pds-node'
@@ -91,6 +102,7 @@ namespace :deploy do
 
   task :restart do
     invoke 'deploy:stop'
+    invoke 'deploy:symlink'
     invoke 'deploy:start'
   end
 
