@@ -26,6 +26,6 @@ app.get('/', (req, res, next) => {
 require(path.join(__dirname, 'errorHandler', 'ErrorHandler'))(app);
 
 // set up server ==================================================
-let server = app.listen(process.env.PORT || 4001, () => {
+const server = app.listen(process.env.PORT || 4001, () => {
   log.info(`server started, listening on port: ${server.address().port}`);
 });

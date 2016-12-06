@@ -75,9 +75,8 @@ namespace :deploy do
 
   task :symlink do
     on roles :app do
-      within current_path do
+      within current_path.join('node_modules') do
         puts 'Setting app symlink...'
-        execute :cd, 'node_modules'
         execute :rm, 'app'
         execute :ln,  '-sf', current_path, 'app'
       end
