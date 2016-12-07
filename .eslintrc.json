@@ -1,7 +1,7 @@
 {
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "module",
+    "sourceType": "script",
     "ecmaFeatures": {
       "jsx": true
     }
@@ -14,6 +14,7 @@
     "comma-dangle": 0,
     "array-callback-return": 0,
     "consistent-return": 0,
-    "import/newline-after-import": 0
+    "import/newline-after-import": 0,
+    "no-prototype-builtins": 0
   }
 }
