@@ -7,7 +7,7 @@ const RequestValidator = require('app/lib/RequestValidator');
 const astController = require('../controller/AbstractSyntaxTreeController');
 
 /**
-   * @api {post} /api/v1/math/renderAST POST /api/v1/ast/render
+   * @api {post} /api/v1/math/renderAST POST /api/v1/math/renderAST
    * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
    * @apiParam (Body (multipart/form-data)) {String} mathml the mathML to be rendered into an AST
    * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false
@@ -20,7 +20,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 astRouter.post('/renderAST', upload.none(), RequestValidator.multiPartFormData, astController.renderAst);
 
 /**
-   * @api {post} /api/v1/math/renderMergedAST POST /api/v1/ast/renderMergedAST
+   * @api {post} /api/v1/math/renderMergedAST POST /api/v1/math/renderMergedAST
    * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
    * @apiParam (Body (multipart/form-data)) {String} reference_mathml the mathML of reference document
    * @apiParam (Body (multipart/form-data)) {String} comparison_mathml the mathML of comparison document
@@ -33,7 +33,7 @@ astRouter.post('/renderAST', upload.none(), RequestValidator.multiPartFormData, 
 astRouter.post('/renderMergedAST', upload.none(), RequestValidator.multiPartFormData, astController.renderMergedAst);
 
 /**
-   * @api {post} /api/v1/math/renderPMML POST /api/v1/ast/renderMML
+   * @api {post} /api/v1/math/renderPMML POST /api/v1/math/renderPMML
    * @apiParam (Body (multipart/form-data)) {String} mathml the presentation-MathML to be rendered
    * @apiName RenderFormula
    * @apiGroup Math
