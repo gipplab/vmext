@@ -5,11 +5,12 @@ function callAPI(evt) {
   let formData = new FormData();
   const accept = document.querySelector('.option-svg').checked ? 'image/svg+xml': 'application/json';
   formData.append('mathml', document.querySelector('#textarea').value);
+  formData.append('renderFormula', document.querySelector('.option-renderFormula').checked);
+  formData.append('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
   fetch('/api/v1/math/renderAST', {
     method: 'POST',
     headers: new Headers({
       'Accept': accept,
-      'renderFormula': document.querySelector('.option-renderFormula').checked
     }),
     body: formData
   }).then(function(data){
