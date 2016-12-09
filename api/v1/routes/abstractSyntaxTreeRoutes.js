@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 const express = require('express');
 const astRouter = module.exports = express.Router({ mergeParams: true });
 const multer = require('multer');

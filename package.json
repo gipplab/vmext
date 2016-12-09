@@ -9,7 +9,8 @@
   "scripts": {
     "start": "nodemon --ignore public/ server.js",
     "debug": "node --inspect --debug-brk server.js",
-    "docs": "apidoc -i ./api -o ./config/apiDoc/"
+    "docs": "apidoc -i ./api -o ./config/apiDoc/",
+    "lint": "eslint ."
   },
   "author": "HTW",
   "license": "MIT",
