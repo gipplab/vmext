@@ -4,6 +4,10 @@
   stroke-width: 2;
 }
 
+.node--internal {
+  cursor: pointer;
+}
+
 .node--leaf circle, .node--leaf rect {
   stroke-dasharray: 2, 2;
 }

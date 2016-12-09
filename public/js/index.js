@@ -16,7 +16,15 @@ function callAPI(evt) {
     return data.text();
   }).then(function(result){
     document.querySelector('.renderedAST').innerHTML = result;
+    eval(decodeHTML(document.querySelector('.renderedAST script').innerHTML));
   }).catch(function(err) {
     console.log(err);
   });
+}
+
+
+function decodeHTML(html){
+  var txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
 }
