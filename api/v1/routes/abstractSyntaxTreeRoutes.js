@@ -18,6 +18,8 @@ const astController = require('../controller/AbstractSyntaxTreeController');
    */
 astRouter.post('/renderAST', upload.none(), RequestValidator.multiPartFormData, astController.renderAst);
 
+astRouter.post('/renderMergedAST', upload.none(), RequestValidator.multiPartFormData, astController.renderMergedAst);
+
 /**
    * @api {post} /api/v1/math/renderPMML POST /api/v1/ast/renderMML
    * @apiParam (Body (multipart/form-data)) {String} mathml the presentation-MathML to be rendered

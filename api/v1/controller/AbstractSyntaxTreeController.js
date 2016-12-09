@@ -8,7 +8,6 @@ const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
     if (!req.body.mathml) return next(new BadRequestError('form-data is missing field: mathml!'));
-    debugger;
     (new MathMLParser(req.body.mathml)).parse((err, result) => {
       if (err) return next(err);
       if (req.accepts('svg')) {
@@ -25,6 +24,11 @@ module.exports = class AbstractSyntaxTreeController {
     });
   }
 
+  static renderMergedAst(req, res, next) {
+    if (!req.body.reference_mathml) return next(new BadRequestError('form-data is missing field: reference_mathml!'));
+    if (!req.body.comparison_mathml) return next(new BadRequestError('form-data is missing field: comparison_mathml!'));
+    if (!req.body.similarity_xml) return next(new BadRequestError('form-data is missing field: similarity_xml!'));
+  }
   static renderMML(req, res, next) {
     MathJaxRenderer.renderMML(req.body.mathml, (err, svg) => {
       if (err) return next(err);
