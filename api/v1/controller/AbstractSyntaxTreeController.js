@@ -1,7 +1,9 @@
 'use strict';
+
 const MathMLParser = require('app/lib/MathMLParser');
 const SVGRenderer = require('app/lib/SVGRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
+const ASTMerger = require('app/lib/ASTMerger');
 const BadRequestError = require('app/errorHandler/BadRequestError');
 const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 
@@ -28,6 +30,13 @@ module.exports = class AbstractSyntaxTreeController {
     if (!req.body.reference_mathml) return next(new BadRequestError('form-data is missing field: reference_mathml!'));
     if (!req.body.comparison_mathml) return next(new BadRequestError('form-data is missing field: comparison_mathml!'));
     if (!req.body.similarity_xml) return next(new BadRequestError('form-data is missing field: similarity_xml!'));
+    new ASTMerger(
+      req.body.reference_mathml,
+      req.body.comparison_mathml,
+      req.body.similarity_xml).merge().then((result) => {
+        res.send(result);
+      }
+    );
   }
   static renderMML(req, res, next) {
     MathJaxRenderer.renderMML(req.body.mathml, (err, svg) => {
