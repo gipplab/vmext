@@ -9,8 +9,9 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 /**
    * @api {post} /api/v1/math/renderAST POST /api/v1/ast/render
    * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
-   * @apiParam (Headers) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false
    * @apiParam (Body (multipart/form-data)) {String} mathml the mathML to be rendered into an AST
+   * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false
+   * @apiParam (Body (multipart/form-data)) {Boolean} [collapseSingleOperandNodes] flag wether nodes with only one child should be collapsed <br>Defaults to true
    * @apiName RenderAst
    * @apiGroup Math
    * @apiDescription Renders an abstract syntax tree based on provided mathML
