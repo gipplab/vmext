@@ -18,7 +18,23 @@
   stroke-width: 2px;
 }
 
-text {
+.header {
+  color: grey;
+}
+
+.header__caption, .ast__caption {
+  font-size: 1.5rem;
+  fill: #5d5d5d;
+}
+
+.header__background {
+  fill: #fff;
+  stroke: grey;
+  stroke-width: 1;
+}
+
+
+textasdasdasd {
   text-anchor: middle;
   font-family: 'Georgia', serif;
   font-style: italic;
