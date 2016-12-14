@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'htw-citeplag-node'
-set :repo_url, 'git@bitbucket.org:LuiSlacker/htw-citeplag-node.git'
+set :repo_url, 'git@bitbucket.org:sciplore/htw-citeplag-node.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
