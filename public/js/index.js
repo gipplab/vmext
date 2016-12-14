@@ -23,9 +23,16 @@ function callAPI(evt) {
   });
 }
 
-
 function decodeHTML(html){
   var txt = document.createElement('textarea');
   txt.innerHTML = html;
   return txt.value;
 }
+
+window.onload = function init() {
+  var select = document.querySelector('#MathMLexamples');
+  select.addEventListener('change', function(){
+    var mathml = select.options[select.selectedIndex].value;
+    document.querySelector('#textarea').innerHTML = mathml;
+  });
+};
