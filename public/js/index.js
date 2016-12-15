@@ -14,13 +14,19 @@ function callAPI(evt) {
     }),
     body: formData
   }).then(function(data){
-    return data.text();
+    data.headers.get('content-type');
+    return data.text().then((text) => {
+      return {
+        headers: data.headers,
+        text
+      }
+    });
   }).then(function(result){
-    document.querySelector('.renderedAST').innerHTML = result;
-    eval(decodeHTML(document.querySelector('.renderedAST script').innerHTML));
-  }).catch(function(err) {
-    console.log(err);
-  });
+    document.querySelector('.renderedAST').innerHTML = result.text;
+    if (result.headers.get('content-type') === 'image/svg+xml') {
+      eval(decodeHTML(document.querySelector('.renderedAST script').innerHTML));
+    }
+  }).catch(console.log);
 }
 
 function decodeHTML(html){
