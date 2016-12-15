@@ -10,21 +10,30 @@ const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
     if (!req.body.mathml) return next(new BadRequestError('form-data is missing field: mathml!'));
-    (new MathMLParser(req.body.mathml, {
+    const parsedMathMLPromise = (new MathMLParser(req.body.mathml, {
       collapseSingleOperandNodes: JSON.parse(req.body.collapseSingleOperandNodes)
-    })).parse((err, result) => {
-      if (err) return next(err);
-      if (req.accepts('svg')) {
-        SVGRenderer.renderSVG({
-          data: result,
-          renderFormula: JSON.parse(req.body.renderFormula)
-        }, (svgErr, svg) => {
-          if (svgErr) return next(err);
-          res.send(svg);
+    })).parse();
+
+    res.format({
+      'application/json': () => {
+        parsedMathMLPromise.then((result) => {
+          res.json(result);
         });
-      } else if (req.accepts('json')) {
-        res.json(result);
-      } else return next(new NotAcceptableError('Request needs to accept application/json or image/svg+xml'));
+      },
+      'image/svg+xml': () => {
+        parsedMathMLPromise.then((result) => {
+          SVGRenderer.renderSVG({
+            data: result,
+            renderFormula: JSON.parse(req.body.renderFormula)
+          }, (svgErr, svg) => {
+            if (svgErr) return next(svgErr);
+            res.send(svg);
+          });
+        });
+      },
+      default: () => {
+        return next(new NotAcceptableError('Request needs to accept application/json or image/svg+xml'));
+      }
     });
   }
 
