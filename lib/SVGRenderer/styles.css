@@ -32,7 +32,6 @@
 
 .header__caption, .ast__caption {
   font-family: 'Georgia', serif;
-  font-style: italic;
   font-size: 1.5rem;
   fill: #5d5d5d;
   cursor: default;
