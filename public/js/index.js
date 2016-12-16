@@ -23,7 +23,7 @@ function callAPI(evt) {
     });
   }).then(function(result){
     document.querySelector('.renderedAST').innerHTML = result.text;
-    if (result.headers.get('content-type') === 'image/svg+xml') {
+    if (result.headers.get('content-type') === 'image/svg+xml; charset=utf-8') {
       eval(decodeHTML(document.querySelector('.renderedAST script').innerHTML));
     }
   }).catch(console.log);
