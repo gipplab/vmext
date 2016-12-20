@@ -7,7 +7,7 @@
     "type": "git"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon --ignore public/ server.js",
     "debug": "node --inspect --debug-brk server.js",
     "docs": "apidoc -i ./api -o ./config/apiDoc/"
   },
