@@ -16,19 +16,14 @@ module.exports = class AbstractSyntaxTreeController {
 
     res.format({
       'application/json': () => {
-        parsedMathMLPromise.then((result) => {
-          res.json(result);
-        });
+        parsedMathMLPromise.then(res.json);
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {
-          ASTRenderer.renderSVG({
+          new ASTRenderer().renderAST({
             data: result,
             renderFormula: JSON.parse(req.body.renderFormula)
-          }, (svgErr, svg) => {
-            if (svgErr) return next(svgErr);
-            res.send(svg);
-          });
+          }).then(res.send).catch(next);
         });
       },
       default: () => {
