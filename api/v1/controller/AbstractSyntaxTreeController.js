@@ -1,6 +1,6 @@
 'use strict';
 
-const MathMLParser = require('app/lib/MathMLParser');
+const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
 const ASTMerger = require('app/lib/ASTMerger');
@@ -10,7 +10,7 @@ const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
     if (!req.body.mathml) return next(new BadRequestError('form-data is missing field: mathml!'));
-    const parsedMathMLPromise = (new MathMLParser(req.body.mathml, {
+    const parsedMathMLPromise = (new ASTParser(req.body.mathml, {
       collapseSingleOperandNodes: JSON.parse(req.body.collapseSingleOperandNodes)
     })).parse();
 
