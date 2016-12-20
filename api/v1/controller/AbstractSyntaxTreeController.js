@@ -40,11 +40,12 @@ module.exports = class AbstractSyntaxTreeController {
   static renderMergedAst(req, res, next) {
     if (!req.body.reference_mathml) return next(new BadRequestError('form-data is missing field: reference_mathml!'));
     if (!req.body.comparison_mathml) return next(new BadRequestError('form-data is missing field: comparison_mathml!'));
-    if (!req.body.similarity_xml) return next(new BadRequestError('form-data is missing field: similarity_xml!'));
+    if (!req.body.similarities) return next(new BadRequestError('form-data is missing field: similarities!'));
     new ASTMerger(
       req.body.reference_mathml,
       req.body.comparison_mathml,
-      req.body.similarity_xml).merge().then((result) => {
+      JSON.parse(req.body.similarities))
+      .merge().then((result) => {
         res.send(result);
       }
     );

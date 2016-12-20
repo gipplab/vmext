@@ -36,7 +36,8 @@
     "bootstrap": "^3.3.7",
     "eslint": "^3.9.1",
     "eslint-config-airbnb-base": "^10.0.1",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-plugin-import": "^2.2.0",
+    "nodemon": "^1.11.0"
   },
   "apidoc": {
     "name": "API Documentation",

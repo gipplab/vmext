@@ -19,6 +19,7 @@
     "no-mixed-operators": 0,
     "arrow-body-style": 0,
     "import/no-extraneous-dependencies": 0,
-    "max-len": ["warn", 120]
+    "max-len": ["warn", 120],
+    "no-plusplus": 0
   }
 }
