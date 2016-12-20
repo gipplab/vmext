@@ -1,7 +1,7 @@
 'use strict';
 
 const MathMLParser = require('app/lib/MathMLParser');
-const SVGRenderer = require('app/lib/SVGRenderer');
+const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
 const ASTMerger = require('app/lib/ASTMerger');
 const BadRequestError = require('app/errorHandler/BadRequestError');
@@ -22,7 +22,7 @@ module.exports = class AbstractSyntaxTreeController {
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {
-          SVGRenderer.renderSVG({
+          ASTRenderer.renderSVG({
             data: result,
             renderFormula: JSON.parse(req.body.renderFormula)
           }, (svgErr, svg) => {
