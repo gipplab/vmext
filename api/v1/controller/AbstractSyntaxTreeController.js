@@ -23,7 +23,7 @@ module.exports = class AbstractSyntaxTreeController {
           new ASTRenderer().renderAST({
             data: result,
             renderFormula: JSON.parse(req.body.renderFormula)
-          }).then(res.send).catch(next);
+          }).then(svg => res.send(svg)).catch(next);
         });
       },
       default: () => {
