@@ -3,7 +3,6 @@
 const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
-const ASTMerger = require('app/lib/ASTMerger');
 const BadRequestError = require('app/errorHandler/BadRequestError');
 const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 
@@ -20,7 +19,7 @@ module.exports = class AbstractSyntaxTreeController {
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {
-          new ASTRenderer().renderAST({
+          new ASTRenderer.Simple().render({
             data: result,
             renderFormula: JSON.parse(req.body.renderFormula)
           }).then(svg => res.send(svg)).catch(next);
@@ -36,20 +35,25 @@ module.exports = class AbstractSyntaxTreeController {
     if (!req.body.reference_mathml) return next(new BadRequestError('form-data is missing field: reference_mathml!'));
     if (!req.body.comparison_mathml) return next(new BadRequestError('form-data is missing field: comparison_mathml!'));
     if (!req.body.similarities) return next(new BadRequestError('form-data is missing field: similarities!'));
-    new ASTMerger(
-      req.body.reference_mathml,
-      req.body.comparison_mathml,
-      JSON.parse(req.body.similarities))
-      .merge().then((result) => {
-        res.send(result);
-      }
-    );
+    const similarities = JSON.parse(req.body.similarities);
+    const parseTasks = [
+      (new ASTParser(req.body.reference_mathml)).parse(),
+      (new ASTParser(req.body.comparison_mathml)).parse()
+    ];
+
+    Promise.all(parseTasks).then(([a, b]) => {
+      const renderer = new ASTRenderer.Graph(a, b, similarities);
+      renderer.render().then((elements) => {
+        res.send(elements);
+      })
+      .catch(err => next(err));
+    });
   }
 
   static renderMML(req, res, next) {
-    MathJaxRenderer.renderMML(req.body.mathml, (err, svg) => {
-      if (err) return next(err);
+    MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
       res.send(svg);
-    });
+    })
+    .catch(err => next(err));
   }
 };
