@@ -53,7 +53,29 @@ astRouter.post('/renderAST',
    * @apiDescription Renders a merged AST
    * @apiSuccess (Success 200) svg merged abstract syntax tree
    */
-astRouter.post('/renderMergedAST', upload.none(), RequestValidator.multiPartFormData, astController.renderMergedAst);
+astRouter.post('/renderMergedAST',
+                upload.none(),
+                RequestValidator.multiPartFormData,
+                RequestValidator.parseParams(
+                  [{
+                    name: 'reference_mathml',
+                    origin: 'BODY',
+                    type: 'xml',
+                    optional: false
+                  },
+                  {
+                    name: 'comparison_mathml',
+                    origin: 'BODY',
+                    type: 'xml',
+                    optional: false
+                  },
+                  {
+                    name: 'similarities',
+                    origin: 'BODY',
+                    type: 'json',
+                    optional: false
+                  }]),
+                astController.renderMergedAst);
 
 /**
    * @api {post} /api/v1/math/renderPMML POST /api/v1/math/renderPMML

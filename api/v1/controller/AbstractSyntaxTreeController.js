@@ -31,21 +31,16 @@ module.exports = class AbstractSyntaxTreeController {
   }
 
   static renderMergedAst(req, res, next) {
-    if (!req.body.reference_mathml) return next(new BadRequestError('form-data is missing field: reference_mathml!'));
-    if (!req.body.comparison_mathml) return next(new BadRequestError('form-data is missing field: comparison_mathml!'));
-    if (!req.body.similarities) return next(new BadRequestError('form-data is missing field: similarities!'));
-    const similarities = JSON.parse(req.body.similarities);
     const parseTasks = [
-      (new ASTParser(req.body.reference_mathml)).parse(),
-      (new ASTParser(req.body.comparison_mathml)).parse()
+      (new ASTParser(res.locals.reference_mathml)).parse(),
+      (new ASTParser(res.locals.comparison_mathml)).parse()
     ];
 
     Promise.all(parseTasks).then(([a, b]) => {
-      const renderer = new ASTRenderer.Graph(a, b, similarities);
-      renderer.render().then((elements) => {
-        res.send(elements);
-      })
-      .catch(err => next(err));
+      const renderer = new ASTRenderer.Graph(a, b, res.locals.similarities);
+      renderer.render()
+              .then(elements => res.send(elements))
+              .catch(next);
     });
   }
 
