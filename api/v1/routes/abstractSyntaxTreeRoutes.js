@@ -18,7 +18,29 @@ const astController = require('../controller/AbstractSyntaxTreeController');
    * @apiDescription Renders an abstract syntax tree based on provided mathML
    * @apiSuccess (Success 200) svg abstract syntax tree
    */
-astRouter.post('/renderAST', upload.none(), RequestValidator.multiPartFormData, astController.renderAst);
+astRouter.post('/renderAST',
+                upload.none(),
+                RequestValidator.multiPartFormData,
+                RequestValidator.parseParams(
+                  [{
+                    name: 'mathml',
+                    origin: 'BODY',
+                    type: 'xml',
+                    optional: false
+                  },
+                  {
+                    name: 'collapseSingleOperandNodes',
+                    origin: 'BODY',
+                    type: 'boolean',
+                    optional: true
+                  },
+                  {
+                    name: 'renderFormula',
+                    origin: 'BODY',
+                    type: 'boolean',
+                    optional: true
+                  }]),
+                astController.renderAst);
 
 /**
    * @api {post} /api/v1/math/renderMergedAST POST /api/v1/math/renderMergedAST

@@ -8,20 +8,19 @@ const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
-    if (!req.body.mathml) return next(new BadRequestError('form-data is missing field: mathml!'));
-    const parsedMathMLPromise = (new ASTParser(req.body.mathml, {
-      collapseSingleOperandNodes: JSON.parse(req.body.collapseSingleOperandNodes)
+    const parsedMathMLPromise = (new ASTParser(res.locals.mathml, {
+      collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes
     })).parse();
 
     res.format({
       'application/json': () => {
-        parsedMathMLPromise.then(res.json);
+        parsedMathMLPromise.then(result => res.json(result));
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {
           new ASTRenderer.Simple().render({
             data: result,
-            renderFormula: JSON.parse(req.body.renderFormula)
+            renderFormula: res.locals.renderFormula
           }).then(svg => res.send(svg)).catch(next);
         });
       },
