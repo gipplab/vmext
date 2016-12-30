@@ -22,6 +22,14 @@ app.get('/', (req, res, next) => {
   res.render('index');
 });
 
+app.get('/astRenderer', (req, res, next) => {
+  res.render('ASTRenderer');
+});
+
+app.get('/mergedASTs', (req, res, next) => {
+  res.render('mergedASTs');
+});
+
 // global errorHandler ============================================
 require(path.join(__dirname, 'errorHandler', 'ErrorHandler'))(app);
 

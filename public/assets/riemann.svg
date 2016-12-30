@@ -1,0 +1,327 @@
+<svg width="100%" height="100%" viewbox="0 0 694 584" class="mainSVG" xmlns="http://www.w3.org/2000/svg"><style>.node > rect {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 2;
+}
+
+.node.ambiguous > rect {
+  fill: steelblue;
+}
+
+.node.ambiguous > g {
+  color: white;
+}
+
+.node--internal {
+  cursor: pointer;
+}
+
+.node--leaf circle, .node--leaf rect {
+  stroke-dasharray: 2, 2;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.header {
+  color: grey;
+}
+
+.header__caption, .ast__caption {
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  fill: #5d5d5d;
+  cursor: default;
+}
+
+.header__background {
+  fill: #fff;
+  stroke: grey;
+  stroke-width: 1;
+}
+</style><script type="text/javascript">//<![CDATA[
+  var nodes = document.querySelectorAll('.node.node--internal');
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].addEventListener('mouseover', function(evt) {
+      var escapedID = evt.currentTarget.attributes['data-xref'].value.replace(/\./g, '\\.');
+      document.querySelector('#' + escapedID).style.fill = '#e01818';
+    });
+    nodes[i].addEventListener('mouseout', function(evt) {
+      var escapedID = evt.currentTarget.attributes['data-xref'].value.replace(/\./g, '\\.');
+        document.querySelector('#' + escapedID).style.removeProperty('fill');
+    });
+  }
+//]]>
+</script><g class="marginedSVG" transform="translate(17,17)"><g transform="translate(0,0)" class="ast"><text dx="0" dy="0" class="ast__caption">Abstract Syntax Tree:</text><path class="link" d="M71.35135135135135,91.66666666666667C71.35135135135135,45.833333333333336 218.51351351351352,45.833333333333336 218.51351351351352,0"></path><path class="link" d="M365.6756756756757,91.66666666666667C365.6756756756757,45.833333333333336 218.51351351351352,45.833333333333336 218.51351351351352,0"></path><path class="link" d="M71.35135135135135,183.33333333333334C71.35135135135135,137.5 71.35135135135135,137.5 71.35135135135135,91.66666666666667"></path><path class="link" d="M214.05405405405406,183.33333333333334C214.05405405405406,137.5 365.6756756756757,137.5 365.6756756756757,91.66666666666667"></path><path class="link" d="M517.2972972972973,183.33333333333334C517.2972972972973,137.5 365.6756756756757,137.5 365.6756756756757,91.66666666666667"></path><path class="link" d="M178.3783783783784,275C178.3783783783784,229.16666666666669 214.05405405405406,229.16666666666669 214.05405405405406,183.33333333333334"></path><path class="link" d="M249.72972972972974,275C249.72972972972974,229.16666666666669 214.05405405405406,229.16666666666669 214.05405405405406,183.33333333333334"></path><path class="link" d="M481.62162162162167,275C481.62162162162167,229.16666666666669 517.2972972972973,229.16666666666669 517.2972972972973,183.33333333333334"></path><path class="link" d="M552.972972972973,275C552.972972972973,229.16666666666669 517.2972972972973,229.16666666666669 517.2972972972973,183.33333333333334"></path><path class="link" d="M160.54054054054055,366.6666666666667C160.54054054054055,320.83333333333337 249.72972972972974,320.83333333333337 249.72972972972974,275"></path><path class="link" d="M338.91891891891896,366.6666666666667C338.91891891891896,320.83333333333337 249.72972972972974,320.83333333333337 249.72972972972974,275"></path><path class="link" d="M517.2972972972973,366.6666666666667C517.2972972972973,320.83333333333337 552.972972972973,320.83333333333337 552.972972972973,275"></path><path class="link" d="M588.6486486486486,366.6666666666667C588.6486486486486,320.83333333333337 552.972972972973,320.83333333333337 552.972972972973,275"></path><path class="link" d="M124.86486486486487,458.33333333333337C124.86486486486487,412.5 160.54054054054055,412.5 160.54054054054055,366.6666666666667"></path><path class="link" d="M196.21621621621622,458.33333333333337C196.21621621621622,412.5 160.54054054054055,412.5 160.54054054054055,366.6666666666667"></path><path class="link" d="M338.91891891891896,458.33333333333337C338.91891891891896,412.5 338.91891891891896,412.5 338.91891891891896,366.6666666666667"></path><path class="link" d="M481.62162162162167,458.33333333333337C481.62162162162167,412.5 517.2972972972973,412.5 517.2972972972973,366.6666666666667"></path><path class="link" d="M552.972972972973,458.33333333333337C552.972972972973,412.5 517.2972972972973,412.5 517.2972972972973,366.6666666666667"></path><path class="link" d="M303.2432432432432,550C303.2432432432432,504.1666666666667 338.91891891891896,504.1666666666667 338.91891891891896,458.33333333333337"></path><path class="link" d="M374.5945945945946,550C374.5945945945946,504.1666666666667 338.91891891891896,504.1666666666667 338.91891891891896,458.33333333333337"></path><g class="node node--internal" transform="translate(218.51351351351352,0)" data-xref="p1.1.m1.1.5"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-7.232,-5.372)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.808ex" height="1.343ex" style="vertical-align: 0.307ex;" viewBox="0 -504.3 778.5 578.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.2" xref="p1.1.m1.1.2.cmml">
+ <use xlink:href="#E1-MJMAIN-3D"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(71.35135135135135,91.66666666666667)" data-xref="p1.1.m1.1.1.8.2"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-4.38,-10.036)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.095ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 471.5 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMATHI-3B6" d="M296 643Q298 704 324 704Q342 704 342 687Q342 682 339 664T336 633Q336 623 337 618T338 611Q339 612 341 612Q343 614 354 616T374 618L384 619H394Q471 619 471 586Q467 548 386 546H372Q338 546 320 564L311 558Q235 506 175 398T114 190Q114 171 116 155T125 127T137 104T153 86T171 72T192 61T213 53T235 46T256 39L322 16Q389 -10 389 -80Q389 -119 364 -154T300 -202Q292 -204 274 -204Q247 -204 225 -196Q210 -192 193 -182T172 -167Q167 -159 173 -148Q180 -139 191 -139Q195 -139 221 -153T283 -168Q298 -166 310 -152T322 -117Q322 -91 302 -75T250 -51T183 -29T116 4T65 62T44 160Q44 287 121 410T293 590L302 595Q296 613 296 643Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.1.2.1.2" xref="p1.1.m1.1.1.2.1.1.cmml">
+ <use xlink:href="#E1-MJMATHI-3B6"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(365.6756756756757,91.66666666666667)" data-xref="p1.1.m1.1.5.1"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-2.588,-4.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+ <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
+</g>
+</svg></g></g><g class="node node--leaf" transform="translate(71.35135135135135,183.33333333333334)" data-xref="p1.1.m1.1.1.6"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-4.36,-6.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.09ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 469.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.1.6" xref="p1.1.m1.1.1.6.cmml">
+ <use xlink:href="#E1-MJMATHI-73"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(214.05405405405406,183.33333333333334)" data-xref="p1.1.m1.1.3"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-7.232,-7.372)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.808ex" height="1.843ex" style="vertical-align: -0.338ex;" viewBox="0 -647.8 778.5 793.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-F7" d="M318 466Q318 500 339 518T386 537Q418 537 438 517T458 466Q458 438 440 417T388 396Q355 396 337 417T318 466ZM56 237T56 250T70 270H706Q721 262 721 250T706 230H70Q56 237 56 250ZM318 34Q318 68 339 86T386 105Q418 105 438 85T458 34Q458 6 440 -15T388 -36Q355 -36 337 -15T318 34Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+ <use xlink:href="#E1-MJMAIN-F7" x="0" y="0"></use>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(517.2972972972973,183.33333333333334)" data-xref="p1.1.m1.1.4.8"><rect width="39.06" height="52.587" rx="7" ry="7" transform="translate(-19.53, -26.2935)"></rect><g transform="translate(-17.36,-23.372)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="4.34ex" height="5.843ex" style="vertical-align: -2.338ex;" viewBox="0 -1508.9 1868.4 2515.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJSZ2-222B" d="M114 -798Q132 -824 165 -824H167Q195 -824 223 -764T275 -600T320 -391T362 -164Q365 -143 367 -133Q439 292 523 655T645 1127Q651 1145 655 1157T672 1201T699 1257T733 1306T777 1346T828 1360Q884 1360 912 1325T944 1245Q944 1220 932 1205T909 1186T887 1183Q866 1183 849 1198T832 1239Q832 1287 885 1296L882 1300Q879 1303 874 1307T866 1313Q851 1323 833 1323Q819 1323 807 1311T775 1255T736 1139T689 936T633 628Q574 293 510 -5T410 -437T355 -629Q278 -862 165 -862Q125 -862 92 -831T55 -746Q55 -711 74 -698T112 -685Q133 -685 150 -700T167 -741Q167 -789 114 -798Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-221E" d="M55 217Q55 305 111 373T254 442Q342 442 419 381Q457 350 493 303L507 284L514 294Q618 442 747 442Q833 442 888 374T944 214Q944 128 889 59T743 -11Q657 -11 580 50Q542 81 506 128L492 147L485 137Q381 -11 252 -11Q166 -11 111 57T55 217ZM907 217Q907 285 869 341T761 397Q740 397 720 392T682 378T648 359T619 335T594 310T574 285T559 263T548 246L543 238L574 198Q605 158 622 138T664 94T714 61T765 51Q827 51 867 100T907 217ZM92 214Q92 145 131 89T239 33Q357 33 456 193L425 233Q364 312 334 337Q285 380 233 380Q171 380 132 331T92 214Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.4.2.1.6" xref="p1.1.m1.1.4.2.1.1.cmml">
+<g id="p1.1.m1.1.4.2.1.6a" xref="p1.1.m1.1.4.2.1.1.cmml">
+<g id="p1.1.m1.1.4.2.1.2" xref="p1.1.m1.1.4.2.1.1.1.cmml">
+ <use xlink:href="#E1-MJSZ2-222B"></use>
+</g>
+<g id="p1.1.m1.1.4.2.1.4.1" xref="p1.1.m1.1.4.2.1.4.1.cmml" transform="translate(1060,1089)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-221E"></use>
+</g>
+<g id="p1.1.m1.1.4.2.1.3.1" xref="p1.1.m1.1.4.2.1.3.1.cmml" transform="translate(556,-898)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-30"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf" transform="translate(178.3783783783784,275)" data-xref="p1.1.m1.1.3.2"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-4.648,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.162ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 500.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.2" xref="p1.1.m1.1.3.2.cmml">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(249.72972972972974,275)" data-xref="p1.1.m1.1.3.3"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-2.588,-4.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+ <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
+</g>
+</svg></g></g><g class="node node--leaf" transform="translate(481.62162162162167,275)" data-xref="p1.1.m1.1.4.7"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-5.32,-6.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.33ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 572.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.4.7" xref="p1.1.m1.1.4.7.cmml">
+ <use xlink:href="#E1-MJMATHI-78"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(552.972972972973,275)" data-xref="p1.1.m1.1.4.8.1"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-7.232,-7.372)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.808ex" height="1.843ex" style="vertical-align: -0.338ex;" viewBox="0 -647.8 778.5 793.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-F7" d="M318 466Q318 500 339 518T386 537Q418 537 438 517T458 466Q458 438 440 417T388 396Q355 396 337 417T318 466ZM56 237T56 250T70 270H706Q721 262 721 250T706 230H70Q56 237 56 250ZM318 34Q318 68 339 86T386 105Q418 105 438 85T458 34Q458 6 440 -15T388 -36Q355 -36 337 -15T318 34Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+ <use xlink:href="#E1-MJMAIN-F7" x="0" y="0"></use>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(160.54054054054055,366.6666666666667)" data-xref="p1.1.m1.1.3.3.9"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-7.232,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.808ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 778.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.3" xref="p1.1.m1.1.3.3.3.cmml">
+ <use xlink:href="#E1-MJMAIN-2212"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(338.91891891891896,366.6666666666667)" data-xref="p1.1.m1.1.3.3.7.8.2"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-5.812,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.453ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 625.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-393" d="M128 619Q121 626 117 628T101 631T58 634H25V680H554V676Q556 670 568 560T582 444V440H542V444Q542 445 538 478T523 545T492 598Q454 634 349 634H334Q264 634 249 633T233 621Q232 618 232 339L233 61Q240 54 245 52T270 48T333 46H360V0H348Q324 3 182 3Q51 3 36 0H25V46H58Q100 47 109 49T128 61V619Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.7.2.1.2" xref="p1.1.m1.1.3.3.7.2.1.1.cmml">
+ <use xlink:href="#E1-MJMAIN-393"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(517.2972972972973,366.6666666666667)" data-xref="p1.1.m1.1.4.4.1.2"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-2.588,-4.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+ <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
+</g>
+</svg></g></g><g class="node node--leaf ambiguous" transform="translate(588.6486486486486,366.6666666666667)" data-xref="p1.1.m1.1.4.4.1.3"><rect width="81.639" height="30.087" rx="7" ry="7" transform="translate(-40.8195, -15.0435)"></rect><g transform="translate(-36.284,-13.372)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="9.071ex" height="3.343ex" style="vertical-align: -0.838ex;" viewBox="0 -1078.4 3905.7 1439.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-65" d="M28 218Q28 273 48 318T98 391T163 433T229 448Q282 448 320 430T378 380T406 316T415 245Q415 238 408 231H126V216Q126 68 226 36Q246 30 270 30Q312 30 342 62Q359 79 369 104L379 128Q382 131 395 131H398Q415 131 415 121Q415 117 412 108Q393 53 349 21T250 -11Q155 -11 92 58T28 218ZM333 275Q322 403 238 411H236Q228 411 220 410T195 402T166 381T143 340T127 274V267H333V275Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.4.4.1.3" xref="p1.1.m1.1.4.1.cmml">
+<g id="p1.1.m1.1.4.4.1.3.9" xref="p1.1.m1.1.4.4.1.3.9.2.cmml">
+<g id="p1.1.m1.1.4.4.1.3.1">
+ <use xlink:href="#E1-MJMAIN-28"></use>
+</g>
+<g id="p1.1.m1.1.4.4.1.3.9.2" xref="p1.1.m1.1.4.4.1.3.9.2.cmml" transform="translate(389,0)">
+<g id="p1.1.m1.1.4.4.1.3.9.2.1" xref="p1.1.m1.1.4.4.1.3.9.2.cmml">
+<g id="p1.1.m1.1.4.4.1.3.2" xref="p1.1.m1.1.4.4.1.3.2.cmml">
+ <use xlink:href="#E1-MJMAIN-65"></use>
+</g>
+<g id="p1.1.m1.1.4.4.1.3.3.1" xref="p1.1.m1.1.4.4.1.3.3.1.cmml" transform="translate(444,362)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-78"></use>
+</g>
+</g>
+<g id="p1.1.m1.1.4.4.1.3.4" xref="p1.1.m1.1.4.4.1.3.4.cmml" transform="translate(1171,0)">
+ <use xlink:href="#E1-MJMAIN-2B"></use>
+</g>
+<g id="p1.1.m1.1.4.4.1.3.5" xref="p1.1.m1.1.4.4.1.3.5.cmml" transform="translate(2172,0)">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+</g>
+</g>
+<g id="p1.1.m1.1.4.4.1.3.6" transform="translate(3062,0)">
+ <use xlink:href="#E1-MJMAIN-29"></use>
+</g>
+</g>
+<g id="p1.1.m1.1.4.4.1.3.7.1" xref="p1.1.m1.1.4.4.1.3.7.1.cmml" transform="translate(3451,477)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-32"></use>
+</g>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf" transform="translate(124.86486486486487,458.33333333333337)" data-xref="p1.1.m1.1.3.3.2"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-4.648,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.162ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 500.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.2" xref="p1.1.m1.1.3.3.2.cmml">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf ambiguous" transform="translate(196.21621621621622,458.33333333333337)" data-xref="p1.1.m1.1.3.3.9"><rect width="90.702" height="30" rx="7" ry="7" transform="translate(-45.351, -15)"></rect><g transform="translate(-40.312,-12.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="10.078ex" height="3.176ex" style="vertical-align: -0.838ex;" viewBox="0 -1006.6 4339.3 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.9" xref="p1.1.m1.1.3.3.9.2.cmml">
+<g id="p1.1.m1.1.3.3.1">
+ <use xlink:href="#E1-MJMAIN-28"></use>
+</g>
+<g id="p1.1.m1.1.3.3.9.2" xref="p1.1.m1.1.3.3.9.2.cmml" transform="translate(389,0)">
+<g id="p1.1.m1.1.3.3.2" xref="p1.1.m1.1.3.3.2.cmml">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+</g>
+<g id="p1.1.m1.1.3.3.3" xref="p1.1.m1.1.3.3.3.cmml" transform="translate(722,0)">
+ <use xlink:href="#E1-MJMAIN-2212"></use>
+</g>
+<g id="p1.1.m1.1.3.3.9.2.1" xref="p1.1.m1.1.3.3.9.2.cmml" transform="translate(1723,0)">
+<g id="p1.1.m1.1.3.3.4" xref="p1.1.m1.1.3.3.4.cmml">
+ <use xlink:href="#E1-MJMAIN-32"></use>
+</g>
+<g id="p1.1.m1.1.3.3.5.1" xref="p1.1.m1.1.3.3.9.2.cmml" transform="translate(500,393)">
+<g id="p1.1.m1.1.3.3.5.1.1" xref="p1.1.m1.1.3.3.5.1.1.cmml">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31"></use>
+</g>
+<g id="p1.1.m1.1.3.3.5.1.2" xref="p1.1.m1.1.3.3.5.1.2.cmml" transform="translate(353,0)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-2212"></use>
+</g>
+<g id="p1.1.m1.1.3.3.5.1.3" xref="p1.1.m1.1.3.3.5.1.3.cmml" transform="translate(904,0)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73"></use>
+</g>
+</g>
+</g>
+</g>
+<g id="p1.1.m1.1.3.3.6" transform="translate(3949,0)">
+ <use xlink:href="#E1-MJMAIN-29"></use>
+</g>
+</g>
+</g>
+</svg></g></g><g class="node node--internal" transform="translate(338.91891891891896,458.33333333333337)" data-xref="p1.1.m1.1.3.3.7.6"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-7.232,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.808ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 778.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.7.6.2" xref="p1.1.m1.1.3.3.7.6.2.cmml">
+ <use xlink:href="#E1-MJMAIN-2B"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf ambiguous" transform="translate(481.62162162162167,458.33333333333337)" data-xref="p1.1.m1.1.4.4.1.2.6"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-8.82,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="2.205ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 949.3 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-65" d="M28 218Q28 273 48 318T98 391T163 433T229 448Q282 448 320 430T378 380T406 316T415 245Q415 238 408 231H126V216Q126 68 226 36Q246 30 270 30Q312 30 342 62Q359 79 369 104L379 128Q382 131 395 131H398Q415 131 415 121Q415 117 412 108Q393 53 349 21T250 -11Q155 -11 92 58T28 218ZM333 275Q322 403 238 411H236Q228 411 220 410T195 402T166 381T143 340T127 274V267H333V275Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.4.4.1.2.6" xref="p1.1.m1.1.4.1.cmml">
+<g id="p1.1.m1.1.4.4.1.2.1" xref="p1.1.m1.1.4.4.1.2.1.cmml">
+ <use xlink:href="#E1-MJMAIN-65"></use>
+</g>
+<g id="p1.1.m1.1.4.4.1.2.2.1" xref="p1.1.m1.1.4.4.1.2.2.1.cmml" transform="translate(444,362)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-78"></use>
+</g>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf ambiguous" transform="translate(552.972972972973,458.33333333333337)" data-xref="p1.1.m1.1.4.4.1.2.7"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-9.332,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="2.333ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1004.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.4.4.1.2.7" xref="p1.1.m1.1.4.1.cmml">
+<g id="p1.1.m1.1.4.4.1.2.3" xref="p1.1.m1.1.4.4.1.2.3.cmml">
+ <use xlink:href="#E1-MJMATHI-78"></use>
+</g>
+<g id="p1.1.m1.1.4.4.1.2.4.1" xref="p1.1.m1.1.4.4.1.2.4.1.cmml" transform="translate(572,362)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73"></use>
+</g>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf" transform="translate(303.2432432432432,550)" data-xref="p1.1.m1.1.3.3.7.6.1"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-4.36,-6.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.09ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 469.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.7.6.1" xref="p1.1.m1.1.3.3.7.6.1.cmml">
+ <use xlink:href="#E1-MJMATHI-73"></use>
+</g>
+</g>
+</svg></g></g><g class="node node--leaf" transform="translate(374.5945945945946,550)" data-xref="p1.1.m1.1.3.3.7.6.3"><rect width="30" height="30" rx="7" ry="7" transform="translate(-15, -15)"></rect><g transform="translate(-4.648,-8.704)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" class="ltx_Math" id="A" width="1.162ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 500.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
+<g id="p1.1.m1.1.3.3.7.6.3" xref="p1.1.m1.1.3.3.7.6.3.cmml">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+</g>
+</g>
+</svg></g></g></g></g></svg>
