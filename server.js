@@ -23,11 +23,11 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/astRenderer', (req, res, next) => {
-  res.render('ASTRenderer');
+  res.render('ast-renderer');
 });
 
 app.get('/mergedASTs', (req, res, next) => {
-  res.render('mergedASTs');
+  res.render('merged-asts');
 });
 
 // global errorHandler ============================================
