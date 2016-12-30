@@ -5,6 +5,7 @@
 
 .renderedAST {
    height: 100%;
+   overflow: hidden;
 }
 
 a {
