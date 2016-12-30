@@ -20,7 +20,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
    */
 astRouter.post('/renderAST',
                 upload.none(),
-                RequestValidator.multiPartFormData,
+                RequestValidator.contentType('multipart/form-data'),
                 RequestValidator.parseParams(
                   [{
                     name: 'mathml',
@@ -55,7 +55,7 @@ astRouter.post('/renderAST',
    */
 astRouter.post('/renderMergedAST',
                 upload.none(),
-                RequestValidator.multiPartFormData,
+                RequestValidator.contentType('multipart/form-data'),
                 RequestValidator.parseParams(
                   [{
                     name: 'reference_mathml',
@@ -85,4 +85,14 @@ astRouter.post('/renderMergedAST',
    * @apiDescription Renders presentation-MathML into SVG (Do not enclose <math></math>)
    * @apiSuccess (Success 200) {svg} svg rendered formula
    */
-astRouter.post('/renderPMML', upload.none(), astController.renderMML);
+astRouter.post('/renderPMML',
+                upload.none(),
+                RequestValidator.contentType('multipart/form-data'),
+                RequestValidator.parseParams(
+                  [{
+                    name: 'mathml',
+                    origin: 'BODY',
+                    type: 'string',
+                    optional: false
+                  }]),
+                 astController.renderMML);
