@@ -3,7 +3,7 @@
 function callAPI(evt) {
   evt.preventDefault();
   let formData = new FormData();
-  const accept = document.querySelector('.option-svg').checked ? 'application/js': 'application/json';
+  const accept = document.querySelector('.option-js').checked ? 'application/javascript': 'application/json';
   formData.append('reference_mathml', document.querySelector('#referenceMML').value);
   formData.append('comparison_mathml', document.querySelector('#comparisonMML').value);
   formData.append('comparison_mml', document.querySelector('#comparisonMML').value);
@@ -23,7 +23,7 @@ function callAPI(evt) {
       }
     });
   }).then(function(result){
-    if (result.headers.get('content-type') === 'application/js; charset=utf-8') {
+    if (result.headers.get('content-type') === 'application/javascript; charset=utf-8') {
       eval(decodeHTML(result.text));
     } else {
       document.querySelector('#cy').innerHTML = result.text;

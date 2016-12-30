@@ -46,11 +46,11 @@ module.exports = class AbstractSyntaxTreeController {
                   .catch(next);
         });
       },
-      'application/js': () => {
+      'application/javascript': () => {
         res.send(mergedASTJavascript);
       },
       default: () => {
-        return next(new NotAcceptableError('Request needs to accept application/json or application/js'));
+        return next(new NotAcceptableError('Request needs to accept application/json or application/javascript'));
       }
     });
   }
