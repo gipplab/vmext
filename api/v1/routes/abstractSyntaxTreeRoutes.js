@@ -44,10 +44,10 @@ astRouter.post('/renderAST',
 
 /**
    * @api {post} /api/v1/math/renderMergedAST POST /api/v1/math/renderMergedAST
-   * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
+   * @apiParam (Headers) {String} Accept type of result [application/json | application/js]
    * @apiParam (Body (multipart/form-data)) {String} reference_mathml the mathML of reference document
    * @apiParam (Body (multipart/form-data)) {String} comparison_mathml the mathML of comparison document
-   * @apiParam (Body (multipart/form-data)) {String} similarity_xml the XML containing match information
+   * @apiParam (Body (multipart/form-data)) {JSON} similaries the JSON containing match information
    * @apiName RenderMergedAst
    * @apiGroup Math
    * @apiDescription Renders a merged AST

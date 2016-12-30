@@ -1,10 +1,11 @@
 'use strict';
 
+const fs = require('fs');
 const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
-const BadRequestError = require('app/errorHandler/BadRequestError');
 const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
+const mergedASTJavascript = fs.readFileSync(`${__dirname}/../externalAssets/mergedAST.js`, 'utf8');
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
@@ -36,11 +37,21 @@ module.exports = class AbstractSyntaxTreeController {
       (new ASTParser(res.locals.comparison_mathml)).parse()
     ];
 
-    Promise.all(parseTasks).then(([a, b]) => {
-      const renderer = new ASTRenderer.Graph(a, b, res.locals.similarities);
-      renderer.render()
-              .then(elements => res.send(elements))
-              .catch(next);
+    res.format({
+      'application/json': () => {
+        Promise.all(parseTasks).then(([a, b]) => {
+          const renderer = new ASTRenderer.Graph(a, b, res.locals.similarities);
+          renderer.render()
+                  .then(elements => res.send(elements))
+                  .catch(next);
+        });
+      },
+      'application/js': () => {
+        res.send(mergedASTJavascript);
+      },
+      default: () => {
+        return next(new NotAcceptableError('Request needs to accept application/json or application/js'));
+      }
     });
   }
 

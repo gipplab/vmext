@@ -3,7 +3,7 @@ html
     title Merged ASTs
 
     link(rel='stylesheet' type='text/css' href='../vendor/css/bootstrap.min.css')
-    link(rel='stylesheet' type='text/css' href='../css/main.css')
+    link(rel='stylesheet' type='text/css' href='../css/MergedASTs.css')
 
   body
     .container
@@ -30,11 +30,12 @@ html
                       <input class='form-check-input option-json' type='radio', name='type', value='json' /> application/json
                   .form-check
                     label.form-check-label
-                      <input class='form-check-input option-svg' type='radio', name='type', value='svg' checked/> image/svg+xml
+                      <input class='form-check-input option-svg' type='radio', name='type', value='svg' checked/> application/js
                 fieldset.form-group.option-type
                 input.btn.btn-success(type='submit', value='Render')
                 a(href='/api/docs') open API specs
             .col-md-8.abstract-syntax-tree
-              div.renderedAST.form-control
+              div#cy.form-control
 
               script(src='/js/MergedASTs.js', type='text/javascript')
+              script(src='/vendor/js/cytoscape.min.js', type='text/javascript')
