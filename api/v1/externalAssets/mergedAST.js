@@ -14,6 +14,7 @@ fetch('/api/v1/math/renderMergedAST', {
 }).then(function(response) {
   return response.json();
 }).then(function(data) {
+  debugger;
   var cy =  cytoscape({
     container: document.querySelector('#cy'),
     elements: data,
@@ -39,10 +40,13 @@ fetch('/api/v1/math/renderMergedAST', {
       }
     ],
     layout: {
-      name: 'circle',
-      directed: true,
-      padding: 50
+      name: 'dagre'
     }
+    // layout: {
+    //   name: 'circle',
+    //   directed: true,
+    //   padding: 50
+    // }
   });
 }).catch(console.error);
 
