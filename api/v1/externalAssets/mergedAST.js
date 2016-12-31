@@ -5,12 +5,12 @@ formData.append('reference_mathml', document.querySelector('#referenceMML').valu
 formData.append('comparison_mathml', document.querySelector('#comparisonMML').value);
 formData.append('comparison_mml', document.querySelector('#comparisonMML').value);
 formData.append('similarities', document.querySelector('#similarities').value);
-fetch('/api/v1/math/renderMergedAST', {
-  method: 'POST',
+fetch('/js/data.json', { // /api/v1/math/renderMergedAST
+  method: 'GET', // POST
   headers: new Headers({
-    'Accept': 'application/json',
+    Accept: 'application/json',
   }),
-  body: formData
+  //body: formData
 }).then(function(response) {
   return response.json();
 }).then(function(data) {
@@ -19,8 +19,8 @@ fetch('/api/v1/math/renderMergedAST', {
     elements: data,
     style: [
       {
-        selector: 'node',
-        style: {
+        selector: '.source-A',
+        css: {
           shape: 'roundrectangle',
           'background-color': 'white',
           'background-image': 'data(presentation)',
@@ -31,8 +31,38 @@ fetch('/api/v1/math/renderMergedAST', {
         }
       },
       {
+        selector: '.source-B',
+        css: {
+          shape: 'octagon',
+          'background-color': 'white',
+          'background-image': 'data(presentation)',
+          'background-fit': 'contain',
+          width: '50px',
+          height: '50px',
+          'border-width': '1px'
+        }
+      },
+      {
+        selector: '.matchContainer',
+        css: {
+          content: 'data(label)',
+          'background-color': '#ffbcbc'
+        }
+      },
+      {
+        selector: '$node > node',
+        css: {
+          'padding-top': '10px',
+          'padding-left': '10px',
+          'padding-bottom': '10px',
+          'padding-right': '10px',
+          'text-valign': 'top',
+          'text-halign': 'center',
+        },
+      },
+      {
         selector: 'edge',
-        style: {
+        css: {
           'target-arrow-shape': 'triangle',
           'source-arrow-shape': 'triangle',
           'line-color': function(ele) {
