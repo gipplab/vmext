@@ -5,12 +5,12 @@ formData.append('reference_mathml', document.querySelector('#referenceMML').valu
 formData.append('comparison_mathml', document.querySelector('#comparisonMML').value);
 formData.append('comparison_mml', document.querySelector('#comparisonMML').value);
 formData.append('similarities', document.querySelector('#similarities').value);
-fetch('/js/data.json', { // /api/v1/math/renderMergedAST
-  method: 'GET', // POST
+fetch('/api/v1/math/renderMergedAST', { // /js/data.json
+  method: 'POST', // POST
   headers: new Headers({
     Accept: 'application/json',
   }),
-  //body: formData
+  body: formData
 }).then(function(response) {
   return response.json();
 }).then(function(data) {
