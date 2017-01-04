@@ -10,7 +10,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 /**
    * @api {post} /api/v1/math/renderAST POST /api/v1/math/renderAST
    * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
-   * @apiParam (Body (multipart/form-data)) {String} mathml the mathML to be rendered into an AST
+   * @apiParam (Body (multipart/form-data)) {XML} mathml the mathML to be rendered into an AST
    * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false
    * @apiParam (Body (multipart/form-data)) {Boolean} [collapseSingleOperandNodes] flag wether nodes with only one child should be collapsed <br>Defaults to true
    * @apiParam (Body (multipart/form-data)) {JSON} [nodesToBeCollapsed] ids of apply nodes to be collapsed <br> Example: ["p1.1.m1.1.4.1.cmml", "p1.1.m1.1.3.3.7.1.cmml"]
@@ -52,8 +52,8 @@ astRouter.post('/renderAST',
 /**
    * @api {post} /api/v1/math/renderMergedAST POST /api/v1/math/renderMergedAST
    * @apiParam (Headers) {String} Accept type of result [application/json | application/js]
-   * @apiParam (Body (multipart/form-data)) {String} reference_mathml the mathML of reference document
-   * @apiParam (Body (multipart/form-data)) {String} comparison_mathml the mathML of comparison document
+   * @apiParam (Body (multipart/form-data)) {XML} reference_mathml the mathML of reference document
+   * @apiParam (Body (multipart/form-data)) {XML} comparison_mathml the mathML of comparison document
    * @apiParam (Body (multipart/form-data)) {JSON} similaries the JSON containing match information
    * @apiName RenderMergedAst
    * @apiGroup Math
@@ -86,7 +86,7 @@ astRouter.post('/renderMergedAST',
 
 /**
    * @api {post} /api/v1/math/renderPMML POST /api/v1/math/renderPMML
-   * @apiParam (Body (multipart/form-data)) {String} mathml the presentation-MathML to be rendered
+   * @apiParam (Body (multipart/form-data)) {XML} mathml the presentation-MathML to be rendered
    * @apiName RenderFormula
    * @apiGroup Math
    * @apiDescription Renders presentation-MathML into SVG (Do not enclose <math></math>)
