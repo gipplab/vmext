@@ -7,6 +7,7 @@ function callAPI(evt) {
   formData.append('mathml', document.querySelector('#textarea').value);
   formData.append('renderFormula', document.querySelector('.option-renderFormula').checked);
   formData.append('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
+  formData.append('nodesToBeCollapsed', document.querySelector('.option-nodesToBeCollapsed').value);
   fetch('/api/v1/math/renderAST', {
     method: 'POST',
     headers: new Headers({

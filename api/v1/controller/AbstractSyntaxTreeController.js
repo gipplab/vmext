@@ -10,7 +10,8 @@ const mergedASTJavascript = fs.readFileSync(`${__dirname}/../externalAssets/merg
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
     const parsedMathMLPromise = (new ASTParser(res.locals.mathml, {
-      collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes
+      collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes || false,
+      nodesToBeCollapsed: res.locals.nodesToBeCollapsed || []
     })).parse();
 
     res.format({
@@ -21,7 +22,7 @@ module.exports = class AbstractSyntaxTreeController {
         parsedMathMLPromise.then((result) => {
           new ASTRenderer.Simple().render({
             data: result,
-            renderFormula: res.locals.renderFormula
+            renderFormula: res.locals.renderFormula || true
           }).then(svg => res.send(svg)).catch(next);
         });
       },
