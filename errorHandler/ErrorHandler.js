@@ -9,7 +9,7 @@ module.exports = (app) => {
     next(new NotFoundError(`Endpoint ${req.originalUrl} for method ${req.method} is not defined.`));
   });
 
-  app.use((err, req, res, next) => {
+  app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     log.error(err);
     // res.status(err.status || 500).json({
     //   Error: {

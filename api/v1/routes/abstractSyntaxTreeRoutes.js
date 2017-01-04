@@ -11,7 +11,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
    * @api {post} /api/v1/math/renderAST POST /api/v1/math/renderAST
    * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
    * @apiParam (Body (multipart/form-data)) {XML} mathml the mathML to be rendered into an AST
-   * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false
+   * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false //eslint-disable-line max-len
    * @apiParam (Body (multipart/form-data)) {Boolean} [collapseSingleOperandNodes] flag wether nodes with only one child should be collapsed <br>Defaults to true
    * @apiParam (Body (multipart/form-data)) {JSON} [nodesToBeCollapsed] ids of apply nodes to be collapsed <br> Example: ["p1.1.m1.1.4.1.cmml", "p1.1.m1.1.3.3.7.1.cmml"]
    * @apiName RenderAst

@@ -25,6 +25,8 @@
     "no-param-reassign": "warn",
     "class-methods-use-this": 0,
     "prefer-template": 0,
-    "no-restricted-syntax": 0
+    "no-restricted-syntax": 0,
+    "no-param-reassign": 0,
+    "func-names": 0
   }
 }
