@@ -15,7 +15,6 @@
   "author": "HTW",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",
     "cytoscape": "^2.7.13",

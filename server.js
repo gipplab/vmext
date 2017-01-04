@@ -3,12 +3,10 @@
 const express = require('express');
 const app = module.exports = express();
 const compression = require('compression');
-const bodyParser = require('body-parser');
 const log = require('./lib/logger');
 
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
 app.set('views', './public/html');
