@@ -1,6 +1,6 @@
 'use strict';
+
 const express = require('express');
-const path = require('path');
 const app = module.exports = express();
 const compression = require('compression');
 const bodyParser = require('body-parser');
@@ -15,12 +15,15 @@ app.set('views', './public/html');
 
 // serve static content only from 'public' dir
 app.use(express.static('./public'));
-app.use('/api', require('./api/versions'));
-app.use('/api/docs', express.static('./config/apiDoc'));
+// expose routes for templates
 app.use('/', require('./routes/routes'));
+// expose api
+app.use('/api', require('./api/versions'));
+// expose api docs
+app.use('/api/docs', express.static('./config/apiDoc'));
 
 // global errorHandler ============================================
-require(path.join(__dirname, 'errorHandler', 'ErrorHandler'))(app);
+require('./errorHandler/ErrorHandler')(app);
 
 // set up server ==================================================
 const server = app.listen(process.env.PORT || 4001, () => {
