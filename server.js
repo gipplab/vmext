@@ -14,21 +14,10 @@ app.set('view engine', 'pug');
 app.set('views', './public/html');
 
 // serve static content only from 'public' dir
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('./public'));
 app.use('/api', require('./api/versions'));
-app.use('/api/docs', express.static(path.join(__dirname, 'config', 'apiDoc')));
-
-app.get('/', (req, res, next) => {
-  res.render('index');
-});
-
-app.get('/astRenderer', (req, res, next) => {
-  res.render('ast-renderer');
-});
-
-app.get('/mergedASTs', (req, res, next) => {
-  res.render('merged-asts');
-});
+app.use('/api/docs', express.static('./config/apiDoc'));
+app.use('/', require('./routes/routes'));
 
 // global errorHandler ============================================
 require(path.join(__dirname, 'errorHandler', 'ErrorHandler'))(app);
