@@ -1,4 +1,5 @@
 'use strict';
+
 const log = require('app/lib/logger');
 const NotFoundError = require('./NotFoundError.js');
 

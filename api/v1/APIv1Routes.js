@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 const express = require('express');
 const v1Router = module.exports = express.Router({ mergeParams: true });
 

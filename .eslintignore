@@ -1,3 +1,5 @@
 node_modules
 public
 apiDoc
+lib/ASTRenderer/scripts.js
+api/v1/externalAssets/mergedAST.js

@@ -1,4 +1,5 @@
 'use strict';
+
 const http = require('http');
 
 module.exports = function ConflictError(msg) {
