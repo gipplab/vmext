@@ -33,19 +33,22 @@ astRouter.post('/renderAST',
                     name: 'collapseSingleOperandNodes',
                     origin: 'BODY',
                     type: 'boolean',
-                    optional: true
+                    optional: true,
+                    default: false
                   },
                   {
                     name: 'nodesToBeCollapsed',
                     origin: 'BODY',
                     type: 'json',
-                    optional: true
+                    optional: true,
+                    default: []
                   },
                   {
                     name: 'renderFormula',
                     origin: 'BODY',
                     type: 'boolean',
-                    optional: true
+                    optional: true,
+                    default: true
                   }]),
                 astController.renderAst);
 
