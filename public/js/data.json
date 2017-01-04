@@ -3,7 +3,7 @@
     "group": "edges",
     "data": {
       "source": "A.A.7",
-      "target": "A.A.3"
+      "target": "p"
     },
     "classes": "hierarchy"
   },
@@ -75,7 +75,7 @@
     "group": "edges",
     "data": {
       "source": "B.A.7",
-      "target": "B.A.3"
+      "target": "p"
     },
     "classes": "hierarchy"
   },
