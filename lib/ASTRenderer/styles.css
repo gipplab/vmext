@@ -1,10 +1,18 @@
-.node > rect {
+.node, .legend > rect {
   fill: #fff;
   stroke: steelblue;
   stroke-width: 2;
 }
 
-.node.ambiguous > rect {
+.legend > rect {
+  fill: #fff;
+  stroke: steelblue;
+  stroke: steelblue;
+  stroke-width: 2;
+  stroke-dasharray: 2, 2;
+}
+
+.node.ambiguous, .legend > rect {
   fill: steelblue;
 }
 
