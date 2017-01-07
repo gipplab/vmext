@@ -43,6 +43,14 @@ fetch('/api/v1/math/renderMergedAST', { // /js/data.json
         }
       },
       {
+        selector: '.match.match-identical',
+        css: {
+          content: 'data(label)',
+          shape: 'star',
+          'background-color': '#ffbcbc'
+        }
+      },
+      {
         selector: '.matchContainer',
         css: {
           content: 'data(label)',
