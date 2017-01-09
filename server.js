@@ -3,8 +3,10 @@
 const express = require('express');
 const app = module.exports = express();
 const compression = require('compression');
+const favicon = require('serve-favicon');
 const log = require('./lib/logger');
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
 
