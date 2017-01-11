@@ -46,7 +46,8 @@ fetch('/api/v1/math/renderMergedAST', { // /js/data.json
         selector: '.match.match-identical',
         css: {
           content: 'data(label)',
-          shape: 'star',
+          label: 'Match',
+          shape: 'rectangle',
           'background-color': '#ffbcbc'
         }
       },
