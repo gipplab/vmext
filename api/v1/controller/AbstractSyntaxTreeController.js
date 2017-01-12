@@ -41,14 +41,18 @@ module.exports = class AbstractSyntaxTreeController {
     res.format({
       'application/json': () => {
         Promise.all(parseTasks).then(([a, b]) => {
-          const renderer = new ASTRenderer.Graph(a, b, res.locals.similarities);
-          renderer.render()
-                  .then(elements => res.send({
-                    referenceMML: a,
-                    comparisonMML: b,
-                    mergedAST: elements
-                  }))
-                  .catch(next);
+          Promise.all([
+            new ASTRenderer.Graph(a).renderSingleTree(),
+            new ASTRenderer.Graph(b).renderSingleTree(),
+            new ASTRenderer.Graph(a, b, res.locals.similarities).render()
+          ]).then((result) => {
+            const [referenceAST, comparisonAST, mergedAST] = result;
+            res.json({
+              referenceAST,
+              comparisonAST,
+              mergedAST
+            });
+          }).catch(next);
         });
       },
       'application/javascript': () => {
