@@ -43,7 +43,11 @@ module.exports = class AbstractSyntaxTreeController {
         Promise.all(parseTasks).then(([a, b]) => {
           const renderer = new ASTRenderer.Graph(a, b, res.locals.similarities);
           renderer.render()
-                  .then(elements => res.send(elements))
+                  .then(elements => res.send({
+                    referenceMML: a,
+                    comparisonMML: b,
+                    mergedAST: elements
+                  }))
                   .catch(next);
         });
       },

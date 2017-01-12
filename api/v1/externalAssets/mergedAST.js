@@ -16,7 +16,7 @@ fetch('/api/v1/math/renderMergedAST', { // /js/data.json
 }).then(function(data) {
   var cy =  cytoscape({
     container: document.querySelector('#cy'),
-    elements: data,
+    elements: data.mergedAST,
     style: [
       {
         selector: '.source-A',
