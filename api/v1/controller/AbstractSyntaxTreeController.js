@@ -4,7 +4,7 @@ const fs = require('fs');
 const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
-const NotAcceptableError = require('app/errorHandler/NotAcceptableError');
+const Boom = require('boom');
 const mergedASTJavascript = fs.readFileSync(`${__dirname}/../externalAssets/mergedAST.js`, 'utf8');
 
 module.exports = class AbstractSyntaxTreeController {
@@ -27,7 +27,7 @@ module.exports = class AbstractSyntaxTreeController {
         });
       },
       default: () => {
-        return next(new NotAcceptableError('Request needs to accept application/json or image/svg+xml'));
+        return next(Boom.notAcceptable('Request needs to accept application/json or image/svg+xml'));
       }
     });
   }
@@ -59,7 +59,7 @@ module.exports = class AbstractSyntaxTreeController {
         res.send(mergedASTJavascript);
       },
       default: () => {
-        return next(new NotAcceptableError('Request needs to accept application/json or application/javascript'));
+        return next(Boom.notAcceptable('Request needs to accept application/json or application/javascript'));
       }
     });
   }
