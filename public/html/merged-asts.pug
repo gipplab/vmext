@@ -47,7 +47,16 @@ html
                 input.btn.btn-success(type='submit', value='Render')
                 a(href='/api/docs') open API specs
             .col-md-8.abstract-syntax-tree
-              div#cy.form-control
+              .row
+                .col-md-6.no-padding
+                  div#referenceAST
+                    span Reference AST
+                .col-md-6.no-padding
+                  div#comparisonAST
+                    span Comparison AST
+              .row
+                div#mergedAST
+                  span Merged AST
 
               script(src='/vendor/js/cytoscape.min.js', type='text/javascript')
               script(src='/vendor/js/dagre.min.js', type='text/javascript')

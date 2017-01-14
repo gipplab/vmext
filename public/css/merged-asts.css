@@ -1,8 +1,24 @@
-#cy {
-  height: 100%;
+#referenceAST {
+  height: 40%;
   overflow: hidden;
+  background-color: #EDF1FA;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
+#comparisonAST {
+  height: 40%;
+  overflow: hidden;
+  background-color: #edfaf1;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+#mergedAST {
+ height: 60%;
+ overflow: hidden;
+ background-color: #FAEDEF;
+ border-top: 1px solid #ccc;
+}
 .container {
   padding-top: 13px;
   height: 85%;
@@ -10,4 +26,8 @@
 
 a {
   margin-left: 1em;
+}
+
+.no-padding {
+  padding: 0px;
 }

@@ -14,8 +14,8 @@ fetch('/api/v1/math/renderMergedAST', { // /js/data.json
 }).then(function(response) {
   return response.json();
 }).then(function(data) {
-  var cy =  cytoscape({
-    container: document.querySelector('#cy'),
+  const mergedAST =  cytoscape({
+    container: document.querySelector('#mergedAST'),
     elements: data.mergedAST,
     style: [
       {
@@ -68,6 +68,94 @@ fetch('/api/v1/math/renderMergedAST', { // /js/data.json
           'text-valign': 'top',
           'text-halign': 'center',
         },
+      },
+      {
+        selector: 'edge',
+        css: {
+          'target-arrow-shape': 'triangle',
+          'source-arrow-shape': 'triangle',
+          'line-color': function(ele) {
+            return (ele.data().type === 'match') ? 'RED' : 'BLACK';
+          }
+        }
+      }
+    ],
+    layout: {
+      name: 'dagre',
+      directed: true
+    }
+  });
+  const referenceAST =  cytoscape({
+    container: document.querySelector('#referenceAST'),
+    elements: data.referenceAST,
+    style: [
+      {
+        selector: '.source-A',
+        css: {
+          shape: 'roundrectangle',
+          'background-color': 'white',
+          'background-image': 'data(presentation)',
+          'background-fit': 'contain',
+          width: '50px',
+          height: '50px',
+          'border-width': '1px'
+        }
+      },
+      {
+        selector: '.source-B',
+        css: {
+          shape: 'octagon',
+          'background-color': 'white',
+          'background-image': 'data(presentation)',
+          'background-fit': 'contain',
+          width: '50px',
+          height: '50px',
+          'border-width': '1px'
+        }
+      },
+      {
+        selector: 'edge',
+        css: {
+          'target-arrow-shape': 'triangle',
+          'source-arrow-shape': 'triangle',
+          'line-color': function(ele) {
+            return (ele.data().type === 'match') ? 'RED' : 'BLACK';
+          }
+        }
+      }
+    ],
+    layout: {
+      name: 'dagre',
+      directed: true
+    }
+  });
+  const comparisonAST =  cytoscape({
+    container: document.querySelector('#comparisonAST'),
+    elements: data.comparisonAST,
+    style: [
+      {
+        selector: '.source-A',
+        css: {
+          shape: 'roundrectangle',
+          'background-color': 'white',
+          'background-image': 'data(presentation)',
+          'background-fit': 'contain',
+          width: '50px',
+          height: '50px',
+          'border-width': '1px'
+        }
+      },
+      {
+        selector: '.source-B',
+        css: {
+          shape: 'octagon',
+          'background-color': 'white',
+          'background-image': 'data(presentation)',
+          'background-fit': 'contain',
+          width: '50px',
+          height: '50px',
+          'border-width': '1px'
+        }
       },
       {
         selector: 'edge',
