@@ -174,3 +174,18 @@ fetch('/api/v1/math/renderMergedAST', { // /js/data.json
     }
   });
 }).catch(console.error);
+
+function renderTextInCanvas(canvas, text) {
+  const ctx = canvas.getContext('2d');
+  ctx.font = "30px Arial";
+  ctx.fillText(text,1,40);
+}
+
+function drawHeaders() {
+  const reference_canvas = document.querySelectorAll('#referenceAST canvas')[0];
+  const comparison_canvas = document.querySelectorAll('#comparisonAST canvas')[0];
+  const merged_canvas = document.querySelectorAll('#mergedAST canvas')[0];
+  renderTextInCanvas(reference_canvas, 'Reference AST');
+  renderTextInCanvas(comparison_canvas, 'Comparison AST');
+  renderTextInCanvas(merged_canvas, 'Merged AST');
+}
