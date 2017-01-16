@@ -27,3 +27,8 @@ a {
 .no-padding {
   padding: 0px;
 }
+
+.canvas-label {
+  position: absolute;
+  margin: 2px 0px 0px 3px;
+}
