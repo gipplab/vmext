@@ -14,6 +14,8 @@ module.exports = class AbstractSyntaxTreeController {
       nodesToBeCollapsed: res.locals.nodesToBeCollapsed
     })).parse();
 
+    parsedMathMLPromise.catch(err => next(err));
+
     res.format({
       'application/json': () => {
         parsedMathMLPromise.then(result => res.json(result));
