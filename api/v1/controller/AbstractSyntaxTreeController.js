@@ -37,28 +37,28 @@ module.exports = class AbstractSyntaxTreeController {
     Promise.all([
       (new ASTParser(res.locals.reference_mathml)).parse(),
       (new ASTParser(res.locals.comparison_mathml)).parse()
-    ]).then(([a, b]) => {
+    ]).then(([referenceAST, comparisonAST]) => {
       return Promise.all([
-        new ASTRenderer.Graph(a).renderSingleTree(),
-        new ASTRenderer.Graph(b).renderSingleTree(),
-        new ASTRenderer.Graph(a, b, res.locals.similarities).render()
+        new ASTRenderer.Graph(referenceAST).renderSingleTree(),
+        new ASTRenderer.Graph(comparisonAST).renderSingleTree(),
+        new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render()
       ]);
     }).then((results) => {
-      const [referenceAST, comparisonAST, mergedAST] = results;
+      const [cytoscapedReferenceAST, cytoscapedComparisonAST, cytoscapedMergedAST] = results;
       res.format({
         'application/json': () => {
           res.json({
-            referenceAST,
-            comparisonAST,
-            mergedAST
+            cytoscapedReferenceAST,
+            cytoscapedComparisonAST,
+            cytoscapedMergedAST
           });
         },
         'application/javascript': () => {
           fs.readFile(`${__dirname}/../externalAssets/mergedAST.js`, 'utf8', (err, file) => {
             if (err) Boom.wrap(err, 500);
-            file = file.replace('REFERENCE_AST_TOKEN', JSON.stringify(referenceAST));
-            file = file.replace('COMPARISON_AST_TOKEN', JSON.stringify(comparisonAST));
-            file = file.replace('MERGED_AST_TOKEN', JSON.stringify(mergedAST));
+            file = file.replace('REFERENCE_AST_TOKEN', JSON.stringify(cytoscapedReferenceAST));
+            file = file.replace('COMPARISON_AST_TOKEN', JSON.stringify(cytoscapedComparisonAST));
+            file = file.replace('MERGED_AST_TOKEN', JSON.stringify(cytoscapedMergedAST));
             res.send(file);
           });
         },
