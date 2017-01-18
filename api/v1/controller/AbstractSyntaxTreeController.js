@@ -5,7 +5,6 @@ const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
 const Boom = require('boom');
-const mergedASTJavascript = fs.readFileSync(`${__dirname}/../externalAssets/mergedAST.js`, 'utf8');
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
@@ -35,34 +34,38 @@ module.exports = class AbstractSyntaxTreeController {
   }
 
   static renderMergedAst(req, res, next) {
-    const parseTasks = [
+    Promise.all([
       (new ASTParser(res.locals.reference_mathml)).parse(),
       (new ASTParser(res.locals.comparison_mathml)).parse()
-    ];
-
-    res.format({
-      'application/json': () => {
-        Promise.all(parseTasks).then(([a, b]) => {
-          Promise.all([
-            new ASTRenderer.Graph(a).renderSingleTree(),
-            new ASTRenderer.Graph(b).renderSingleTree(),
-            new ASTRenderer.Graph(a, b, res.locals.similarities).render()
-          ]).then((result) => {
-            const [referenceAST, comparisonAST, mergedAST] = result;
-            res.json({
-              referenceAST,
-              comparisonAST,
-              mergedAST
-            });
-          }).catch(next);
-        });
-      },
-      'application/javascript': () => {
-        res.send(mergedASTJavascript);
-      },
-      default: () => {
-        return next(Boom.notAcceptable('Request needs to accept application/json or application/javascript'));
-      }
+    ]).then(([a, b]) => {
+      return Promise.all([
+        new ASTRenderer.Graph(a).renderSingleTree(),
+        new ASTRenderer.Graph(b).renderSingleTree(),
+        new ASTRenderer.Graph(a, b, res.locals.similarities).render()
+      ]);
+    }).then((results) => {
+      const [referenceAST, comparisonAST, mergedAST] = results;
+      res.format({
+        'application/json': () => {
+          res.json({
+            referenceAST,
+            comparisonAST,
+            mergedAST
+          });
+        },
+        'application/javascript': () => {
+          fs.readFile(`${__dirname}/../externalAssets/mergedAST.js`, 'utf8', (err, file) => {
+            if (err) Boom.wrap(err, 500);
+            file = file.replace('REFERENCE_AST_TOKEN', JSON.stringify(referenceAST));
+            file = file.replace('COMPARISON_AST_TOKEN', JSON.stringify(comparisonAST));
+            file = file.replace('MERGED_AST_TOKEN', JSON.stringify(mergedAST));
+            res.send(file);
+          });
+        },
+        default: () => {
+          return next(Boom.notAcceptable('Request needs to accept application/json or application/javascript'));
+        }
+      });
     });
   }
 
