@@ -41,7 +41,7 @@ module.exports = class AbstractSyntaxTreeController {
       return Promise.all([
         new ASTRenderer.Graph(referenceAST).renderSingleTree(),
         new ASTRenderer.Graph(comparisonAST).renderSingleTree(),
-        new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render()
+        new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render(),
       ]);
     }).then((results) => {
       const [cytoscapedReferenceAST, cytoscapedComparisonAST, cytoscapedMergedAST] = results;
@@ -66,7 +66,8 @@ module.exports = class AbstractSyntaxTreeController {
           return next(Boom.notAcceptable('Request needs to accept application/json or application/javascript'));
         }
       });
-    });
+    })
+    .catch(err => next(err));
   }
 
   static renderMML(req, res, next) {
