@@ -1,19 +1,29 @@
 'use strict';
 
+/**
+* ENUM declarations
+**/
 const Dimension = {
   WIDTH: 'width',
   HEIGHT: 'height',
 }
 
-const extractDimensionsFromSVG = function(ele, type) {
-  const dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
-  const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
-  return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
+const Origin = {
+  REFERENCE_AST: 0,
+  COMPARISON_AST: 1,
 }
+
 const defaults = {
   minNodeSize: 30,
   exScalingFactor: 9,
-  nodeHoverScaling: 1.2
+  nodeHoverScaling: 1.2,
+  color: {
+    referenceNode: '#EDF1FA',
+    referenceNodeHighlight: '#d5e1fd',
+    comparisonNode: '#edfaf1',
+    comparisonNodeHighlight: '#d6f5e0',
+    singleAST: '#FFF',
+  }
 }
 const mergedAST = cytoscape({
   container: document.querySelector('#mergedAST'),
@@ -76,7 +86,7 @@ const mergedAST = cytoscape({
         'padding-right': '10px',
         'text-valign': 'top',
         'text-halign': 'center',
-      },
+      }
     },
     {
       selector: 'edge',
@@ -94,6 +104,7 @@ const mergedAST = cytoscape({
     directed: true
   }
 });
+
 const referenceAST =  cytoscape({
   container: document.querySelector('#referenceAST'),
   elements: REFERENCE_AST_TOKEN,
@@ -130,6 +141,7 @@ const referenceAST =  cytoscape({
     directed: true
   }
 });
+
 const comparisonAST =  cytoscape({
   container: document.querySelector('#comparisonAST'),
   elements: COMPARISON_AST_TOKEN,
@@ -167,60 +179,102 @@ const comparisonAST =  cytoscape({
   }
 });
 
-
-// event listeners
+/*
+**  event listeners
+*/
 referenceAST.on('mouseover', 'node', function(event) {
+  const nodeID = event.cyTarget.id();
+  const node = referenceAST.$(`node[id='${nodeID}']`);
   const mouseOverNode = new CustomEvent('mouseOverNode',
   {
     detail: {
-      node: event.cyTarget.id(),
+      origin: Origin.REFERENCE_AST,
+      nodeID,
     }
   });
   window.dispatchEvent(mouseOverNode);
+  highlightNode(node, defaults.color.referenceNodeHighlight);
 });
 
 referenceAST.on('mouseout', 'node', function(event) {
+  const nodeID = event.cyTarget.id();
+  const node = referenceAST.$(`node[id='${nodeID}']`);
   const mouseOutNode = new CustomEvent('mouseOutNode',
   {
     detail: {
-      node: event.cyTarget.id(),
+      origin: Origin.REFERENCE_AST,
+      nodeID,
     }
   });
   window.dispatchEvent(mouseOutNode);
+  unhighlightNode(node, defaults.color.singleAST);
 });
 
 comparisonAST.on('mouseover', 'node', function(event) {
+  const nodeID = event.cyTarget.id();
+  const node = comparisonAST.$(`node[id='${nodeID}']`);
   const mouseOverNode = new CustomEvent('mouseOverNode',
   {
     detail: {
-      node: event.cyTarget.id(),
+      origin: Origin.COMPARISON_AST,
+      nodeID: event.cyTarget.id(),
     }
   });
   window.dispatchEvent(mouseOverNode);
+  highlightNode(node, defaults.color.comparisonNodeHighlight);
 });
 
 comparisonAST.on('mouseout', 'node', function(event) {
+  const nodeID = event.cyTarget.id();
+  const node = comparisonAST.$(`node[id='${nodeID}']`);
   const mouseOutNode = new CustomEvent('mouseOutNode',
   {
     detail: {
-      node: event.cyTarget.id(),
+      origin: Origin.COMPARISON_AST,
+      nodeID,
     }
   });
   window.dispatchEvent(mouseOutNode);
+  unhighlightNode(node, defaults.color.singleAST);
 });
 
 
 window.addEventListener('mouseOverNode', function(event) {
-  const node = mergedAST.$(`node[id='${event.detail.node}']`);
+  const node = mergedAST.$(`node[id='${event.detail.nodeID}']`);
+  const origin  = event.detail.origin;
+  const color = (origin === Origin.REFERENCE_AST) ?
+    defaults.color.referenceNodeHighlight :
+    defaults.color.comparisonNodeHighlight;
+  highlightNode(node, color);
+});
+
+window.addEventListener('mouseOutNode', function(event) {
+  const node = mergedAST.$(`node[id='${event.detail.nodeID}']`);
+  const origin  = event.detail.origin;
+  const color = (origin === Origin.REFERENCE_AST) ?
+    defaults.color.referenceNode :
+    defaults.color.comparisonNode;
+  unhighlightNode(node, color);
+});
+
+function extractDimensionsFromSVG(ele, type) {
+  const dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+  const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
+  return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
+}
+
+/*
+** Animation Helper
+*/
+function highlightNode(node, color){
   const newWidth = Math.floor(node.style('width').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
   const newHeight = Math.floor(node.style('height').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
-  node.data('oldColor', node.style('background-color'));
   node.data('oldWidth', node.style('width'));
   node.data('oldHeight', node.style('height'));
   node.animate(
     {
       css: {
-        backgroundColor: '#fdfa1b',
+        backgroundColor: color,
         width: newWidth,
         height: newHeight
       }
@@ -229,14 +283,13 @@ window.addEventListener('mouseOverNode', function(event) {
       duration: 100
     }
   );
-});
+}
 
-window.addEventListener('mouseOutNode', function(event) {
-  const node = mergedAST.$(`node[id='${event.detail.node}']`);
+function unhighlightNode(node, color) {
   node.animate(
     {
       css: {
-        backgroundColor: node.data('oldColor'),
+        backgroundColor: color,
         width: node.data('oldWidth'),
         height: node.data('oldHeight')
       }
@@ -245,10 +298,11 @@ window.addEventListener('mouseOutNode', function(event) {
       duration: 100
     }
   );
-});
+}
 
-
-// Description Headers
+/*
+** Description Headers
+**/
 function renderTextInCanvas(canvas, text) {
   const ctx = canvas.getContext('2d');
   ctx.font = "30px Arial";
