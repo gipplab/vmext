@@ -274,7 +274,7 @@ function highlightNode(node, color){
   node.animate(
     {
       css: {
-        backgroundColor: color,
+        //backgroundColor: color,
         width: newWidth,
         height: newHeight
       }
@@ -289,7 +289,7 @@ function unhighlightNode(node, color) {
   node.animate(
     {
       css: {
-        backgroundColor: color,
+        //backgroundColor: color,
         width: node.data('oldWidth'),
         height: node.data('oldHeight')
       }
