@@ -43,7 +43,7 @@ const mergedAST = cytoscape({
         height: function(ele) {
           return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
         },
-        'border-width': '1px'
+        'border-width': '2px'
       }
     },
     {
@@ -59,7 +59,7 @@ const mergedAST = cytoscape({
         height: function(ele) {
           return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
         },
-        'border-width': '1px'
+        'border-width': '2px'
       }
     },
     {
@@ -95,7 +95,7 @@ const mergedAST = cytoscape({
         'target-arrow-shape': 'triangle',
         'source-arrow-shape': 'triangle',
         'line-color': function(ele) {
-          return (ele.data().type === 'match') ? 'RED' : 'BLACK';
+          return (ele.data().type === 'match') ? 'RED' : '#ccc';
         }
       }
     }
@@ -123,17 +123,14 @@ const referenceAST =  cytoscape({
         height: function(ele) {
           return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
         },
-        'border-width': '1px'
+        'border-width': '2px',
+        'border-color': 'black'
       }
     },
     {
       selector: 'edge',
       css: {
-        'target-arrow-shape': 'triangle',
-        'source-arrow-shape': 'triangle',
-        'line-color': function(ele) {
-          return (ele.data().type === 'match') ? 'RED' : 'BLACK';
-        }
+        'line-color': '#ccc'
       }
     }
   ],
@@ -160,17 +157,14 @@ const comparisonAST =  cytoscape({
         height: function(ele) {
           return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
         },
-        'border-width': '1px'
+        'border-width': '2px',
+        'border-color': 'black'
       }
     },
     {
       selector: 'edge',
       css: {
-        'target-arrow-shape': 'triangle',
-        'source-arrow-shape': 'triangle',
-        'line-color': function(ele) {
-          return (ele.data().type === 'match') ? 'RED' : 'BLACK';
-        }
+        'line-color': '#ccc'
       }
     }
   ],
