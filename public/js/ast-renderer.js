@@ -3,7 +3,7 @@
 function callAPI(evt) {
   evt.preventDefault();
   let formData = new FormData();
-  const accept = document.querySelector('.option-svg').checked ? 'image/svg+xml': 'application/json';
+  const accept = document.querySelector('.option-js').checked ? 'application/javascript': 'image/svg+xml';
   formData.append('mathml', document.querySelector('#textarea').value);
   formData.append('renderFormula', document.querySelector('.option-renderFormula').checked);
   formData.append('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
@@ -23,9 +23,11 @@ function callAPI(evt) {
       }
     });
   }).then(function(result){
-    document.querySelector('.renderedAST').innerHTML = result.text;
     if (result.headers.get('content-type') === 'image/svg+xml; charset=utf-8') {
+      document.querySelector('.renderedAST').innerHTML = result.text;
       eval(decodeHTML(document.querySelector('.renderedAST script').innerHTML));
+    } else if(result.headers.get('content-type') === 'application/javascript; charset=utf-8') {
+      eval(decodeHTML(result.text));
     }
   }).catch(console.log);
 }

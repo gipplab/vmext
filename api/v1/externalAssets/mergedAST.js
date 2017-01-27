@@ -25,6 +25,7 @@ const defaults = {
     singleAST: '#FFF',
   }
 }
+
 const mergedAST = cytoscape({
   container: document.querySelector('#mergedAST'),
   elements: MERGED_AST_TOKEN,

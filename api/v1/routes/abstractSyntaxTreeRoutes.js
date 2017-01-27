@@ -9,7 +9,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 
 /**
    * @api {post} /api/v1/math/renderAST POST /api/v1/math/renderAST
-   * @apiParam (Headers) {String} Accept type of result [application/json | image/svg+xml]
+   * @apiParam (Headers) {String} Accept type of result<br/>[application/json | application/javascript | image/svg+xml]
    * @apiParam (Body (multipart/form-data)) {XML} mathml the mathML to be rendered into an AST
    * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false //eslint-disable-line max-len
    * @apiParam (Body (multipart/form-data)) {Boolean} [collapseSingleOperandNodes] flag wether nodes with only one child should be collapsed <br>Defaults to true
@@ -54,7 +54,7 @@ astRouter.post('/renderAST',
 
 /**
    * @api {post} /api/v1/math/renderMergedAST POST /api/v1/math/renderMergedAST
-   * @apiParam (Headers) {String} Accept type of result [application/json | application/js]
+   * @apiParam (Headers) {String} Accept type of result<br/>[application/json | application/javascript | application/js]
    * @apiParam (Body (multipart/form-data)) {XML} reference_mathml the mathML of reference document
    * @apiParam (Body (multipart/form-data)) {XML} comparison_mathml the mathML of comparison document
    * @apiParam (Body (multipart/form-data)) {JSON} similaries the JSON containing match information

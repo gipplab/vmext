@@ -8,12 +8,11 @@ const Boom = require('boom');
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
-    const parsedMathMLPromise = (new ASTParser(res.locals.mathml, {
+    const parsedMathMLPromise = new ASTParser(res.locals.mathml, {
       collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
       nodesToBeCollapsed: res.locals.nodesToBeCollapsed
-    })).parse();
-
-    parsedMathMLPromise.catch(err => next(err));
+    }).parse()
+      .catch(next);
 
     res.format({
       'application/json': () => {
@@ -24,12 +23,23 @@ module.exports = class AbstractSyntaxTreeController {
           new ASTRenderer.Simple().render({
             data: result,
             renderFormula: res.locals.renderFormula
-          }).then(svg => res.send(svg)).catch(next);
+          }).then(svg => res.send(svg));
         });
+      },
+      'application/javascript': () => {
+        parsedMathMLPromise
+          .then(AST => new ASTRenderer.Graph(AST).renderSingleTree())
+          .then((cytoscapedAST) => {
+            fs.readFile(`${__dirname}/../externalAssets/simpleAST.js`, 'utf8', (err, file) => {
+              if (err) Boom.wrap(err, 500);
+              file = file.replace('AST_TOKEN', JSON.stringify(cytoscapedAST));
+              res.send(file);
+            });
+          });
       },
       default: () => {
         return next(Boom.notAcceptable('Request needs to accept application/json or image/svg+xml'));
-      }
+      },
     });
   }
 
