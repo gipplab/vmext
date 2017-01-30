@@ -1,3 +1,5 @@
+var test = 0;
+
 // iife - to encapsulate scope
 (function(){
   /**
@@ -20,13 +22,14 @@
       singleAST: '#FFF',
     }
   }
+
   var script = document.currentScript;
   loadVendorScripts(script); // fetch cytoscape and dagre-layout bundle
 
   function loadVendorScripts(script) {
     var scriptTag = document.createElement('script');
     scriptTag.setAttribute('type', 'text/javascript');
-    scriptTag.setAttribute('src', '/widgets/cytoscape-dagre-bundle.min.js');
+    scriptTag.setAttribute('src', 'http://math.citeplag.org/widgets/cytoscape-dagre-bundle.min.js');
     scriptTag.onload = onVendorScriptsLoaded.bind(this, script);
     (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(scriptTag);
   }
@@ -41,7 +44,7 @@
     formData.append('mathml', script.getAttribute('mathml'));
     formData.append('collapseSingleOperandNodes', script.getAttribute('collapseSingleOperandNodes'));
     formData.append('nodesToBeCollapsed', script.getAttribute('nodesToBeCollapsed'));
-    fetch('/api/v1/math/renderAST?cytoscaped=true', {
+    fetch('http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true', {
       method: 'POST',
       headers: new Headers({
         'Accept': 'application/json',

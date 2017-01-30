@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = {
+  base_remote_url: 'http://math.citeplag.org/',
+  base_local_url: 'http://localhost/4001',
   slack: {
     webhook: 'https://hooks.slack.com/services/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',
     channels: {
