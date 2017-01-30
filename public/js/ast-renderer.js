@@ -2,40 +2,17 @@
 
 function callAPI(evt) {
   evt.preventDefault();
-  let formData = new FormData();
-  const accept = document.querySelector('.option-js').checked ? 'application/javascript': 'image/svg+xml';
-  formData.append('mathml', document.querySelector('#textarea').value);
-  formData.append('renderFormula', document.querySelector('.option-renderFormula').checked);
-  formData.append('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
-  formData.append('nodesToBeCollapsed', document.querySelector('.option-nodesToBeCollapsed').value);
-  fetch('/api/v1/math/renderAST', {
-    method: 'POST',
-    headers: new Headers({
-      'Accept': accept,
-    }),
-    body: formData
-  }).then(function(data){
-    data.headers.get('content-type');
-    return data.text().then((text) => {
-      return {
-        headers: data.headers,
-        text
-      }
-    });
-  }).then(function(result){
-    if (result.headers.get('content-type') === 'image/svg+xml; charset=utf-8') {
-      document.querySelector('.renderedAST').innerHTML = result.text;
-      eval(decodeHTML(document.querySelector('.renderedAST script').innerHTML));
-    } else if(result.headers.get('content-type') === 'application/javascript; charset=utf-8') {
-      eval(decodeHTML(result.text));
-    }
-  }).catch(console.log);
-}
 
-function decodeHTML(html){
-  var txt = document.createElement('textarea');
-  txt.innerHTML = html;
-  return txt.value;
+  const scriptTag = document.createElement('script');
+  scriptTag.setAttribute('type', 'application/javascript');
+  scriptTag.setAttribute('src', '/widgets/formula-ast-widget.js');
+  scriptTag.setAttribute('mathml',document.querySelector('#textarea').value);
+  scriptTag.setAttribute('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
+  scriptTag.setAttribute('nodesToBeCollapsed', document.querySelector('.option-nodesToBeCollapsed').value);
+
+  const container = document.querySelector('.abstract-syntax-tree');
+  container.innerHTML = "";
+  container.appendChild(scriptTag);
 }
 
 window.onload = function init() {
