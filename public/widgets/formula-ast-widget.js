@@ -1,10 +1,7 @@
-var test = 0;
-
 // iife - to encapsulate scope
 (function(){
-  /**
-  * ENUM declarations
-  **/
+
+  // ENUM declarations
   var Dimension = {
     WIDTH: 'width',
     HEIGHT: 'height',
