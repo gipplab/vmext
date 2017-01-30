@@ -36,6 +36,17 @@
     container.style.width = '100%';
     container.style.height = '100%';
     container.classList.add('cy-container');
+
+    var gifLoader = document.createElement('img');
+    gifLoader.classList.add('gif-loader');
+    gifLoader.style.position = 'absolute';
+    gifLoader.style.top = '50%';
+    gifLoader.style.left = '50%';
+    gifLoader.style['margin-top'] = '-79px';
+    gifLoader.style['margin-left'] = '-79px';
+    gifLoader.src = 'http://math.citeplag.org/assets/ring.gif';
+
+    container.appendChild(gifLoader);
     script.parentNode.replaceChild(container, script);
     var formData = new FormData();
     formData.append('mathml', script.getAttribute('mathml'));
@@ -51,6 +62,7 @@
       return data.json();
     }).then(function(result) {
       renderAST(result);
+      document.querySelector('.gif-loader').style.display = 'none';
     }).catch(function(err) {
       console.error(err);
     });

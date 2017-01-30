@@ -37,6 +37,16 @@
     mainCYContainer.style.height = '100%';
     mainCYContainer.classList.add('main-cy-container');
 
+    var gifLoader = document.createElement('img');
+    gifLoader.classList.add('gif-loader');
+    gifLoader.style.position = 'absolute';
+    gifLoader.style.top = '50%';
+    gifLoader.style.left = '50%';
+    gifLoader.style['margin-top'] = '-79px';
+    gifLoader.style['margin-left'] = '-79px';
+    gifLoader.src = 'http://math.citeplag.org/assets/ring.gif';
+
+    mainCYContainer.appendChild(gifLoader);
     var flexContainer = document.createElement('div');
     flexContainer.style.width = '100%';
     flexContainer.style.height = '40%';
@@ -46,13 +56,11 @@
     var referenceASTContainer = document.createElement('div');
     referenceASTContainer.style.width = '50%';
     referenceASTContainer.style.height = '100%';
-    referenceASTContainer.style['background-color']= '#EDF1FA';
     referenceASTContainer.classList.add('reference-ast-container');
 
     var comparisonASTContainer = document.createElement('div');
     comparisonASTContainer.style.width = '50%';
     comparisonASTContainer.style.height = '100%';
-    comparisonASTContainer.style['background-color']= '#edfaf1';
     comparisonASTContainer.classList.add('comparison-ast-container');
 
     var mergedASTContainer = document.createElement('div');
@@ -85,6 +93,9 @@
       return data.json();
     }).then(function(result) {
       renderAST(result);
+      document.querySelector('.gif-loader').style.display = 'none';
+      document.querySelector('.reference-ast-container').style['background-color']= '#EDF1FA';
+      document.querySelector('.comparison-ast-container').style['background-color']= '#edfaf1';
     }).catch(function(err) {
       console.error(err);
     });
