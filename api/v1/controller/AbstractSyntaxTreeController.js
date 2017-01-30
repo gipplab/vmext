@@ -29,17 +29,6 @@ module.exports = class AbstractSyntaxTreeController {
           }).then(svg => res.send(svg));
         });
       },
-      'application/javascript': () => {
-        parsedMathMLPromise
-          .then(AST => new ASTRenderer.Graph(AST).renderSingleTree())
-          .then((cytoscapedAST) => {
-            fs.readFile(`${__dirname}/../externalAssets/simpleAST.js`, 'utf8', (err, file) => {
-              if (err) Boom.wrap(err, 500);
-              file = file.replace('AST_TOKEN', JSON.stringify(cytoscapedAST));
-              res.send(file);
-            });
-          });
-      },
       default: () => {
         return next(Boom.notAcceptable('Request needs to accept application/json or image/svg+xml'));
       },
@@ -66,17 +55,8 @@ module.exports = class AbstractSyntaxTreeController {
             cytoscapedMergedAST
           });
         },
-        'application/javascript': () => {
-          fs.readFile(`${__dirname}/../externalAssets/mergedAST.js`, 'utf8', (err, file) => {
-            if (err) Boom.wrap(err, 500);
-            file = file.replace('REFERENCE_AST_TOKEN', JSON.stringify(cytoscapedReferenceAST));
-            file = file.replace('COMPARISON_AST_TOKEN', JSON.stringify(cytoscapedComparisonAST));
-            file = file.replace('MERGED_AST_TOKEN', JSON.stringify(cytoscapedMergedAST));
-            res.send(file);
-          });
-        },
         default: () => {
-          return next(Boom.notAcceptable('Request needs to accept application/json or application/javascript'));
+          return next(Boom.notAcceptable('Request needs to accept application/json'));
         }
       });
     })
