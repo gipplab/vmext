@@ -16,7 +16,10 @@ module.exports = class AbstractSyntaxTreeController {
 
     res.format({
       'application/json': () => {
-        parsedMathMLPromise.then(result => res.json(result));
+        parsedMathMLPromise.then((ast) => {
+          if (!req.query.cytoscaped) res.json(ast);
+          else return new ASTRenderer.Graph(ast).renderSingleTree();
+        }).then(cytoscapedAST => res.json(cytoscapedAST));
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {
