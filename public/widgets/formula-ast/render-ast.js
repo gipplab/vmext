@@ -27,6 +27,7 @@ fetchData(queryParams)
     document.querySelector('.gif-loader').style.display = 'none';
     document.querySelector('.gif-error').style.display = 'block';
     document.querySelector('body').style['background-color'] = '#101018';
+    console.error(err);
   });
 
 function extractQueryParams() {
@@ -50,12 +51,16 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
     method: 'POST',
     headers: new Headers({
       'Accept': 'application/json',
-      'referer': 'vbb',
     }),
+    referrerPolicy: "no-referrer",
     body: formData
-  }).then(handleFetchErrors)
-  .then((data) => {
-    return data.json();
+  }).then(response => {
+    return response.json().then(data => {
+      if (!response.ok) {
+        return Promise.reject(data.Error.output.payload);
+      }
+      return data;
+    });
   });
 }
 

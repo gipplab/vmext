@@ -29,6 +29,7 @@ fetchData(queryParams)
     document.querySelector('.gif-loader').style.display = 'none';
     document.querySelector('.gif-error').style.display = 'block';
     document.querySelector('body').style['background-color'] = '#101018';
+    console.error(err);
   });
 
 function extractQueryParams() {
@@ -53,10 +54,15 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
     headers: new Headers({
       'Accept': 'application/json',
     }),
-    body: formData
-  }).then(handleFetchErrors)
-  .then((response) => {
-    return response.json();
+    body: formData,
+    referrerPolicy: "no-referrer",
+  }).then(response => {
+    return response.json().then(data => {
+      if (!response.ok) {
+        return Promise.reject(data.Error.output.payload);
+      }
+      return data;
+    });
   });
 }
 
