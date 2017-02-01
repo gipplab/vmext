@@ -1,27 +1,23 @@
 'use strict';
 
-(function(){ // iife - to encapsulate scope
+(function() { // iife - to encapsulate scope
   const script = document.currentScript;
   const attributes = {
     reference_mathml: script.getAttribute('reference_mathml'),
     comparison_mathml: script.getAttribute('comparison_mathml'),
     similarities: script.getAttribute('similarities'),
   }
-  const queryParams = encodeQueryParams(attributes);
 
-  //iframe element
+  // iframe element
   const iframe = document.createElement('iframe');
-  iframe.src = `http://math.citeplag.org/widgets/formula-similarity/index.html?${queryParams}`;
+  iframe.classList.add('formel-similarities-iframe');
+  iframe.src = 'http://localhost:4001/widgets/formula-similarity/index.html';
   iframe.style.width = '100%';
   iframe.style.height = '100%';
+  iframe.onload = () => {
+    const iframeWindow = document.querySelector('.formel-similarities-iframe').contentWindow;
+    iframeWindow.postMessage(attributes, '*');
+  };
 
   script.parentNode.replaceChild(iframe, script);
-
-  function encodeQueryParams({ reference_mathml, comparison_mathml, similarities }) {
-    const queryParams = new URLSearchParams();
-    queryParams.append('reference_mathml', reference_mathml);
-    queryParams.append('comparison_mathml', comparison_mathml);
-    queryParams.append('similarities', similarities);
-    return queryParams.toString();
-  }
 })();

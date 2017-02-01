@@ -1,30 +1,22 @@
 'use strict';
 
-const queryParams = extractQueryParams();
-fetchData(queryParams)
-  .then((result) => {
-    renderAST(result);
-    document.querySelector('.gif-loader').style.display = 'none';
-    document.querySelector('.reference-ast-container').style['background-color']= '#EDF1FA';
-    document.querySelector('.comparison-ast-container').style['background-color']= '#edfaf1';
-  })
-  .catch((err) => {
-    document.querySelector('.gif-loader').style.display = 'none';
-    document.querySelector('.gif-error').style.display = 'block';
-    document.querySelector('body').style['background-color'] = '#101018';
-    console.error(err);
-  });
+window.addEventListener('message', paramsReveived, false);
 
-function extractQueryParams() {
-  const queryParams = new URLSearchParams(window.location.search);
-  const reference_mathml = queryParams.get('reference_mathml');
-  const comparison_mathml = queryParams.get('comparison_mathml');
-  const similarities = queryParams.get('similarities');
-  return {
-    reference_mathml,
-    comparison_mathml,
-    similarities,
-  }
+function paramsReveived(event) {
+  const attributes = event.data;
+  fetchData(attributes)
+    .then((result) => {
+      renderAST(result);
+      document.querySelector('.gif-loader').style.display = 'none';
+      document.querySelector('.reference-ast-container').style['background-color']= '#EDF1FA';
+      document.querySelector('.comparison-ast-container').style['background-color']= '#edfaf1';
+    })
+    .catch((err) => {
+      document.querySelector('.gif-loader').style.display = 'none';
+      document.querySelector('.gif-error').style.display = 'block';
+      document.querySelector('body').style['background-color'] = '#101018';
+      console.error(err);
+    });
 }
 
 function fetchData({ reference_mathml, comparison_mathml, similarities }) {
@@ -38,9 +30,9 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
       'Accept': 'application/json',
     }),
     body: formData,
-    referrerPolicy: "no-referrer",
-  }).then(response => {
-    return response.json().then(data => {
+    referrerPolicy: 'no-referrer',
+  }).then((response) => {
+    return response.json().then((data) => {
       if (!response.ok) {
         return Promise.reject(data.Error.output.payload);
       }
@@ -50,7 +42,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
 }
 
 function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComparisonAST}) {
-  var mergedAST = cytoscape({
+  const mergedAST = cytoscape({
     container: document.querySelector('.merged-ast-container'),
     elements: cytoscapedMergedAST,
     style: [
@@ -61,12 +53,8 @@ function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedCompa
           'background-color': '#EDF1FA',
           'background-image': 'data(presentation)',
           'background-fit': 'none',
-          width: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.WIDTH);
-          },
-          height: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
-          },
+          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
+          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
           'border-width': '2px'
         }
       },
@@ -77,12 +65,8 @@ function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedCompa
           'background-color': '#edfaf1',
           'background-image': 'data(presentation)',
           'background-fit': 'none',
-          width: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.WIDTH);
-          },
-          height: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
-          },
+          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
+          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
           'border-width': '2px'
         }
       },
@@ -129,7 +113,7 @@ function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedCompa
       directed: true
     }
   });
-  var referenceAST =  cytoscape({
+  const referenceAST =  cytoscape({
     container: document.querySelector('.reference-ast-container'),
     elements: cytoscapedReferenceAST,
     style: [
@@ -140,12 +124,8 @@ function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedCompa
           'background-color': 'white',
           'background-image': 'data(presentation)',
           'background-fit': 'none',
-          width: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.WIDTH);
-          },
-          height: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
-          },
+          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
+          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
           'border-width': '2px',
           'border-color': 'steelblue'
         }
@@ -172,12 +152,8 @@ function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedCompa
           'background-color': 'white',
           'background-image': 'data(presentation)',
           'background-fit': 'none',
-          width: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.WIDTH);
-          },
-          height: function(ele) {
-            return extractDimensionsFromSVG(ele, Dimension.HEIGHT);
-          },
+          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
+          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
           'border-width': '2px',
           'border-color': 'black'
         }
@@ -197,7 +173,7 @@ function renderAST({cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedCompa
 }
 
 function extractDimensionsFromSVG(ele, type) {
-  var dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
-  var dimensioninPX = dimensionInEX * defaults.exScalingFactor;
+  const dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+  const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
   return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
 }

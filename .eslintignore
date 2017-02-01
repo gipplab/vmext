@@ -1,5 +1,5 @@
 node_modules
-public
+public/js/*
 apiDoc
 lib/ASTRenderer/scripts.js
 api/v1/externalAssets/*

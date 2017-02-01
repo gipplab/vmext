@@ -1,28 +1,19 @@
 'use strict';
 
-const queryParams = extractQueryParams();
-fetchData(queryParams)
-  .then((result) => {
-    renderAST(result);
-    document.querySelector('.gif-loader').style.display = 'none';
-  })
-  .catch((err) => {
-    document.querySelector('.gif-loader').style.display = 'none';
-    document.querySelector('.gif-error').style.display = 'block';
-    document.querySelector('body').style['background-color'] = '#101018';
-    console.error(err);
-  });
+window.addEventListener('message', paramsReveived, false);
 
-function extractQueryParams() {
-  const queryParams = new URLSearchParams(window.location.search);
-  const mathml = queryParams.get('mathml');
-  const collapseSingleOperandNodes = queryParams.get('collapseSingleOperandNodes');
-  const nodesToBeCollapsed = queryParams.get('nodesToBeCollapsed');
-  return {
-    mathml,
-    collapseSingleOperandNodes,
-    nodesToBeCollapsed,
-  }
+function paramsReveived(event) {
+  fetchData(event.data)
+    .then((result) => {
+      renderAST(result);
+      document.querySelector('.gif-loader').style.display = 'none';
+    })
+    .catch((err) => {
+      document.querySelector('.gif-loader').style.display = 'none';
+      document.querySelector('.gif-error').style.display = 'block';
+      document.querySelector('body').style['background-color'] = '#101018';
+      console.error(err);
+    });
 }
 
 function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
@@ -50,7 +41,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
 function renderAST(elements) {
   const formulaAST =  cytoscape({
     container: document.querySelector('.cy-container'),
-    elements: elements,
+    elements,
     style: [
       {
         selector: '.source-A',
@@ -59,8 +50,8 @@ function renderAST(elements) {
           'background-color': 'white',
           'background-image': 'data(presentation)',
           'background-fit': 'none',
-          width: (ele) => extractDimensionsFromSVG(ele, Dimension.WIDTH),
-          height: (ele) => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
+          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
+          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
           'border-width': '2px',
           'border-color': 'steelblue'
         }

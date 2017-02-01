@@ -6,22 +6,18 @@
     mathml: script.getAttribute('mathml'),
     collapseSingleOperandNodes: script.getAttribute('collapseSingleOperandNodes'),
     nodesToBeCollapsed: script.getAttribute('nodesToBeCollapsed'),
-  }
-  const queryParams = encodeQueryParams(attributes);
+  };
 
-  //iframe element
+  // iframe element
   const iframe = document.createElement('iframe');
-  iframe.src = `http://math.citeplag.org/widgets/formula-ast/index.html?${queryParams}`;
+  iframe.classList.add('abstract-sytaxtree-iframe');
+  iframe.src = 'http://localhost:4001/widgets/formula-ast/index.html';
   iframe.style.width = '100%';
   iframe.style.height = '100%';
+  iframe.onload = () => {
+    const iframeWindow = document.querySelector('.abstract-sytaxtree-iframe').contentWindow;
+    iframeWindow.postMessage(attributes, '*');
+  };
 
   script.parentNode.replaceChild(iframe, script);
-
-  function encodeQueryParams({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
-    const queryParams = new URLSearchParams();
-    queryParams.append('mathml', mathml);
-    queryParams.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
-    queryParams.append('nodesToBeCollapsed', nodesToBeCollapsed);
-    return queryParams.toString();
-  }
 })();
