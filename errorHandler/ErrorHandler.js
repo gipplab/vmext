@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     log.error(err);
-    const BoomError = !err.isBoom ? Boom.wrap(err): err;
-    res.status(err.status || 500).json({ Error: BoomError });
+    const BoomError = !err.isBoom ? Boom.wrap(err) : err;
+    res.status(BoomError.output.statusCode || 500).json({ Error: BoomError });
   });
 };

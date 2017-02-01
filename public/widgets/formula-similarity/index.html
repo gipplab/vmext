@@ -5,11 +5,17 @@
     <link rel="stylesheet" href="./index.css">
   </head>
   <body>
-    <div class="cy-container"></div>
+    <div class="main-cy-container">
+      <div class="flex-container">
+        <div class="reference-ast-container"></div>
+        <div class="comparison-ast-container"></div>
+      </div>
+      <div class="merged-ast-container"></div>
+    </div>
     <img class="gif-loader" src="../../assets/ring.gif" alt="Loading...">
     <img class="gif-error" src="../../assets/error.gif" alt="Error...">
 
     <script src="../cytoscape-dagre-bundle.min.js"></script>
-    <script src="./render-ast.js"></script>
+    <script src="./render-similarities.js"></script>
   </body>
 </html>

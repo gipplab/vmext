@@ -2,10 +2,26 @@ body {
   margin: 0;
 }
 
-.cy-container  {
+.main-cy-container  {
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.flex-container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+}
+
+.reference-ast-container, .comparison-ast-container {
+  width: 50%;
+  height: 100%;
+}
+
+.merged-ast-container {
+  width: 100%;
+  height: 60%;
 }
 
 .gif-loader, .gif-error {
