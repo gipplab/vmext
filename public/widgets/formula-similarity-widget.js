@@ -11,7 +11,7 @@
 
   //iframe element
   const iframe = document.createElement('iframe');
-  iframe.src = `http://localhost:4001/widgets/formula-similarity/index.html?${queryParams}`;
+  iframe.src = `http://math.citeplag.org/widgets/formula-similarity/index.html?${queryParams}`;
   iframe.style.width = '100%';
   iframe.style.height = '100%';
 

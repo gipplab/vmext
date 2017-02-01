@@ -32,7 +32,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch('http://localhost:4001/api/v1/math/renderMergedAST', {
+  return fetch('http://math.citeplag.org/api/v1/math/renderMergedAST', {
     method: 'POST',
     headers: new Headers({
       'Accept': 'application/json',
@@ -200,9 +200,4 @@ function extractDimensionsFromSVG(ele, type) {
   var dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
   var dimensioninPX = dimensionInEX * defaults.exScalingFactor;
   return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
-}
-
-function handleFetchErrors(response) {
-  if (!response.ok) throw Error(response);
-  return response;
 }

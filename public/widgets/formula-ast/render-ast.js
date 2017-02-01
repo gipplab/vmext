@@ -83,8 +83,3 @@ function extractDimensionsFromSVG(ele, type) {
   const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
   return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
 }
-
-function handleFetchErrors(response) {
-  if (!response.ok) throw Error(response);
-  return response;
-}
