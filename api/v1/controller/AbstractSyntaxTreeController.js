@@ -1,6 +1,5 @@
 'use strict';
 
-const fs = require('fs');
 const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
@@ -19,7 +18,10 @@ module.exports = class AbstractSyntaxTreeController {
         parsedMathMLPromise.then((ast) => {
           if (!req.query.cytoscaped) res.json(ast);
           else return new ASTRenderer.Graph(ast).renderSingleTree();
-        }).then(cytoscapedAST => res.json(cytoscapedAST));
+        }).then(cytoscapedAST => res.json({
+          mathml: req.body.mathml,
+          cytoscapedAST,
+        }));
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {

@@ -5,7 +5,9 @@ window.addEventListener('message', paramsReveived, false);
 function paramsReveived(event) {
   fetchData(event.data)
     .then((result) => {
-      renderAST(result);
+      document.querySelector('.formula-container').innerHTML = result.mathml;
+      MathJax.Hub.Typeset();
+      renderAST(result.cytoscapedAST);
       document.querySelector('.gif-loader').style.display = 'none';
     })
     .catch((err) => {
@@ -21,15 +23,15 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch('http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true', {
+  return fetch('http://localhost:4001/api/v1/math/renderAST?cytoscaped=true', {
     method: 'POST',
     headers: new Headers({
-      'Accept': 'application/json',
+      Accept: 'application/json',
     }),
-    referrerPolicy: "no-referrer",
+    referrerPolicy: 'no-referrer',
     body: formData
-  }).then(response => {
-    return response.json().then(data => {
+  }).then((response) => {
+    return response.json().then((data) => {
       if (!response.ok) {
         return Promise.reject(data.Error.output.payload);
       }

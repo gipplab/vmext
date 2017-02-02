@@ -13,7 +13,6 @@ body, html {
 
 .formula-container {
   flex: 0 1 auto;
-  width: 50%;
   margin: 0 auto;
   padding: 10px;
 }
