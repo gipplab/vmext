@@ -1,11 +1,25 @@
-body {
+body, html {
+  width: 100%;
+  height: 100%;
   margin: 0;
 }
 
-.cy-container  {
-  position: absolute;
-  width: 100%;
+.mainContainer {
+  display: flex;
+  flex-flow: column;
   height: 100%;
+  width: 100%;
+}
+
+.formula-container {
+  flex: 0 1 auto;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.cy-container  {
+  flex: 1 1 auto;
 }
 
 .gif-loader, .gif-error {
