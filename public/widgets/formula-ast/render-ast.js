@@ -25,7 +25,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch('http://localhost:4001/api/v1/math/renderAST?cytoscaped=true', {
+  return fetch('http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true', {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -81,9 +81,59 @@ function extractDimensionsFromSVG(ele, type) {
 
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
-    const nodeID = event.cyTarget.id();
-    const escapedId = nodeID.replace(/\./g, '\\.');
+    const presentationID = event.cyTarget.data().presentationID;
+    const escapedId = presentationID.replace(/\./g, '\\.');
     const mathJaxNode = document.querySelector(`#${escapedId}`);
     if (mathJaxNode) mathJaxNode.classList.add('highlight');
+
+    const contentID = event.cyTarget.id();
+    const node = formulaAST.$(`node[id='${contentID}']`);
+    highlightNode(node);
   });
+
+  formulaAST.on('mouseout', 'node', (event) => {
+    const presentationID = event.cyTarget.data().presentationID;
+    const escapedId = presentationID.replace(/\./g, '\\.');
+    const mathJaxNode = document.querySelector(`#${escapedId}`);
+    if (mathJaxNode) mathJaxNode.classList.remove('highlight');
+
+    const contentID = event.cyTarget.id();
+    const node = formulaAST.$(`node[id='${contentID}']`);
+    unhighlightNode(node);
+  });
+}
+
+/*
+** Animation Helper
+*/
+function highlightNode(node) {
+  const newWidth = Math.floor(node.style('width').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
+  const newHeight = Math.floor(node.style('height').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
+  node.data('oldWidth', node.style('width'));
+  node.data('oldHeight', node.style('height'));
+  node.animate(
+    {
+      css: {
+        width: newWidth,
+        height: newHeight
+      }
+    },
+    {
+      duration: 100
+    }
+  );
+}
+
+function unhighlightNode(node) {
+  node.animate(
+    {
+      css: {
+        width: node.data('oldWidth'),
+        height: node.data('oldHeight')
+      }
+    },
+    {
+      duration: 100
+    }
+  );
 }
