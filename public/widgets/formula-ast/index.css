@@ -37,3 +37,7 @@ body, html {
   margin-left: -250px;
   display: none;
 }
+
+.highlight {
+  color: 'red';
+}
