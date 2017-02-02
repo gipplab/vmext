@@ -8,9 +8,11 @@ function paramsReveived(event) {
     .then((result) => {
       document.querySelector('.formula-container').innerHTML = result.mathml;
       MathJax.Hub.Typeset();
-      renderAST(result.cytoscapedAST);
-      registerEventListeners();
-      document.querySelector('.gif-loader').style.display = 'none';
+      MathJax.Hub.Queue(() => {
+        renderAST(result.cytoscapedAST);
+        registerEventListeners();
+        document.querySelector('.gif-loader').style.display = 'none';
+      });
     })
     .catch((err) => {
       document.querySelector('.gif-loader').style.display = 'none';
