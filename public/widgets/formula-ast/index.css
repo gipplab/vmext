@@ -9,11 +9,12 @@ body, html {
   flex-flow: column;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .formula-container {
   flex: 0 1 auto;
-  margin: 0 auto;
+  text-align: center;
   padding: 10px;
 }
 
