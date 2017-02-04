@@ -81,12 +81,10 @@ function extractDimensionsFromSVG(ele, type) {
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
     const svg = document.querySelector('svg');
-    debugger;
     const presentationID = event.cyTarget.data().presentationID;
     const escapedId = presentationID.replace(/\./g, '\\.');
     const mathJaxNode = document.querySelector(`#${escapedId}`);
     if (mathJaxNode) mathJaxNode.classList.add('highlight');
-
 
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);
@@ -102,6 +100,17 @@ function registerEventListeners() {
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);
     unhighlightNode(node);
+  });
+
+  formulaAST.on('click', 'node', (event) => {
+    const node = event.cyTarget;
+    const removedEles = node.remove(node.connectedEdges());
+    node.data('removedEles', removedEles);
+    formulaAST.layout({
+      name: 'dagre',
+      animate: true,
+      animationDuration: 500,
+    });
   });
 }
 
