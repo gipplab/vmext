@@ -3,25 +3,34 @@
 const ASTParser = require('app/lib/ASTParser');
 const ASTRenderer = require('app/lib/ASTRenderer');
 const MathJaxRenderer = require('app/lib/MathJaxRenderer');
+const querystring = require('querystring');
 const Boom = require('boom');
 
 module.exports = class AbstractSyntaxTreeController {
   static renderAst(req, res, next) {
-    const parsedMathMLPromise = new ASTParser(res.locals.mathml, {
-      collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
-      nodesToBeCollapsed: res.locals.nodesToBeCollapsed
-    }).parse()
+    const parsedMathMLPromise = new ASTParser(res.locals.mathml,
+      {
+        collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
+        nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
+      })
+      .parse()
       .catch(next);
 
     res.format({
       'application/json': () => {
         parsedMathMLPromise.then((ast) => {
-          if (!req.query.cytoscaped) res.json(ast);
-          else return new ASTRenderer.Graph(ast).renderSingleTree();
-        }).then(cytoscapedAST => res.json({
-          mathml: req.body.mathml,
-          cytoscapedAST,
-        }));
+          if (req.query.cytoscaped) {
+            Promise.all([
+              new ASTRenderer.Graph(ast).renderSingleTree(),
+              MathJaxRenderer.renderMML(req.body.mathml),
+            ]).then(([cytoscapedAST, mathjaxSVG]) => {
+              res.json({
+                formulaSVG: `${querystring.escape(mathjaxSVG)}`,
+                cytoscapedAST,
+              });
+            });
+          } else res.json(ast);
+        });
       },
       'image/svg+xml': () => {
         parsedMathMLPromise.then((result) => {

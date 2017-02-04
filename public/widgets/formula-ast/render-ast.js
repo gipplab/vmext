@@ -6,13 +6,10 @@ window.addEventListener('message', paramsReveived, false);
 function paramsReveived(event) {
   fetchData(event.data)
     .then((result) => {
-      document.querySelector('.formula-container').innerHTML = result.mathml;
-      MathJax.Hub.Typeset();
-      MathJax.Hub.Queue(() => {
-        renderAST(result.cytoscapedAST);
-        registerEventListeners();
-        document.querySelector('.gif-loader').style.display = 'none';
-      });
+      document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
+      renderAST(result.cytoscapedAST);
+      registerEventListeners();
+      document.querySelector('.gif-loader').style.display = 'none';
     })
     .catch((err) => {
       document.querySelector('.gif-loader').style.display = 'none';
@@ -83,10 +80,13 @@ function extractDimensionsFromSVG(ele, type) {
 
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
+    const svg = document.querySelector('svg');
+    debugger;
     const presentationID = event.cyTarget.data().presentationID;
     const escapedId = presentationID.replace(/\./g, '\\.');
     const mathJaxNode = document.querySelector(`#${escapedId}`);
     if (mathJaxNode) mathJaxNode.classList.add('highlight');
+
 
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);
