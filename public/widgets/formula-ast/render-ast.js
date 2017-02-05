@@ -90,7 +90,7 @@ function extractDimensionsFromSVG(dataURI, type) {
 }
 
 function registerEventListeners() {
-  formulaAST.on('mouseover', 'node', (event) => {
+  formulaAST.on('mouseover', 'node',(event) => {
     toggleFormulaHighlight(event.cyTarget.data().presentationID, true);
 
     const contentID = event.cyTarget.id();
@@ -115,7 +115,7 @@ function registerEventListeners() {
     }
   }
 
-  formulaAST.on('click', 'node', (event) => {
+  formulaAST.on('click', 'node[^isLeaf]', (event) => {
     const node = event.cyTarget;
     toggleFormulaHighlight(node.data().presentationID, false);
     if (node.data('removedEles')) {
