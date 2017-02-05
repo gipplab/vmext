@@ -6,6 +6,7 @@ window.addEventListener('message', paramsReveived, false);
 function paramsReveived(event) {
   fetchData(event.data)
     .then((result) => {
+      document.querySelector('.formula-container').style.display = 'block';
       document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
       renderAST(result.cytoscapedAST);
       registerEventListeners();
@@ -82,11 +83,7 @@ function extractDimensionsFromSVG(dataURI, type) {
 
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
-    const svg = document.querySelector('svg');
-    const presentationID = event.cyTarget.data().presentationID;
-    const escapedId = presentationID.replace(/\./g, '\\.');
-    const mathJaxNode = document.querySelector(`#${escapedId}`);
-    if (mathJaxNode) mathJaxNode.classList.add('highlight');
+    toggleFormulaHighlight(event.cyTarget.data().presentationID, true);
 
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);
@@ -94,20 +91,26 @@ function registerEventListeners() {
   });
 
   formulaAST.on('mouseout', 'node', (event) => {
-    const presentationID = event.cyTarget.data().presentationID;
-    const escapedId = presentationID.replace(/\./g, '\\.');
-    const mathJaxNode = document.querySelector(`#${escapedId}`);
-    if (mathJaxNode) mathJaxNode.classList.remove('highlight');
+    toggleFormulaHighlight(event.cyTarget.data().presentationID, false);
 
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);
     unhighlightNode(node);
   });
 
+  function toggleFormulaHighlight(id, addClass) {
+    const escapedId = id.replace(/\./g, '\\.');
+    const mathJaxNode = document.querySelector(`#${escapedId}`);
+    if (mathJaxNode) {
+      if (addClass) mathJaxNode.classList.add('highlight');
+      else mathJaxNode.classList.remove('highlight');
+    }
+  }
+
   formulaAST.on('click', 'node', (event) => {
     const node = event.cyTarget;
+    toggleFormulaHighlight(node.data().presentationID, false);
     if (node.data('removedEles')) {
-
       const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
       node.style('background-image', node.data('nodeSVG'));
