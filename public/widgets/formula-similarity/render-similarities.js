@@ -33,7 +33,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch('http://localhost:4001/api/v1/math/renderMergedAST', {
+  return fetch('http://math.citeplag.org/api/v1/math/renderMergedAST', {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
