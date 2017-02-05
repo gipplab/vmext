@@ -64,6 +64,13 @@ function renderAST(elements) {
         }
       },
       {
+        selector: '.ambiguous',
+        css: {
+          'border-color': 'steelblue',
+          'border-style': 'dashed'
+        }
+      },
+      {
         selector: 'edge',
         css: {
           'line-color': '#ccc'
