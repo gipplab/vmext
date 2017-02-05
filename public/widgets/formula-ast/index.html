@@ -12,15 +12,33 @@
     </div>
     <img class="gif-loader" src="../../assets/ring.gif" alt="Loading...">
     <div class="error-container">
-      <div class="alert alert-danger" role="alert"><strong>Oh snap!</strong> An error occurred during Rendering</div>
-      <button class="btn btn-default" onclick="showErrorDeails()">Show details</button>
-      <div class="panel panel-danger error-details">
-        <div class="panel-heading">
-          Error information
-        </div>
-        <div class="panel-body">
-          <div><strong>Description</strong><span class="error-message"></span></div>
-          <div><strong>StatusCode</strong><span class="error-statuscode"></span></div>
+      <div class="alert alert-danger" role="alert"><strong>Oh snap!</strong> An error occurred during rendering.</div>
+        <button class="btn btn-default" onclick="toggleErrorDeails()">Toggle details</button>
+        <div class="panel panel-danger error-details">
+          <div class="panel-heading">
+            Error information
+          </div>
+          <div class="panel-body">
+            <table>
+              <tbody>
+                <tr>
+                  <td><strong>Type:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-type margined"></td>
+                </tr>
+                <tr>
+                  <td><strong>Description:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-message margined"></td>
+                </tr>
+                <tr>
+                  <td><strong>StatusCode:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-statuscode margined"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

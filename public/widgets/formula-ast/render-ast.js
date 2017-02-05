@@ -16,6 +16,7 @@ function paramsReveived(event) {
       document.querySelector('.gif-loader').style.display = 'none';
       document.querySelector('.mainContainer').style.display = 'none';
       document.querySelector('.error-container').style.display = 'block';
+      document.querySelector('.error-type').innerHTML = err.error;
       document.querySelector('.error-message').innerHTML = err.message;
       document.querySelector('.error-statuscode').innerHTML = err.statusCode;
       console.error(err);
@@ -179,6 +180,6 @@ function unhighlightNode(node) {
   );
 }
 
-function showErrorDeails() {
-  document.querySelector('.error-details').style.display = 'block';
+function toggleErrorDeails() {
+  document.querySelector('.error-details').classList.toggle('error-details--display');
 }
