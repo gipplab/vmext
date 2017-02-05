@@ -1,5 +1,8 @@
 'use strict';
 
+// register project root to global require calls
+require('app-module-path/register');
+
 const express = require('express');
 const app = module.exports = express();
 const compression = require('compression');

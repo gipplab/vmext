@@ -1,8 +1,8 @@
 'use strict';
 
-const ASTParser = require('app/lib/ASTParser');
-const ASTRenderer = require('app/lib/ASTRenderer');
-const MathJaxRenderer = require('app/lib/MathJaxRenderer');
+const ASTParser = require('lib/ASTParser');
+const ASTRenderer = require('lib/ASTRenderer');
+const MathJaxRenderer = require('lib/MathJaxRenderer');
 const querystring = require('querystring');
 const Boom = require('boom');
 

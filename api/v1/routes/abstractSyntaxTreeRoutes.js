@@ -4,7 +4,7 @@ const express = require('express');
 const astRouter = module.exports = express.Router({ mergeParams: true });
 const multer = require('multer');
 const upload = multer();
-const RequestValidator = require('app/lib/RequestValidator');
+const RequestValidator = require('lib/RequestValidator');
 const astController = require('../controller/AbstractSyntaxTreeController');
 
 /**

@@ -1,6 +1,6 @@
 'use strict';
 
-const log = require('app/lib/logger');
+const log = require('lib/logger');
 const Boom = require('boom');
 
 module.exports = (app) => {

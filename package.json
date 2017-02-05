@@ -15,6 +15,7 @@
   "author": "HTW",
   "license": "MIT",
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "boom": "^4.2.0",
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",

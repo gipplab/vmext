@@ -19,5 +19,10 @@ To debug the app using ChromeDevTools, run `yarn run debug` and then copy the li
 
 There's a bunch of modules within the **lib** directory we wrote ourselves in order to maintain a clean project structure.
 
-To avoid weird relative paths like `../../../lib/logger` we placed a symlink into node_modules pointing to project root as `app`.
-In order to require anything with a path starting relatively at project root simply prepend `app` to the path. e.g `require('app/lib/logger')`
+To avoid weird relative paths like `../../../lib/logger` we are using the [app-module-path](https://www.npmjs.com/package/app-module-path) package. This adds the project root directory to the require call. So even in a deeply nested directory you can require any module with a path starting relative to project root e.g `require('lib/logger')`
+
+## Deploying
+
+This project uses [Capistrano](http://capistranorb.com/) for deployments.
+To deploy (the master branch) type `cap production deploy`.
+For a simple rollback `cap production deploy:rollback`
