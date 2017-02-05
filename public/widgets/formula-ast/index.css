@@ -4,6 +4,21 @@ body, html {
   margin: 0;
 }
 
+.error-container {
+  display: none;
+  top: 0px;
+  dtext-align: center;
+}
+
+.error-details {
+  margin-top: 2em;
+  display: none;
+}
+
+.panel {
+  margin: 2em;
+}
+
 .mainContainer {
   display: flex;
   flex-flow: column;
@@ -16,6 +31,7 @@ body, html {
   flex: 0 1 auto;
   text-align: center;
   padding: 10px;
+  border-bottom: 1px solid #aba8a8;
 }
 
 .cy-container  {

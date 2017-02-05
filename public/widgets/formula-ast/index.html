@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../../vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="./index.css">
   </head>
   <body>
@@ -10,7 +11,19 @@
       <div class="cy-container"></div>
     </div>
     <img class="gif-loader" src="../../assets/ring.gif" alt="Loading...">
-    <img class="gif-error" src="../../assets/error.gif" alt="Error...">
+    <div class="error-container">
+      <div class="alert alert-danger" role="alert"><strong>Oh snap!</strong> An error occurred during Rendering</div>
+      <button class="btn btn-default" onclick="showErrorDeails()">Show details</button>
+      <div class="panel panel-danger error-details">
+        <div class="panel-heading">
+          Error information
+        </div>
+        <div class="panel-body">
+          <div><strong>Description</strong><span class="error-message"></span></div>
+          <div><strong>StatusCode</strong><span class="error-statuscode"></span></div>
+        </div>
+      </div>
+    </div>
 
     <!-- polyfill for fetch-API -->
     <script src='../../vendor/js/fetch.js'></script>

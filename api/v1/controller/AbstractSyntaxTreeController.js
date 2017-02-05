@@ -56,8 +56,7 @@ module.exports = class AbstractSyntaxTreeController {
         new ASTRenderer.Graph(comparisonAST).renderSingleTree(),
         new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render(),
       ]);
-    }).then((results) => {
-      const [cytoscapedReferenceAST, cytoscapedComparisonAST, cytoscapedMergedAST] = results;
+    }).then(([cytoscapedReferenceAST, cytoscapedComparisonAST, cytoscapedMergedAST]) => {
       res.format({
         'application/json': () => {
           res.json({

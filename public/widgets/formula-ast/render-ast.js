@@ -13,8 +13,10 @@ function paramsReveived(event) {
     })
     .catch((err) => {
       document.querySelector('.gif-loader').style.display = 'none';
-      document.querySelector('.gif-error').style.display = 'block';
-      document.querySelector('body').style['background-color'] = '#101018';
+      document.querySelector('.mainContainer').style.display = 'none';
+      document.querySelector('.error-container').style.display = 'block';
+      document.querySelector('.error-message').innerHTML = err.message;
+      document.querySelector('.error-statuscode').innerHTML = err.statusCode;
       console.error(err);
     });
 }
@@ -24,7 +26,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch('http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true', {
+  return fetch('http://localhost:4001/api/v1/math/renderAST?cytoscaped=true', {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -51,10 +53,10 @@ function renderAST(elements) {
         css: {
           shape: 'roundrectangle',
           'background-color': 'white',
-          'background-image': 'data(presentation)',
+          'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
-          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
-          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
+          width: ele => extractDimensionsFromSVG(ele.data('nodeSVG'), Dimension.WIDTH),
+          height: ele => extractDimensionsFromSVG(ele.data('nodeSVG'), Dimension.HEIGHT),
           'border-width': '2px',
           'border-color': 'steelblue'
         }
@@ -72,8 +74,8 @@ function renderAST(elements) {
   });
 }
 
-function extractDimensionsFromSVG(ele, type) {
-  const dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+function extractDimensionsFromSVG(dataURI, type) {
+  const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
   const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
   return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
 }
@@ -104,13 +106,38 @@ function registerEventListeners() {
 
   formulaAST.on('click', 'node', (event) => {
     const node = event.cyTarget;
-    const removedEles = node.remove(node.connectedEdges());
-    node.data('removedEles', removedEles);
-    formulaAST.layout({
-      name: 'dagre',
-      animate: true,
-      animationDuration: 500,
-    });
+    if (node.data('removedEles')) {
+
+      const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
+      const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
+      node.style('background-image', node.data('nodeSVG'));
+      node.style('width', nodeWidth);
+      node.style('height', nodeHeight);
+      node.data('oldWidth', nodeWidth);
+      node.data('oldHeight', nodeHeight);
+      node.data('removedEles').restore();
+      formulaAST.layout({
+        name: 'dagre',
+        animate: true,
+        animationDuration: 500,
+      });
+      node.removeData('removedEles');
+    } else {
+      const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
+      const nodeHeight = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.HEIGHT);
+      node.style('background-image', node.data('subtreeSVG'));
+      node.style('width', nodeWidth);
+      node.style('height', nodeHeight);
+      node.data('oldWidth', nodeWidth);
+      node.data('oldHeight', nodeHeight);
+      const removedEles = formulaAST.remove(node.successors());
+      node.data('removedEles', removedEles);
+      formulaAST.layout({
+        name: 'dagre',
+        animate: true,
+        animationDuration: 700,
+      });
+    }
   });
 }
 
@@ -147,4 +174,8 @@ function unhighlightNode(node) {
       duration: 100
     }
   );
+}
+
+function showErrorDeails() {
+  document.querySelector('.error-details').style.display = 'block';
 }

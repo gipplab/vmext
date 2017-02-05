@@ -17,8 +17,8 @@ function paramsReveived(event) {
       renderAST(result);
       attachEventListeners();
       document.querySelector('.gif-loader').style.display = 'none';
-      document.querySelector('.reference-ast-container').style['background-color']= '#EDF1FA';
-      document.querySelector('.comparison-ast-container').style['background-color']= '#edfaf1';
+      document.querySelector('.reference-ast-container').style['background-color'] = '#EDF1FA';
+      document.querySelector('.comparison-ast-container').style['background-color'] = '#edfaf1';
     })
     .catch((err) => {
       document.querySelector('.gif-loader').style.display = 'none';
@@ -33,7 +33,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch('http://math.citeplag.org/api/v1/math/renderMergedAST', {
+  return fetch('http://localhost:4001/api/v1/math/renderMergedAST', {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -60,7 +60,7 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
         css: {
           shape: 'roundrectangle',
           'background-color': '#EDF1FA',
-          'background-image': 'data(presentation)',
+          'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
@@ -72,7 +72,7 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
         css: {
           shape: 'roundrectangle',
           'background-color': '#edfaf1',
-          'background-image': 'data(presentation)',
+          'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
@@ -131,7 +131,7 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
         css: {
           shape: 'roundrectangle',
           'background-color': 'white',
-          'background-image': 'data(presentation)',
+          'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
@@ -159,7 +159,7 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
         css: {
           shape: 'roundrectangle',
           'background-color': 'white',
-          'background-image': 'data(presentation)',
+          'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
@@ -182,7 +182,7 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
 }
 
 function extractDimensionsFromSVG(ele, type) {
-  const dimensionInEX = ele.data().presentation.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+  const dimensionInEX = ele.data().nodeSVG.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
   const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
   return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
 }
