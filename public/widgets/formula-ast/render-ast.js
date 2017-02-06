@@ -79,15 +79,9 @@ function renderAST(elements) {
       }
     ],
     layout: {
-      name: 'dagre',
+      name: 'dagre'
     }
   });
-}
-
-function extractDimensionsFromSVG(dataURI, type) {
-  const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
-  const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
-  return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
 }
 
 function registerEventListeners() {
@@ -95,7 +89,6 @@ function registerEventListeners() {
     toggleFormulaHighlight(event.cyTarget.data().presentationID, true);
     const eventData = {
       nodeID: event.cyTarget.id(),
-      node: event.cyTarget.data(),
       type: 'mouseOverNode',
     }
     window.parent.postMessage(eventData, '*');
@@ -109,7 +102,6 @@ function registerEventListeners() {
     toggleFormulaHighlight(event.cyTarget.data().presentationID, false);
     const eventData = {
       nodeID: event.cyTarget.id(),
-      node: event.cyTarget.data(),
       type: 'mouseOutNode',
     }
     window.parent.postMessage(eventData, '*');
@@ -119,18 +111,14 @@ function registerEventListeners() {
     unhighlightNode(node);
   });
 
-  function toggleFormulaHighlight(id, addClass) {
-    const escapedId = id.replace(/\./g, '\\.');
-    const mathJaxNode = document.querySelector(`#${escapedId}`);
-    if (mathJaxNode) {
-      if (addClass) mathJaxNode.classList.add('highlight');
-      else mathJaxNode.classList.remove('highlight');
-    }
-  }
-
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
     const node = event.cyTarget;
     toggleFormulaHighlight(node.data().presentationID, false);
+    const eventData = {
+      nodeID: event.cyTarget.id(),
+      type: 'mouseOutNode',
+    }
+    window.parent.postMessage(eventData, '*');
     if (node.data('removedEles')) {
       const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
@@ -143,7 +131,7 @@ function registerEventListeners() {
       formulaAST.layout({
         name: 'dagre',
         animate: true,
-        animationDuration: 500,
+        animationDuration: 700,
       });
       node.removeData('removedEles');
     } else {
@@ -163,6 +151,21 @@ function registerEventListeners() {
       });
     }
   });
+}
+
+function extractDimensionsFromSVG(dataURI, type) {
+  const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+  const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
+  return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
+}
+
+function toggleFormulaHighlight(id, addClass) {
+  const escapedId = id.replace(/\./g, '\\.');
+  const mathJaxNode = document.querySelector(`#${escapedId}`);
+  if (mathJaxNode) {
+    if (addClass) mathJaxNode.classList.add('highlight');
+    else mathJaxNode.classList.remove('highlight');
+  }
 }
 
 /*
