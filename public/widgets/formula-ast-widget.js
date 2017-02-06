@@ -15,7 +15,7 @@
   iframe.style.width = '100%';
   iframe.style.height = '100%';
   iframe.onload = () => {
-    const iframeWindow = document.querySelector('.abstract-syntaxtree-iframe').contentWindow;
+    const iframeWindow = iframe.contentWindow;
     iframeWindow.postMessage(attributes, '*');
   };
 

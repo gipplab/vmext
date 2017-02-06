@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon --ignore public/ server.js",
-    "debug": "node --inspect --debug-brk server.js",
+    "debug": "nodemon --ignore public/ --inspect server.js",
     "docs": "apidoc -i ./api -o ./config/apiDoc/",
     "lint": "eslint ."
   },
