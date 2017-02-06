@@ -1,22 +1,17 @@
 'use strict';
 
-const Origin = {
-  REFERENCE_AST: 0,
-  COMPARISON_AST: 1,
-};
 let mergedAST;
 
 window.addEventListener('message', paramsReveived, false);
 
 function paramsReveived(event) {
   const eventData = event.data;
-  // next block is only executed for initialData postMessage from widget
   if (eventData.isInitialData) {
+    // this block is only executed for initialData postMessage from widget
     const attributes = event.data;
     fetchData(attributes)
       .then((result) => {
         renderAST(result);
-        attachEventListeners();
         document.querySelector('.gif-loader').style.display = 'none';
       })
       .catch((err) => {
@@ -29,6 +24,8 @@ function paramsReveived(event) {
         console.error(err);
       });
   } else {
+    // this block handles postMessage events from both formula-ast-widgets
+    // events can be "mouseOverNode" or "mouseOutNode"
     console.log(eventData);
     const node = mergedAST.$(`node[id='${eventData.nodeID}']`);
     eventData.type === 'mouseOverNode' ? highlightNode(node) : unhighlightNode(node);
@@ -138,30 +135,6 @@ function extractDimensionsFromSVG(ele, type) {
 }
 
 /*
-**  event listeners
-*/
-
-function attachEventListeners() {
-  window.addEventListener('mouseOverNode', (event) => {
-    const node = mergedAST.$(`node[id='${event.detail.nodeID}']`);
-    const origin  = event.detail.origin;
-    const color = (origin === Origin.REFERENCE_AST)
-     ? defaults.color.referenceNodeHighlight
-     : defaults.color.comparisonNodeHighlight;
-    highlightNode(node);
-  });
-
-  window.addEventListener('mouseOutNode', (event) => {
-    const node = mergedAST.$(`node[id='${event.detail.nodeID}']`);
-    const origin  = event.detail.origin;
-    const color = (origin === Origin.REFERENCE_AST)
-     ? defaults.color.referenceNode
-     : defaults.color.comparisonNode;
-    unhighlightNode(node);
-  });
-}
-
-/*
 ** Animation Helper
 */
 function highlightNode(node) {
@@ -176,9 +149,7 @@ function highlightNode(node) {
         height: newHeight
       }
     },
-    {
-      duration: 100
-    }
+    { duration: 100 }
   );
 }
 
@@ -190,9 +161,7 @@ function unhighlightNode(node) {
         height: node.data('oldHeight')
       }
     },
-    {
-      duration: 100
-    }
+    { duration: 100 }
   );
 }
 
