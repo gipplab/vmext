@@ -4,10 +4,10 @@
   const script = document.currentScript;
   const attributes = {
     mathml: script.getAttribute('mathml'),
-    collapseSingleOperandNodes: script.getAttribute('collapseSingleOperandNodes'),
-    nodesToBeCollapsed: script.getAttribute('nodesToBeCollapsed'),
-    bgColor: script.getAttribute('bgColor'),
-    formulaIdentifier: script.getAttribute('formulaIdentifier'),
+    collapseSingleOperandNodes: script.getAttribute('collapseSingleOperandNodes') || 'false',
+    nodesToBeCollapsed: script.getAttribute('nodesToBeCollapsed') || '[""]',
+    bgColor: script.getAttribute('bgColor') || '#fff',
+    formulaIdentifier: script.getAttribute('formulaIdentifier') || 'A',
   };
 
   // iframe element
