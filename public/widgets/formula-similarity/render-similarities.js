@@ -14,6 +14,7 @@ function paramsReveived(event) {
       .then((result) => {
         renderAST(result);
         document.querySelector('.gif-loader').style.display = 'none';
+        document.querySelector('.main-cy-container').style.visibility = 'visible';
       })
       .catch((err) => {
         document.querySelector('.gif-loader').style.display = 'none';
