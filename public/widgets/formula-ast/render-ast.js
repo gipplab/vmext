@@ -93,6 +93,12 @@ function extractDimensionsFromSVG(dataURI, type) {
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node',(event) => {
     toggleFormulaHighlight(event.cyTarget.data().presentationID, true);
+    const eventData = {
+      nodeID: event.cyTarget.id(),
+      node: event.cyTarget.data(),
+      type: 'mouseOverNode',
+    }
+    window.parent.postMessage(eventData, '*');
 
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);
@@ -101,6 +107,12 @@ function registerEventListeners() {
 
   formulaAST.on('mouseout', 'node', (event) => {
     toggleFormulaHighlight(event.cyTarget.data().presentationID, false);
+    const eventData = {
+      nodeID: event.cyTarget.id(),
+      node: event.cyTarget.data(),
+      type: 'mouseOutNode',
+    }
+    window.parent.postMessage(eventData, '*');
 
     const contentID = event.cyTarget.id();
     const node = formulaAST.$(`node[id='${contentID}']`);

@@ -9,22 +9,30 @@ let mergedAST;
 window.addEventListener('message', paramsReveived, false);
 
 function paramsReveived(event) {
-  const attributes = event.data;
-  fetchData(attributes)
-    .then((result) => {
-      renderAST(result);
-      attachEventListeners();
-      document.querySelector('.gif-loader').style.display = 'none';
-    })
-    .catch((err) => {
-      document.querySelector('.gif-loader').style.display = 'none';
-      document.querySelector('.main-cy-container').style.display = 'none';
-      document.querySelector('.error-container').style.display = 'block';
-      document.querySelector('.error-type').innerHTML = err.error;
-      document.querySelector('.error-message').innerHTML = err.message;
-      document.querySelector('.error-statuscode').innerHTML = err.statusCode;
-      console.error(err);
-    });
+  const eventData = event.data;
+  // next block is only executed for initialData postMessage from widget
+  if (eventData.isInitialData) {
+    const attributes = event.data;
+    fetchData(attributes)
+      .then((result) => {
+        renderAST(result);
+        attachEventListeners();
+        document.querySelector('.gif-loader').style.display = 'none';
+      })
+      .catch((err) => {
+        document.querySelector('.gif-loader').style.display = 'none';
+        document.querySelector('.main-cy-container').style.display = 'none';
+        document.querySelector('.error-container').style.display = 'block';
+        document.querySelector('.error-type').innerHTML = err.error;
+        document.querySelector('.error-message').innerHTML = err.message;
+        document.querySelector('.error-statuscode').innerHTML = err.statusCode;
+        console.error(err);
+      });
+  } else {
+    console.log(eventData);
+    const node = mergedAST.$(`node[id='${eventData.nodeID}']`);
+    eventData.type === 'mouseOverNode' ? highlightNode(node) : unhighlightNode(node);
+  }
 }
 
 function fetchData({ reference_mathml, comparison_mathml, similarities }) {

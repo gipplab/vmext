@@ -6,6 +6,7 @@
     reference_mathml: script.getAttribute('reference_mathml'),
     comparison_mathml: script.getAttribute('comparison_mathml'),
     similarities: script.getAttribute('similarities'),
+    isInitialData: true,
   };
 
   // iframe element
