@@ -42,6 +42,7 @@ function appendASTWidgets(attributes) {
   referenceASTWidget.setAttribute('collapseSingleOperandNodes', false);
   referenceASTWidget.setAttribute('nodesToBeCollapsed', '[""]');
   referenceASTWidget.setAttribute('bgColor', '#edf1fa');
+  referenceASTWidget.setAttribute('formulaIdentifier', 'A');
 
   const comparisonASTWidget = document.createElement('script');
   comparisonASTWidget.setAttribute('type', 'application/javascript');
@@ -50,6 +51,7 @@ function appendASTWidgets(attributes) {
   comparisonASTWidget.setAttribute('collapseSingleOperandNodes', false);
   comparisonASTWidget.setAttribute('nodesToBeCollapsed', '[""]');
   comparisonASTWidget.setAttribute('bgColor', '#edfaf1');
+  comparisonASTWidget.setAttribute('formulaIdentifier', 'B');
 
   const referenceContainer = document.querySelector('.reference-ast-container');
   const comparisonContainer = document.querySelector('.comparison-ast-container');

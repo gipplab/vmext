@@ -4,6 +4,7 @@ let formulaAST;
 window.addEventListener('message', paramsReveived, false);
 
 function paramsReveived(event) {
+  debugger
   fetchData(event.data)
     .then((result) => {
       document.querySelector('.formula-container').style.display = 'block';
@@ -24,12 +25,12 @@ function paramsReveived(event) {
     });
 }
 
-function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed }) {
+function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier='A' }) {
   const formData = new FormData();
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch('http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true', {
+  return fetch(`http://localhost:4001/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -52,7 +53,7 @@ function renderAST(elements) {
     elements,
     style: [
       {
-        selector: '.source-A',
+        selector: '.source-A,.source-B',
         css: {
           shape: 'roundrectangle',
           'background-color': 'white',

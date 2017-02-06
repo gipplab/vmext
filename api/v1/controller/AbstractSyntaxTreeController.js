@@ -20,8 +20,9 @@ module.exports = class AbstractSyntaxTreeController {
       'application/json': () => {
         parsedMathMLPromise.then((ast) => {
           if (req.query.cytoscaped) {
+            const source = req.query.formulaidentifier || 'A';
             Promise.all([
-              new ASTRenderer.Graph(ast).renderSingleTree(),
+              new ASTRenderer.Graph(ast).renderSingleTree(source),
               MathJaxRenderer.renderMML(req.body.mathml),
             ]).then(([cytoscapedAST, mathjaxSVG]) => {
               res.json({

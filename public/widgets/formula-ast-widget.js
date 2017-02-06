@@ -6,7 +6,8 @@
     mathml: script.getAttribute('mathml'),
     collapseSingleOperandNodes: script.getAttribute('collapseSingleOperandNodes'),
     nodesToBeCollapsed: script.getAttribute('nodesToBeCollapsed'),
-    bgColor: script.getAttribute('bgColor')
+    bgColor: script.getAttribute('bgColor'),
+    formulaIdentifier: script.getAttribute('formulaIdentifier'),
   };
 
   // iframe element
