@@ -9,6 +9,7 @@ function paramsReveived(event) {
   if (eventData.isInitialData) {
     // this block is only executed for initialData postMessage from widget
     const attributes = event.data;
+    appendASTWidgets(attributes);
     fetchData(attributes)
       .then((result) => {
         renderAST(result);
@@ -30,6 +31,29 @@ function paramsReveived(event) {
     const node = mergedAST.$(`node[id='${eventData.nodeID}']`);
     eventData.type === 'mouseOverNode' ? highlightNode(node) : unhighlightNode(node);
   }
+}
+
+function appendASTWidgets(attributes) {
+  const referenceASTWidget = document.createElement('script');
+  referenceASTWidget.setAttribute('type', 'application/javascript');
+  referenceASTWidget.setAttribute('src', '/widgets/formula-ast-widget.js');
+  referenceASTWidget.setAttribute('mathml', attributes.reference_mathml);
+  referenceASTWidget.setAttribute('collapseSingleOperandNodes', false);
+  referenceASTWidget.setAttribute('nodesToBeCollapsed', '[""]');
+  referenceASTWidget.setAttribute('bgColor', '#edf1fa');
+
+  const comparisonASTWidget = document.createElement('script');
+  comparisonASTWidget.setAttribute('type', 'application/javascript');
+  comparisonASTWidget.setAttribute('src', '/widgets/formula-ast-widget.js');
+  comparisonASTWidget.setAttribute('mathml', attributes.comparison_mathml);
+  comparisonASTWidget.setAttribute('collapseSingleOperandNodes', false);
+  comparisonASTWidget.setAttribute('nodesToBeCollapsed', '[""]');
+  comparisonASTWidget.setAttribute('bgColor', '#edfaf1');
+
+  const referenceContainer = document.querySelector('.reference-ast-container');
+  const comparisonContainer = document.querySelector('.comparison-ast-container');
+  referenceContainer.appendChild(referenceASTWidget);
+  comparisonContainer.appendChild(comparisonASTWidget);
 }
 
 function fetchData({ reference_mathml, comparison_mathml, similarities }) {
