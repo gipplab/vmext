@@ -22,8 +22,11 @@ function paramsReveived(event) {
     })
     .catch((err) => {
       document.querySelector('.gif-loader').style.display = 'none';
-      document.querySelector('.gif-error').style.display = 'block';
-      document.querySelector('body').style['background-color'] = '#101018';
+      document.querySelector('.main-cy-container').style.display = 'none';
+      document.querySelector('.error-container').style.display = 'block';
+      document.querySelector('.error-type').innerHTML = err.error;
+      document.querySelector('.error-message').innerHTML = err.message;
+      document.querySelector('.error-statuscode').innerHTML = err.statusCode;
       console.error(err);
     });
 }
@@ -301,4 +304,8 @@ function unhighlightNode(node) {
       duration: 100
     }
   );
+}
+
+function toggleErrorDeails() {
+  document.querySelector('.error-details').classList.toggle('error-details--display');
 }
