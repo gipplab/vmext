@@ -38,7 +38,7 @@ body, html {
   flex: 1 1 auto;
 }
 
-.gif-loader, {
+.gif-loader {
   position: absolute;
   top: 50%;
   left: 50%;
