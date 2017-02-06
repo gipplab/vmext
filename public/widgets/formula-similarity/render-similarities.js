@@ -5,8 +5,6 @@ const Origin = {
   COMPARISON_AST: 1,
 };
 let mergedAST;
-let referenceAST;
-let comparisonAST;
 
 window.addEventListener('message', paramsReveived, false);
 
@@ -17,8 +15,6 @@ function paramsReveived(event) {
       renderAST(result);
       attachEventListeners();
       document.querySelector('.gif-loader').style.display = 'none';
-      document.querySelector('.reference-ast-container').style['background-color'] = '#EDF1FA';
-      document.querySelector('.comparison-ast-container').style['background-color'] = '#edfaf1';
     })
     .catch((err) => {
       document.querySelector('.gif-loader').style.display = 'none';
@@ -125,63 +121,6 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
       directed: true
     }
   });
-  referenceAST =  cytoscape({
-    container: document.querySelector('.reference-ast-container'),
-    elements: cytoscapedReferenceAST,
-    style: [
-      {
-        selector: '.source-A',
-        css: {
-          shape: 'roundrectangle',
-          'background-color': 'white',
-          'background-image': 'data(nodeSVG)',
-          'background-fit': 'none',
-          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
-          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
-          'border-width': '2px',
-          'border-color': 'steelblue'
-        }
-      },
-      {
-        selector: 'edge',
-        css: {
-          'line-color': '#ccc'
-        }
-      }
-    ],
-    layout: {
-      name: 'dagre',
-    }
-  });
-  comparisonAST =  cytoscape({
-    container: document.querySelector('.comparison-ast-container'),
-    elements: cytoscapedComparisonAST,
-    style: [
-      {
-        selector: '.source-A',
-        css: {
-          shape: 'roundrectangle',
-          'background-color': 'white',
-          'background-image': 'data(nodeSVG)',
-          'background-fit': 'none',
-          width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
-          height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
-          'border-width': '2px',
-          'border-color': 'black'
-        }
-      },
-      {
-        selector: 'edge',
-        css: {
-          'line-color': '#ccc'
-        }
-      }
-    ],
-    layout: {
-      name: 'dagre',
-      directed: true
-    }
-  });
 }
 
 function extractDimensionsFromSVG(ele, type) {
@@ -195,63 +134,6 @@ function extractDimensionsFromSVG(ele, type) {
 */
 
 function attachEventListeners() {
-  referenceAST.on('mouseover', 'node', function(event) {
-    const nodeID = event.cyTarget.id();
-    const node = referenceAST.$(`node[id='${nodeID}']`);
-    const mouseOverNode = new CustomEvent('mouseOverNode',
-    {
-      detail: {
-        origin: Origin.REFERENCE_AST,
-        nodeID,
-      }
-    });
-    window.dispatchEvent(mouseOverNode);
-    highlightNode(node);
-  });
-
-  referenceAST.on('mouseout', 'node', function(event) {
-    const nodeID = event.cyTarget.id();
-    const node = referenceAST.$(`node[id='${nodeID}']`);
-    const mouseOutNode = new CustomEvent('mouseOutNode',
-    {
-      detail: {
-        origin: Origin.REFERENCE_AST,
-        nodeID,
-      }
-    });
-    window.dispatchEvent(mouseOutNode);
-    unhighlightNode(node);
-  });
-
-  comparisonAST.on('mouseover', 'node', function(event) {
-    const nodeID = event.cyTarget.id();
-    const node = comparisonAST.$(`node[id='${nodeID}']`);
-    const mouseOverNode = new CustomEvent('mouseOverNode',
-    {
-      detail: {
-        origin: Origin.COMPARISON_AST,
-        nodeID: event.cyTarget.id(),
-      }
-    });
-    window.dispatchEvent(mouseOverNode);
-    highlightNode(node);
-  });
-
-  comparisonAST.on('mouseout', 'node', function(event) {
-    const nodeID = event.cyTarget.id();
-    const node = comparisonAST.$(`node[id='${nodeID}']`);
-    const mouseOutNode = new CustomEvent('mouseOutNode',
-    {
-      detail: {
-        origin: Origin.COMPARISON_AST,
-        nodeID,
-      }
-    });
-    window.dispatchEvent(mouseOutNode);
-    unhighlightNode(node);
-  });
-
-
   window.addEventListener('mouseOverNode', (event) => {
     const node = mergedAST.$(`node[id='${event.detail.nodeID}']`);
     const origin  = event.detail.origin;

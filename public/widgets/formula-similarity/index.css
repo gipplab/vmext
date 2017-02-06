@@ -45,3 +45,7 @@ body {
   margin-top: -79px;
   margin-left: -79px;
 }
+
+iframe {
+  border: none;
+}

@@ -7,6 +7,7 @@ function paramsReveived(event) {
   fetchData(event.data)
     .then((result) => {
       document.querySelector('.formula-container').style.display = 'block';
+      document.querySelector('body').style['background-color'] = event.data.bgColor;
       document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
       renderAST(result.cytoscapedAST);
       registerEventListeners();
