@@ -29,11 +29,29 @@ function paramsReveived(event) {
   } else {
     // this block handles postMessage events from both formula-ast-widgets
     // events can be "mouseOverNode" or "mouseOutNode"
+    // events.data holds an array with the node and all its predecessors to be able to highlight even collapsed nodes
     console.log(eventData);
-    const node = mergedAST.$(`node[id='${eventData.nodeID}']`);
-    eventData.type === 'mouseOverNode' ? highlightNode(node) : unhighlightNode(node);
+
+    for (const node of eventData.nodes) {
+      const mergedCyNode = mergedAST.$(`node[id='${node.data.id}']`);
+      // debugger;
+      if (mergedCyNode.length !== 0) {
+        eventData.type === 'mouseOverNode' ? highlightNode(mergedCyNode) : unhighlightNode(mergedCyNode);
+        break;
+      }
+    }
   }
 }
+
+/**
+** since formula-ast-widget could pass nodes to highlight, that are collapsed
+** we need to recursively go up its predecessors to find the right node to highlight
+**/
+// function *recursivelyFindNodetoHighlight(nodes) {
+//   node.forEach((node) => {
+//     yield node.data.nodeID;
+//   });
+// }
 
 function appendASTWidgets(attributes) {
   const referenceASTWidget = document.createElement('script');

@@ -119,31 +119,50 @@ function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
 
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
+    const node = event.cyTarget;
+
+    // pass node and all predecessors to similarities-widget to also highlight collapsed nodes
+    const nodes = event.cyTarget.predecessors().nodes().jsons();
+    nodes.unshift(node.json());
     const eventData = {
-      nodeID: event.cyTarget.id(),
+      nodes,
       type: 'mouseOverNode',
-    }
+    };
     window.parent.postMessage(eventData, '*');
     highlightNodeAndFormula({ nodeID: event.cyTarget.id(), presentationID: event.cyTarget.data().presentationID , nodeCollapsed: false});
   });
 
   formulaAST.on('mouseout', 'node', (event) => {
+    const node = event.cyTarget;
+
+    // pass node and all predecessors to similarities-widget to also highlight collapsed nodes
+    const nodes = event.cyTarget.predecessors().nodes().jsons();
+    nodes.unshift(node.json());
     const eventData = {
-      nodeID: event.cyTarget.id(),
+      nodes,
       type: 'mouseOutNode',
-    }
+    };
     window.parent.postMessage(eventData, '*');
-    unhighlightNodeAndFormula({ nodeID: event.cyTarget.id(), presentationID: event.cyTarget.data().presentationID , nodeCollapsed: false});
+    unhighlightNodeAndFormula({
+      nodeID: event.cyTarget.id(),
+      presentationID: event.cyTarget.data().presentationID,
+      nodeCollapsed: false
+    });
   });
 
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
     const node = event.cyTarget;
     toggleFormulaHighlight(node.data().presentationID, false);
+
+    // pass node and all predecessors to similarities-widget to also highlight collapsed nodes
+    const nodes = event.cyTarget.predecessors().nodes().jsons();
+    nodes.unshift(node.json());
     const eventData = {
-      nodeID: event.cyTarget.id(),
+      nodes,
       type: 'mouseOutNode',
-    }
+    };
     window.parent.postMessage(eventData, '*');
+
     if (node.data('removedEles')) {
       const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
