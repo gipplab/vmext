@@ -11,6 +11,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
    * @api {post} /api/v1/math/renderAST POST /api/v1/math/renderAST
    * @apiParam (Headers) {String} Accept type of result<br/>[application/json | image/svg+xml]
    * @apiParam (Query) {Boolean} [cytoscaped] if set to true in combination with Accept: application/json returns json prepared for cytoscape
+   * @apiParam (Query) {Boolean} [formulaidentifier] defines prefix of cytoscaped node id's and suffix of cytoscpaped node classes<br/>only required in combination with similarities-widget<br/>defaults to 'A'
    * @apiParam (Body (multipart/form-data)) {XML} mathml the mathML to be rendered into an AST
    * @apiParam (Body (multipart/form-data)) {Boolean} [renderFormula] flag wether entire formula should be rendered to the top of the AST. <br>Defaults to false //eslint-disable-line max-len
    * @apiParam (Body (multipart/form-data)) {Boolean} [collapseSingleOperandNodes] flag wether nodes with only one child should be collapsed <br>Defaults to true
