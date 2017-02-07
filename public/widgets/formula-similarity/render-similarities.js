@@ -34,8 +34,12 @@ function paramsReveived(event) {
     console.log(eventData);
     for (const node of eventData.nodes) {
       const mergedCyNode = mergedAST.$(`node[id='${node.data.id}']`);
+      const mergedCyNodeB = mergedAST.$(`node[source-B-id='${node.data.id}']`);
       if (mergedCyNode.length !== 0) {
         eventData.type === 'mouseOverNode' ? highlightNode(mergedCyNode) : unhighlightNode(mergedCyNode);
+        break;
+      } else if (mergedCyNodeB.length !== 0) {
+        eventData.type === 'mouseOverNode' ? highlightNode(mergedCyNodeB) : unhighlightNode(mergedCyNodeB);
         break;
       }
     }
