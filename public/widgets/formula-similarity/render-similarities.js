@@ -65,7 +65,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch('http://math.citeplag.org/api/v1/math/renderMergedAST', {
+  return fetch('http://localhost:4001/api/v1/math/renderMergedAST', {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -158,34 +158,44 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
 
 function registerEventListeners() {
   mergedAST.on('mouseover', 'node', (event) => {
+    const node = event.cyTarget;
     const eventData = {
-      nodeID: event.cyTarget.id(),
-      presentationID: event.cyTarget.data().presentationID,
+      nodeID: node.id(),
+      presentationID: node.data().presentationID,
       type: 'mouseOverNode',
-      nodeCollapsed: event.cyTarget.hasClass('collapse'),
+      nodeCollapsed: node.hasClass('collapse'),
     };
     const iframes = document.querySelectorAll('iframe');
-    const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
-    target.contentWindow.postMessage(eventData, '*');
+    if (event.cyTarget.hasClass('match-identical')) {
+      iframes[0].contentWindow.postMessage(eventData, '*');
+      eventData.nodeID = node.data('source-B-id');
+      iframes[1].contentWindow.postMessage(eventData, '*');
+    } else {
+      const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
+      target.contentWindow.postMessage(eventData, '*');
+    }
 
-    const contentID = event.cyTarget.id();
-    const node = mergedAST.$(`node[id='${contentID}']`);
     highlightNode(node);
   });
 
   mergedAST.on('mouseout', 'node', (event) => {
+    const node = event.cyTarget;
     const eventData = {
-      nodeID: event.cyTarget.id(),
-      presentationID: event.cyTarget.data().presentationID,
+      nodeID: node.id(),
+      presentationID: node.data().presentationID,
       type: 'mouseOutNode',
-      nodeCollapsed: event.cyTarget.hasClass('collapse'),
+      nodeCollapsed: node.hasClass('collapse'),
     };
     const iframes = document.querySelectorAll('iframe');
-    const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
-    target.contentWindow.postMessage(eventData, '*');
+    if (event.cyTarget.hasClass('match-identical')) {
+      iframes[0].contentWindow.postMessage(eventData, '*');
+      eventData.nodeID = node.data('source-B-id');
+      iframes[1].contentWindow.postMessage(eventData, '*');
+    } else {
+      const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
+      target.contentWindow.postMessage(eventData, '*');
+    }
 
-    const contentID = event.cyTarget.id();
-    const node = mergedAST.$(`node[id='${contentID}']`);
     unhighlightNode(node);
   });
 }
