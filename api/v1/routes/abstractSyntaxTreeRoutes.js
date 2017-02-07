@@ -56,7 +56,7 @@ astRouter.post('/renderAST',
 
 /**
    * @api {post} /api/v1/math/renderMergedAST POST /api/v1/math/renderMergedAST
-   * @apiParam (Headers) {String} Accept type of result<br/>[application/json | application/js]
+   * @apiParam (Headers) {String} Accept type of result<br/>application/json
    * @apiParam (Body (multipart/form-data)) {XML} reference_mathml the mathML of reference document
    * @apiParam (Body (multipart/form-data)) {XML} comparison_mathml the mathML of comparison document
    * @apiParam (Body (multipart/form-data)) {JSON} similaries the JSON containing match information
