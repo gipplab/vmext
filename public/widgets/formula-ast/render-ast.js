@@ -117,52 +117,46 @@ function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   toggleFormulaHighlight(presentationID, false);
 }
 
+function sendMessageToPatentWindow(event, type) {
+  // pass node and all predecessor nodes to similarities-widget to also highlight collapsed nodes
+  // to overcome circular references, the removedEles option is deleted on the clone object
+  const nodes = event.cyTarget.predecessors().nodes().jsons();
+  const clonedNode = event.cyTarget.json();
+  delete clonedNode.data.removedEles;
+  nodes.unshift(clonedNode);
+  const eventData = {
+    nodes,
+    type,
+  };
+  window.parent.postMessage(eventData, '*');
+}
+
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
     const node = event.cyTarget;
-
-    // pass node and all predecessors to similarities-widget to also highlight collapsed nodes
-    const nodes = event.cyTarget.predecessors().nodes().jsons();
-    nodes.unshift(node.json());
-    const eventData = {
-      nodes,
-      type: 'mouseOverNode',
-    };
-    window.parent.postMessage(eventData, '*');
-    highlightNodeAndFormula({ nodeID: event.cyTarget.id(), presentationID: event.cyTarget.data().presentationID , nodeCollapsed: false});
+    sendMessageToPatentWindow(event, 'mouseOverNode');
+    highlightNodeAndFormula({
+      nodeID: node.id(),
+      presentationID: node.data().presentationID ,
+      nodeCollapsed: false
+    });
   });
 
   formulaAST.on('mouseout', 'node', (event) => {
     const node = event.cyTarget;
-
-    // pass node and all predecessors to similarities-widget to also highlight collapsed nodes
-    const nodes = event.cyTarget.predecessors().nodes().jsons();
-    nodes.unshift(node.json());
-    const eventData = {
-      nodes,
-      type: 'mouseOutNode',
-    };
-    window.parent.postMessage(eventData, '*');
+    sendMessageToPatentWindow(event, 'mouseOutNode');
     unhighlightNodeAndFormula({
-      nodeID: event.cyTarget.id(),
-      presentationID: event.cyTarget.data().presentationID,
+      nodeID: node.id(),
+      presentationID: node.data().presentationID,
       nodeCollapsed: false
     });
   });
 
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
     const node = event.cyTarget;
+    sendMessageToPatentWindow(event, 'mouseOutNode');
+
     toggleFormulaHighlight(node.data().presentationID, false);
-
-    // pass node and all predecessors to similarities-widget to also highlight collapsed nodes
-    const nodes = event.cyTarget.predecessors().nodes().jsons();
-    nodes.unshift(node.json());
-    const eventData = {
-      nodes,
-      type: 'mouseOutNode',
-    };
-    window.parent.postMessage(eventData, '*');
-
     if (node.data('removedEles')) {
       const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
@@ -242,7 +236,7 @@ function unhighlightNode(node) {
       }
     },
     {
-      duration: 100
+      duration: 50
     }
   );
 }
