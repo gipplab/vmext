@@ -162,6 +162,7 @@ function registerEventListeners() {
       nodeID: event.cyTarget.id(),
       presentationID: event.cyTarget.data().presentationID,
       type: 'mouseOverNode',
+      nodeCollapsed: event.cyTarget.hasClass('collapse'),
     };
     const iframes = document.querySelectorAll('iframe');
     const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
@@ -177,6 +178,7 @@ function registerEventListeners() {
       nodeID: event.cyTarget.id(),
       presentationID: event.cyTarget.data().presentationID,
       type: 'mouseOutNode',
+      nodeCollapsed: event.cyTarget.hasClass('collapse'),
     };
     const iframes = document.querySelectorAll('iframe');
     const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];

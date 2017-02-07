@@ -28,8 +28,8 @@ function paramsReveived(event) {
     console.log(eventData);
     const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
     eventData.type === 'mouseOverNode' ?
-      highlightNodeAndFormula(eventData.nodeID, eventData.presentationID) :
-      unhighlightNodeAndFormula(eventData.nodeID, eventData.presentationID);
+      highlightNodeAndFormula(eventData) :
+      unhighlightNodeAndFormula(eventData);
   }
 }
 
@@ -93,16 +93,28 @@ function renderAST(elements) {
   });
 }
 
-function highlightNodeAndFormula(nodeID, prensentationID) {
+function highlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   const node = formulaAST.$(`node[id='${nodeID}']`);
   highlightNode(node);
-  toggleFormulaHighlight(prensentationID, true);
+  if (nodeCollapsed) {
+    // highlight all successor nodes if collapsed node was hovered in similarities-widget
+    node.successors().nodes().forEach((ele) => {
+        highlightNode(ele);
+    });
+  }
+  toggleFormulaHighlight(presentationID, true);
 }
 
-function unhighlightNodeAndFormula(nodeID, prensentationID) {
+function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   const node = formulaAST.$(`node[id='${nodeID}']`);
   unhighlightNode(node);
-  toggleFormulaHighlight(prensentationID, false);
+  if (nodeCollapsed) {
+    // unhighlight all successor nodes if collapsed node was hovered in similarities-widget
+    node.successors().nodes().forEach((ele) => {
+        unhighlightNode(ele);
+    });
+  }
+  toggleFormulaHighlight(presentationID, false);
 }
 
 function registerEventListeners() {
@@ -112,7 +124,7 @@ function registerEventListeners() {
       type: 'mouseOverNode',
     }
     window.parent.postMessage(eventData, '*');
-    highlightNodeAndFormula(event.cyTarget.id(), event.cyTarget.data().presentationID);
+    highlightNodeAndFormula({ nodeID: event.cyTarget.id(), presentationID: event.cyTarget.data().presentationID , nodeCollapsed: false});
   });
 
   formulaAST.on('mouseout', 'node', (event) => {
@@ -121,7 +133,7 @@ function registerEventListeners() {
       type: 'mouseOutNode',
     }
     window.parent.postMessage(eventData, '*');
-    unhighlightNodeAndFormula(event.cyTarget.id(), event.cyTarget.data().presentationID);
+    unhighlightNodeAndFormula({ nodeID: event.cyTarget.id(), presentationID: event.cyTarget.data().presentationID , nodeCollapsed: false});
   });
 
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
