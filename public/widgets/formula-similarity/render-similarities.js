@@ -170,6 +170,7 @@ function registerEventListeners() {
       iframes[0].contentWindow.postMessage(eventData, '*');
       eventData.nodeID = node.data('source-B-id');
       iframes[1].contentWindow.postMessage(eventData, '*');
+      highlightNode(node);
     } else if (event.cyTarget.data('label') !== 'Similar') {
         const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
         target.contentWindow.postMessage(eventData, '*');
@@ -190,6 +191,7 @@ function registerEventListeners() {
       iframes[0].contentWindow.postMessage(eventData, '*');
       eventData.nodeID = node.data('source-B-id');
       iframes[1].contentWindow.postMessage(eventData, '*');
+      unhighlightNode(node);
     } else if ((event.cyTarget.data('label') !== 'Similar')) {
         const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
         target.contentWindow.postMessage(eventData, '*');
