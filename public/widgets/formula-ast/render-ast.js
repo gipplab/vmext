@@ -4,25 +4,32 @@ let formulaAST;
 window.addEventListener('message', paramsReveived, false);
 
 function paramsReveived(event) {
-  debugger
-  fetchData(event.data)
-    .then((result) => {
-      document.querySelector('.formula-container').style.display = 'block';
-      document.querySelector('body').style['background-color'] = event.data.bgColor;
-      document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
-      renderAST(result.cytoscapedAST);
-      registerEventListeners();
-      document.querySelector('.gif-loader').style.display = 'none';
-    })
-    .catch((err) => {
-      document.querySelector('.gif-loader').style.display = 'none';
-      document.querySelector('.mainContainer').style.display = 'none';
-      document.querySelector('.error-container').style.display = 'block';
-      document.querySelector('.error-type').innerHTML = err.error;
-      document.querySelector('.error-message').innerHTML = err.message;
-      document.querySelector('.error-statuscode').innerHTML = err.statusCode;
-      console.error(err);
-    });
+  const eventData = event.data;
+  if (eventData.isInitialData) {
+    fetchData(eventData)
+      .then((result) => {
+        document.querySelector('.formula-container').style.display = 'block';
+        document.querySelector('body').style['background-color'] = eventData.bgColor;
+        document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
+        renderAST(result.cytoscapedAST);
+        registerEventListeners();
+        document.querySelector('.gif-loader').style.display = 'none';
+      })
+      .catch((err) => {
+        document.querySelector('.gif-loader').style.display = 'none';
+        document.querySelector('.mainContainer').style.display = 'none';
+        document.querySelector('.error-container').style.display = 'block';
+        document.querySelector('.error-type').innerHTML = err.error;
+        document.querySelector('.error-message').innerHTML = err.message;
+        document.querySelector('.error-statuscode').innerHTML = err.statusCode;
+        console.error(err);
+      });
+  } else {
+    console.log(eventData);
+    debugger;
+    const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
+    eventData.type === 'mouseOverNode' ? highlightNode(node) : unhighlightNode(node);
+  }
 }
 
 function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier='A' }) {
@@ -86,7 +93,7 @@ function renderAST(elements) {
 }
 
 function registerEventListeners() {
-  formulaAST.on('mouseover', 'node',(event) => {
+  formulaAST.on('mouseover', 'node', (event) => {
     toggleFormulaHighlight(event.cyTarget.data().presentationID, true);
     const eventData = {
       nodeID: event.cyTarget.id(),

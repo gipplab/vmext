@@ -13,6 +13,7 @@ function paramsReveived(event) {
     fetchData(attributes)
       .then((result) => {
         renderAST(result);
+        registerEventListeners();
         document.querySelector('.gif-loader').style.display = 'none';
         document.querySelector('.main-cy-container').style.visibility = 'visible';
       })
@@ -154,6 +155,37 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
     }
   });
 }
+
+function registerEventListeners() {
+  mergedAST.on('mouseover', 'node', (event) => {
+    const eventData = {
+      nodeID: event.cyTarget.id(),
+      type: 'mouseOverNode',
+    };
+    const iframes = document.querySelectorAll('iframe');
+    const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
+    target.contentWindow.postMessage(eventData, '*');
+
+    const contentID = event.cyTarget.id();
+    const node = mergedAST.$(`node[id='${contentID}']`);
+    highlightNode(node);
+  });
+
+  mergedAST.on('mouseout', 'node', (event) => {
+    const eventData = {
+      nodeID: event.cyTarget.id(),
+      type: 'mouseOutNode',
+    };
+    const iframes = document.querySelectorAll('iframe');
+    const target = eventData.nodeID.substring(0, 1) === 'A' ? iframes[0] : iframes[1];
+    target.contentWindow.postMessage(eventData, '*');
+
+    const contentID = event.cyTarget.id();
+    const node = mergedAST.$(`node[id='${contentID}']`);
+    unhighlightNode(node);
+  });
+}
+
 
 function extractDimensionsFromSVG(ele, type) {
   const dimensionInEX = ele.data().nodeSVG.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
