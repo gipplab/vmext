@@ -26,7 +26,6 @@ function paramsReveived(event) {
       });
   } else {
     console.log(eventData);
-    debugger;
     const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
     eventData.type === 'mouseOverNode' ?
       highlightNodeAndFormula(eventData.nodeID, eventData.presentationID) :
