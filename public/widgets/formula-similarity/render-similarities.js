@@ -160,6 +160,7 @@ function registerEventListeners() {
   mergedAST.on('mouseover', 'node', (event) => {
     const eventData = {
       nodeID: event.cyTarget.id(),
+      presentationID: event.cyTarget.data().presentationID,
       type: 'mouseOverNode',
     };
     const iframes = document.querySelectorAll('iframe');
@@ -174,6 +175,7 @@ function registerEventListeners() {
   mergedAST.on('mouseout', 'node', (event) => {
     const eventData = {
       nodeID: event.cyTarget.id(),
+      presentationID: event.cyTarget.data().presentationID,
       type: 'mouseOutNode',
     };
     const iframes = document.querySelectorAll('iframe');

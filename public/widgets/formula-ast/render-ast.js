@@ -28,7 +28,9 @@ function paramsReveived(event) {
     console.log(eventData);
     debugger;
     const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
-    eventData.type === 'mouseOverNode' ? highlightNode(node) : unhighlightNode(node);
+    eventData.type === 'mouseOverNode' ?
+      highlightNodeAndFormula(eventData.nodeID, eventData.presentationID) :
+      unhighlightNodeAndFormula(eventData.nodeID, eventData.presentationID);
   }
 }
 
@@ -92,31 +94,35 @@ function renderAST(elements) {
   });
 }
 
+function highlightNodeAndFormula(nodeID, prensentationID) {
+  const node = formulaAST.$(`node[id='${nodeID}']`);
+  highlightNode(node);
+  toggleFormulaHighlight(prensentationID, true);
+}
+
+function unhighlightNodeAndFormula(nodeID, prensentationID) {
+  const node = formulaAST.$(`node[id='${nodeID}']`);
+  unhighlightNode(node);
+  toggleFormulaHighlight(prensentationID, false);
+}
+
 function registerEventListeners() {
   formulaAST.on('mouseover', 'node', (event) => {
-    toggleFormulaHighlight(event.cyTarget.data().presentationID, true);
     const eventData = {
       nodeID: event.cyTarget.id(),
       type: 'mouseOverNode',
     }
     window.parent.postMessage(eventData, '*');
-
-    const contentID = event.cyTarget.id();
-    const node = formulaAST.$(`node[id='${contentID}']`);
-    highlightNode(node);
+    highlightNodeAndFormula(event.cyTarget.id(), event.cyTarget.data().presentationID);
   });
 
   formulaAST.on('mouseout', 'node', (event) => {
-    toggleFormulaHighlight(event.cyTarget.data().presentationID, false);
     const eventData = {
       nodeID: event.cyTarget.id(),
       type: 'mouseOutNode',
     }
     window.parent.postMessage(eventData, '*');
-
-    const contentID = event.cyTarget.id();
-    const node = formulaAST.$(`node[id='${contentID}']`);
-    unhighlightNode(node);
+    unhighlightNodeAndFormula(event.cyTarget.id(), event.cyTarget.data().presentationID);
   });
 
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
