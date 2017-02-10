@@ -32,7 +32,7 @@ function paramsReveived(event) {
     // events.data holds an array with the node and all its predecessors to be able to highlight even collapsed nodes
     // we need to recursively go up its predecessors to find the right node to highlight
     console.log(eventData);
-    for (const node of eventData.nodes) {
+    for (const i = 0; i < eventData.nodes.length; i++) {
       const mergedCyNode = mergedAST.$(`node[id='${node.data.id}']`);
       const mergedCyNodeB = mergedAST.$(`node[source-B-id='${node.data.id}']`);
       if (mergedCyNode.length !== 0) {
