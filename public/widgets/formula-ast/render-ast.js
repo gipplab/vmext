@@ -3,16 +3,22 @@
 let formulaAST;
 window.addEventListener('message', paramsReveived, false);
 
+/**
+ * EventListener for postMessage-iframe-events (see https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
+ * Events can be of two types:
+ *  1. intitialData - contains attributes attached to original widget <script>-Tag for initialistion
+ *  2. hover information: either mouseover or mouseout from another widget for highlighting purposes
+ */
 function paramsReveived(event) {
   const eventData = event.data;
   if (eventData.isInitialData) {
     fetchData(eventData)
       .then((result) => {
         document.querySelector('.formula-container').style.display = 'block';
-        document.querySelector('body').style['background-color'] = eventData.bgColor;
         document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
         renderAST(result.cytoscapedAST);
-        registerEventListeners();
+        registerEventListeners(result.cytoscapedAST);
+        document.querySelector('body').style['background-color'] = eventData.bgColor;
         document.querySelector('.gif-loader').style.display = 'none';
       })
       .catch((err) => {
@@ -33,7 +39,7 @@ function paramsReveived(event) {
   }
 }
 
-function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier='A' }) {
+function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A' }) {
   const formData = new FormData();
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
@@ -117,7 +123,7 @@ function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   toggleFormulaHighlight(presentationID, false);
 }
 
-function sendMessageToPatentWindow(event, type) {
+function sendMessageToParentWindow(event, type) {
   // pass node and all predecessor nodes to similarities-widget to also highlight collapsed nodes
   // to overcome circular references, the removedEles option is deleted on the clone object
   const nodes = event.cyTarget.predecessors().nodes().jsons();
@@ -131,20 +137,49 @@ function sendMessageToPatentWindow(event, type) {
   window.parent.postMessage(eventData, '*');
 }
 
-function registerEventListeners() {
+function attachFormulaEventListeners(cytoscapedAST) {
+  const allPresentationIds = listAllPresentationIds(cytoscapedAST)
+  const svgGroupElements = Array.from(document.querySelectorAll('svg g[id]')).filter(group => !group.querySelector('g'));
+  svgGroupElements.forEach((svgGroupElement) => {
+    const presentationId = svgGroupElement.getAttribute('id');
+    if (allPresentationIds.includes(presentationId)) {
+      svgGroupElement.addEventListener('mouseover', (evt) => {
+        const node = formulaAST.$(`node[presentationID='${presentationId}']`);
+        if (node.length > 0) {
+          highlightNode(node);
+          svgGroupElement.classList.toggle('highlight');
+        }
+      });
+      svgGroupElement.addEventListener('mouseout', (evt) => {
+        const node = formulaAST.$(`node[presentationID='${presentationId}']`);
+        if (node.length > 0) {
+          unhighlightNode(node);
+          svgGroupElement.classList.toggle('highlight');
+        }
+      });
+    }
+  });
+}
+
+function listAllPresentationIds(cytoscapedAST) {
+  return cytoscapedAST.map(node => node.data.presentationID);
+}
+
+function registerEventListeners(cytoscapedAST) {
+  attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node', (event) => {
     const node = event.cyTarget;
-    sendMessageToPatentWindow(event, 'mouseOverNode');
+    sendMessageToParentWindow(event, 'mouseOverNode');
     highlightNodeAndFormula({
       nodeID: node.id(),
-      presentationID: node.data().presentationID ,
-      nodeCollapsed: false
+      presentationID: node.data().presentationID,
+      nodeCollapsed: false,
     });
   });
 
   formulaAST.on('mouseout', 'node', (event) => {
     const node = event.cyTarget;
-    sendMessageToPatentWindow(event, 'mouseOutNode');
+    sendMessageToParentWindow(event, 'mouseOutNode');
     unhighlightNodeAndFormula({
       nodeID: node.id(),
       presentationID: node.data().presentationID,
@@ -154,7 +189,7 @@ function registerEventListeners() {
 
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
     const node = event.cyTarget;
-    sendMessageToPatentWindow(event, 'mouseOutNode');
+    sendMessageToParentWindow(event, 'mouseOutNode');
 
     toggleFormulaHighlight(node.data().presentationID, false);
     if (node.data('removedEles')) {
@@ -221,9 +256,7 @@ function highlightNode(node) {
         height: newHeight
       }
     },
-    {
-      duration: 100
-    }
+    { duration: 100 }
   );
 }
 
@@ -235,9 +268,7 @@ function unhighlightNode(node) {
         height: node.data('oldHeight')
       }
     },
-    {
-      duration: 50
-    }
+    { duration: 50 }
   );
 }
 

@@ -49,4 +49,5 @@ body, html {
 
 .highlight {
   fill: #e02020;
+  cursor: pointer;
 }
