@@ -102,24 +102,24 @@ function renderAST({ cytoscapedMergedAST, cytoscapedReferenceAST, cytoscapedComp
         selector: '.source-A',
         css: {
           shape: 'roundrectangle',
-          'background-color': '#EDF1FA',
+          'background-color': defaults.color.referenceNode,
           'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
-          'border-width': '2px'
+          'border-width': defaults.borderWidth
         }
       },
       {
         selector: '.source-B',
         css: {
           shape: 'roundrectangle',
-          'background-color': '#edfaf1',
+          'background-color': defaults.color.comparisonNode,
           'background-image': 'data(nodeSVG)',
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele, Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele, Dimension.HEIGHT),
-          'border-width': '2px'
+          'border-width': defaults.borderWidth
         }
       },
       {
@@ -216,39 +216,4 @@ function extractDimensionsFromSVG(ele, type) {
   const dimensionInEX = ele.data().nodeSVG.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
   const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
   return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
-}
-
-/*
-** Animation Helper
-*/
-function highlightNode(node) {
-  const newWidth = Math.floor(node.style('width').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
-  const newHeight = Math.floor(node.style('height').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
-  node.data('oldWidth', node.style('width'));
-  node.data('oldHeight', node.style('height'));
-  node.animate(
-    {
-      css: {
-        width: newWidth,
-        height: newHeight
-      }
-    },
-    { duration: 100 }
-  );
-}
-
-function unhighlightNode(node) {
-  node.animate(
-    {
-      css: {
-        width: node.data('oldWidth'),
-        height: node.data('oldHeight')
-      }
-    },
-    { duration: 50 }
-  );
-}
-
-function toggleErrorDeails() {
-  document.querySelector('.error-details').classList.toggle('error-details--display');
 }

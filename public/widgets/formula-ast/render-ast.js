@@ -101,33 +101,25 @@ function renderAST(elements) {
 
 function highlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   const node = formulaAST.$(`node[id='${nodeID}']`);
-  highlightNode(node);
-  if (nodeCollapsed) {
-    // highlight all successor nodes if collapsed node was hovered in similarities-widget
-    node.successors().nodes().forEach((ele) => {
-        highlightNode(ele);
-    });
-  }
+
+  // highlight all successor nodes if collapsed node was hovered in similarities-widget
+  nodeCollapsed ? highlightNodeAndSuccessors(node) : highlightNode(node);
   toggleFormulaHighlight(presentationID, true);
 }
 
 function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   const node = formulaAST.$(`node[id='${nodeID}']`);
-  unhighlightNode(node);
-  if (nodeCollapsed) {
-    // unhighlight all successor nodes if collapsed node was hovered in similarities-widget
-    node.successors().nodes().forEach((ele) => {
-        unhighlightNode(ele);
-    });
-  }
+
+  // unhighlight all successor nodes if collapsed node was hovered in similarities-widget
+  nodeCollapsed ? unhighlightNodeAndSuccessors(node) : unhighlightNode(node);
   toggleFormulaHighlight(presentationID, false);
 }
 
-function sendMessageToParentWindow(event, type) {
+function sendMessageToParentWindow(node, type) {
   // pass node and all predecessor nodes to similarities-widget to also highlight collapsed nodes
   // to overcome circular references, the removedEles option is deleted on the clone object
-  const nodes = event.cyTarget.predecessors().nodes().jsons();
-  const clonedNode = event.cyTarget.json();
+  const nodes = node.predecessors().nodes().jsons();
+  const clonedNode = node.json();
   delete clonedNode.data.removedEles;
   nodes.unshift(clonedNode);
   const eventData = {
@@ -138,38 +130,58 @@ function sendMessageToParentWindow(event, type) {
 }
 
 function attachFormulaEventListeners(cytoscapedAST) {
-  const allPresentationIds = listAllPresentationIds(cytoscapedAST)
-  const svgGroupElements = Array.from(document.querySelectorAll('svg g[id]')).filter(group => !group.querySelector('g'));
-  svgGroupElements.forEach((svgGroupElement) => {
-    const presentationId = svgGroupElement.getAttribute('id');
-    if (allPresentationIds.includes(presentationId)) {
-      svgGroupElement.addEventListener('mouseover', (evt) => {
-        const node = formulaAST.$(`node[presentationID='${presentationId}']`);
-        if (node.length > 0) {
-          highlightNode(node);
-          svgGroupElement.classList.toggle('highlight');
-        }
-      });
-      svgGroupElement.addEventListener('mouseout', (evt) => {
-        const node = formulaAST.$(`node[presentationID='${presentationId}']`);
-        if (node.length > 0) {
-          unhighlightNode(node);
-          svgGroupElement.classList.toggle('highlight');
-        }
-      });
+  const allSVGGroupsWithIds = Array.from(document.querySelectorAll('svg g[id]'));
+  const mouseoverEventStream = createEventStreamFromElementArray(allSVGGroupsWithIds, 'mouseover');
+  const mouseoutEventStream = createEventStreamFromElementArray(allSVGGroupsWithIds, 'mouseout');
+
+  let activeFormulaElement;
+  mouseoverEventStream.subscribe((svgGroups) => {
+    if (activeFormulaElement) {
+      unhighlightNodeAndSuccessors(activeFormulaElement.cyNode);
+      activeFormulaElement.svgGroup.classList.remove('highlight');
+      sendMessageToParentWindow(activeFormulaElement.cyNode, 'mouseOutNode');
+    }
+    for (const svgGroup of svgGroups) {
+      const presentationId = svgGroup.getAttribute('id');
+      const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
+      if (cyNode.length > 0) {
+        activeFormulaElement = { cyNode, svgGroup };
+        highlightNodeAndSuccessors(cyNode);
+        svgGroup.classList.add('highlight');
+        sendMessageToParentWindow(cyNode, 'mouseOverNode');
+        break;
+      }
+    }
+  });
+
+  mouseoutEventStream.subscribe((svgGroups) => {
+    for (const svgGroup of svgGroups) {
+      const presentationId = svgGroup.getAttribute('id');
+      const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
+      if (cyNode.length > 0) {
+        unhighlightNodeAndSuccessors(cyNode);
+        svgGroup.classList.remove('highlight');
+        sendMessageToParentWindow(cyNode, 'mouseOutNode');
+        break;
+      }
     }
   });
 }
 
-function listAllPresentationIds(cytoscapedAST) {
-  return cytoscapedAST.map(node => node.data.presentationID);
+function createEventStreamFromElementArray(elements, type) {
+  const observableArray = elements.map(ele => Rx.Observable.fromEvent(ele, type));
+  const eventStream = Rx.Observable.merge(...observableArray);
+  return eventStream
+    .map(e => e.currentTarget)
+    .filter(group => group.getBBox().width * group.getBBox().height > 0)
+    .buffer(eventStream.debounce(1));
 }
 
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node', (event) => {
     const node = event.cyTarget;
-    sendMessageToParentWindow(event, 'mouseOverNode');
+    sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
     highlightNodeAndFormula({
       nodeID: node.id(),
       presentationID: node.data().presentationID,
@@ -179,7 +191,7 @@ function registerEventListeners(cytoscapedAST) {
 
   formulaAST.on('mouseout', 'node', (event) => {
     const node = event.cyTarget;
-    sendMessageToParentWindow(event, 'mouseOutNode');
+    sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
     unhighlightNodeAndFormula({
       nodeID: node.id(),
       presentationID: node.data().presentationID,
@@ -189,7 +201,7 @@ function registerEventListeners(cytoscapedAST) {
 
   formulaAST.on('click', 'node[^isLeaf]', (event) => {
     const node = event.cyTarget;
-    sendMessageToParentWindow(event, 'mouseOutNode');
+    sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
 
     toggleFormulaHighlight(node.data().presentationID, false);
     if (node.data('removedEles')) {
@@ -239,39 +251,4 @@ function toggleFormulaHighlight(id, addClass) {
     if (addClass) mathJaxNode.classList.add('highlight');
     else mathJaxNode.classList.remove('highlight');
   }
-}
-
-/*
-** Animation Helper
-*/
-function highlightNode(node) {
-  const newWidth = Math.floor(node.style('width').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
-  const newHeight = Math.floor(node.style('height').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
-  node.data('oldWidth', node.style('width'));
-  node.data('oldHeight', node.style('height'));
-  node.animate(
-    {
-      css: {
-        width: newWidth,
-        height: newHeight
-      }
-    },
-    { duration: 100 }
-  );
-}
-
-function unhighlightNode(node) {
-  node.animate(
-    {
-      css: {
-        width: node.data('oldWidth'),
-        height: node.data('oldHeight')
-      }
-    },
-    { duration: 50 }
-  );
-}
-
-function toggleErrorDeails() {
-  document.querySelector('.error-details').classList.toggle('error-details--display');
 }

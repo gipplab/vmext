@@ -1,4 +1,9 @@
-// ENUM declaration
+'use strict';
+
+/**
+ * This file contains default values, enums and functions used by both widgets
+ */
+
 const Dimension = {
   WIDTH: 'width',
   HEIGHT: 'height',
@@ -14,5 +19,42 @@ const defaults = {
     comparisonNode: '#edfaf1',
     comparisonNodeHighlight: '#d6f5e0',
     singleAST: '#FFF',
-  }
+  },
+  borderWidth: '2px'
+};
+
+
+const highlightNode = (node) => {
+  const newWidth = Math.floor(node.style('width').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
+  const newHeight = Math.floor(node.style('height').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
+  node.data('oldWidth', node.style('width'));
+  node.data('oldHeight', node.style('height'));
+  node.data('oldColor', node.style('background-color'));
+  node.css('width', newWidth);
+  node.css('height', newHeight);
+  node.css('background-color', '#c4e4ff');
+};
+
+const unhighlightNode = (node) => {
+  node.css('width', node.data('oldWidth'));
+  node.css('height', node.data('oldHeight'));
+  node.css('background-color', node.data('oldColor'));
+};
+
+const highlightNodeAndSuccessors = (node) => {
+  highlightNode(node);
+  node.successors().nodes().forEach((ele) => {
+    highlightNode(ele);
+  });
+};
+
+const unhighlightNodeAndSuccessors = (node) => {
+  unhighlightNode(node);
+  node.successors().nodes().forEach((ele) => {
+    unhighlightNode(ele);
+  });
+};
+
+const toggleErrorDeails = () => {
+  document.querySelector('.error-details').classList.toggle('error-details--display');
 };

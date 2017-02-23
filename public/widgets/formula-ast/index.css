@@ -35,6 +35,10 @@ body, html {
   display: none;
 }
 
+svg g {
+  pointer-events: bounding-box;
+}
+
 .cy-container  {
   flex: 1 1 auto;
 }
