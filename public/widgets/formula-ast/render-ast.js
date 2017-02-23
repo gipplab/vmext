@@ -31,7 +31,6 @@ function paramsReveived(event) {
         console.error(err);
       });
   } else {
-    console.log(eventData);
     const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
     eventData.type === 'mouseOverNode' ?
       highlightNodeAndFormula(eventData) :
@@ -210,6 +209,7 @@ function registerEventListeners(cytoscapedAST) {
       node.style('background-image', node.data('nodeSVG'));
       node.style('width', nodeWidth);
       node.style('height', nodeHeight);
+      node.style('background-color', node.data('oldColor'));
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
       node.data('removedEles').restore();
@@ -225,6 +225,7 @@ function registerEventListeners(cytoscapedAST) {
       node.style('background-image', node.data('subtreeSVG'));
       node.style('width', nodeWidth);
       node.style('height', nodeHeight);
+      node.style('background-color', node.data('oldColor'));
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
       const removedEles = formulaAST.remove(node.successors());
