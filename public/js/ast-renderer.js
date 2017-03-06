@@ -22,3 +22,8 @@ window.onload = function init() {
     document.querySelector('#textarea').innerHTML = mathml;
   });
 };
+
+const renderPNG = () => {
+  const canvas = document.querySelector('iframe').contentDocument.querySelectorAll('canvas')[2];
+  document.querySelector('.btn-download').href = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');;
+};
