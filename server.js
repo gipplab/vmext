@@ -17,7 +17,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Docs for formula-AST rendering API',
   },
-  host: 'localhost:4001',
+  host: 'math.citeplag.org',
   basePath: '/',
 };
 
