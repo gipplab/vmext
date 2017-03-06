@@ -5,9 +5,28 @@ require('app-module-path/register');
 
 const express = require('express');
 const app = module.exports = express();
+const swaggerJSDoc = require('swagger-jsdoc');
 const compression = require('compression');
 const favicon = require('serve-favicon');
 const log = require('./lib/logger');
+
+// swagger definition
+const swaggerDefinition = {
+  info: {
+    title: 'API Documentation',
+    version: '1.0.0',
+    description: 'Docs for formula-AST rendering API',
+  },
+  host: 'localhost:4001',
+  basePath: '/',
+};
+
+// initialize swagger-jsdoc
+const swaggerSpec = swaggerJSDoc({
+  swaggerDefinition,
+  apis: ['./api/v1/routes/*.js'],
+});
+
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 // compress all assets and json-responses if minimal size is reached
@@ -31,6 +50,12 @@ app.use('/', require('./routes/routes'));
 app.use('/api', require('./api/versions'));
 // expose api docs
 app.use('/api/docs', express.static('./config/apiDoc'));
+
+// serve swagger
+app.get('/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 // global errorHandler ============================================
 require('./errorHandler/ErrorHandler')(app);
