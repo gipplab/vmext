@@ -20,12 +20,6 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *       - application/json
 *       - image/svg+xml
 *     parameters:
-*       - name: Accept
-*         description: declaring content type
-*         in: header
-*         required: false
-*         type: string
-*         default: application/json
 *       - name: mathml
 *         description: the mathML to be rendered into an AST
 *         in: formData
@@ -41,7 +35,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *         description: ids of apply nodes to be collapsed </br> Example ["p1.1.m1.1.4.1.cmml", "p1.1.m1.1.3.3.7.1.cmml"]
 *         in: formData
 *         required: false
-*         type: array
+*         type: string
 *         default: [""]
 *       - name: cytoscaped
 *         description: if set to true in combination with (Accept application/json) returns json prepared for cytoscape
@@ -105,12 +99,6 @@ astRouter.post('/renderAST',
 *       - application/json
 *       - image/svg+xml
 *     parameters:
-*       - name: Accept
-*         description: declaring content type
-*         in: header
-*         required: false
-*         type: string
-*         default: application/json
 *       - name: reference_mathml
 *         description: the mathML of reference document
 *         in: formData
