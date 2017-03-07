@@ -19,7 +19,7 @@ module.exports = class AbstractSyntaxTreeController {
     res.format({
       'application/json': () => {
         parsedMathMLPromise.then((ast) => {
-          if (req.query.cytoscaped) {
+          if (req.query.cytoscaped === 'true') {
             const source = req.query.formulaidentifier || 'A';
             Promise.all([
               new ASTRenderer.Graph(ast).renderSingleTree(source),
