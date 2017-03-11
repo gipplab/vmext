@@ -43,7 +43,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, for
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch(`http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
+  return fetch(`http://localhost:4001/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -90,7 +90,7 @@ function renderAST(elements) {
         css: {
           'line-color': '#ccc'
         }
-      }
+      },
     ],
     layout: {
       name: 'dagre'
@@ -116,10 +116,13 @@ function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
 
 function sendMessageToParentWindow(node, type) {
   // pass node and all predecessor nodes to similarities-widget to also highlight collapsed nodes
-  // to overcome circular references, the removedEles option is deleted on the clone object
+  // to overcome circular references, the hiddenEles array is deleted on the clone object
   const nodes = node.predecessors().nodes().jsons();
   const clonedNode = node.json();
-  delete clonedNode.data.removedEles;
+  nodes.forEach((ele) => {
+    delete ele.data.hiddenEles;
+  });
+  delete clonedNode.data.hiddenEles;
   nodes.unshift(clonedNode);
   const eventData = {
     nodes,
@@ -140,28 +143,30 @@ function attachFormulaEventListeners(cytoscapedAST) {
       activeFormulaElement.svgGroup.classList.remove('highlight');
       sendMessageToParentWindow(activeFormulaElement.cyNode, 'mouseOutNode');
     }
+    mouseOverLoop:
     for (const svgGroup of svgGroups) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
-      if (cyNode.length > 0) {
+      if (cyNode.length > 0 && !cyNode.data('isHidden')) {
         activeFormulaElement = { cyNode, svgGroup };
         highlightNodeAndSuccessors(cyNode);
         svgGroup.classList.add('highlight');
         sendMessageToParentWindow(cyNode, 'mouseOverNode');
-        break;
+        break mouseOverLoop;
       }
     }
   });
 
   mouseoutEventStream.subscribe((svgGroups) => {
+    mouseOutLoop:
     for (const svgGroup of svgGroups) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
-      if (cyNode.length > 0) {
+      if (cyNode.length > 0 && !cyNode.data('isHidden')) {
         unhighlightNodeAndSuccessors(cyNode);
         svgGroup.classList.remove('highlight');
         sendMessageToParentWindow(cyNode, 'mouseOutNode');
-        break;
+        break mouseOutLoop;
       }
     }
   });
@@ -203,7 +208,7 @@ function registerEventListeners(cytoscapedAST) {
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
 
     toggleFormulaHighlight(node.data().presentationID, false);
-    if (node.data('removedEles')) {
+    if (node.data('isCollapsed')) {
       const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
       node.style('background-image', node.data('nodeSVG'));
@@ -212,13 +217,21 @@ function registerEventListeners(cytoscapedAST) {
       node.style('background-color', node.data('oldColor'));
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
-      node.data('removedEles').restore();
+      node.removeData('isCollapsed');
+      node.data('hiddenEles').animate({
+        style: {
+          'background-opacity': 1,
+          'background-image-opacity': 1,
+          opacity: 1,
+        },
+        duration: 700,
+      });
+      node.data('hiddenEles').removeData('isHidden');
       formulaAST.layout({
         name: 'dagre',
         animate: true,
         animationDuration: 700,
       });
-      node.removeData('removedEles');
     } else {
       const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.HEIGHT);
@@ -228,8 +241,17 @@ function registerEventListeners(cytoscapedAST) {
       node.style('background-color', node.data('oldColor'));
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
-      const removedEles = formulaAST.remove(node.successors());
-      node.data('removedEles', removedEles);
+      node.data('isCollapsed', true);
+      node.data('hiddenEles', node.successors('*[!isHidden]'));
+      node.successors('*[!isHidden]').data('isHidden', true);
+      node.successors().animate({
+        style: {
+          'background-opacity': 0.0000000001,
+          'background-image-opacity': 0.0000000001,
+          opacity: 0.0000000001,
+        }
+      }, { duration: 700 }
+      );
       formulaAST.layout({
         name: 'dagre',
         animate: true,

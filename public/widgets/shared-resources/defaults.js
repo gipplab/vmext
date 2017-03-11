@@ -44,14 +44,14 @@ const unhighlightNode = (node) => {
 const highlightNodeAndSuccessors = (node) => {
   highlightNode(node);
   node.successors().nodes().forEach((ele) => {
-    highlightNode(ele);
+    if (!ele.data('isHidden')) highlightNode(ele);
   });
 };
 
 const unhighlightNodeAndSuccessors = (node) => {
   unhighlightNode(node);
   node.successors().nodes().forEach((ele) => {
-    unhighlightNode(ele);
+    if (!ele.data('isHidden')) unhighlightNode(ele);
   });
 };
 
