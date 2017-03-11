@@ -15,3 +15,7 @@ body {
   box-shadow: 0 0 10px #000;
   transition:all .3s;
 }
+
+.margined {
+  margin-top: 2em;
+}

@@ -9,6 +9,35 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 
 /**
 * @swagger
+* definitions:
+*   cytoscaped:
+*     type: array
+*     items:
+*       type: object
+*       properties:
+*         data:
+*           type: object
+*         position:
+*           type: object
+*         group:
+*           type: string
+*         removed:
+*           type: boolean
+*         selected:
+*           type: boolean
+*         selectable:
+*           type: boolean
+*         locked:
+*           type: boolean
+*         grabbable:
+*           type: boolean
+*         classes:
+*           type: string
+*/
+
+
+/**
+* @swagger
 * /api/v1/math/renderAST:
 *   post:
 *     tags:
@@ -24,7 +53,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *         description: the mathML to be rendered into an AST
 *         in: formData
 *         required: true
-*         type: application/xml
+*         type: string
 *       - name: collapseSingleOperandNodes
 *         description: flag wether nodes with only one child should be collapsed </br> Defaults to true
 *         in: formData
@@ -36,9 +65,8 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *         in: formData
 *         required: false
 *         type: string
-*         default: [""]
 *       - name: cytoscaped
-*         description: if set to true in combination with (Accept application/json) returns json prepared for cytoscape
+*         description: if set to true in combination with (Accept application/json) returns json prepared for cytoscape renderer
 *         in: query
 *         required: false
 *         type: boolean
@@ -52,6 +80,13 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *     responses:
 *       200:
 *         description: abstract syntax tree
+*         schema:
+*           type: object
+*           properties:
+*             formulaSVG:
+*               type: string
+*             cytoscapedAST:
+*               $ref: '#/definitions/cytoscaped'
 */
 astRouter.post('/renderAST',
                 upload.none(),
@@ -97,26 +132,30 @@ astRouter.post('/renderAST',
 *       - multipart/form-data
 *     produces:
 *       - application/json
-*       - image/svg+xml
 *     parameters:
 *       - name: reference_mathml
 *         description: the mathML of reference document
 *         in: formData
 *         required: true
-*         type: application/xml
+*         type: string
 *       - name: comparison_mathml
 *         description: the mathML of comparison document
 *         in: formData
 *         required: true
-*         type: application/xml
+*         type: string
 *       - name: similarities
 *         description: the JSON containing match information
 *         in: formData
 *         required: true
-*         type: application/json
+*         type: string
 *     responses:
 *       200:
 *         description: merged abstract syntax tree
+*         schema:
+*           type: object
+*           properties:
+*             cytoscapedMergedAST:
+*               $ref: '#/definitions/cytoscaped'
 */
 astRouter.post('/renderMergedAST',
                 upload.none(),

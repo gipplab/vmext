@@ -52,17 +52,11 @@ module.exports = class AbstractSyntaxTreeController {
       (new ASTParser(res.locals.reference_mathml)).parse(),
       (new ASTParser(res.locals.comparison_mathml)).parse()
     ]).then(([referenceAST, comparisonAST]) => {
-      return Promise.all([
-        new ASTRenderer.Graph(referenceAST).renderSingleTree('A'),
-        new ASTRenderer.Graph(comparisonAST).renderSingleTree('B'),
-        new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render(),
-      ]);
-    }).then(([cytoscapedReferenceAST, cytoscapedComparisonAST, cytoscapedMergedAST]) => {
+      return new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render();
+    }).then((cytoscapedMergedAST) => {
       res.format({
         'application/json': () => {
           res.json({
-            cytoscapedReferenceAST,
-            cytoscapedComparisonAST,
             cytoscapedMergedAST
           });
         },
