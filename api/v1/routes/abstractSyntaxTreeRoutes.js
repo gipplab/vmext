@@ -41,7 +41,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *   post:
 *     tags:
 *       - Math
-*     description: Renders an abstract syntax tree based on provided mathML
+*     description: Returns an Abstract Syntax Tree based on provided MathMl
 *     consumes:
 *       - multipart/form-data
 *     produces:
@@ -197,7 +197,7 @@ astRouter.post('/renderCytoscapedAST',
 *   post:
 *     tags:
 *       - Math
-*     description: Renders a merged AST
+*     description: Returns nodes and edges prepared to be rendered into a merged AST with cytoscape
 *     consumes:
 *       - multipart/form-data
 *     produces:
