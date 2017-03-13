@@ -26,12 +26,11 @@ function paramsReveived(event) {
         document.querySelector('.error-statuscode').innerHTML = err.statusCode;
         console.error(err);
       });
-  } else {
+  } else if (mergedAST) {
     // this block handles postMessage events from both formula-ast-widgets
     // events can be "mouseOverNode" or "mouseOutNode"
     // events.data holds an array with the node and all its predecessors to be able to highlight even collapsed nodes
     // we need to recursively go up its predecessors to find the right node to highlight
-    console.log(eventData);
     for (const node of eventData.nodes) {
       const mergedCyNode = mergedAST.$(`node[id='${node.data.id}']`);
       const mergedCyNodeB = mergedAST.$(`node[source-B-id='${node.data.id}']`);
@@ -76,7 +75,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities }) {
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch('http://math.citeplag.org/api/v1/math/renderMergedAST', {
+  return fetch(`/api/v1/math/renderMergedAST`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',

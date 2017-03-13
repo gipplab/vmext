@@ -43,7 +43,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, for
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch(`http://math.citeplag.org/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
+  return fetch(`/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
