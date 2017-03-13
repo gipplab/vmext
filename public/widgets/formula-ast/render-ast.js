@@ -30,7 +30,7 @@ function paramsReveived(event) {
         document.querySelector('.error-statuscode').innerHTML = err.statusCode;
         console.error(err);
       });
-  } else {
+  } else if (formulaAST) {
     const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
     eventData.type === 'mouseOverNode' ?
       highlightNodeAndFormula(eventData) :
