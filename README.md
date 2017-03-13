@@ -3,12 +3,12 @@ Node.js API to support rendering of (merged) abstract-syntax-trees
 
 ## Setup
 
-This project relies on the new package manager for node called **Yarn**.
-To get started install **Yarn** globally via npm:
+You could use use native npm with `npm i && npm start` although we recommend using **YARN** since it speeds up the installation and deployment processes, saves up disk space due to removing any duplicated packages and locks down all package dependencies (all of them - not only the top level ones as pure npm would do). For further info see [YARN](https://www.npmjs.com/package/yarn)
 
-- `npm install -g yarn`
+To install **Yarn** follow the [Installation Guide](https://yarnpkg.com/en/docs/install#mac-tab) for your platform.
 
 To install all dependencies, head to project root and simply run: `yarn`
+
 Now you can run the server with `yarn start`
 
 ## Debugging
