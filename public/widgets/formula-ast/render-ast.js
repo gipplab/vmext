@@ -43,7 +43,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, for
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch(`${widgetHost}/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
+  return fetch(`${widgetHost}/api/v1/math/renderCytoscapedAST?formulaidentifier=${formulaIdentifier}`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
