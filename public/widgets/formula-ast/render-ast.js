@@ -38,12 +38,12 @@ function paramsReveived(event) {
   }
 }
 
-function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A' }) {
+function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
   formData.append('mathml', mathml);
   formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
   formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
-  return fetch(`/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
+  return fetch(`${widgetHost}/api/v1/math/renderAST?cytoscaped=true&formulaidentifier=${formulaIdentifier}`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',

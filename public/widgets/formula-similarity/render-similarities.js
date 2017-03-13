@@ -70,12 +70,12 @@ function appendASTWidgets(attributes) {
   comparisonContainer.appendChild(comparisonASTWidget);
 }
 
-function fetchData({ reference_mathml, comparison_mathml, similarities }) {
+function fetchData({ reference_mathml, comparison_mathml, similarities, widgetHost }) {
   const formData = new FormData();
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch(`/api/v1/math/renderMergedAST`, {
+  return fetch(`${widgetHost}/api/v1/math/renderMergedAST`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',

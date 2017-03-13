@@ -38,7 +38,7 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "http://math.citeplag.org/swagger.json";
+        url = `http://${window.location.host}/swagger.json`;
       }
 
       hljs.configure({
