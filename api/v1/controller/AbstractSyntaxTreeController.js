@@ -7,7 +7,7 @@ const querystring = require('querystring');
 const Boom = require('boom');
 
 module.exports = class AbstractSyntaxTreeController {
-  static renderAst(req, res, next) {
+  static renderAST(req, res, next) {
     const parsedMathMLPromise = new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
@@ -19,18 +19,7 @@ module.exports = class AbstractSyntaxTreeController {
     res.format({
       'application/json': () => {
         parsedMathMLPromise.then((ast) => {
-          if (req.query.cytoscaped === 'true') {
-            const source = req.query.formulaidentifier || 'A';
-            Promise.all([
-              new ASTRenderer.Graph(ast).renderSingleTree(source),
-              MathJaxRenderer.renderMML(req.body.mathml),
-            ]).then(([cytoscapedAST, mathjaxSVG]) => {
-              res.json({
-                formulaSVG: `${querystring.escape(mathjaxSVG)}`,
-                cytoscapedAST,
-              });
-            });
-          } else res.json(ast);
+          res.json(ast);
         });
       },
       'image/svg+xml': () => {
@@ -44,6 +33,29 @@ module.exports = class AbstractSyntaxTreeController {
       default: () => {
         return next(Boom.notAcceptable('Request needs to accept application/json or image/svg+xml'));
       },
+    });
+  }
+
+  static renderCytoscapedAST(req, res, next) {
+    const source = req.query.formulaidentifier || 'A';
+    const parsedMathMLPromise = new ASTParser(res.locals.mathml,
+      {
+        collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
+        nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
+      })
+      .parse()
+      .catch(next);
+
+    parsedMathMLPromise.then((ast) => {
+      Promise.all([
+        new ASTRenderer.Graph(ast).renderSingleTree(source),
+        MathJaxRenderer.renderMML(req.body.mathml),
+      ]).then(([cytoscapedAST, mathjaxSVG]) => {
+        res.json({
+          formulaSVG: `${querystring.escape(mathjaxSVG)}`,
+          cytoscapedAST,
+        });
+      });
     });
   }
 

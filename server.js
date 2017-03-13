@@ -5,6 +5,7 @@ require('app-module-path/register');
 
 const express = require('express');
 const app = module.exports = express();
+const config = require('./config/config');
 const swaggerJSDoc = require('swagger-jsdoc');
 const compression = require('compression');
 const favicon = require('serve-favicon');
@@ -17,7 +18,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Docs for formula-AST rendering API',
   },
-  host: 'math.citeplag.org',
+  host: config.host,
   basePath: '/',
 };
 
