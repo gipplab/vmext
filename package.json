@@ -45,9 +45,5 @@
     "eslint-plugin-import": "^2.2.0",
     "nodemon": "^1.11.0",
     "rx": "^4.1.0"
-  },
-  "apidoc": {
-    "name": "API Documentation",
-    "description": "REST API specification for htw-citeplag-node"
   }
 }
