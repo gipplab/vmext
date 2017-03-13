@@ -54,7 +54,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *         required: true
 *         type: string
 *       - name: collapseSingleOperandNodes
-*         description: flag wether nodes with only one child should be collapsed </br> Defaults to true
+*         description: flag wether nodes with only one child should be collapsed
 *         in: formData
 *         required: false
 *         type: boolean
@@ -130,7 +130,7 @@ astRouter.post('/renderAST',
   *         required: true
   *         type: string
   *       - name: collapseSingleOperandNodes
-  *         description: flag wether nodes with only one child should be collapsed </br> Defaults to true
+  *         description: flag wether nodes with only one child should be collapsed
   *         in: formData
   *         required: false
   *         type: boolean
