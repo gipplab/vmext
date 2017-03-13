@@ -19,3 +19,8 @@ body {
 .margined {
   margin-top: 2em;
 }
+
+h1, h2, h3, h4, h5 {
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  color: #564c4c;
+}
