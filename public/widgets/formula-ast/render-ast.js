@@ -224,13 +224,13 @@ function registerEventListeners(cytoscapedAST) {
           'background-image-opacity': 1,
           opacity: 1,
         },
-        duration: 700,
+        duration: defaults.animation.nodeCollapsing,
       });
       node.data('hiddenEles').removeData('isHidden');
       formulaAST.layout({
         name: 'dagre',
         animate: true,
-        animationDuration: 700,
+        animationDuration: defaults.animation.nodeCollapsing,
       });
     } else {
       const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
@@ -250,12 +250,12 @@ function registerEventListeners(cytoscapedAST) {
           'background-image-opacity': 0.0000000001,
           opacity: 0.0000000001,
         }
-      }, { duration: 700 }
+      }, { duration: defaults.animation.nodeCollapsing }
       );
       formulaAST.layout({
         name: 'dagre',
         animate: true,
-        animationDuration: 700,
+        animationDuration: defaults.animation.nodeCollapsing,
       });
     }
   });

@@ -20,7 +20,10 @@ const defaults = {
     comparisonNodeHighlight: '#d6f5e0',
     singleAST: '#FFF',
   },
-  borderWidth: '2px'
+  borderWidth: '2px',
+  animation: {
+    nodeCollapsing: 400,
+  }
 };
 
 
