@@ -28,6 +28,7 @@
     "jsdom": "^9.8.3",
     "mathjax-node": "^0.5.1",
     "multer": "^1.2.0",
+    "phantom": "^4.0.0",
     "pug": "^2.0.0-beta6",
     "serve-favicon": "^2.3.2",
     "swagger-jsdoc": "^1.9.2",

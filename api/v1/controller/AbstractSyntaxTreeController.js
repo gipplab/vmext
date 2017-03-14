@@ -34,16 +34,17 @@ module.exports = class AbstractSyntaxTreeController {
             } else res.json(ast);
           },
           'image/png': () => {
-            SnapRenderer
+            (new SnapRenderer())
               .renderSingleTree(cytoscapedAST, res.locals.width, res.locals.height)
-              .then(stream => stream.pipe(res))
+              .then((tmpFilename) => {
+                res.sendFile(tmpFilename);
+              })
               .catch(err => next(Boom.badImplementation(err)));
           },
           default: () => {
             return next(Boom.notAcceptable('Request needs to accept application/json or image/svg+xml'));
           }
         });
-
       });
     });
   }
@@ -91,9 +92,10 @@ module.exports = class AbstractSyntaxTreeController {
           });
         },
         'image/png': () => {
-          SnapRenderer.renderMergedTree(cytoscapedMergedAST, res.locals.width, res.locals.height)
-          .then((stream) => {
-            stream.pipe(res);
+          (new SnapRenderer())
+          .renderMergedTree(cytoscapedMergedAST, res.locals.width, res.locals.height)
+          .then((tmpFilename) => {
+            res.sendFile(tmpFilename);
           });
         },
         default: () => {

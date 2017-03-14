@@ -64,6 +64,16 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *         in: formData
 *         required: false
 *         type: string
+*       - name: width
+*         description: "Width of the rendered PNG if Accept: image/png is sent"
+*         in: formData
+*         required: false
+*         type: integer
+*       - name: height
+*         description: "Height of the rendered PNG if Accept: image/png is sent"
+*         in: formData
+*         required: false
+*         type: integer
 *     responses:
 *       200:
 *         description: abstract syntax tree
@@ -95,6 +105,20 @@ astRouter.post('/renderAST',
                     type: 'boolean',
                     optional: true,
                     default: false
+                  },
+                  {
+                    name: 'width',
+                    origin: 'BODY',
+                    type: 'int',
+                    optional: true,
+                    default: 500
+                  },
+                  {
+                    name: 'height',
+                    origin: 'BODY',
+                    type: 'int',
+                    optional: true,
+                    default: 500
                   },
                   {
                     name: 'nodesToBeCollapsed',
@@ -219,6 +243,16 @@ astRouter.post('/renderCytoscapedAST',
 *         in: formData
 *         required: true
 *         type: string
+*       - name: width
+*         description: "Width of the rendered PNG if Accept: image/png is sent"
+*         in: formData
+*         required: false
+*         type: integer
+*       - name: height
+*         description: "Height of the rendered PNG if Accept: image/png is sent"
+*         in: formData
+*         required: false
+*         type: integer
 *     responses:
 *       200:
 *         description: merged abstract syntax tree
@@ -249,6 +283,20 @@ astRouter.post('/renderMergedAST',
                     origin: 'BODY',
                     type: 'json',
                     optional: false
+                  },
+                  {
+                    name: 'width',
+                    origin: 'BODY',
+                    type: 'int',
+                    optional: true,
+                    default: 500
+                  },
+                  {
+                    name: 'height',
+                    origin: 'BODY',
+                    type: 'int',
+                    optional: true,
+                    default: 500
                   }]),
                 astController.renderMergedAst);
 

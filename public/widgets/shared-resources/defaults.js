@@ -3,7 +3,6 @@
 /**
  * This file contains default values, enums and functions used by both widgets
  */
-
 const Dimension = {
   WIDTH: 'width',
   HEIGHT: 'height',
