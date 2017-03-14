@@ -46,7 +46,7 @@ const astController = require('../controller/AbstractSyntaxTreeController');
 *       - multipart/form-data
 *     produces:
 *       - application/json
-*       - image/svg+xml
+*       - image/png
 *     parameters:
 *       - name: mathml
 *         description: the mathML to be rendered into an AST
@@ -202,6 +202,7 @@ astRouter.post('/renderCytoscapedAST',
 *       - multipart/form-data
 *     produces:
 *       - application/json
+*       - image/png
 *     parameters:
 *       - name: reference_mathml
 *         description: the mathML of reference document
