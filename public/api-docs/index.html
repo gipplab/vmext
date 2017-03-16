@@ -38,7 +38,7 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = `http://${window.location.host}/swagger.json`;
+        url = `${window.location.origin}/swagger.json`;
       }
 
       hljs.configure({
