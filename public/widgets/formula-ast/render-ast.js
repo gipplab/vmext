@@ -2,7 +2,6 @@
 
 let formulaAST;
 window.addEventListener('message', paramsReveived, false);
-const renderEvent = new Event('rendered');
 
 /**
  * EventListener for postMessage-iframe-events (see https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
@@ -15,7 +14,7 @@ function paramsReveived(event) {
   if (eventData.isInitialData) {
     fetchData(eventData)
       .then((result) => {
-        document.body.dispatchEvent(renderEvent);
+        document.body.dispatchEvent(new Event('rendered'));
         document.querySelector('.formula-container').style.display = 'block';
         document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
         renderAST(result.cytoscapedAST);
