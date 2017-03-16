@@ -2,7 +2,7 @@
 
 (function() { // iife - to encapsulate scope
   const script = document.currentScript;
-  const widgetHost = script.src.match(new RegExp('http?://[^/]*'))[0];
+  const widgetHost = script.src.match(new RegExp('(https?://)?[^/]*'))[0];
   const attributes = {
     reference_mathml: script.getAttribute('reference_mathml'),
     comparison_mathml: script.getAttribute('comparison_mathml'),
