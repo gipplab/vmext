@@ -1,5 +1,9 @@
 'use strict';
 
+document.addEventListener('astRendered', (e) => {
+  document.querySelector('.btn-download').style.display = 'block';
+});
+
 function callAPI(evt) {
   evt.preventDefault();
 
@@ -13,7 +17,6 @@ function callAPI(evt) {
   const container = document.querySelector('.abstract-syntax-tree');
   container.innerHTML = "";
   container.appendChild(scriptTag);
-  document.querySelector('.btn-download').style.display = 'block';
 }
 
 window.onload = function init() {

@@ -20,6 +20,9 @@
   iframe.onload = () => {
     const iframeWindow = iframe.contentWindow;
     iframeWindow.postMessage(attributes, '*');
+    iframe.contentDocument.body.addEventListener('rendered', () => {
+      document.dispatchEvent(new Event('astRendered', { targetIframe: iframe }));
+    });
   };
 
   script.parentNode.replaceChild(iframe, script);
