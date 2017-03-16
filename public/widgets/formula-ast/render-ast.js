@@ -183,7 +183,7 @@ function createEventStreamFromElementArray(elements, type) {
 
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
-  formulaAST.on('mouseover', 'node', (event) => {
+  formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
     highlightNodeAndFormula({
@@ -193,7 +193,7 @@ function registerEventListeners(cytoscapedAST) {
     });
   });
 
-  formulaAST.on('mouseout', 'node', (event) => {
+  formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
     unhighlightNodeAndFormula({
@@ -203,7 +203,7 @@ function registerEventListeners(cytoscapedAST) {
     });
   });
 
-  formulaAST.on('click', 'node[^isLeaf]', (event) => {
+  formulaAST.on('click', 'node[^isLeaf][^isHidden]', (event) => {
     const node = event.cyTarget;
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
 
@@ -217,16 +217,22 @@ function registerEventListeners(cytoscapedAST) {
       node.style('background-color', node.data('oldColor'));
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
-      node.removeData('isCollapsed');
+      node.data('isCollapsed', false);
+      node.data('hiddenEles').removeData('isHidden');
       node.data('hiddenEles').animate({
         style: {
-          'background-opacity': 1,
-          'background-image-opacity': 1,
           opacity: 1,
+          'background-image-opacity': 1,
         },
         duration: defaults.animation.nodeCollapsing,
       });
-      node.data('hiddenEles').removeData('isHidden');
+
+      unhighlightNodeAndFormula({
+        nodeID: node.id(),
+        presentationID: node.data().presentationID,
+        nodeCollapsed: false
+      });
+
       formulaAST.layout({
         name: 'dagre',
         animate: true,
@@ -242,13 +248,13 @@ function registerEventListeners(cytoscapedAST) {
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
       node.data('isCollapsed', true);
-      node.data('hiddenEles', node.successors('*[!isHidden]'));
-      node.successors('*[!isHidden]').data('isHidden', true);
-      node.successors().animate({
+      const nodesToHide = node.successors('*[!isHidden]');
+      node.data('hiddenEles', nodesToHide);
+      nodesToHide.data('isHidden', true);
+      nodesToHide.animate({
         style: {
-          'background-opacity': 0.0000000001,
-          'background-image-opacity': 0.0000000001,
-          opacity: 0.0000000001,
+          'background-image-opacity': 0,
+          opacity: 0,
         }
       }, { duration: defaults.animation.nodeCollapsing }
       );
