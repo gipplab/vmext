@@ -13,6 +13,7 @@ function callAPI(evt) {
   const container = document.querySelector('.abstract-syntax-tree');
   container.innerHTML = "";
   container.appendChild(scriptTag);
+  document.querySelector('.btn-download').style.display = 'block';
 }
 
 const renderPNG = () => {
