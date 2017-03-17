@@ -22,8 +22,8 @@ module.exports = class AbstractSyntaxTreeController {
       Promise.all([
         new ASTRenderer.Graph(ast).renderSingleTree(source),
         MathJaxRenderer.renderMML(req.body.mathml),
-      ]).then(([cytoscapedAST, mathjaxSVG]) => {
-
+      ])
+      .then(([cytoscapedAST, mathjaxSVG]) => {
         res.format({
           'application/json': () => {
             if (req.query.cytoscaped === 'true') {
@@ -45,7 +45,7 @@ module.exports = class AbstractSyntaxTreeController {
             return next(Boom.notAcceptable('Request needs to accept application/json or image/svg+xml'));
           }
         });
-      });
+      }).catch(e => next(Boom.badData(e)));
     });
   }
 
@@ -63,12 +63,14 @@ module.exports = class AbstractSyntaxTreeController {
       Promise.all([
         new ASTRenderer.Graph(ast).renderSingleTree(source),
         MathJaxRenderer.renderMML(req.body.mathml),
-      ]).then(([cytoscapedAST, mathjaxSVG]) => {
+      ])
+      .then(([cytoscapedAST, mathjaxSVG]) => {
         res.json({
           formulaSVG: `${querystring.escape(mathjaxSVG)}`,
           cytoscapedAST,
         });
-      });
+      })
+      .catch(e => next(Boom.badData(e)));
     });
   }
 
