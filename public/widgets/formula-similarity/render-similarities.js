@@ -76,7 +76,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities, widgetHo
   formData.append('reference_mathml', reference_mathml);
   formData.append('comparison_mathml', comparison_mathml);
   formData.append('similarities', similarities);
-  return fetch(`${widgetHost}/api/v1/math/renderMergedAST`, {
+  return fetch(`${widgetHost}/api/v1/math/parseCytoscapedMergedAst`, {
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
