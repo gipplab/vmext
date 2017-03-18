@@ -363,13 +363,13 @@ astRouter.post('/parseCytoscapedMergedAst',
 *         required: true
 *         type: string
 *       - name: width
-*         description: "Width of the rendered PNG if Accept: image/png is sent"
+*         description: Width of the rendered PNG
 *         in: formData
 *         required: false
 *         type: integer
 *         default: 500
 *       - name: height
-*         description: "Height of the rendered PNG if Accept: image/png is sent"
+*         description: Height of the rendered PNG
 *         in: formData
 *         required: false
 *         type: integer

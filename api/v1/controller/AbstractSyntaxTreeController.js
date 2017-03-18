@@ -41,7 +41,7 @@ module.exports = class AbstractSyntaxTreeController {
           formulaSVG: `${querystring.escape(mathjaxSVG)}`,
           cytoscapedAST,
         });
-      }).catch(e => next(Boom.badData(e)));
+      });
     });
   }
 
