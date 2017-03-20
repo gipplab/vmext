@@ -44,6 +44,14 @@ function paramsReveived(event) {
   }
 }
 
+window.addEventListener('resize', debounce(() => {
+  console.log('debounced');
+  formulaAST.layout({
+    name: 'dagre',
+    fit: true,
+  });
+}, 50, false));
+
 function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
   formData.append('mathml', mathml);

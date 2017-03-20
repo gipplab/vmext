@@ -25,7 +25,6 @@ const defaults = {
   }
 };
 
-
 const highlightNode = (node) => {
   const newWidth = Math.floor(node.style('width').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
   const newHeight = Math.floor(node.style('height').match('([0-9]*.[0-9]*)px')[1]) * defaults.nodeHoverScaling;
@@ -60,3 +59,32 @@ const unhighlightNodeAndSuccessors = (node) => {
 const toggleErrorDeails = () => {
   document.querySelector('.error-details').classList.toggle('error-details--display');
 };
+
+const throttle = (callback, limit) => {
+  let wait = false;
+  return () => {
+    if (!wait) {
+      callback.call();
+      wait = true;
+      setTimeout(() => {
+        wait = false;
+      }, limit);
+    }
+  };
+};
+
+function debounce(func, wait, immediate) {
+  let timeout;
+  return () => {
+    const context = this;
+    const args = arguments;
+    const later = () => {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}

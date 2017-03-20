@@ -27,7 +27,7 @@ body, html {
 }
 
 .formula-container {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   text-align: center;
   padding: 10px;
   border-bottom: 1px solid #aba8a8;
@@ -41,6 +41,7 @@ svg g {
 
 .cy-container  {
   flex: 1 1 auto;
+  min-width: 0;
   position: relative;
 }
 
