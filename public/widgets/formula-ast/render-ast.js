@@ -3,6 +3,7 @@
 let formulaAST;
 let initialViewport = {};
 let initialAST;
+let currentMouseOverCytoNode;
 window.addEventListener('message', paramsReveived, false);
 
 /**
@@ -164,6 +165,17 @@ function attachFormulaEventListeners(cytoscapedAST) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
       if (cyNode.length > 0 && !cyNode.data('isHidden')) {
+        // this next block fixes an edgecase, where cytoscape node's mouseout wont be triggered otherwise
+        // if node is dragged underneath the top border of the cyto container and formula triggers mousever
+        if (currentMouseOverCytoNode) {
+          sendMessageToParentWindow(currentMouseOverCytoNode, 'mouseOutNode');
+          unhighlightNodeAndFormula({
+            nodeID: currentMouseOverCytoNode.id(),
+            presentationID: currentMouseOverCytoNode.data().presentationID,
+            nodeCollapsed: false
+          });
+        }
+
         activeFormulaElement = { cyNode, svgGroup };
         highlightNodeAndSuccessors(cyNode);
         svgGroup.classList.add('highlight');
@@ -211,6 +223,7 @@ function registerEventListeners(cytoscapedAST) {
 
   formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
+    currentMouseOverCytoNode = node;
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
     unhighlightNodeAndFormula({
       nodeID: node.id(),
