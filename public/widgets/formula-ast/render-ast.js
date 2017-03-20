@@ -2,6 +2,7 @@
 
 let formulaAST;
 let initialViewport = {};
+let initialAST;
 window.addEventListener('message', paramsReveived, false);
 
 /**
@@ -15,6 +16,7 @@ function paramsReveived(event) {
   if (eventData.isInitialData) {
     fetchData(eventData)
       .then((result) => {
+        initialAST = JSON.parse(JSON.stringify(result.cytoscapedAST));
         document.body.dispatchEvent(new Event('rendered'));
         document.querySelector('.formula-container').style.display = 'block';
         document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
@@ -22,6 +24,8 @@ function paramsReveived(event) {
         registerEventListeners(result.cytoscapedAST);
         document.querySelector('body').style['background-color'] = eventData.bgColor;
         document.querySelector('.gif-loader').style.display = 'none';
+        document.querySelector('.viewport-reset').style.visibility = 'visible';
+        document.querySelector('.ast-reload').style.visibility = 'visible';
       })
       .catch((err) => {
         document.querySelector('.gif-loader').style.display = 'none';
@@ -188,7 +192,6 @@ function createEventStreamFromElementArray(elements, type) {
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
-    console.dir(initialViewport);
     const node = event.cyTarget;
     sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
     highlightNodeAndFormula({
@@ -276,12 +279,6 @@ function registerEventListeners(cytoscapedAST) {
       });
     }
   });
-  formulaAST.on('zoom', showInitialViewPortBtn);
-  formulaAST.on('pan', showInitialViewPortBtn);
-}
-
-function showInitialViewPortBtn() {
-  document.querySelector('.viewport-reset').style.visibility = 'visible';
 }
 
 function extractDimensionsFromSVG(dataURI, type) {
@@ -300,14 +297,17 @@ function toggleFormulaHighlight(id, addClass) {
 }
 
 function resetViewport() {
-  document.querySelector('.viewport-reset').style.visibility = 'hidden';
-  // unregister Listerners for the time of resetting the graph - so button will actually hide
-  formulaAST.off('zoom');
-  formulaAST.off('pan');
   formulaAST.layout({
     name: 'dagre',
     fit: true,
   });
-  formulaAST.on('zoom', showInitialViewPortBtn);
-  formulaAST.on('pan', showInitialViewPortBtn);
+}
+
+function expandAllNodes() {
+  formulaAST.remove(formulaAST.elements());
+  formulaAST.add(JSON.parse(JSON.stringify(initialAST))); // deep clone to be immutable to cytoscape
+  formulaAST.layout({
+    name: 'dagre',
+    fit: false,
+  });
 }

@@ -58,10 +58,18 @@ svg g {
 }
 
 
-.viewport-reset {
+.viewport-reset, .ast-reload {
   position: absolute;
   right: 1em;
-  top: 1em;
   z-index: 10;
   visibility: hidden;
+  min-width: 92px;
+}
+
+.viewport-reset {
+  top: 10px;
+}
+
+.ast-reload {
+  top: 50px;
 }
