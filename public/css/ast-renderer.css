@@ -1,6 +1,7 @@
 .container {
   padding-top: 13px;
-  height: 40%;
+  width: 80%;
+  height: 85%;
 }
 
 .renderedAST {
@@ -13,6 +14,6 @@ a {
 }
 
 .abstract-syntaxtree-iframe {
-  resize: both;
+  resize: vertical;
   overflow:auto;
 }

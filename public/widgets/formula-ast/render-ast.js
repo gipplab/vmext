@@ -51,7 +51,7 @@ window.addEventListener('resize', debounce(() => {
     name: 'dagre',
     fit: true,
   });
-}, 50, false));
+}, 40));
 
 function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
