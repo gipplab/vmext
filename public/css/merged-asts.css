@@ -1,3 +1,7 @@
+body {
+  background-color: #ececec;
+}
+
 #referenceAST {
   height: 40%;
   overflow: hidden;
