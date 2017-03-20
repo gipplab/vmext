@@ -41,6 +41,7 @@ svg g {
 
 .cy-container  {
   flex: 1 1 auto;
+  position: relative;
 }
 
 .gif-loader {
@@ -54,4 +55,13 @@ svg g {
 .highlight {
   fill: #e02020;
   cursor: pointer;
+}
+
+
+.viewport-reset {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  z-index: 10;
+  visibility: hidden;
 }

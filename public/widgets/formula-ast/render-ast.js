@@ -1,6 +1,7 @@
 'use strict';
 
 let formulaAST;
+let initialViewport = {};
 window.addEventListener('message', paramsReveived, false);
 
 /**
@@ -97,6 +98,8 @@ function renderAST(elements) {
       name: 'dagre'
     }
   });
+  initialViewport.zoom = formulaAST.zoom();
+  Object.assign(initialViewport, formulaAST.pan());
 }
 
 function highlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
@@ -185,6 +188,7 @@ function createEventStreamFromElementArray(elements, type) {
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
+    console.dir(initialViewport);
     const node = event.cyTarget;
     sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
     highlightNodeAndFormula({
@@ -238,6 +242,7 @@ function registerEventListeners(cytoscapedAST) {
         name: 'dagre',
         animate: true,
         animationDuration: defaults.animation.nodeCollapsing,
+        fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
       });
     } else {
       const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
@@ -259,13 +264,24 @@ function registerEventListeners(cytoscapedAST) {
         }
       }, { duration: defaults.animation.nodeCollapsing }
       );
+      const viewport = {
+        pan: formulaAST.pan(),
+        zoom: formulaAST.zoom(),
+      };
       formulaAST.layout({
         name: 'dagre',
         animate: true,
         animationDuration: defaults.animation.nodeCollapsing,
+        fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
       });
     }
   });
+  formulaAST.on('zoom', showInitialViewPortBtn);
+  formulaAST.on('pan', showInitialViewPortBtn);
+}
+
+function showInitialViewPortBtn() {
+  document.querySelector('.viewport-reset').style.visibility = 'visible';
 }
 
 function extractDimensionsFromSVG(dataURI, type) {
@@ -281,4 +297,17 @@ function toggleFormulaHighlight(id, addClass) {
     if (addClass) mathJaxNode.classList.add('highlight');
     else mathJaxNode.classList.remove('highlight');
   }
+}
+
+function resetViewport() {
+  document.querySelector('.viewport-reset').style.visibility = 'hidden';
+  // unregister Listerners for the time of resetting the graph - so button will actually hide
+  formulaAST.off('zoom');
+  formulaAST.off('pan');
+  formulaAST.layout({
+    name: 'dagre',
+    fit: true,
+  });
+  formulaAST.on('zoom', showInitialViewPortBtn);
+  formulaAST.on('pan', showInitialViewPortBtn);
 }
