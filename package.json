@@ -1,9 +1,9 @@
 {
-  "name": "htw-citeplag-node",
+  "name": "math-ast",
   "version": "1.0.0",
   "main": "server.js",
   "repository": {
-    "url": "git@bitbucket.org:LuiSlacker/htw-citeplag-node.git",
+    "url": "git@github.com:ag-gipp/mast.git",
     "type": "git"
   },
   "scripts": {
