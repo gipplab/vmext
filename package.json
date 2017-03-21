@@ -13,6 +13,13 @@
   },
   "author": "HTW",
   "license": "MIT",
+  "keywords": [
+    "math",
+    "expression",
+    "parser",
+    "visualization",
+    "MathML"
+    ],
   "dependencies": {
     "app-module-path": "^2.2.0",
     "base64-stream": "^0.1.3",
