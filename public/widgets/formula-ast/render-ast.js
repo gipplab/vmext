@@ -303,9 +303,14 @@ function registerEventListeners(cytoscapedAST) {
 }
 
 function extractDimensionsFromSVG(dataURI, type) {
-  const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
-  const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
-  return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
+  try {
+    const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+    const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
+    return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
+  }catch (e){
+    console.log(e);
+    return defaults.minNodeSize;
+  }
 }
 
 function toggleFormulaHighlight(id, addClass) {
