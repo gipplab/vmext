@@ -1,30 +1,37 @@
-# VET: A Visualization Tool for  Mathematical Expression Trees
+# VMEXT: A Visualization Tool for  Mathematical Expression Trees
 
-Mathematical expressions can be understood and represented as a tree con-sisting of functions (non-leaf nodes) and their arguments (child nodes of function nodes). Such expression trees are an important concept to store and process mathematical expressions as well as the most frequently used visual-ization of the structure of mathematical expressions. Typically, researchers visualize expression trees using general purpose tools that are not optimized for mathematics. This approach is laborious, redundant if mathematical ex-pressions are available in a structured markup, such as MathML, and error-prone, since the visualization represents a researcher’s notion of what the markup of an expression should be, but not necessarily what the actual markup is. In this paper, we present VET – a tool to automatically visualize mathematical expression trees from parallel MathML. Additionally, we pre-sent a demo application to convert LaTeX input to parallel MathML, which is then visualized using VET. By visualizing the actual markup of mathematical expressions, VET enables content providers to quickly spot problems in the content MathML markup that do not affect the presentation of the expres-sion. Identifying such discrepancies previously required reading the verbose and complex parallel MathML markup. VET also allows to visualize similar and identical elements of two expressions using arbitrary similarity measures. Visualizing expression similarity shall support developers in designing re-trieval approaches and enable improved interaction concepts for users of mathematical information retrieval systems. The similarity visualization al-lows designers and users of such systems to inspect the reasoning of a simi-larity measure, rather than exclusively being provided with a scalar similarity score as is the case for most current retrieval systems.
+Mathematical expressions can be understood and represented as a tree consisting of functions (non-leaf nodes) and their arguments (child nodes of function nodes). Such expression trees are an important concept to store and process mathematical expressions as well as the most frequently used visualization of the structure of mathematical expressions.
+
+Typically, researchers visualize expression trees with the help of general purpose tools that are not optimized for mathematics.
+This approach is laborious, redundant if mathematical expressions are available in a structured markup, such as MathML, and error-prone, since the visualization represents a researcher’s notion of what the markup of an expression should be, but not necessarily what the actual markup is.
+
+VMEXT is a tool to automatically visualize mathematical expression trees from parallel MathML. By visualizing the actual markup of mathematical expressions, VMEXT enables content providers to quickly spot problems in the content MathML markup that do not affect the presentation of the expression. Identifying such discrepancies previously required reading the verbose and complex parallel MathML markup. VMEXT also allows to visualize similar and identical elements of two expressions using arbitrary similarity measures.
+Visualizing expression similarity shall support developers in designing retrieval approaches and enable improved interaction concepts for users of mathematical information retrieval systems. The similarity visualization allows designers and users of such systems to inspect the reasoning of a similarity measure, rather than exclusively being provided with a scalar similarity score as is the case for most current retrieval systems.
+
 ## Setup
 
-You can use use native npm with `npm i && npm start`.
+You may install VMEXT using **npm** like so: `npm i && npm start`.
 
-An alternative is using **YARN** since it speeds up the installation and deployment processes, saves up disk space due to removing any duplicated packages and locks down all package dependencies (all of them - not only the top level ones as pure npm would do). For further info see [YARN](https://www.npmjs.com/package/yarn)
+Alternatively, you may use **YARN** which speeds up the installation and deployment processes, saves disk space by removing duplicate packages, and locks all package dependencies - not only the top level dependencies like npm does. For further information, see [YARN](https://www.npmjs.com/package/yarn)
 
-To install **Yarn** follow the [Installation Guide](https://yarnpkg.com/en/docs/install#mac-tab) for your platform.
+To install **Yarn**, follow the [Installation Guide](https://yarnpkg.com/en/docs/install#mac-tab) for your platform.
 
-To install all dependencies, head to project root and simply run: `yarn`
+To install all dependencies, navigate to the project root and run: `yarn`
 
-Now you can run the server with `yarn start`
+After that, you can run the server using `yarn start`
 
 ## Debugging
 
-To debug the app using ChromeDevTools, run `yarn run debug` and then copy the link into a browser.
+To debug the app, use ChromeDevTools, run `yarn run debug` and copy the link into a browser.
 
 ## Modules
 
-There's a bunch of modules within the **lib** directory we wrote ourselves in order to maintain a clean project structure.
+The **lib** directory contains a number of libraries we we developed to maintain a clean project structure.
 
-To avoid weird relative paths like `../../../lib/logger` we are using the [app-module-path](https://www.npmjs.com/package/app-module-path) package. This adds the project root directory to the require call. So even in a deeply nested directory you can require any module with a path starting relative to project root e.g `require('lib/logger')`
+To avoid long relative paths like `../../../lib/logger`, we use the [app-module-path](https://www.npmjs.com/package/app-module-path) package. The package adds the project's root directory to the require call. This allows you to require any module unsing a path starting relative to the project's root e.g `require('lib/logger')`, eben in deeply nested project structures.
 
-## Deploying
+## Deployment
 
-This project uses [Capistrano](http://capistranorb.com/) for deployments.
+We use [Capistrano](http://capistranorb.com/) for deployment.
 To deploy (the master branch) type `cap production deploy`.
 For a simple rollback `cap production deploy:rollback`
