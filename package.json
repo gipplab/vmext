@@ -1,9 +1,9 @@
 {
-  "name": "math-ast",
-  "version": "1.0.0",
+  "name": "vmext",
+  "version": "1.0.1",
   "main": "server.js",
   "repository": {
-    "url": "git@github.com:ag-gipp/mast.git",
+    "url": "git@github.com:ag-gipp/vmext.git",
     "type": "git"
   },
   "scripts": {
@@ -18,7 +18,10 @@
     "expression",
     "parser",
     "visualization",
-    "MathML"
+    "MathML",
+    "ast",
+    "formula",
+    "abstract syntax tree"
     ],
   "dependencies": {
     "app-module-path": "^2.2.0",

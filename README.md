@@ -1,9 +1,10 @@
-# htw-citeplag-node
-Node.js API to support rendering of (merged) abstract-syntax-trees
+# VET: A Visualization Tool for  Mathematical Expression Trees
 
 ## Setup
 
-You could use use native npm with `npm i && npm start` although we recommend using **YARN** since it speeds up the installation and deployment processes, saves up disk space due to removing any duplicated packages and locks down all package dependencies (all of them - not only the top level ones as pure npm would do). For further info see [YARN](https://www.npmjs.com/package/yarn)
+You can use use native npm with `npm i && npm start`.
+
+An alternative is using **YARN** since it speeds up the installation and deployment processes, saves up disk space due to removing any duplicated packages and locks down all package dependencies (all of them - not only the top level ones as pure npm would do). For further info see [YARN](https://www.npmjs.com/package/yarn)
 
 To install **Yarn** follow the [Installation Guide](https://yarnpkg.com/en/docs/install#mac-tab) for your platform.
 
