@@ -12,5 +12,5 @@ module.exports = {
     dir: '/logs',
     level: (process.env.NODE_ENV === 'production') ? 'info' : 'debug'
   },
-  mathoidUrl: "http://localhost:10044"
+  mathoidUrl: "http://mathoid2.wmflabs.org"
 };
