@@ -46,7 +46,6 @@ function paramsReveived(event) {
 }
 
 window.addEventListener('resize', debounce(() => {
-  console.log('debounced');
   formulaAST.layout({
     name: 'dagre',
     fit: true,
