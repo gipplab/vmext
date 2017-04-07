@@ -20,6 +20,8 @@ To install all dependencies, navigate to the project root and run: `yarn`
 
 After that, you can run the server using `yarn start`
 
+To use use a local mathoid installation install mathoid locally from npm and change the mathoidUrl in the [config](config.ymal).
+
 ## Debugging
 
 To debug the app, use ChromeDevTools, run `yarn run debug` and copy the link into a browser.
