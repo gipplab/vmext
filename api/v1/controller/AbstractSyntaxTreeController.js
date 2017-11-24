@@ -9,98 +9,110 @@ const Boom = require('boom')
 
 module.exports = {
   parseAST: (req, res, next) => {
-    const parsedMathMLPromise = new ASTParser(res.locals.mathml,
+    return new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
         nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
       })
       .parse()
-      .catch(next)
-
-    parsedMathMLPromise.then((ast) => {
-      res.json(ast)
-    })
+      .then((ast) => {
+        res.json(ast)
+      })
+      .catch(err => {next(Boom.badData(err.message, JSON.stringify(err)))})
   },
 
   parseCytoscapedAST: (req, res, next) => {
     const source = req.query.formulaidentifier || 'A'
-    const parsedMathMLPromise = new ASTParser(res.locals.mathml,
+    new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
         nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
       })
       .parse()
-      .catch(next)
-
-    parsedMathMLPromise.then((ast) => {
-      Promise.all([
-        new ASTRenderer.Graph(ast).renderSingleTree(source),
-        MathJaxRenderer.renderMML(req.body.mathml),
-      ]).then(([cytoscapedAST, mathjaxSVG]) => {
-        res.json({
-          formulaSVG: `${querystring.escape(mathjaxSVG)}`,
-          cytoscapedAST,
-        })
+      .catch(err => {
+        next(Boom.badData(err.message))
+        throw err
       })
-    })
+      .then((ast) => {
+        Promise.all([
+          new ASTRenderer.Graph(ast).renderSingleTree(source),
+          MathJaxRenderer.renderMML(req.body.mathml),
+        ])
+          .then(([cytoscapedAST, mathjaxSVG]) => {
+            res.json({
+              formulaSVG: `${querystring.escape(mathjaxSVG)}`,
+              cytoscapedAST
+            })
+          })
+      })
+      .catch(err => next(Boom.badImplementation(err)))
+
   },
 
   renderAST: (req, res, next) => {
-    const parsedMathMLPromise = new ASTParser(res.locals.mathml,
+    let astParser = new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
         nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
       })
+    return astParser
       .parse()
-      .catch(next)
+      .then((ast) => {
+        const source = req.query.formulaidentifier || 'A'
+        return Promise.all([
+          new ASTRenderer.Graph(ast).renderSingleTree(source),
+          MathJaxRenderer.renderMML(req.body.mathml),
+        ]).then(([cytoscapedAST, mathjaxSVG]) => {
+          return (new SnapRenderer())
+            .renderSingleTree(cytoscapedAST, res.locals.width, res.locals.height)
+            .then((tmpFilename) => {
+              res.sendFile(tmpFilename)
+            })
+            .catch(err => {
+              next(Boom.badImplementation(err))
+              throw err
+            })
+        })
+      })
+      .catch(err => {
+        next(Boom.badData(err.message));
+      })
+  },
 
-    parsedMathMLPromise.then((ast) => {
-      const source = req.query.formulaidentifier || 'A'
+  parseCytoscapedMergedAst:
+    (req, res, next) => {
       Promise.all([
-        new ASTRenderer.Graph(ast).renderSingleTree(source),
-        MathJaxRenderer.renderMML(req.body.mathml),
-      ]).then(([cytoscapedAST, mathjaxSVG]) => {
+        (new ASTParser(res.locals.reference_mathml)).parse(),
+        (new ASTParser(res.locals.comparison_mathml)).parse()
+      ]).then(([referenceAST, comparisonAST]) => {
+        return new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render()
+      }).then((cytoscapedMergedAST) => {
+        res.json({cytoscapedMergedAST})
+      })
+        .catch(err => next(err))
+    },
+
+  renderMergedAst:
+    (req, res, next) => {
+      Promise.all([
+        (new ASTParser(res.locals.reference_mathml)).parse(),
+        (new ASTParser(res.locals.comparison_mathml)).parse()
+      ]).then(([referenceAST, comparisonAST]) => {
+        return (new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities)).render()
+      }).then((cytoscapedMergedAST) => {
         (new SnapRenderer())
-          .renderSingleTree(cytoscapedAST, res.locals.width, res.locals.height)
+          .renderMergedTree(cytoscapedMergedAST, res.locals.width, res.locals.height)
           .then((tmpFilename) => {
             res.sendFile(tmpFilename)
           })
-          .catch(err => next(Boom.badImplementation(err)))
+      }).catch(err => next(err))
+    },
+
+  renderMML:
+    (req, res, next) => {
+      MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
+        res.send(svg)
       })
-    })
-  },
-
-  parseCytoscapedMergedAst: (req, res, next) => {
-    Promise.all([
-      (new ASTParser(res.locals.reference_mathml)).parse(),
-      (new ASTParser(res.locals.comparison_mathml)).parse()
-    ]).then(([referenceAST, comparisonAST]) => {
-      return new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render()
-    }).then((cytoscapedMergedAST) => {
-      res.json({cytoscapedMergedAST})
-    })
-      .catch(err => next(err))
-  },
-
-  renderMergedAst: (req, res, next) => {
-    Promise.all([
-      (new ASTParser(res.locals.reference_mathml)).parse(),
-      (new ASTParser(res.locals.comparison_mathml)).parse()
-    ]).then(([referenceAST, comparisonAST]) => {
-      return (new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities)).render()
-    }).then((cytoscapedMergedAST) => {
-      (new SnapRenderer())
-        .renderMergedTree(cytoscapedMergedAST, res.locals.width, res.locals.height)
-        .then((tmpFilename) => {
-          res.sendFile(tmpFilename)
-        })
-    }).catch(err => next(err))
-  },
-
-  renderMML: (req, res, next) => {
-    MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
-      res.send(svg)
-    })
-      .catch(err => next(err))
-  }
+        .catch(err => next(err))
+    }
 }
