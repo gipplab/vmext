@@ -25,7 +25,6 @@ function paramsReveived(event) {
         document.querySelector('.error-type').innerHTML = err.error;
         document.querySelector('.error-message').innerHTML = err.message;
         document.querySelector('.error-statuscode').innerHTML = err.statusCode;
-        console.error(err);
       });
   } else if (mergedAST) {
     // this block handles postMessage events from both formula-ast-widgets
@@ -86,7 +85,7 @@ function fetchData({ reference_mathml, comparison_mathml, similarities, widgetHo
   }).then((response) => {
     return response.json().then((data) => {
       if (!response.ok) {
-        return Promise.reject(data.Error.output.payload);
+        return Promise.reject(data);
       }
       return data;
     });

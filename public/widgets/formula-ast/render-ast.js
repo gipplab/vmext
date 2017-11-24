@@ -69,7 +69,7 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, for
   }).then((response) => {
     return response.json().then((data) => {
       if (!response.ok) {
-        return Promise.reject(data.Error.output.payload);
+        return Promise.reject(data);
       }
       return data;
     });
