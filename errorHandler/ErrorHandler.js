@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     log.error(err)
-    const BoomError = !err.isBoom ? Boom.boomify(err) : err
+    const BoomError = !err.isBoom ? Boom.wrap(err) : err
     if (res.headersSent) {
       console.log('Skip error handler.')
       return next(err)
