@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/ag-gipp/vmext.svg?branch=master)](https://travis-ci.org/ag-gipp/vmext)
+[![Coverage Status](https://coveralls.io/repos/github/ag-gipp/vmext/badge.svg?branch=master)](https://coveralls.io/github/ag-gipp/vmext?branch=master)
+[![npm](https://img.shields.io/npm/v/vmext.svg)](https://www.npmjs.com/package/vmext)
+
 # VMEXT: A Visualization Tool for  Mathematical Expression Trees
 
 Mathematical expressions can be understood and represented as a tree consisting of functions (non-leaf nodes) and their arguments (child nodes of function nodes). Such expression trees are an important concept to store and process mathematical expressions as well as the most frequently used visualization of the structure of mathematical expressions.
