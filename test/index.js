@@ -5,7 +5,8 @@
 require('mocha-eslint')([
   'routes',
   'lib',
-  'api'
+  'api',
+  'errorHandler'
 ], {
   timeout: 10000
 });
