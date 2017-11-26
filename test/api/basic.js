@@ -9,33 +9,50 @@ describe('api test', () => {
   afterEach(() => {
     server.close();
   });
-  const singleEndpoints = ['parseAST','renderPMML', 'parseCytoscapedAST','renderAST'];
-  const mergedEndpoints = [ 'renderMergedAST' ,'parseCytoscapedMergedAst'];
+  const singleEndpoints = ['parseAST', 'renderPMML', 'parseCytoscapedAST', 'renderAST'];
+  const mergedEndpoints = ['renderMergedAST', 'parseCytoscapedMergedAst'];
   const endpoints = singleEndpoints.concat(mergedEndpoints);
   endpoints.forEach((t) => {
-    it('handle empty requests ' + t, function testSlash(done) {
+    it('handle empty requests ' + t, function testSlash (done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .expect(400, done);
     });
   });
   singleEndpoints.forEach((t) => {
-    it('handle mathml requests ' + t, function testSlash(done) {
+    it('handle invalid mathml requests ' + t, function testSlash (done) {
       request(server)
         .post(`/api/v1/math/${t}`)
-        .field('mathml',app.locals.mml[0])
+        .field('mathml', '<math>this is not valid</math>')
+        .expect(422, done);
+    });
+  });
+  singleEndpoints.forEach((t) => {
+    it('handle mathml requests ' + t, function testSlash (done) {
+      request(server)
+        .post(`/api/v1/math/${t}`)
+        .field('mathml', app.locals.mml[0])
         .expect(200, done);
     });
   });
   mergedEndpoints.forEach((t) => {
-    it('handle mathml requests ' + t, function testSlash(done) {
+    it('handle mathml requests ' + t, function testSlash (done) {
       request(server)
         .post(`/api/v1/math/${t}`)
-        .field('reference_mathml',app.locals.mml[3])
-        .field('comparison_mathml',app.locals.mml[4])
-        .field('similarities',app.locals.sim[0])
+        .field('reference_mathml', app.locals.mml[3])
+        .field('comparison_mathml', app.locals.mml[4])
+        .field('similarities', app.locals.sim[0])
         .expect(200, done);
     });
   });
-
+  mergedEndpoints.forEach((t) => {
+    it('handle invaldid mathml requests ' + t, function testSlash (done) {
+      request(server)
+        .post(`/api/v1/math/${t}`)
+        .field('reference_mathml', '<math>this is not valid</math>')
+        .field('comparison_mathml', app.locals.mml[4])
+        .field('similarities', app.locals.sim[0])
+        .expect(422, done);
+    });
+  });
 });

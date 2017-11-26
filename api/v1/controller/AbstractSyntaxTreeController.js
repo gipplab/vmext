@@ -12,7 +12,7 @@ module.exports = {
     return new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
-        nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
+        nodesToBeCollapsed: res.locals.nodesToBeCollapsed
       })
       .parse()
       .then((ast) => {
@@ -26,7 +26,7 @@ module.exports = {
     new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
-        nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
+        nodesToBeCollapsed: res.locals.nodesToBeCollapsed
       })
       .parse()
       .catch((err) => {
@@ -36,7 +36,7 @@ module.exports = {
       .then((ast) => {
         Promise.all([
           new ASTRenderer.Graph(ast).renderSingleTree(source),
-          MathJaxRenderer.renderMML(req.body.mathml),
+          MathJaxRenderer.renderMML(req.body.mathml)
         ])
           .then(([cytoscapedAST, mathjaxSVG]) => {
             res.json({
@@ -53,7 +53,7 @@ module.exports = {
     const astParser = new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
-        nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
+        nodesToBeCollapsed: res.locals.nodesToBeCollapsed
       });
     return astParser
       .parse()
@@ -61,16 +61,12 @@ module.exports = {
         const source = req.query.formulaidentifier || 'A';
         return Promise.all([
           new ASTRenderer.Graph(ast).renderSingleTree(source),
-          MathJaxRenderer.renderMML(req.body.mathml),
+          MathJaxRenderer.renderMML(req.body.mathml)
         ]).then(([cytoscapedAST, mathjaxSVG]) => {
           return (new SnapRenderer())
             .renderSingleTree(cytoscapedAST, res.locals.width, res.locals.height)
             .then((tmpFilename) => {
               res.sendFile(tmpFilename);
-            })
-            .catch((err) => {
-              next(Boom.badImplementation(err));
-              throw err;
             });
         });
       })
@@ -89,7 +85,7 @@ module.exports = {
       }).then((cytoscapedMergedAST) => {
         res.json({ cytoscapedMergedAST });
       })
-        .catch(err => next(err));
+        .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
     },
 
   renderMergedAst:
@@ -105,7 +101,8 @@ module.exports = {
           .then((tmpFilename) => {
             res.sendFile(tmpFilename);
           });
-      }).catch(err => next(err));
+      })
+        .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
     },
 
   renderMML:
@@ -113,6 +110,6 @@ module.exports = {
       MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
         res.send(svg);
       })
-        .catch(err => next(err));
+        .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
     }
 };
