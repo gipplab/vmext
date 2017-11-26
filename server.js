@@ -39,7 +39,10 @@ readGlob('data/*.mml.xml', 'utf8')
   .then((contents) => {
     app.locals.mml  = contents;
   });
-
+readGlob('data/*sim.json', 'utf8')
+  .then((contents) => {
+    app.locals.sim  = contents;
+  });
 app.set('view engine', 'pug');
 app.set('views', './public/html');
 // Allow CORS

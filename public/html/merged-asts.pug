@@ -24,28 +24,8 @@ html
                     != mml[4]
                 label(for='similarities') similarities
                 .form-group
-                  textarea#similarities.form-control(rows=5, cols=10, name='mathml').
-                    [
-                       {
-                          "id":"A.3.cmml",
-                          "matches":[
-                             {
-                                "id":"A.3.cmml",
-                                "assessment":1.0,
-                                "type":"similar"
-                             }
-                          ]
-                       },
-                       {
-                          "id":"A.6.1.cmml",
-                          "matches":[
-                             {
-                                "id":"A.6.1.cmml",
-                                "type":"identical"
-                             }
-                          ]
-                       }
-                    ]
+                  textarea#similarities.form-control(rows=5, cols=10, name='mathml')
+                    != sim[0]
                 input.btn.btn-success(type='submit', value='Render')
                 </br>
                 </br>

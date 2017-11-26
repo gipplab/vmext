@@ -1,0 +1,21 @@
+[
+  {
+    "id":"A.3.cmml",
+    "matches":[
+      {
+        "id":"A.3.cmml",
+        "assessment":1.0,
+        "type":"similar"
+      }
+    ]
+  },
+  {
+    "id":"A.6.1.cmml",
+    "matches":[
+      {
+        "id":"A.6.1.cmml",
+        "type":"identical"
+      }
+    ]
+  }
+]
