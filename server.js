@@ -10,6 +10,8 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const compression = require('compression');
 const favicon = require('serve-favicon');
 const log = require('./lib/logger');
+const readGlob = require('read-glob-promise');
+
 
 // swagger definition
 const swaggerDefinition = {
@@ -33,9 +35,13 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
 
+readGlob('data/*.mml.xml', 'utf8')
+  .then((contents) => {
+    app.locals.mml  = contents;
+  });
+
 app.set('view engine', 'pug');
 app.set('views', './public/html');
-
 // Allow CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

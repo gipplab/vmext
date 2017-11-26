@@ -9,11 +9,10 @@ describe('api test', () => {
   });
   const endpoints = ['parseAST','renderPMML', 'renderMergedAST' ,'parseCytoscapedMergedAst', 'parseCytoscapedAST','renderAST'];
   endpoints.forEach((t) => {
-    // TODO: broken test
     it('handle empty requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
-        .expect(500, done);
+        .expect(400, done);
     });
   });
 
