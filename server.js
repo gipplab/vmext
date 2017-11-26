@@ -62,8 +62,16 @@ app.get('/swagger.json', (req, res) => {
 require('./errorHandler/ErrorHandler')(app);
 
 // set up server ==================================================
-const server = app.listen(process.env.PORT || 4001, () => {
-  log.info(`server started, listening on port: ${server.address().port}`);
-});
+function start() {
+  return app.listen(process.env.PORT || 4001, () => {
+    log.info(`server started, listening on port: ${process.env.PORT || 4001}`);
+  });
+}
 
-module.exports = server;
+if (require.main === module) {
+  start();
+}
+
+module.exports = {
+  start
+};
