@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const ASTParser = require('lib/ASTParser')
-const ASTRenderer = require('lib/ASTRenderer')
-const MathJaxRenderer = require('lib/MathJaxRenderer')
-const SnapRenderer = require('lib/ASTRenderer/SnapRenderer')
-const querystring = require('querystring')
-const Boom = require('boom')
+const ASTParser = require('lib/ASTParser');
+const ASTRenderer = require('lib/ASTRenderer');
+const MathJaxRenderer = require('lib/MathJaxRenderer');
+const SnapRenderer = require('lib/ASTRenderer/SnapRenderer');
+const querystring = require('querystring');
+const Boom = require('boom');
 
 module.exports = {
   parseAST: (req, res, next) => {
@@ -16,22 +16,22 @@ module.exports = {
       })
       .parse()
       .then((ast) => {
-        res.json(ast)
+        res.json(ast);
       })
-      .catch(err => {next(Boom.badData(err.message, JSON.stringify(err)))})
+      .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
   },
 
   parseCytoscapedAST: (req, res, next) => {
-    const source = req.query.formulaidentifier || 'A'
+    const source = req.query.formulaidentifier || 'A';
     new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
         nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
       })
       .parse()
-      .catch(err => {
-        next(Boom.badData(err.message))
-        throw err
+      .catch((err) => {
+        next(Boom.badData(err.message));
+        throw err;
       })
       .then((ast) => {
         Promise.all([
@@ -42,23 +42,23 @@ module.exports = {
             res.json({
               formulaSVG: `${querystring.escape(mathjaxSVG)}`,
               cytoscapedAST
-            })
-          })
+            });
+          });
       })
-      .catch(err => next(Boom.badImplementation(err)))
+      .catch(err => next(Boom.badImplementation(err)));
 
   },
 
   renderAST: (req, res, next) => {
-    let astParser = new ASTParser(res.locals.mathml,
+    const astParser = new ASTParser(res.locals.mathml,
       {
         collapseSingleOperandNodes: res.locals.collapseSingleOperandNodes,
         nodesToBeCollapsed: res.locals.nodesToBeCollapsed,
-      })
+      });
     return astParser
       .parse()
       .then((ast) => {
-        const source = req.query.formulaidentifier || 'A'
+        const source = req.query.formulaidentifier || 'A';
         return Promise.all([
           new ASTRenderer.Graph(ast).renderSingleTree(source),
           MathJaxRenderer.renderMML(req.body.mathml),
@@ -66,17 +66,17 @@ module.exports = {
           return (new SnapRenderer())
             .renderSingleTree(cytoscapedAST, res.locals.width, res.locals.height)
             .then((tmpFilename) => {
-              res.sendFile(tmpFilename)
+              res.sendFile(tmpFilename);
             })
-            .catch(err => {
-              next(Boom.badImplementation(err))
-              throw err
-            })
-        })
+            .catch((err) => {
+              next(Boom.badImplementation(err));
+              throw err;
+            });
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         next(Boom.badData(err.message));
-      })
+      });
   },
 
   parseCytoscapedMergedAst:
@@ -85,11 +85,11 @@ module.exports = {
         (new ASTParser(res.locals.reference_mathml)).parse(),
         (new ASTParser(res.locals.comparison_mathml)).parse()
       ]).then(([referenceAST, comparisonAST]) => {
-        return new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render()
+        return new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities).render();
       }).then((cytoscapedMergedAST) => {
-        res.json({cytoscapedMergedAST})
+        res.json({ cytoscapedMergedAST });
       })
-        .catch(err => next(err))
+        .catch(err => next(err));
     },
 
   renderMergedAst:
@@ -98,21 +98,21 @@ module.exports = {
         (new ASTParser(res.locals.reference_mathml)).parse(),
         (new ASTParser(res.locals.comparison_mathml)).parse()
       ]).then(([referenceAST, comparisonAST]) => {
-        return (new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities)).render()
+        return (new ASTRenderer.Graph(referenceAST, comparisonAST, res.locals.similarities)).render();
       }).then((cytoscapedMergedAST) => {
         (new SnapRenderer())
           .renderMergedTree(cytoscapedMergedAST, res.locals.width, res.locals.height)
           .then((tmpFilename) => {
-            res.sendFile(tmpFilename)
-          })
-      }).catch(err => next(err))
+            res.sendFile(tmpFilename);
+          });
+      }).catch(err => next(err));
     },
 
   renderMML:
     (req, res, next) => {
       MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
-        res.send(svg)
+        res.send(svg);
       })
-        .catch(err => next(err))
+        .catch(err => next(err));
     }
-}
+};

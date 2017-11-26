@@ -79,5 +79,6 @@ if (require.main === module) {
 }
 
 module.exports = {
-  start
+  start,
+  app
 };
