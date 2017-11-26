@@ -8,7 +8,7 @@ node_js:
 script: npm run-script coverage && (npm run-script coveralls || exit 0)
 
 before_script:
-  - npm i mathoid
+  - npm i mathoid@dev
   - cd node_modules/mathoid
   - ./server.js -c ../../config.dev.yaml &
   - cd ../..
