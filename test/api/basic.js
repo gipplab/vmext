@@ -10,7 +10,8 @@ describe('api test', () => {
     server.close();
   });
   const singleEndpoints = ['parseAST','renderPMML', 'parseCytoscapedAST','renderAST'];
-  const endpoints = singleEndpoints.concat([ 'renderMergedAST' ,'parseCytoscapedMergedAst']);
+  const mergedEndpoints = [ 'renderMergedAST' ,'parseCytoscapedMergedAst'];
+  const endpoints = singleEndpoints.concat(mergedEndpoints);
   endpoints.forEach((t) => {
     it('handle empty requests ' + t, function testSlash(done) {
       request(server)
@@ -23,6 +24,16 @@ describe('api test', () => {
       request(server)
         .post(`/api/v1/math/${t}`)
         .field('mathml',app.locals.mml[0])
+        .expect(200, done);
+    });
+  });
+  mergedEndpoints.forEach((t) => {
+    it('handle mathml requests ' + t, function testSlash(done) {
+      request(server)
+        .post(`/api/v1/math/${t}`)
+        .field('reference_mathml',app.locals.mml[3])
+        .field('comparison_mathml',app.locals.mml[4])
+        .field('similarities',app.locals.sim[0])
         .expect(200, done);
     });
   });
