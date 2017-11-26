@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const express = require('express')
-const astRouter = module.exports = express.Router({mergeParams: true})
-const multer = require('multer')
-const upload = multer()
-const RequestValidator = require('lib/RequestValidator')
-const astController = require('../controller/AbstractSyntaxTreeController')
+const express = require('express');
+const astRouter = module.exports = express.Router({ mergeParams: true });
+const multer = require('multer');
+const upload = multer();
+const RequestValidator = require('lib/RequestValidator');
+const astController = require('../controller/AbstractSyntaxTreeController');
 
 /**
  * @swagger
@@ -88,21 +88,21 @@ astRouter.post('/parseAST',
       type: 'xml',
       optional: false
     },
-      {
-        name: 'collapseSingleOperandNodes',
-        origin: 'BODY',
-        type: 'boolean',
-        optional: true,
-        default: false
-      },
-      {
-        name: 'nodesToBeCollapsed',
-        origin: 'BODY',
-        type: 'json',
-        optional: true,
-        default: []
-      }]),
-  astController.parseAST)
+    {
+      name: 'collapseSingleOperandNodes',
+      origin: 'BODY',
+      type: 'boolean',
+      optional: true,
+      default: false
+    },
+    {
+      name: 'nodesToBeCollapsed',
+      origin: 'BODY',
+      type: 'json',
+      optional: true,
+      default: []
+    }]),
+  astController.parseAST);
 
 /**
  * @swagger
@@ -159,21 +159,21 @@ astRouter.post('/parseCytoscapedAST',
       type: 'xml',
       optional: false
     },
-      {
-        name: 'collapseSingleOperandNodes',
-        origin: 'BODY',
-        type: 'boolean',
-        optional: true,
-        default: false
-      },
-      {
-        name: 'nodesToBeCollapsed',
-        origin: 'BODY',
-        type: 'json',
-        optional: true,
-        default: []
-      }]),
-  astController.parseCytoscapedAST)
+    {
+      name: 'collapseSingleOperandNodes',
+      origin: 'BODY',
+      type: 'boolean',
+      optional: true,
+      default: false
+    },
+    {
+      name: 'nodesToBeCollapsed',
+      origin: 'BODY',
+      type: 'json',
+      optional: true,
+      default: []
+    }]),
+  astController.parseCytoscapedAST);
 
 /**
  * @swagger
@@ -237,35 +237,35 @@ astRouter.post('/renderAST',
       type: 'xml',
       optional: false
     },
-      {
-        name: 'collapseSingleOperandNodes',
-        origin: 'BODY',
-        type: 'boolean',
-        optional: true,
-        default: false
-      },
-      {
-        name: 'nodesToBeCollapsed',
-        origin: 'BODY',
-        type: 'json',
-        optional: true,
-        default: []
-      },
-      {
-        name: 'width',
-        origin: 'BODY',
-        type: 'int',
-        optional: true,
-        default: 500
-      },
-      {
-        name: 'height',
-        origin: 'BODY',
-        type: 'int',
-        optional: true,
-        default: 500
-      }]),
-  astController.renderAST)
+    {
+      name: 'collapseSingleOperandNodes',
+      origin: 'BODY',
+      type: 'boolean',
+      optional: true,
+      default: false
+    },
+    {
+      name: 'nodesToBeCollapsed',
+      origin: 'BODY',
+      type: 'json',
+      optional: true,
+      default: []
+    },
+    {
+      name: 'width',
+      origin: 'BODY',
+      type: 'int',
+      optional: true,
+      default: 500
+    },
+    {
+      name: 'height',
+      origin: 'BODY',
+      type: 'int',
+      optional: true,
+      default: 500
+    }]),
+  astController.renderAST);
 
 /**
  * @swagger
@@ -313,33 +313,33 @@ astRouter.post('/parseCytoscapedMergedAst',
       type: 'xml',
       optional: false
     },
-      {
-        name: 'comparison_mathml',
-        origin: 'BODY',
-        type: 'xml',
-        optional: false
-      },
-      {
-        name: 'similarities',
-        origin: 'BODY',
-        type: 'json',
-        optional: false
-      },
-      {
-        name: 'width',
-        origin: 'BODY',
-        type: 'int',
-        optional: true,
-        default: 500
-      },
-      {
-        name: 'height',
-        origin: 'BODY',
-        type: 'int',
-        optional: true,
-        default: 500
-      }]),
-  astController.parseCytoscapedMergedAst)
+    {
+      name: 'comparison_mathml',
+      origin: 'BODY',
+      type: 'xml',
+      optional: false
+    },
+    {
+      name: 'similarities',
+      origin: 'BODY',
+      type: 'json',
+      optional: false
+    },
+    {
+      name: 'width',
+      origin: 'BODY',
+      type: 'int',
+      optional: true,
+      default: 500
+    },
+    {
+      name: 'height',
+      origin: 'BODY',
+      type: 'int',
+      optional: true,
+      default: 500
+    }]),
+  astController.parseCytoscapedMergedAst);
 
 /**
  * @swagger
@@ -396,33 +396,33 @@ astRouter.post('/renderMergedAST',
       type: 'xml',
       optional: false
     },
-      {
-        name: 'comparison_mathml',
-        origin: 'BODY',
-        type: 'xml',
-        optional: false
-      },
-      {
-        name: 'similarities',
-        origin: 'BODY',
-        type: 'json',
-        optional: false
-      },
-      {
-        name: 'width',
-        origin: 'BODY',
-        type: 'int',
-        optional: true,
-        default: 500
-      },
-      {
-        name: 'height',
-        origin: 'BODY',
-        type: 'int',
-        optional: true,
-        default: 500
-      }]),
-  astController.renderMergedAst)
+    {
+      name: 'comparison_mathml',
+      origin: 'BODY',
+      type: 'xml',
+      optional: false
+    },
+    {
+      name: 'similarities',
+      origin: 'BODY',
+      type: 'json',
+      optional: false
+    },
+    {
+      name: 'width',
+      origin: 'BODY',
+      type: 'int',
+      optional: true,
+      default: 500
+    },
+    {
+      name: 'height',
+      origin: 'BODY',
+      type: 'int',
+      optional: true,
+      default: 500
+    }]),
+  astController.renderMergedAst);
 
 astRouter.post('/renderPMML',
   upload.none(),
@@ -434,4 +434,4 @@ astRouter.post('/renderPMML',
       type: 'string',
       optional: false
     }]),
-  astController.renderMML)
+  astController.renderMML);
