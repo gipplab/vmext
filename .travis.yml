@@ -10,5 +10,6 @@ script: npm run-script coverage && (npm run-script coveralls || exit 0)
 before_script:
   - npm i mathoid@dev
   - cd node_modules/mathoid
+  - chmod +x server.js
   - ./server.js -c ../../config.dev.yaml &
   - cd ../..
