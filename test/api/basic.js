@@ -2,7 +2,7 @@ const request = require('supertest');
 describe('api test', () => {
   let server;
   let app;
-  beforeEach(() => {
+  before(() => {
     server = require('../../server').start();
     app = require('../../server').app;
   });
