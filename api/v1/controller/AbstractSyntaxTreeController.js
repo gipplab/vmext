@@ -71,7 +71,7 @@ module.exports = {
         });
       })
       .catch((err) => {
-        next(Boom.badData(err.message, res.locals.mathml));
+        next(Boom.badData(err.message, res.locals.mathml.toLocaleString()));
       });
   },
 
