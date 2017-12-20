@@ -16,7 +16,9 @@
     "coverage": "istanbul cover _mocha -- -R spec",
     "test": "PREQ_CONNECT_TIMEOUT=15 mocha && nsp check",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "HTW",
   "license": "MIT",
@@ -58,7 +60,8 @@
     "winston-slack-hook": "^0.1.0",
     "xml2js": "^0.4.17",
     "xmldom": "^0.1.22",
-    "xpath": "^0.0.23"
+    "xpath": "^0.0.23",
+    "snyk": "^1.61.1"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
@@ -79,5 +82,6 @@
     "nsp": "^3.1.0",
     "rx": "^4.1.0",
     "supertest": "^3.0.0"
-  }
+  },
+  "snyk": true
 }
