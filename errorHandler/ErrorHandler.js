@@ -2,6 +2,7 @@
 
 const log = require('lib/logger');
 const Boom = require('boom');
+const CircularJSON = require('circular-json');
 
 module.exports = (app) => {
   // catch 404s
@@ -10,7 +11,7 @@ module.exports = (app) => {
   });
 
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-    log.error(err);
+    log.error(CircularJSON.stringify(err));
     const BoomError = !err.isBoom ? Boom.wrap(err) : err;
     if (res.headersSent) {
       app.log('Skip error handler.');

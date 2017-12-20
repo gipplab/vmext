@@ -18,7 +18,7 @@ module.exports = {
       .then((ast) => {
         res.json(ast);
       })
-      .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
+      .catch((err) => { next(Boom.badData(err.message, res.locals.mathml.toLocaleString())); });
   },
 
   parseCytoscapedAST: (req, res, next) => {
@@ -71,7 +71,7 @@ module.exports = {
         });
       })
       .catch((err) => {
-        next(Boom.badData(err.message));
+        next(Boom.badData(err.message, res.locals.mathml));
       });
   },
 
@@ -85,7 +85,7 @@ module.exports = {
       }).then((cytoscapedMergedAST) => {
         res.json({ cytoscapedMergedAST });
       })
-        .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
+        .catch((err) => { next(Boom.badData(err.message)); });
     },
 
   renderMergedAst:
@@ -102,7 +102,7 @@ module.exports = {
             res.sendFile(tmpFilename);
           });
       })
-        .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
+        .catch((err) => { next(Boom.badData(err.message)); });
     },
 
   renderMML:
@@ -110,6 +110,6 @@ module.exports = {
       MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
         res.send(svg);
       })
-        .catch((err) => { next(Boom.badData(err.message, JSON.stringify(err))); });
+        .catch((err) => { next(Boom.badData(err.message, req.body.mathml.toLocaleString())); });
     }
 };
