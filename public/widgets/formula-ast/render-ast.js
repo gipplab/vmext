@@ -5,7 +5,6 @@ let initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
 window.addEventListener('message', paramsReveived, false);
-
 /**
  * EventListener for postMessage-iframe-events (see https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
  * Events can be of two types:
@@ -214,17 +213,33 @@ function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
+    const qId = node.data().qId;
+    if (qId){
+      node.qtip({
+        content: {
+          text: `<a href="https://wikidata.org/wiki/${qId}" target="_blank">${qId}</a>`,
+          title: 'Wikidata Item'
+        },
+        show: {
+          event: 'click mouseenter'
+        }
+      });
+      node.qtip('api').show();
+    }
     sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
     highlightNodeAndFormula({
       nodeID: node.id(),
       presentationID: node.data().presentationID,
       nodeCollapsed: false,
     });
+
   });
 
   formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     currentMouseOverCytoNode = node;
+    const qtip = node.qtip('api');
+    qtip.hide();
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
     unhighlightNodeAndFormula({
       nodeID: node.id(),
