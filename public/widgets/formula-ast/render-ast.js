@@ -1,7 +1,7 @@
 'use strict';
 
 let formulaAST;
-let initialViewport = {};
+const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
 window.addEventListener('message', paramsReveived, false);
@@ -160,7 +160,6 @@ function attachFormulaEventListeners(cytoscapedAST) {
       activeFormulaElement.svgGroup.classList.remove('highlight');
       sendMessageToParentWindow(activeFormulaElement.cyNode, 'mouseOutNode');
     }
-    mouseOverLoop:
     for (const svgGroup of svgGroups) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
@@ -180,13 +179,12 @@ function attachFormulaEventListeners(cytoscapedAST) {
         highlightNodeAndSuccessors(cyNode);
         svgGroup.classList.add('highlight');
         sendMessageToParentWindow(cyNode, 'mouseOverNode');
-        break mouseOverLoop;
+        break;
       }
     }
   });
 
   mouseoutEventStream.subscribe((svgGroups) => {
-    mouseOutLoop:
     for (const svgGroup of svgGroups) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
@@ -194,7 +192,7 @@ function attachFormulaEventListeners(cytoscapedAST) {
         unhighlightNodeAndSuccessors(cyNode);
         svgGroup.classList.remove('highlight');
         sendMessageToParentWindow(cyNode, 'mouseOutNode');
-        break mouseOutLoop;
+        break;
       }
     }
   });
@@ -214,11 +212,26 @@ function registerEventListeners(cytoscapedAST) {
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     const qId = node.data().qId;
-    if (qId){
+    if (qId) {
       node.qtip({
         content: {
-          text: `<a href="https://wikidata.org/wiki/${qId}" target="_blank">${qId}</a>`,
-          title: 'Wikidata Item'
+          text: (event, api) => {
+            const fallback = `<a href="https://wikidata.org/wiki/${qId}" target="_blank">${qId}</a>`;
+            $.ajax({
+              url: `http://www.wikidata.org/wiki/Special:EntityData/${qId}.json`,
+            })
+              .then((content) => {
+                // Set the tooltip content upon successful retrieval
+                api.set('content.text', '<p>' + content.entities[qId].labels.en.value + '</p>'+
+                  '<p>' + content.entities[qId].descriptions.en.value + '</p>');
+              }, (xhr, status, error) => {
+                // Upon failure... set the tooltip content to error
+                api.set('content.text', fallback);
+              });
+
+            return fallback; // Set some initial text
+          },
+          title:`Wikidata ${qId}`
         },
         show: {
           event: 'click mouseenter'
@@ -238,8 +251,11 @@ function registerEventListeners(cytoscapedAST) {
   formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     currentMouseOverCytoNode = node;
-    const qtip = node.qtip('api');
-    qtip.hide();
+    const qId = node.data().qId;
+    if (qId) {
+      const qtip = node.qtip('api');
+      qtip.hide();
+    }
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
     unhighlightNodeAndFormula({
       nodeID: node.id(),
@@ -323,7 +339,7 @@ function extractDimensionsFromSVG(dataURI, type) {
     const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
     const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
     return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
-  }catch (e){
+  } catch (e) {
     console.log(e);
     return defaults.minNodeSize;
   }
@@ -333,8 +349,7 @@ function toggleFormulaHighlight(id, addClass) {
   const escapedId = id.replace(/\./g, '\\.');
   const mathJaxNode = document.querySelector(`#${escapedId}`);
   if (mathJaxNode) {
-    if (addClass) mathJaxNode.classList.add('highlight');
-    else mathJaxNode.classList.remove('highlight');
+    if (addClass) { mathJaxNode.classList.add('highlight'); } else { mathJaxNode.classList.remove('highlight'); }
   }
 }
 
