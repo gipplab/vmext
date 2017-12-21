@@ -222,8 +222,8 @@ function registerEventListeners(cytoscapedAST) {
             })
               .then((content) => {
                 // Set the tooltip content upon successful retrieval
-                api.set('content.text', '<p>' + content.entities[qId].labels.en.value + '</p>'+
-                  '<p>' + content.entities[qId].descriptions.en.value + '</p>');
+                api.set('content.text', '<p>' + _.get(content, `entities[${qId}].labels.en.value`, qId)  + '</p>' +
+                  '<p>' +  _.get(content, `entities[${qId}].descriptions.en.value`, 'no description') + '</p>');
               }, (xhr, status, error) => {
                 // Upon failure... set the tooltip content to error
                 api.set('content.text', fallback);
@@ -231,7 +231,7 @@ function registerEventListeners(cytoscapedAST) {
 
             return fallback; // Set some initial text
           },
-          title:`Wikidata ${qId}`
+          title: `<a href="https://wikidata.org/wiki/${qId}" target="_blank">Wikidata ${qId}</a>`
         },
         show: {
           event: 'click mouseenter'

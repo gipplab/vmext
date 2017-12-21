@@ -7,5 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="jquery.qtip" level="application" />
+    <orderEntry type="library" name="lodash" level="application" />
   </component>
 </module>
