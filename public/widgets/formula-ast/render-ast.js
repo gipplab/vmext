@@ -211,8 +211,9 @@ function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
-    const qId = node.data().qId;
-    if (qId) {
+    const cd = node.data().cd;
+    if (cd) {
+      const qId = node.data().symbol;
       node.qtip({
         content: {
           text: (event, api) => {
@@ -251,8 +252,8 @@ function registerEventListeners(cytoscapedAST) {
   formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     currentMouseOverCytoNode = node;
-    const qId = node.data().qId;
-    if (qId) {
+    const cd = node.data().cd;
+    if (cd) {
       const qtip = node.qtip('api');
       qtip.hide();
     }
