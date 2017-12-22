@@ -213,26 +213,25 @@ function registerEventListeners(cytoscapedAST) {
     const node = event.cyTarget;
     const cd = node.data().cd;
     if (cd) {
-      const qId = node.data().symbol;
+      const symbol = node.data().symbol;
       node.qtip({
         content: {
           text: (event, api) => {
-            const fallback = `<a href="https://wikidata.org/wiki/${qId}" target="_blank">${qId}</a>`;
+            const fallback = `Fetching information for symbol ${symbol} from content directory ${cd}.`;
             $.ajax({
-              url: `http://www.wikidata.org/wiki/Special:EntityData/${qId}.json`,
+              url: `/popupInfo/${cd}/${symbol}`,
             })
               .then((content) => {
-                // Set the tooltip content upon successful retrieval
-                api.set('content.text', '<p>' + _.get(content, `entities[${qId}].labels.en.value`, qId)  + '</p>' +
-                  '<p>' +  _.get(content, `entities[${qId}].descriptions.en.value`, 'no description') + '</p>');
+                api.set('content.text', content.text);
+                api.set('content.title',content.title);
               }, (xhr, status, error) => {
                 // Upon failure... set the tooltip content to error
-                api.set('content.text', fallback);
+                api.set('content.text', fallback +  `Failed!`);
               });
 
             return fallback; // Set some initial text
           },
-          title: `<a href="https://wikidata.org/wiki/${qId}" target="_blank">Wikidata ${qId}</a>`
+          title: `Fetching information for symbol ${symbol}`
         },
         show: {
           event: 'click mouseenter'

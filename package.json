@@ -47,12 +47,14 @@
     "js-yaml": "^3.8.3",
     "jsdom": "^9.8.3",
     "libxmljs": "^0.18.4",
+    "lodash": "^4.17.4",
     "multer": "^1.2.0",
     "phantom": "^4.0.0",
     "preq": "^0.4.10",
     "pug": "^2.0.0-rc.4",
     "read-glob-promise": "^2.0.0",
     "serve-favicon": "^2.3.2",
+    "snyk": "^1.61.1",
     "swagger-jsdoc": "^1.9.2",
     "whatwg-fetch": "^2.0.2",
     "winston": "^2.3.0",
@@ -60,8 +62,7 @@
     "winston-slack-hook": "^0.1.0",
     "xml2js": "^0.4.17",
     "xmldom": "^0.1.22",
-    "xpath": "^0.0.23",
-    "snyk": "^1.61.1"
+    "xpath": "^0.0.23"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
