@@ -4,6 +4,8 @@
 
 # VMEXT: A Visualization Tool for  Mathematical Expression Trees
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ag-gipp/vmext.svg)](https://greenkeeper.io/)
+
 Mathematical expressions can be understood and represented as a tree consisting of functions (non-leaf nodes) and their arguments (child nodes of function nodes). Such expression trees are an important concept to store and process mathematical expressions as well as the most frequently used visualization of the structure of mathematical expressions.
 
 Typically, researchers visualize expression trees with the help of general purpose tools that are not optimized for mathematics.
