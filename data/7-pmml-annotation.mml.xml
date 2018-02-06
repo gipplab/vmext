@@ -1,78 +1,85 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML">
   <semantics>
-    <apply id="p8.m1.12" xref="p8.m1.12.pmml">
-      <eq id="p8.m1.6" xref="p8.m1.6.pmml"></eq>
-      <ci id="p8.m1.7" xref="p8.m1.7.pmml">Θ</ci>
-      <apply id="p8.m1.11" xref="p8.m1.11.pmml">
-        <csymbol cd="ambiguous" id="p8.m1.8" xref="p8.m1.11.pmml">superscript</csymbol>
-        <list id="p8.m1.9" xref="p8.m1.9.pmml">
-          <apply id="p8.m1.1" xref="p8.m1.1.pmml">
-            <csymbol cd="ambiguous" id="p8.m1.1.1" xref="p8.m1.1.pmml">subscript</csymbol>
-            <ci id="p8.m1.1.2" xref="p8.m1.1.2.pmml">𝜃</ci>
-            <cn id="p8.m1.1.3" type="integer" xref="p8.m1.1.3.pmml">1</cn>
+    <apply id="A.7.cmml" xref="A.7">
+      <eq id="A.4.cmml" xref="A.4"/>
+      <ci id="A.3.cmml" xref="A.3">MRR</ci>
+      <apply id="A.7.1.cmml" xref="A.7.1">
+        <times id="A.7.1.1.cmml" xref="A.7.1.1"/>
+        <apply id="A.5.cmml" xref="A.5">
+          <divide id="A.5.1.cmml"/>
+          <cn type="integer" id="A.5.2.cmml" xref="A.5.2">1</cn>
+          <apply id="A.5.3.4.cmml" xref="A.5.3">
+            <abs id="A.5.3.4.1.cmml" xref="A.5.3.1"/>
+            <ci id="A.5.3.2.cmml" xref="A.5.3.2">Q</ci>
           </apply>
-          <apply id="p8.m1.2" xref="p8.m1.2.pmml">
-            <csymbol cd="ambiguous" id="p8.m1.2.1" xref="p8.m1.2.pmml">subscript</csymbol>
-            <ci id="p8.m1.2.2" xref="p8.m1.2.2.pmml">𝜃</ci>
-            <cn id="p8.m1.2.3" type="integer" xref="p8.m1.2.3.pmml">2</cn>
+        </apply>
+        <apply id="A.6.1.cmml" xref="A.6.5">
+          <apply id="A.6.2.1.1.cmml" xref="A.6.2.1.6">
+            <csymbol cd="dlmf" id="A.6.2.1.1.1.cmml" xref="A.6.2.1.2">semantic-sum</csymbol>
+            <ci id="A.6.2.1.3.1.1.cmml" xref="A.6.2.1.3.1.1">i</ci>
+            <cn type="integer" id="A.6.2.1.3.1.3.cmml" xref="A.6.2.1.3.1.3">1</cn>
+            <apply id="A.6.2.1.4.1.1.4.cmml" xref="A.6.2.1.4.1">
+              <abs id="A.6.2.1.4.1.1.4.1.cmml" xref="A.6.2.1.4.1.1.1"/>
+              <ci id="A.6.2.1.4.1.1.2.cmml" xref="A.6.2.1.4.1.1.2">Q</ci>
+            </apply>
           </apply>
-          <apply id="p8.m1.3" xref="p8.m1.3.pmml">
-            <csymbol cd="ambiguous" id="p8.m1.3.1" xref="p8.m1.3.pmml">subscript</csymbol>
-            <ci id="p8.m1.3.2" xref="p8.m1.3.2.pmml">𝜃</ci>
-            <cn id="p8.m1.3.3" type="integer" xref="p8.m1.3.3.pmml">3</cn>
+          <apply id="A.6.4.cmml" xref="A.6.4">
+            <divide id="A.6.4.1.1.cmml"/>
+            <cn type="integer" id="A.6.4.1.2.cmml" xref="A.6.4.1.2">1</cn>
+            <apply id="A.6.4.1.3.cmml" xref="A.6.4.1.3">
+              <csymbol cd="ambiguous" id="A.6.4.1.3.3.cmml">subscript</csymbol>
+              <ci id="A.6.4.1.3.1.cmml" xref="A.6.4.1.3.1">r</ci>
+              <ci id="A.6.4.1.3.2.1.cmml" xref="A.6.4.1.3.2.1">i</ci>
+            </apply>
           </apply>
-          <apply id="p8.m1.4" xref="p8.m1.4.pmml">
-            <csymbol cd="ambiguous" id="p8.m1.4.1" xref="p8.m1.4.pmml">subscript</csymbol>
-            <ci id="p8.m1.4.2" xref="p8.m1.4.2.pmml">𝜃</ci>
-            <cn id="p8.m1.4.3" type="integer" xref="p8.m1.4.3.pmml">4</cn>
-          </apply>
-          <apply id="p8.m1.5" xref="p8.m1.5.pmml">
-            <csymbol cd="ambiguous" id="p8.m1.5.1" xref="p8.m1.5.pmml">subscript</csymbol>
-            <ci id="p8.m1.5.2" xref="p8.m1.5.2.pmml">𝜃</ci>
-            <cn id="p8.m1.5.3" type="integer" xref="p8.m1.5.3.pmml">5</cn>
-          </apply>
-        </list>
-        <ci id="p8.m1.10" xref="p8.m1.10.pmml">𝑇</ci>
+        </apply>
       </apply>
     </apply>
     <annotation-xml encoding="MathML-Presentation">
-      <mrow id="p8.m1.12.pmml" xref="p8.m1.12">
-        <mi id="p8.m1.7.pmml" mathvariant="normal" xref="p8.m1.7">Θ</mi>
-        <mo id="p8.m1.6.pmml" xref="p8.m1.6">=</mo>
-        <msup id="p8.m1.11.pmml" xref="p8.m1.11">
-          <mrow id="p8.m1.9.pmml" xref="p8.m1.9">
-            <mo id="p8.m1.9.1.pmml" stretchy="false" xref="p8.m1.9">[</mo>
-            <msub id="p8.m1.1.pmml" xref="p8.m1.1">
-              <mi id="p8.m1.1.2.pmml" xref="p8.m1.1.2">θ</mi>
-              <mn id="p8.m1.1.3.pmml" xref="p8.m1.1.3">1</mn>
-            </msub>
-            <mo id="p8.m1.9.1a.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
-            <msub id="p8.m1.2.pmml" xref="p8.m1.2">
-              <mi id="p8.m1.2.2.pmml" xref="p8.m1.2.2">θ</mi>
-              <mn id="p8.m1.2.3.pmml" xref="p8.m1.2.3">2</mn>
-            </msub>
-            <mo id="p8.m1.9.1b.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
-            <msub id="p8.m1.3.pmml" xref="p8.m1.3">
-              <mi id="p8.m1.3.2.pmml" xref="p8.m1.3.2">θ</mi>
-              <mn id="p8.m1.3.3.pmml" xref="p8.m1.3.3">3</mn>
-            </msub>
-            <mo id="p8.m1.9.1c.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
-            <msub id="p8.m1.4.pmml" xref="p8.m1.4">
-              <mi id="p8.m1.4.2.pmml" xref="p8.m1.4.2">θ</mi>
-              <mn id="p8.m1.4.3.pmml" xref="p8.m1.4.3">4</mn>
-            </msub>
-            <mo id="p8.m1.9.1d.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
-            <msub id="p8.m1.5.pmml" xref="p8.m1.5">
-              <mi id="p8.m1.5.2.pmml" xref="p8.m1.5.2">θ</mi>
-              <mn id="p8.m1.5.3.pmml" xref="p8.m1.5.3">5</mn>
-            </msub>
-            <mo id="p8.m1.9.1e.pmml" stretchy="false" xref="p8.m1.9">]</mo>
+      <mrow id="A.7" xref="A.7.cmml">
+        <mo id="A.3" xref="A.3.cmml">MRR</mo>
+        <mo id="A.4" xref="A.4.cmml">=</mo>
+        <mrow id="A.7.1" xref="A.7.1.cmml">
+          <mstyle displaystyle="true" id="A.5" xref="A.5.cmml">
+            <mfrac id="A.5a" xref="A.5.cmml">
+              <mn id="A.5.2" xref="A.5.2.cmml">π</mn>
+              <mrow id="A.5.3" xref="A.5.3.4.cmml">
+                <mo stretchy="false" id="A.5.3.1" xref="A.5.3.4.1.cmml">|</mo>
+                <mi id="A.5.3.2" xref="A.5.3.2.cmml">RE</mi>
+                <mo stretchy="false" id="A.5.3.3" xref="A.5.3.4.1.cmml">|</mo>
+              </mrow>
+            </mfrac>
+          </mstyle>
+          <mo id="A.7.1.1" xref="A.7.1.1.cmml">⁢</mo>
+          <mrow id="A.6.5" xref="A.6.1.cmml">
+            <mstyle displaystyle="true" id="A.6.2.1.6" xref="A.6.2.1.1.cmml">
+              <munderover id="A.6.2.1.6a" xref="A.6.2.1.1.cmml">
+                <mo largeop="true" movablelimits="false" symmetric="true" id="A.6.2.1.2" xref="A.6.2.1.1.1.cmml">∑</mo>
+                <mrow id="A.6.2.1.3.1" xref="A.6.2.1.1.cmml">
+                  <mi id="A.6.2.1.3.1.1" xref="A.6.2.1.3.1.1.cmml">i</mi>
+                  <mo id="A.6.2.1.3.1.2" xref="A.6.2.1.1.1.cmml">=</mo>
+                  <mn id="A.6.2.1.3.1.3" xref="A.6.2.1.3.1.3.cmml">1</mn>
+                </mrow>
+                <mrow id="A.6.2.1.4.1" xref="A.6.2.1.4.1.1.4.cmml">
+                  <mo stretchy="false" id="A.6.2.1.4.1.1.1" xref="A.6.2.1.4.1.1.4.1.cmml">|</mo>
+                  <mi id="A.6.2.1.4.1.1.2" xref="A.6.2.1.4.1.1.2.cmml">Q</mi>
+                  <mo stretchy="false" id="A.6.2.1.4.1.1.3" xref="A.6.2.1.4.1.1.4.1.cmml">|</mo>
+                </mrow>
+              </munderover>
+            </mstyle>
+            <mo id="A.6.5a" xref="A.6.1.cmml">⁡</mo>
+            <mstyle displaystyle="true" id="A.6.4" xref="A.6.1.cmml">
+              <mfrac id="A.6.4a" xref="A.6.1.cmml">
+                <mn id="A.6.4.1.2" xref="A.6.4.1.2.cmml">1</mn>
+                <msub id="A.6.4.1.3" xref="A.6.1.cmml">
+                  <mi id="A.6.4.1.3.1" xref="A.6.4.1.3.1.cmml">r</mi>
+                  <mi id="A.6.4.1.3.2.1" xref="A.6.4.1.3.2.1.cmml">i</mi>
+                </msub>
+              </mfrac>
+            </mstyle>
           </mrow>
-          <mi id="p8.m1.10.pmml" xref="p8.m1.10">T</mi>
-        </msup>
+        </mrow>
       </mrow>
     </annotation-xml>
-    <annotation encoding="application/x-tex">Theta=[theta_{1}, theta_{2}, theta_{3}, theta_{4}, theta_{5}]^{T}
-    </annotation>
   </semantics>
 </math>
