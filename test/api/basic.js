@@ -43,6 +43,14 @@ describe('api test', () => {
         .expect(200, done);
     });
   });
+  singleEndpoints.forEach((t) => {
+    it('handle presentation annotation requests ' + t, function testSlash (done) {
+      request(server)
+        .post(`/api/v1/math/${t}`)
+        .field('mathml', app.locals.mml[7])
+        .expect(200, done);
+    });
+  });
   mergedEndpoints.forEach((t) => {
     it('handle mathml requests ' + t, function testSlash (done) {
       request(server)

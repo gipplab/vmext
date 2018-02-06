@@ -1,0 +1,78 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <semantics>
+    <apply id="p8.m1.12" xref="p8.m1.12.pmml">
+      <eq id="p8.m1.6" xref="p8.m1.6.pmml"></eq>
+      <ci id="p8.m1.7" xref="p8.m1.7.pmml">Θ</ci>
+      <apply id="p8.m1.11" xref="p8.m1.11.pmml">
+        <csymbol cd="ambiguous" id="p8.m1.8" xref="p8.m1.11.pmml">superscript</csymbol>
+        <list id="p8.m1.9" xref="p8.m1.9.pmml">
+          <apply id="p8.m1.1" xref="p8.m1.1.pmml">
+            <csymbol cd="ambiguous" id="p8.m1.1.1" xref="p8.m1.1.pmml">subscript</csymbol>
+            <ci id="p8.m1.1.2" xref="p8.m1.1.2.pmml">𝜃</ci>
+            <cn id="p8.m1.1.3" type="integer" xref="p8.m1.1.3.pmml">1</cn>
+          </apply>
+          <apply id="p8.m1.2" xref="p8.m1.2.pmml">
+            <csymbol cd="ambiguous" id="p8.m1.2.1" xref="p8.m1.2.pmml">subscript</csymbol>
+            <ci id="p8.m1.2.2" xref="p8.m1.2.2.pmml">𝜃</ci>
+            <cn id="p8.m1.2.3" type="integer" xref="p8.m1.2.3.pmml">2</cn>
+          </apply>
+          <apply id="p8.m1.3" xref="p8.m1.3.pmml">
+            <csymbol cd="ambiguous" id="p8.m1.3.1" xref="p8.m1.3.pmml">subscript</csymbol>
+            <ci id="p8.m1.3.2" xref="p8.m1.3.2.pmml">𝜃</ci>
+            <cn id="p8.m1.3.3" type="integer" xref="p8.m1.3.3.pmml">3</cn>
+          </apply>
+          <apply id="p8.m1.4" xref="p8.m1.4.pmml">
+            <csymbol cd="ambiguous" id="p8.m1.4.1" xref="p8.m1.4.pmml">subscript</csymbol>
+            <ci id="p8.m1.4.2" xref="p8.m1.4.2.pmml">𝜃</ci>
+            <cn id="p8.m1.4.3" type="integer" xref="p8.m1.4.3.pmml">4</cn>
+          </apply>
+          <apply id="p8.m1.5" xref="p8.m1.5.pmml">
+            <csymbol cd="ambiguous" id="p8.m1.5.1" xref="p8.m1.5.pmml">subscript</csymbol>
+            <ci id="p8.m1.5.2" xref="p8.m1.5.2.pmml">𝜃</ci>
+            <cn id="p8.m1.5.3" type="integer" xref="p8.m1.5.3.pmml">5</cn>
+          </apply>
+        </list>
+        <ci id="p8.m1.10" xref="p8.m1.10.pmml">𝑇</ci>
+      </apply>
+    </apply>
+    <annotation-xml encoding="MathML-Presentation">
+      <mrow id="p8.m1.12.pmml" xref="p8.m1.12">
+        <mi id="p8.m1.7.pmml" mathvariant="normal" xref="p8.m1.7">Θ</mi>
+        <mo id="p8.m1.6.pmml" xref="p8.m1.6">=</mo>
+        <msup id="p8.m1.11.pmml" xref="p8.m1.11">
+          <mrow id="p8.m1.9.pmml" xref="p8.m1.9">
+            <mo id="p8.m1.9.1.pmml" stretchy="false" xref="p8.m1.9">[</mo>
+            <msub id="p8.m1.1.pmml" xref="p8.m1.1">
+              <mi id="p8.m1.1.2.pmml" xref="p8.m1.1.2">θ</mi>
+              <mn id="p8.m1.1.3.pmml" xref="p8.m1.1.3">1</mn>
+            </msub>
+            <mo id="p8.m1.9.1a.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
+            <msub id="p8.m1.2.pmml" xref="p8.m1.2">
+              <mi id="p8.m1.2.2.pmml" xref="p8.m1.2.2">θ</mi>
+              <mn id="p8.m1.2.3.pmml" xref="p8.m1.2.3">2</mn>
+            </msub>
+            <mo id="p8.m1.9.1b.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
+            <msub id="p8.m1.3.pmml" xref="p8.m1.3">
+              <mi id="p8.m1.3.2.pmml" xref="p8.m1.3.2">θ</mi>
+              <mn id="p8.m1.3.3.pmml" xref="p8.m1.3.3">3</mn>
+            </msub>
+            <mo id="p8.m1.9.1c.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
+            <msub id="p8.m1.4.pmml" xref="p8.m1.4">
+              <mi id="p8.m1.4.2.pmml" xref="p8.m1.4.2">θ</mi>
+              <mn id="p8.m1.4.3.pmml" xref="p8.m1.4.3">4</mn>
+            </msub>
+            <mo id="p8.m1.9.1d.pmml" rspace="7.5pt" xref="p8.m1.9">,</mo>
+            <msub id="p8.m1.5.pmml" xref="p8.m1.5">
+              <mi id="p8.m1.5.2.pmml" xref="p8.m1.5.2">θ</mi>
+              <mn id="p8.m1.5.3.pmml" xref="p8.m1.5.3">5</mn>
+            </msub>
+            <mo id="p8.m1.9.1e.pmml" stretchy="false" xref="p8.m1.9">]</mo>
+          </mrow>
+          <mi id="p8.m1.10.pmml" xref="p8.m1.10">T</mi>
+        </msup>
+      </mrow>
+    </annotation-xml>
+    <annotation encoding="application/x-tex">Theta=[theta_{1}, theta_{2}, theta_{3}, theta_{4}, theta_{5}]^{T}
+    </annotation>
+  </semantics>
+</math>
