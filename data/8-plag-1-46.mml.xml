@@ -94,9 +94,9 @@
                 <mover accent="true" id="b71" xref="b140">
                   <mover accent="true" id="b72" xref="b142">
                     <mi id="b73" xref="b144">ϕ</mi>
-                    <mo id="b74" xref="b143">¨</mo>
+                    <mo id="b75" stretchy="false" xref="b141">^</mo>
                   </mover>
-                  <mo id="b75" stretchy="false" xref="b141">^</mo>
+                  <mo id="b74" xref="b143">¨</mo>
                 </mover>
                 <mrow id="b76" xref="b145">
                   <msub id="b77" xref="b147">
@@ -183,9 +183,9 @@
                 </apply>
                 <apply id="b139" xref="b70">
                   <apply id="b140" xref="b71">
-                    <ci id="b141" xref="b75">^</ci>
+                    <ci id="b143" xref="b74">¨</ci>
                     <apply id="b142" xref="b72">
-                      <ci id="b143" xref="b74">¨</ci>
+                      <ci id="b141" xref="b75">^</ci>
                       <ci id="b144" xref="b73">italic-ϕ</ci>
                     </apply>
                   </apply>
