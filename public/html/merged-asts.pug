@@ -17,15 +17,15 @@ html
                 label(for='referenceMML') referenceMML
                 .form-group
                   textarea#referenceMML.form-control(rows=5, cols=10, name='mathml')
-                    != mml[3]
+                    != mml[7]
                 label(for='comparisonMML') comparisonMML
                 .form-group
                   textarea#comparisonMML.form-control(rows=5, cols=10, name='mathml')
-                    != mml[4]
+                    != mml[8]
                 label(for='similarities') similarities
                 .form-group
                   textarea#similarities.form-control(rows=5, cols=10, name='mathml')
-                    != sim[0]
+                    != sim[1]
                 input.btn.btn-success(type='submit', value='Render')
                 </br>
                 </br>
