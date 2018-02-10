@@ -63,5 +63,14 @@
         "type": "identical"
       }
     ]
+  },
+  {
+    "id": "a146",
+    "matches": [
+      {
+        "id": "b150",
+        "type": "identical"
+      }
+    ]
   }
 ]
