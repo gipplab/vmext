@@ -1,4 +1,6 @@
-<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" alttext="\displaystyle\overline{F}_{v}(i)=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{N_{U}(i),N_{C}(k),N_{U}(j)}\hat{\ddot{\phi}}_{N_{C}(k)}|" class="ltx_Math" display="inline" id="p1.1.m1.1">
+<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"
+      alttext="\displaystyle\overline{F}_{v}(i)=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{N_{U}(i),N_{C}(k),N_{U}(j)}\hat{\ddot{\phi}}_{N_{C}(k)}|"
+      class="ltx_Math" display="inline" id="p1.1.m1.1">
   <semantics id="b1">
     <mrow id="b2" xref="b87">
       <mrow id="b3" xref="b89">
@@ -156,7 +158,7 @@
                 </apply>
               </apply>
               <apply id="b116" xref="b36">
-                <times />
+                <times/>
                 <apply id="b118" xref="b37">
                   <ci id="b119" xref="b38">𝑐</ci>
                   <apply id="b121" xref="b40">
@@ -182,19 +184,21 @@
                   </apply>
                 </apply>
                 <apply id="b139" xref="b70">
-                  <apply id="b140" xref="b71">
-                    <ci id="b143" xref="b74">¨</ci>
+                  <partialdiff id="b140" xref="b71"/>
+                  <cn id="b143" xref="b74">2</cn>
+                  <!--<ci id="b143" >¨</ci>-->
+                  <apply id="b145" xref="b76">
                     <apply id="b142" xref="b72">
                       <ci id="b141" xref="b75">^</ci>
                       <ci id="b144" xref="b73">italic-ϕ</ci>
                     </apply>
-                  </apply>
-                  <apply id="b145" xref="b76">
-                    <apply id="b147" xref="b77">
-                      <ci id="b148" xref="b78">𝑁</ci>
-                      <ci id="b149" xref="b79">𝐶</ci>
+                    <apply id="corr" xref="b77">
+                      <apply id="b147" xref="b77">
+                        <ci id="b148" xref="b78">𝑁</ci>
+                        <ci id="b149" xref="b79">𝐶</ci>
+                      </apply>
+                      <ci id="b150" xref="b83">𝑘</ci>
                     </apply>
-                    <ci id="b150" xref="b83">𝑘</ci>
                   </apply>
                 </apply>
               </apply>
@@ -203,6 +207,8 @@
         </apply>
       </apply>
     </annotation-xml>
-    <annotation encoding="application/x-tex" id="b151">\displaystyle\overline{F}_{v}(i)=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{N_{U}(i),N_{C}(k),N_{U}(j)}\hat{\ddot{\phi}}_{N_{C}(k)}|</annotation>
+    <annotation encoding="application/x-tex" id="b151">\displaystyle\overline{F}_{v}(i)=\sum_{i\neq
+      j}|\sum_{k=1}^{N_{C}}c_{N_{U}(i),N_{C}(k),N_{U}(j)}\hat{\ddot{\phi}}_{N_{C}(k)}|
+    </annotation>
   </semantics>
 </math>
