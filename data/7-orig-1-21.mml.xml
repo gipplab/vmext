@@ -1,4 +1,6 @@
-<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\displaystyle\overline{F}_{v,i}=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{\mathsf{I}_{U}(i),\mathsf{I}_{C}(k),\mathsf{I}_{U}(j)}\hat{\phi}_{\mathsf{I}_{C}(k)}^{(1)}|" class="ltx_Math" display="inline" id="p1.1.m1.1">
+<math xmlns="http://www.w3.org/1998/Math/MathML"
+      alttext="\displaystyle\overline{F}_{v,i}=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{\mathsf{I}_{U}(i),\mathsf{I}_{C}(k),\mathsf{I}_{U}(j)}\hat{\phi}_{\mathsf{I}_{C}(k)}^{(1)}|"
+      class="ltx_Math" display="inline" id="p1.1.m1.1">
   <semantics id="a0">
     <mrow id="a1" xref="a86">
       <msub id="a2" xref="a88">
@@ -124,10 +126,8 @@
             <ci id="a90" xref="a5">¯</ci>
             <ci id="a91" xref="a4">𝐹</ci>
           </apply>
-          <list id="a92" xref="a6">
-            <ci id="a93" xref="a7">𝑣</ci>
-            <ci id="a94" xref="a9">𝑖</ci>
-          </list>
+          <ci id="a93" xref="a7">𝑣</ci>
+          <ci id="a94" xref="a9">𝑖</ci>
         </apply>
         <apply id="a95" xref="a11">
           <apply id="a96" xref="a12">
@@ -154,42 +154,37 @@
                 <times id="a113" xref="a66"/>
                 <apply id="a114" xref="a34">
                   <ci id="a115" xref="a35">𝑐</ci>
-                  <list id="a116" xref="a36">
-                    <apply id="a117" xref="a37">
-                      <times id="a118" xref="a41"/>
-                      <apply id="a119" xref="a38">
-                        <ci id="a120" xref="a39">𝖨</ci>
-                        <ci id="a121" xref="a40">𝑈</ci>
-                      </apply>
-                      <ci id="a122" xref="a44">𝑖</ci>
+                  <apply id="a117" xref="a37">
+                    <apply id="a119" xref="a38">
+                      <ci id="a120" xref="a39">𝖨</ci>
+                      <ci id="a121" xref="a40">𝑈</ci>
                     </apply>
-                    <apply id="a123" xref="a47">
-                      <times id="a124" xref="a51"/>
-                      <apply id="a125" xref="a48">
-                        <ci id="a126" xref="a49">𝖨</ci>
-                        <ci id="a127" xref="a50">𝐶</ci>
-                      </apply>
-                      <ci id="a128" xref="a54">𝑘</ci>
+                    <ci id="a122" xref="a44">𝑖</ci>
+                  </apply>
+                  <apply id="a123" xref="a47">
+                    <apply id="a125" xref="a48">
+                      <ci id="a126" xref="a49">𝖨</ci>
+                      <ci id="a127" xref="a50">𝐶</ci>
                     </apply>
-                    <apply id="a129" xref="a57">
-                      <times id="a130" xref="a61"/>
-                      <apply id="a131" xref="a58">
-                        <ci id="a132" xref="a59">𝖨</ci>
-                        <ci id="a133" xref="a60">𝑈</ci>
-                      </apply>
-                      <ci id="a134" xref="a64">𝑗</ci>
+                    <ci id="a128" xref="a54">𝑘</ci>
+                  </apply>
+                  <apply id="a129" xref="a57">
+                    <apply id="a131" xref="a58">
+                      <ci id="a132" xref="a59">𝖨</ci>
+                      <ci id="a133" xref="a60">𝑈</ci>
                     </apply>
-                  </list>
+                    <ci id="a134" xref="a64">𝑗</ci>
+                  </apply>
                 </apply>
                 <apply id="a135" xref="a67">
-                  <power id="a136" xref="a67"/>
+                  <partialdiff/>
+                  <cn id="a147" type="integer" xref="a82">1</cn>
                   <apply id="a137" xref="a67">
                     <apply id="a138" xref="a68">
                       <ci id="a139" xref="a70">^</ci>
                       <ci id="a140" xref="a69">italic-ϕ</ci>
                     </apply>
                     <apply id="a141" xref="a71">
-                      <times id="a142" xref="a75"/>
                       <apply id="a143" xref="a72">
                         <ci id="a144" xref="a73">𝖨</ci>
                         <ci id="a145" xref="a74">𝐶</ci>
@@ -197,7 +192,6 @@
                       <ci id="a146" xref="a78">𝑘</ci>
                     </apply>
                   </apply>
-                  <cn id="a147" type="integer" xref="a82">1</cn>
                 </apply>
               </apply>
             </apply>
@@ -205,6 +199,8 @@
         </apply>
       </apply>
     </annotation-xml>
-    <annotation encoding="application/x-tex" id="a148">\displaystyle\overline{F}_{v,i}=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{\mathsf{I}_{U}(i),\mathsf{I}_{C}(k),\mathsf{I}_{U}(j)}\hat{\phi}_{\mathsf{I}_{C}(k)}^{(1)}|</annotation>
+    <annotation encoding="application/x-tex" id="a148">\displaystyle\overline{F}_{v,i}=\sum_{i\neq
+      j}|\sum_{k=1}^{N_{C}}c_{\mathsf{I}_{U}(i),\mathsf{I}_{C}(k),\mathsf{I}_{U}(j)}\hat{\phi}_{\mathsf{I}_{C}(k)}^{(1)}|
+    </annotation>
   </semantics>
 </math>
