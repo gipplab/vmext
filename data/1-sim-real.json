@@ -1,0 +1,67 @@
+[
+  {
+    "id": "a88",
+    "matches": [
+      {
+        "id": "b89",
+        "assessment": 1.0,
+        "type": "similar"
+      }
+    ]
+  },
+  {
+    "id": "a110",
+    "matches": [
+      {
+        "id": "b114",
+        "assessment": 1.0,
+        "type": "similar"
+      }
+    ]
+  },
+  {
+    "id": "a107",
+    "matches": [
+      {
+        "id": "b111",
+        "type": "identical"
+      }
+    ]
+  },
+  {
+    "id": "a108",
+    "matches": [
+      {
+        "id": "b112",
+        "type": "identical"
+      }
+    ]
+  },
+  {
+    "id": "a122",
+    "matches": [
+      {
+        "id": "b126",
+        "type": "identical"
+      }
+    ]
+  },
+  {
+    "id": "a128",
+    "matches": [
+      {
+        "id": "b132",
+        "type": "identical"
+      }
+    ]
+  },
+  {
+    "id": "a134",
+    "matches": [
+      {
+        "id": "b138",
+        "type": "identical"
+      }
+    ]
+  }
+]
