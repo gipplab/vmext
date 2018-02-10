@@ -75,7 +75,7 @@
     "eslint-plugin-jsdoc": "^3.0.0",
     "eslint-plugin-json": "^1.2.0",
     "istanbul": "^0.4.5",
-    "mathoid": "git+https://git@github.com/physikerwelt/mathoid-server.git",
+    "mathoid": "^0.7.1",
     "mocha": "^4.0.1",
     "mocha-eslint": "^4.1.0",
     "mocha-lcov-reporter": "^1.3.0",
