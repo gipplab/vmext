@@ -21,3 +21,4 @@ logs
 log/
 
 coverage/
+cyto.js
