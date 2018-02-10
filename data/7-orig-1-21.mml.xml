@@ -141,15 +141,12 @@
           <apply id="a102" xref="a19">
             <abs id="a103" xref="a20"/>
             <apply id="a104" xref="a21">
-              <apply id="a105" xref="a22">
-                <csymbol cd="dlmf" id="a106" xref="a24">semantic-sum</csymbol>
-                <ci id="a107" xref="a26">𝑘</ci>
-                <cn id="a108" type="integer" xref="a28">1</cn>
-                <apply id="a109" xref="a29">
-                  <ci id="a110" xref="a30">𝑁</ci>
-                  <ci id="a111" xref="a31">𝐶</ci>
-                </apply>
-              </apply>
+              <!--<apply id="a105" xref="a22">-->
+              <csymbol cd="dlmf" id="a106" xref="a24">semantic-sum</csymbol>
+              <ci id="a107" xref="a26">𝑘</ci>
+              <cn id="a108" type="integer" xref="a28">1</cn>
+              <ci id="a110" xref="a29">Nc</ci>
+              <!--</apply>-->
               <apply id="a112" xref="a33">
                 <times id="a113" xref="a66"/>
                 <apply id="a114" xref="a34">
@@ -178,7 +175,7 @@
                 </apply>
                 <apply id="a135" xref="a67">
                   <partialdiff/>
-                  <cn id="a147" type="integer" xref="a82">1</cn>
+                  <cn id="a147" type="integer" xref="a80">1</cn>
                   <apply id="a137" xref="a67">
                     <apply id="a138" xref="a68">
                       <ci id="a139" xref="a70">^</ci>

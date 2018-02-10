@@ -142,21 +142,10 @@
           <apply id="b102" xref="b23">
             <abs id="b103" xref="b24"/>
             <apply id="b104" xref="b25">
-              <apply id="b105" xref="b26">
-                <power id="b106" xref="b26"/>
-                <apply id="b107" xref="b26">
-                  <sum id="b108" xref="b28"/>
-                  <apply id="b109" xref="b29">
-                    <eq id="b110" xref="b31"/>
-                    <ci id="b111" xref="b30">𝑘</ci>
-                    <cn id="b112" type="integer" xref="b32">1</cn>
-                  </apply>
-                </apply>
-                <apply id="b113" xref="b33">
-                  <ci id="b114" xref="b34">𝑁</ci>
-                  <ci id="b115" xref="b35">𝐶</ci>
-                </apply>
-              </apply>
+              <sum id="b108" xref="b28"/>
+              <ci id="b111" xref="b30">𝑘</ci>
+              <cn id="b112" type="integer" xref="b32">1</cn>
+              <ci id="b114" xref="b33">Nc</ci>
               <apply id="b116" xref="b36">
                 <times/>
                 <apply id="b118" xref="b37">
