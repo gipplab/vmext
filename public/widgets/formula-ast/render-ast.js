@@ -212,6 +212,7 @@ function registerEventListeners(cytoscapedAST) {
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     const cd = node.data().cd;
+    const cs = node.data().cs;
     if (cd) {
       const symbol = node.data().symbol;
       node.qtip({
@@ -238,6 +239,16 @@ function registerEventListeners(cytoscapedAST) {
         }
       });
       node.qtip('api').show();
+    } else if (cs) {
+      node.qtip({
+        content: {
+          text: cs
+        },
+        show: {
+          event: 'click mouseenter'
+        }
+      });
+      node.qtip('api').show();
     }
     sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
     highlightNodeAndFormula({
@@ -251,8 +262,8 @@ function registerEventListeners(cytoscapedAST) {
   formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
     const node = event.cyTarget;
     currentMouseOverCytoNode = node;
-    const cd = node.data().cd;
-    if (cd) {
+    const data = node.data();
+    if (data.cd || data.cs) {
       const qtip = node.qtip('api');
       qtip.hide();
     }
