@@ -22,7 +22,7 @@
           <apply id="e18" xref="e8">
             <power xref="e8"/>
             <csymbol cd="wikidata" id="e19" xref="e9">Q2111</csymbol>
-            <cn type="integer" id="e20" xref="e10">2</cn>
+            <cs id="e20" xref="e10">the integer number two</cs>
           </apply>
         </apply>
       </apply>
