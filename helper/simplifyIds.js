@@ -1,11 +1,11 @@
 const fs = require('fs');
 const XT = require('xtraverse');
 const xmlDom = require('xmldom');
-const file = '../data/8-plag-1-46.mml.xml';
+const file = '../data/5-einstein.mml.xml';
 const xmlString = fs.readFileSync(file, 'utf8');
 const xml = XT(xmlString);
 const ids = {};
-const prefix = "b";
+const prefix = "e";
 let counter = 1;
 
 function renameIds(n) {
@@ -24,7 +24,7 @@ function renameIds(n) {
 function replaceReferences(n) {
   for (let child = n.children().first(); child.length > 0; child = child.next()) {
     const xref = child.attr('xref');
-    if (xref){
+    if (xref) {
       child[0].setAttribute('xref', ids[xref]);
     }
     replaceReferences(child);
