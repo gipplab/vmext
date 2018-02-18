@@ -739,9 +739,24 @@ cheerio:
     lodash.reject "^4.4.0"
     lodash.some "^4.4.0"
 
-chokidar@^1.4.3, chokidar@^1.6.1:
+chokidar@^1.4.3:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
+  dependencies:
+    anymatch "^1.3.0"
+    async-each "^1.0.0"
+    glob-parent "^2.0.0"
+    inherits "^2.0.1"
+    is-binary-path "^1.0.0"
+    is-glob "^2.0.0"
+    path-is-absolute "^1.0.0"
+    readdirp "^2.0.0"
+  optionalDependencies:
+    fsevents "^1.0.0"
+
+chokidar@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
   dependencies:
     anymatch "^1.3.0"
     async-each "^1.0.0"
@@ -1456,7 +1471,7 @@ debug@2.6.9, debug@^2.1.2, debug@^2.4.1:
   dependencies:
     ms "2.0.0"
 
-debug@3.1.0, debug@^3.0.1, debug@^3.1.0:
+debug@3.1.0, debug@^3.0.0, debug@^3.0.1, debug@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
@@ -2306,6 +2321,10 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
+format-util@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/format-util/-/format-util-1.0.3.tgz#032dca4a116262a12c43f4c3ec8566416c5b2d95"
+
 formidable@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.1.1.tgz#96b8886f7c3c3508b932d6bd70c4d3a88f35f1a9"
@@ -3144,7 +3163,7 @@ js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@3.x, js-yaml@^3.10.0, js-yaml@^3.6.1, js-yaml@^3.8.3, js-yaml@^3.9.1:
+js-yaml@3.x, js-yaml@^3.10.0, js-yaml@^3.6.1, js-yaml@^3.8.3, js-yaml@^3.8.4, js-yaml@^3.9.1:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.10.0.tgz#2e78441646bd4682e963f22b6e92823c309c62dc"
   dependencies:
@@ -3423,9 +3442,9 @@ librsvg@^0.7.0:
     bindings "~1.2.0"
     nan "^2.4.0"
 
-libxmljs@^0.18.4:
-  version "0.18.4"
-  resolved "https://registry.yarnpkg.com/libxmljs/-/libxmljs-0.18.4.tgz#253028925900e9f8d454418034a25b8af4e1507f"
+libxmljs@^0.18.7:
+  version "0.18.7"
+  resolved "https://registry.yarnpkg.com/libxmljs/-/libxmljs-0.18.7.tgz#3673eb17c74cbaffdef9f33cb83ddd82a25055b7"
   dependencies:
     bindings "1.2.1"
     nan "~2.5.0"
@@ -4230,6 +4249,12 @@ onetime@^2.0.0:
 ono@^2.0.1:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/ono/-/ono-2.2.4.tgz#f6c1d9ea64da07a54863986535da3de67e502696"
+
+ono@^4.0.2:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/ono/-/ono-4.0.3.tgz#b36050f71b02841bfb59f368deab8b07375e2219"
+  dependencies:
+    format-util "^1.0.3"
 
 open@^0.0.5:
   version "0.0.5"
@@ -5779,31 +5804,31 @@ svgo@^0.7.1:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
-swagger-jsdoc@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/swagger-jsdoc/-/swagger-jsdoc-1.9.2.tgz#b62116057dc1ff52304aa5c8bcb7738b17e8daa9"
+swagger-jsdoc@^1.9.7:
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/swagger-jsdoc/-/swagger-jsdoc-1.9.7.tgz#7a761d4d7ef4a54bf457cea5c67ec316bb82f8b9"
   dependencies:
-    chokidar "^1.6.1"
-    commander "^2.9.0"
+    chokidar "^1.7.0"
+    commander "^2.11.0"
     doctrine "^2.0.0"
-    glob "^7.0.3"
-    js-yaml "^3.5.3"
+    glob "^7.1.2"
+    js-yaml "^3.8.4"
     recursive-iterator "^2.0.3"
-    swagger-parser "^3.4.0"
+    swagger-parser "^3.4.1"
 
 swagger-methods@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/swagger-methods/-/swagger-methods-1.0.0.tgz#b39c77957d305a6535c0a1e015081185b99d61fc"
 
-swagger-parser@^3.4.0:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/swagger-parser/-/swagger-parser-3.4.1.tgz#0290529dbae254d178b442a95df60d23d142301d"
+swagger-parser@^3.4.1:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/swagger-parser/-/swagger-parser-3.4.2.tgz#244d67d6eeed08c00acb5d95950d5aefbd6185a3"
   dependencies:
     call-me-maybe "^1.0.1"
-    debug "^2.2.0"
-    es6-promise "^3.0.2"
+    debug "^3.0.0"
+    es6-promise "^4.1.1"
     json-schema-ref-parser "^1.4.1"
-    ono "^2.0.1"
+    ono "^4.0.2"
     swagger-methods "^1.0.0"
     swagger-schema-official "2.0.0-bab6bed"
     z-schema "^3.16.1"
@@ -5822,9 +5847,9 @@ swagger-schema-official@2.0.0-bab6bed:
   version "2.0.0-bab6bed"
   resolved "https://registry.yarnpkg.com/swagger-schema-official/-/swagger-schema-official-2.0.0-bab6bed.tgz#70070468d6d2977ca5237b2e519ca7d06a2ea3fd"
 
-"swagger-ui@git+https://github.com/wikimedia/swagger-ui.git#master":
+"swagger-ui@git+https://github.com/wikimedia/swagger-ui#master":
   version "2.2.8"
-  resolved "git+https://github.com/wikimedia/swagger-ui.git#b9b40dc8e00caeb24c19fe636b93250a7e335541"
+  resolved "git+https://github.com/wikimedia/swagger-ui#b9b40dc8e00caeb24c19fe636b93250a7e335541"
 
 "symbol-tree@>= 3.1.0 < 4.0.0":
   version "3.1.4"
@@ -6382,6 +6407,10 @@ xmldom-sre@>=0.1.31:
   version "0.1.31"
   resolved "https://registry.yarnpkg.com/xmldom-sre/-/xmldom-sre-0.1.31.tgz#10860d5bab2c603144597d04bf2c4980e98067f4"
 
+xmldom@0.1.x:
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
+
 xmlhttprequest@1, "xmlhttprequest@>= 1.6.0 < 2.0.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
@@ -6393,6 +6422,12 @@ xpath:
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
+
+xtraverse@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/xtraverse/-/xtraverse-0.1.0.tgz#b741bad018ef78d8a9d2e83ade007b3f7959c732"
+  dependencies:
+    xmldom "0.1.x"
 
 y18n@^3.2.1:
   version "3.2.1"
