@@ -5,8 +5,8 @@ require('app-module-path/register');
 
 const express = require('express');
 const app = module.exports = express();
-const config = require('./config/config');
-const swaggerJSDoc = require('swagger-jsdoc');
+// const config = require('./config/config');
+// const swaggerJSDoc = require('swagger-jsdoc');
 const compression = require('compression');
 const favicon = require('serve-favicon');
 const log = require('./lib/logger');
@@ -14,21 +14,21 @@ const readGlob = require('read-glob-promise');
 
 
 // swagger definition
-const swaggerDefinition = {
-  info: {
-    title: 'API Documentation',
-    version: '1.0.0',
-    description: 'Docs for formula-AST rendering API',
-  },
-  host: config.host,
-  basePath: '/',
-};
+// const swaggerDefinition = {
+//   info: {
+//     title: 'API Documentation',
+//     version: '1.0.0',
+//     description: 'Docs for formula-AST rendering API',
+//   },
+//   host: config.host,
+//   basePath: '/',
+// };
 
 // initialize swagger-jsdoc
-const swaggerSpec = swaggerJSDoc({
-  swaggerDefinition,
-  apis: ['./api/v1/routes/*.js'],
-});
+// const swaggerSpec = swaggerJSDoc({
+//   swaggerDefinition,
+//   apis: ['./api/v1/routes/*.js'],
+// });
 
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -62,10 +62,10 @@ app.use('/api', require('./api/versions'));
 app.use('/api/docs', express.static('./config/apiDoc'));
 
 // serve swagger
-app.get('/swagger.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
-});
+// app.get('/swagger.json', (req, res) => {
+//   res.setHeader('Content-Type', 'application/json');
+//   res.send(swaggerSpec);
+// });
 
 // global errorHandler ============================================
 require('./errorHandler/ErrorHandler')(app);
