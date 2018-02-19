@@ -36,7 +36,7 @@ module.exports = {
       .then((ast) => {
         Promise.all([
           new ASTRenderer.Graph(ast).renderSingleTree(source),
-          MathJaxRenderer.renderMML(req.body.mathml)
+          MathJaxRenderer.renderMML(ast.presentation)
         ])
           .then(([cytoscapedAST, mathjaxSVG]) => {
             res.json({

@@ -12,15 +12,16 @@ describe('api test', () => {
   const singleEndpoints = ['parseAST', 'renderPMML', 'parseCytoscapedAST', 'renderAST'];
   const mergedEndpoints = ['renderMergedAST', 'parseCytoscapedMergedAst'];
   const endpoints = singleEndpoints.concat(mergedEndpoints);
+  const parsingEndpoints = ['parseAST', 'parseCytoscapedAST'];
   endpoints.forEach((t) => {
-    it('handle empty requests ' + t, function testSlash (done) {
+    it('handle empty requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .expect(400, done);
     });
   });
   singleEndpoints.forEach((t) => {
-    it('handle invalid mathml requests ' + t, function testSlash (done) {
+    it('handle invalid mathml requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .field('mathml', '<math>this is not valid</math>')
@@ -28,7 +29,7 @@ describe('api test', () => {
     });
   });
   singleEndpoints.forEach((t) => {
-    it('handle mathml requests ' + t, function testSlash (done) {
+    it('handle mathml requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .field('mathml', app.locals.mml[0])
@@ -36,15 +37,23 @@ describe('api test', () => {
     });
   });
   singleEndpoints.forEach((t) => {
-    it('handle single mathml requests ' + t, function testSlash (done) {
+    it('handle single mathml requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .field('mathml', app.locals.mml[6])
         .expect(200, done);
     });
   });
+  singleEndpoints.forEach((t) => {
+    it('handle presentation annotation requests ' + t, function testSlash(done) {
+      request(server)
+        .post(`/api/v1/math/${t}`)
+        .field('mathml', app.locals.mml[7])
+        .expect(200, done);
+    });
+  });
   mergedEndpoints.forEach((t) => {
-    it('handle mathml requests ' + t, function testSlash (done) {
+    it('handle mathml requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .field('reference_mathml', app.locals.mml[3])
@@ -54,13 +63,21 @@ describe('api test', () => {
     });
   });
   mergedEndpoints.forEach((t) => {
-    it('handle invaldid mathml requests ' + t, function testSlash (done) {
+    it('handle invaldid mathml requests ' + t, function testSlash(done) {
       request(server)
         .post(`/api/v1/math/${t}`)
         .field('reference_mathml', '<math>this is not valid</math>')
         .field('comparison_mathml', app.locals.mml[4])
         .field('similarities', app.locals.sim[0])
         .expect(422, done);
+    });
+  });
+  parsingEndpoints.forEach((t) => {
+    it('parse swapped presentation and content structure ' + t, function testSlash(done) {
+      request(server)
+        .post(`/api/v1/math/${t}`)
+        .field('mathml', app.locals.mml[10])
+        .expect(200, done);
     });
   });
 });
