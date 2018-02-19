@@ -11,7 +11,7 @@ const compression = require('compression');
 const favicon = require('serve-favicon');
 const log = require('./lib/logger');
 const readGlob = require('read-glob-promise');
-const CircularJSON = require('circular-json')ö
+const CircularJSON = require('circular-json');
 
 
 // swagger definition
