@@ -11,6 +11,7 @@ const compression = require('compression');
 const favicon = require('serve-favicon');
 const log = require('./lib/logger');
 const readGlob = require('read-glob-promise');
+const CircularJSON = require('circular-json')ö
 
 
 // swagger definition
@@ -74,6 +75,9 @@ require('./errorHandler/ErrorHandler')(app);
 function start() {
   return app.listen(process.env.PORT || 4001, () => {
     log.info(`server started, listening on port: ${process.env.PORT || 4001}`);
+    process.on('unhandledRejection', (reason) => {
+      log.info('Unhandled promise rejection. Reason:', CircularJSON.stringify(reason));
+    });
   });
 }
 
