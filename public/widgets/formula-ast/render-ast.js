@@ -4,7 +4,42 @@ let formulaAST;
 const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
+let codeMirror;
+let overlay;
+
+/**
+ * from https://gist.github.com/catarak/1c9453ad7e1ca0fb303652e4c02fbac1
+ * from http://codemirror.net/addon/search/search.js
+ * @param query
+ * @param caseInsensitive
+ * @returns {{name: string, token: token}}
+ */
+function searchOverlay(query, caseInsensitive) {
+  if (typeof query === "string") {
+    query = new RegExp(query.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), caseInsensitive ? "gi" : "g");
+  } else if (!query.global) {
+    query = new RegExp(query.source, query.ignoreCase ? "gi" : "g");
+  }
+
+  return {
+    name: "myOv",
+    token(stream) {
+      query.lastIndex = stream.pos;
+      const match = query.exec(stream.string);
+      if (match && match.index === stream.pos) {
+        stream.pos += match[0].length || 1;
+        return "searching";
+      } else if (match) {
+        stream.pos = match.index;
+      } else {
+        stream.skipToEnd();
+      }
+    }
+  };
+}
+
 window.addEventListener('message', paramsReveived, false);
+
 /**
  * EventListener for postMessage-iframe-events (see https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
  * Events can be of two types:
@@ -13,7 +48,10 @@ window.addEventListener('message', paramsReveived, false);
  */
 function paramsReveived(event) {
   const eventData = event.data;
+  codeMirror = event.source.cm;
   if (eventData.isInitialData) {
+
+
     fetchData(eventData)
       .then((result) => {
         initialAST = JSON.parse(JSON.stringify(result.cytoscapedAST));
@@ -224,10 +262,10 @@ function registerEventListeners(cytoscapedAST) {
             })
               .then((content) => {
                 api.set('content.text', content.text);
-                api.set('content.title',content.title);
+                api.set('content.title', content.title);
               }, (xhr, status, error) => {
                 // Upon failure... set the tooltip content to error
-                api.set('content.text', fallback +  `Failed!`);
+                api.set('content.text', fallback + `Failed!`);
               });
 
             return fallback; // Set some initial text
@@ -360,7 +398,15 @@ function toggleFormulaHighlight(id, addClass) {
   const escapedId = id.replace(/\./g, '\\.');
   const mathJaxNode = document.querySelector(`#${escapedId}`);
   if (mathJaxNode) {
-    if (addClass) { mathJaxNode.classList.add('highlight'); } else { mathJaxNode.classList.remove('highlight'); }
+    if (addClass) {
+      mathJaxNode.classList.add('highlight');
+      if (codeMirror) {
+        codeMirror.addOverlay(searchOverlay(`"${id}"`), false);
+      }
+    } else {
+      mathJaxNode.classList.remove('highlight');
+      codeMirror.removeOverlay("myOv");
+    }
   }
 }
 
