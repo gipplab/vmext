@@ -5,7 +5,6 @@ const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
 let codeMirror;
-let overlay;
 
 /**
  * from https://gist.github.com/catarak/1c9453ad7e1ca0fb303652e4c02fbac1
