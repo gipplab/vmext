@@ -70,6 +70,7 @@ window.onload = function init() {
   elem.addEventListener('change', function(){
     callAPI();
   });
+  window.cm.scrollIntoView({line:52,ch:1});
 };
 
 const renderPNG = () => {

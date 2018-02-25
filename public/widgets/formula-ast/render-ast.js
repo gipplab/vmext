@@ -1,21 +1,26 @@
+/* eslint-disable no-param-reassign,jsdoc/require-param-type,no-undef */
+/* global debounce cytoscape Dimension defaults Rx unhighlightNodeAndSuccessors highlightNodeAndSuccessors*/
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }]*/
+
 'use strict';
 
 let formulaAST;
 const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
-let codeMirror;
+let cm;
+let pm;
 
 /**
  * from https://gist.github.com/catarak/1c9453ad7e1ca0fb303652e4c02fbac1
  * from http://codemirror.net/addon/search/search.js
- * @param query
- * @param caseInsensitive
- * @returns {{name: string, token: token}}
+ * @param query {string|RegExp}
+ * @param caseInsensitive {boolean}
+ * @return {{name: string, token}}
  */
 function searchOverlay(query, caseInsensitive) {
   if (typeof query === "string") {
-    query = new RegExp(query.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), caseInsensitive ? "gi" : "g");
+    query = new RegExp(query.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"), caseInsensitive ? "gi" : "g");
   } else if (!query.global) {
     query = new RegExp(query.source, query.ignoreCase ? "gi" : "g");
   }
@@ -36,59 +41,6 @@ function searchOverlay(query, caseInsensitive) {
     }
   };
 }
-
-window.addEventListener('message', paramsReveived, false);
-
-/**
- * EventListener for postMessage-iframe-events (see https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
- * Events can be of two types:
- *  1. intitialData - contains attributes attached to original widget <script>-Tag for initialistion
- *  2. hover information: either mouseover or mouseout from another widget for highlighting purposes
- */
-function paramsReveived(event) {
-  const eventData = event.data;
-  codeMirror = event.source.cm;
-  if (eventData.isInitialData) {
-
-
-    fetchData(eventData)
-      .then((result) => {
-        initialAST = JSON.parse(JSON.stringify(result.cytoscapedAST));
-        document.body.dispatchEvent(new Event('rendered'));
-        document.querySelector('.formula-container').style.display = 'block';
-        document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
-        renderAST(result.cytoscapedAST);
-        registerEventListeners(result.cytoscapedAST);
-        document.querySelector('body').style['background-color'] = eventData.bgColor;
-        document.querySelector('.gif-loader').style.display = 'none';
-        document.querySelector('.viewport-reset').style.visibility = 'visible';
-        document.querySelector('.ast-reload').style.visibility = 'visible';
-      })
-      .catch((err) => {
-        document.querySelector('.gif-loader').style.display = 'none';
-        document.querySelector('.mainContainer').style.display = 'none';
-        document.querySelector('.error-container').style.display = 'block';
-        document.querySelector('.error-type').innerHTML = err.error;
-        document.querySelector('.error-message').innerHTML = err.message;
-        document.querySelector('.error-statuscode').innerHTML = err.statusCode;
-        console.error(err);
-      });
-  } else if (formulaAST) {
-    const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
-    eventData.type === 'mouseOverNode' ?
-      highlightNodeAndFormula(eventData) :
-      unhighlightNodeAndFormula(eventData);
-  }
-}
-
-window.addEventListener('resize', debounce(() => {
-  if (formulaAST) {
-    formulaAST.layout({
-      name: 'dagre',
-      fit: true,
-    });
-  }
-}, 40));
 
 function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
@@ -111,6 +63,19 @@ function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, for
     });
   });
 }
+
+function extractDimensionsFromSVG(dataURI, type) {
+  try {
+    const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+    const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
+    return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+    return defaults.minNodeSize;
+  }
+}
+
 
 function renderAST(elements) {
   formulaAST = cytoscape({
@@ -152,12 +117,50 @@ function renderAST(elements) {
   Object.assign(initialViewport, formulaAST.pan());
 }
 
+function createEventStreamFromElementArray(elements, type) {
+  const observableArray = elements.map(ele => Rx.Observable.fromEvent(ele, type));
+  const eventStream = Rx.Observable.merge(...observableArray);
+  return eventStream
+    .map(e => e.currentTarget)
+    .filter(group => group.getBBox().width * group.getBBox().height > 0)
+    .buffer(eventStream.debounce(1));
+}
+
+function toggleFormulaHighlight(id, addClass, node) {
+  const escapedId = id.replace(/\./g, '\\.');
+  const mathJaxNode = document.querySelector(`#${escapedId}`);
+  if (mathJaxNode) {
+    const pos = node.data().pos;
+    const cLine = pos.cmml;
+    const pLine = pos.pmml || false;
+    if (addClass) {
+      mathJaxNode.classList.add('highlight');
+      if (cm) {
+        cm.scrollIntoView(cLine);
+        cm.getDoc().addLineClass(cLine.line, 'backgrouund', 'highlight');
+        cm.addOverlay(searchOverlay(`"${id}"`), false);
+      }
+      if (pm && pLine) {
+        pm.scrollIntoView(pLine);
+        pm.getDoc().addLineClass(pLine.line, 'backgrouund', 'highlight');
+      }
+    } else {
+      mathJaxNode.classList.remove('highlight');
+      cm.removeOverlay("myOv");
+      cm.getDoc().removeLineClass(cLine.line, 'backgrouund', 'highlight');
+      if (pLine) {
+        pm.getDoc().removeLineClass(pLine.line, 'backgrouund', 'highlight');
+      }
+    }
+  }
+}
+
 function highlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   const node = formulaAST.$(`node[id='${nodeID}']`);
 
   // highlight all successor nodes if collapsed node was hovered in similarities-widget
   nodeCollapsed ? highlightNodeAndSuccessors(node) : highlightNode(node);
-  toggleFormulaHighlight(presentationID, true);
+  toggleFormulaHighlight(presentationID, true, node);
 }
 
 function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
@@ -165,7 +168,7 @@ function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
 
   // unhighlight all successor nodes if collapsed node was hovered in similarities-widget
   nodeCollapsed ? unhighlightNodeAndSuccessors(node) : unhighlightNode(node);
-  toggleFormulaHighlight(presentationID, false);
+  toggleFormulaHighlight(presentationID, false, node);
 }
 
 function sendMessageToParentWindow(node, type) {
@@ -185,7 +188,7 @@ function sendMessageToParentWindow(node, type) {
   window.parent.postMessage(eventData, '*');
 }
 
-function attachFormulaEventListeners(cytoscapedAST) {
+function attachFormulaEventListeners() {
   const allSVGGroupsWithIds = Array.from(document.querySelectorAll('svg g[id]'));
   const mouseoverEventStream = createEventStreamFromElementArray(allSVGGroupsWithIds, 'mouseover');
   const mouseoutEventStream = createEventStreamFromElementArray(allSVGGroupsWithIds, 'mouseout');
@@ -233,15 +236,6 @@ function attachFormulaEventListeners(cytoscapedAST) {
       }
     }
   });
-}
-
-function createEventStreamFromElementArray(elements, type) {
-  const observableArray = elements.map(ele => Rx.Observable.fromEvent(ele, type));
-  const eventStream = Rx.Observable.merge(...observableArray);
-  return eventStream
-    .map(e => e.currentTarget)
-    .filter(group => group.getBBox().width * group.getBBox().height > 0)
-    .buffer(eventStream.debounce(1));
 }
 
 function registerEventListeners(cytoscapedAST) {
@@ -316,7 +310,7 @@ function registerEventListeners(cytoscapedAST) {
     const node = event.cyTarget;
     sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
 
-    toggleFormulaHighlight(node.data().presentationID, false);
+    toggleFormulaHighlight(node.data().presentationID, false, node);
     if (node.data('isCollapsed')) {
       const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
@@ -382,32 +376,47 @@ function registerEventListeners(cytoscapedAST) {
   });
 }
 
-function extractDimensionsFromSVG(dataURI, type) {
-  try {
-    const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
-    const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
-    return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
-  } catch (e) {
-    console.log(e);
-    return defaults.minNodeSize;
+/**
+ * EventListener for postMessage-iframe-events (see https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
+ * Events can be of two types:
+ *  1. intitialData - contains attributes attached to original widget <script>-Tag for initialistion
+ *  2. hover information: either mouseover or mouseout from another widget for highlighting purposes
+ */
+function paramsReveived(event) {
+
+  const eventData = event.data;
+  cm = event.source.cm;
+  pm = event.source.pm;
+  if (eventData.isInitialData) {
+    fetchData(eventData)
+      .then((result) => {
+        initialAST = JSON.parse(JSON.stringify(result.cytoscapedAST));
+        document.body.dispatchEvent(new Event('rendered'));
+        document.querySelector('.formula-container').style.display = 'block';
+        document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
+        renderAST(result.cytoscapedAST);
+        registerEventListeners(result.cytoscapedAST);
+        document.querySelector('body').style['background-color'] = eventData.bgColor;
+        document.querySelector('.gif-loader').style.display = 'none';
+        document.querySelector('.viewport-reset').style.visibility = 'visible';
+        document.querySelector('.ast-reload').style.visibility = 'visible';
+      })
+      .catch((err) => {
+        document.querySelector('.gif-loader').style.display = 'none';
+        document.querySelector('.mainContainer').style.display = 'none';
+        document.querySelector('.error-container').style.display = 'block';
+        document.querySelector('.error-type').innerHTML = err.error;
+        document.querySelector('.error-message').innerHTML = err.message;
+        document.querySelector('.error-statuscode').innerHTML = err.statusCode;
+        // eslint-disable-next-line no-console
+        console.error(err);
+      });
+  } else if (formulaAST) {
+    const node = formulaAST.$(`node[id='${eventData.nodeID}']`);
+    eventData.type === 'mouseOverNode' ? highlightNodeAndFormula(eventData) : unhighlightNodeAndFormula(eventData);
   }
 }
 
-function toggleFormulaHighlight(id, addClass) {
-  const escapedId = id.replace(/\./g, '\\.');
-  const mathJaxNode = document.querySelector(`#${escapedId}`);
-  if (mathJaxNode) {
-    if (addClass) {
-      mathJaxNode.classList.add('highlight');
-      if (codeMirror) {
-        codeMirror.addOverlay(searchOverlay(`"${id}"`), false);
-      }
-    } else {
-      mathJaxNode.classList.remove('highlight');
-      codeMirror.removeOverlay("myOv");
-    }
-  }
-}
 
 function resetViewport() {
   formulaAST.layout({
@@ -424,3 +433,14 @@ function expandAllNodes() {
     fit: false,
   });
 }
+
+window.addEventListener('message', paramsReveived, false);
+
+window.addEventListener('resize', debounce(() => {
+  if (formulaAST) {
+    formulaAST.layout({
+      name: 'dagre',
+      fit: true,
+    });
+  }
+}, 40));

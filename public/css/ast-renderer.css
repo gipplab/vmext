@@ -21,3 +21,7 @@ a {
   resize: vertical;
   overflow:auto;
 }
+
+.highlight {
+  background-color: gold;
+}
