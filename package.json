@@ -16,9 +16,7 @@
     "coverage": "istanbul cover _mocha -- -R spec",
     "test": "PREQ_CONNECT_TIMEOUT=15 mocha && nsp check",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "eslint .",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "lint": "eslint ."
   },
   "author": "HTW",
   "license": "MIT",
@@ -53,7 +51,6 @@
     "pug": "^2.0.0-rc.4",
     "read-glob-promise": "^2.0.0",
     "serve-favicon": "^2.3.2",
-    "snyk": "^1.61.1",
     "whatwg-fetch": "^2.0.2",
     "winston": "^2.3.0",
     "winston-daily-rotate-file": "^1.3.1",
@@ -82,6 +79,5 @@
     "rx": "^4.1.0",
     "supertest": "^3.0.0",
     "xtraverse": "^0.1.0"
-  },
-  "snyk": true
+  }
 }
