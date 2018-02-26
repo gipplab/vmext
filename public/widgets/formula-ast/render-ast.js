@@ -8,8 +8,7 @@ let formulaAST;
 const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
-let cm;
-let pm;
+let formats;
 
 /**
  * from https://gist.github.com/catarak/1c9453ad7e1ca0fb303652e4c02fbac1
@@ -131,26 +130,29 @@ function toggleFormulaHighlight(id, addClass, node) {
   const mathJaxNode = document.querySelector(`#${escapedId}`);
   if (mathJaxNode) {
     const pos = node.data().pos;
-    const cLine = pos.cmml;
-    const pLine = pos.pmml || false;
     if (addClass) {
       mathJaxNode.classList.add('highlight');
-      if (cm) {
-        cm.scrollIntoView(cLine);
-        cm.getDoc().addLineClass(cLine.line, 'backgrouund', 'highlight');
-        cm.addOverlay(searchOverlay(`"${id}"`), false);
-      }
-      if (pm && pLine) {
-        pm.scrollIntoView(pLine);
-        pm.getDoc().addLineClass(pLine.line, 'backgrouund', 'highlight');
-      }
+      Object.keys(formats).forEach((f) => {
+        const line = pos[f] || false;
+        const cm = formats[f].cm || false;
+        if (line && cm) {
+          cm.scrollIntoView(line);
+          cm.getDoc().addLineClass(line.line, 'backgrouund', 'highlight');
+          // cm.addOverlay(searchOverlay(`"${id}"`), false);
+        }
+      });
     } else {
       mathJaxNode.classList.remove('highlight');
-      cm.removeOverlay("myOv");
-      cm.getDoc().removeLineClass(cLine.line, 'backgrouund', 'highlight');
-      if (pLine) {
-        pm.getDoc().removeLineClass(pLine.line, 'backgrouund', 'highlight');
-      }
+      // cm.removeOverlay("myOv");
+      Object.keys(formats).forEach((f) => {
+        const line = pos[f] || false;
+        const cm = formats[f].cm || false;
+        if (line && cm) {
+          cm.scrollIntoView(line);
+          cm.getDoc().removeLineClass(line.line, 'backgrouund', 'highlight');
+          // cm.addOverlay(searchOverlay(`"${id}"`), false);
+        }
+      });
     }
   }
 }
@@ -385,8 +387,7 @@ function registerEventListeners(cytoscapedAST) {
 function paramsReveived(event) {
 
   const eventData = event.data;
-  cm = event.source.cm;
-  pm = event.source.pm;
+  formats = event.source.formats;
   if (eventData.isInitialData) {
     fetchData(eventData)
       .then((result) => {

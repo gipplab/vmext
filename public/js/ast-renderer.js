@@ -2,6 +2,7 @@
 
 let buffers = {};
 let elem = document.getElementById('MathMLexamples');
+let formats = {cmml:{},pmml:{}};
 
 
 /**
@@ -38,12 +39,13 @@ function callAPI(evt) {
   if (evt) {
     evt.preventDefault();
   }
-  selectBuffer(window.pm, elem.options[elem.selectedIndex].label);
-  selectBuffer(window.cm, elem.options[elem.selectedIndex].label);
+  Object.keys(formats).forEach((f)=>{
+    selectBuffer(formats[f].cm, elem.options[elem.selectedIndex].label);
+  });
   const scriptTag = document.createElement('script');
   scriptTag.setAttribute('type', 'application/javascript');
   scriptTag.setAttribute('src', '/widgets/formula-ast-widget.js');
-  scriptTag.setAttribute('mathml', window.pm.getValue());
+  scriptTag.setAttribute('mathml', formats.cmml.cm.getValue());
   scriptTag.setAttribute('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
   scriptTag.setAttribute('nodesToBeCollapsed', document.querySelector('.option-nodesToBeCollapsed').value);
 
@@ -54,11 +56,10 @@ function callAPI(evt) {
 
 window.onload = function init() {
 
-  let pmml = document.getElementById('pmml');
-  let cmml = document.getElementById('cmml');
-
-  window.pm = CodeMirror(pmml, { lineNumbers: true });
-  window.cm = CodeMirror(cmml, { lineNumbers: true });
+  Object.keys(formats).forEach((f)=>{
+    const mml = document.getElementById(f);
+    formats[f].cm = CodeMirror(mml, { lineNumbers: true });
+  });
 
   [].forEach.call(
     elem.options,
@@ -70,12 +71,12 @@ window.onload = function init() {
   elem.addEventListener('change', function(){
     callAPI();
   });
-  window.cm.scrollIntoView({line:52,ch:1});
+  window.formats = formats;
+//  window.cm.scrollIntoView({line:52,ch:1});
 };
 
 const renderPNG = () => {
   const canvas = document.querySelector('iframe').contentDocument.querySelectorAll('canvas')[2];
   document.querySelector('.btn-download').href = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-  ;
 };
 
