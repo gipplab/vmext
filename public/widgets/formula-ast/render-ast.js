@@ -241,7 +241,7 @@ function registerEventListeners(cytoscapedAST) {
           title: `Fetching information for symbol ${symbol}`
         },
         show: {
-          event: 'click mouseenter'
+          event: 'mouseenter'
         }
       });
       node.qtip('api').show();
