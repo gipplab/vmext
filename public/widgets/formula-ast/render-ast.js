@@ -130,30 +130,37 @@ function toggleFormulaHighlight(id, addClass, node) {
   const mathJaxNode = document.querySelector(`#${escapedId}`);
   if (mathJaxNode) {
     const pos = node.data().pos;
-    if (addClass) {
-      mathJaxNode.classList.add('highlight');
-      Object.keys(formats).forEach((f) => {
+    Object.keys(formats).forEach((f) => {
+      if (addClass) {
+        mathJaxNode.classList.add('highlight');
         const line = pos[f] || false;
         const cm = formats[f].cm || false;
         if (line && cm) {
           cm.scrollIntoView(line);
-          cm.getDoc().addLineClass(line.line, 'backgrouund', 'highlight');
+          if (line.next) {
+            formats[f].marker = cm.markText(line,line.next,{ className:'highlight' });
+          } else {
+            cm.getDoc().addLineClass(line.line, 'backgrouund', 'highlight');
+          }
           // cm.addOverlay(searchOverlay(`"${id}"`), false);
         }
-      });
-    } else {
-      mathJaxNode.classList.remove('highlight');
-      // cm.removeOverlay("myOv");
-      Object.keys(formats).forEach((f) => {
+      } else {
+        // cm.removeOverlay("myOv");
         const line = pos[f] || false;
         const cm = formats[f].cm || false;
+        // cm.addOverlay(searchOverlay(`"${id}"`), false);
+        const marker = formats[f].marker;
         if (line && cm) {
           cm.scrollIntoView(line);
           cm.getDoc().removeLineClass(line.line, 'backgrouund', 'highlight');
-          // cm.addOverlay(searchOverlay(`"${id}"`), false);
         }
-      });
-    }
+        if (marker) {
+          marker.clear();
+        }
+
+        mathJaxNode.classList.remove('highlight');
+      }
+    });
   }
 }
 
