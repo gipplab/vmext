@@ -10,36 +10,6 @@ let initialAST;
 let currentMouseOverCytoNode;
 let formats;
 
-/**
- * from https://gist.github.com/catarak/1c9453ad7e1ca0fb303652e4c02fbac1
- * from http://codemirror.net/addon/search/search.js
- * @param query {string|RegExp}
- * @param caseInsensitive {boolean}
- * @return {{name: string, token}}
- */
-function searchOverlay(query, caseInsensitive) {
-  if (typeof query === "string") {
-    query = new RegExp(query.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"), caseInsensitive ? "gi" : "g");
-  } else if (!query.global) {
-    query = new RegExp(query.source, query.ignoreCase ? "gi" : "g");
-  }
-
-  return {
-    name: "myOv",
-    token(stream) {
-      query.lastIndex = stream.pos;
-      const match = query.exec(stream.string);
-      if (match && match.index === stream.pos) {
-        stream.pos += match[0].length || 1;
-        return "searching";
-      } else if (match) {
-        stream.pos = match.index;
-      } else {
-        stream.skipToEnd();
-      }
-    }
-  };
-}
 
 function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
@@ -136,28 +106,24 @@ function toggleFormulaHighlight(id, addClass, node) {
         const line = pos[f] || false;
         const cm = formats[f].cm || false;
         if (line && cm) {
-          cm.scrollIntoView(line);
           if (line.next) {
             formats[f].marker = cm.markText(line,line.next,{ className:'highlight' });
+            cm.scrollIntoView({ from:line,to:line.next });
           } else {
-            cm.getDoc().addLineClass(line.line, 'backgrouund', 'highlight');
+            cm.getDoc().addLineClass(line.line, 'background', 'highlight');
+            cm.scrollIntoView(line);
           }
-          // cm.addOverlay(searchOverlay(`"${id}"`), false);
         }
       } else {
-        // cm.removeOverlay("myOv");
         const line = pos[f] || false;
         const cm = formats[f].cm || false;
-        // cm.addOverlay(searchOverlay(`"${id}"`), false);
         const marker = formats[f].marker;
         if (line && cm) {
-          cm.scrollIntoView(line);
-          cm.getDoc().removeLineClass(line.line, 'backgrouund', 'highlight');
+          cm.getDoc().removeLineClass(line.line, 'background', 'highlight');
         }
         if (marker) {
           marker.clear();
         }
-
         mathJaxNode.classList.remove('highlight');
       }
     });
