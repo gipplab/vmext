@@ -46,8 +46,6 @@ function callAPI(evt) {
   scriptTag.setAttribute('type', 'application/javascript');
   scriptTag.setAttribute('src', '/widgets/formula-ast-widget.js');
   scriptTag.setAttribute('mathml', formats.cmml.cm.getValue());
-  scriptTag.setAttribute('collapseSingleOperandNodes', document.querySelector('.option-collapseOneChildNodes').checked);
-  scriptTag.setAttribute('nodesToBeCollapsed', document.querySelector('.option-nodesToBeCollapsed').value);
 
   const container = document.querySelector('.abstract-syntax-tree');
   container.innerHTML = "";
