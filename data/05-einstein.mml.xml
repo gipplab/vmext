@@ -7,8 +7,8 @@
         <mi id="e6" xref="e17">m</mi>
         <mo id="e7" xref="e16">⁢</mo>
         <msup id="e8" xref="e18">
-          <mi id="e9" xref="e19">c</mi>
-          <mn id="e10" xref="e20">2</mn>
+          <mi id="e9" xref="e20">c</mi>
+          <mn id="e10" xref="e21">2</mn>
         </msup>
       </mrow>
     </mrow>
@@ -20,13 +20,13 @@
           <times id="e16" xref="e7"/>
           <csymbol cd="wikidata" id="e17" xref="e6">Q11423</csymbol>
           <apply id="e18" xref="e8">
-            <power xref="e8"/>
-            <csymbol cd="wikidata" id="e19" xref="e9">Q2111</csymbol>
-            <cs id="e20" xref="e10">the integer number two</cs>
+            <power id="e19" xref="e8"/>
+            <csymbol cd="wikidata" id="e20" xref="e9">Q2111</csymbol>
+            <cs id="e21" xref="e10">the integer number two</cs>
           </apply>
         </apply>
       </apply>
     </annotation-xml>
-    <annotation encoding="application/x-tex" id="e21">E=mc^{2}</annotation>
+    <annotation encoding="application/x-tex" id="e22">E=mc^{2}</annotation>
   </semantics>
 </math>

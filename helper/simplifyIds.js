@@ -1,7 +1,7 @@
 const fs = require('fs');
 const XT = require('xtraverse');
 const xmlDom = require('xmldom');
-const file = '../data/5-einstein.mml.xml';
+const file = '../data/05-einstein.mml.xml';
 const xmlString = fs.readFileSync(file, 'utf8');
 const xml = XT(xmlString);
 const ids = {};
