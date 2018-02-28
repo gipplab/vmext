@@ -9,13 +9,12 @@ const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
 let formats;
+const collapseApply = true;
 
 
-function fetchData({ mathml, collapseSingleOperandNodes, nodesToBeCollapsed, formulaIdentifier = 'A', widgetHost }) {
+function fetchData({ mathml, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
   formData.append('mathml', mathml);
-  formData.append('collapseSingleOperandNodes', collapseSingleOperandNodes);
-  formData.append('nodesToBeCollapsed', nodesToBeCollapsed);
   return fetch(`${widgetHost}/api/v1/math/parseCytoscapedAST?formulaidentifier=${formulaIdentifier}`, {
     method: 'POST',
     headers: new Headers({
@@ -49,7 +48,7 @@ function extractDimensionsFromSVG(dataURI, type) {
 function renderAST(elements) {
   formulaAST = cytoscape({
     container: document.querySelector('.cy-container'),
-    elements,
+    elements: elements.filter(x => !((collapseApply && x.data.properties && x.data.properties.applyId))),
     style: [
       {
         selector: '.source-A,.source-B',
@@ -213,6 +212,49 @@ function attachFormulaEventListeners() {
   });
 }
 
+function hideChilds(node) {
+  const nodesToHide = node.successors('*[!isHidden]');
+  node.data('hiddenEles', nodesToHide);
+  nodesToHide.data('isHidden', true);
+  nodesToHide.animate({
+    style: {
+      'background-image-opacity': 0,
+      opacity: 0,
+    }
+  }, { duration: defaults.animation.nodeCollapsing }
+  );
+  formulaAST.layout({
+    name: 'dagre',
+    animate: true,
+    animationDuration: defaults.animation.nodeCollapsing,
+    fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
+  });
+}
+
+function showChilds(node) {
+  node.data('hiddenEles').removeData('isHidden');
+  node.data('hiddenEles').animate({
+    style: {
+      opacity: 1,
+      'background-image-opacity': 1,
+    },
+    duration: defaults.animation.nodeCollapsing,
+  });
+
+  unhighlightNodeAndFormula({
+    nodeID: node.id(),
+    presentationID: node.data().presentationID,
+    nodeCollapsed: false
+  });
+
+  formulaAST.layout({
+    name: 'dagre',
+    animate: true,
+    animationDuration: defaults.animation.nodeCollapsing,
+    fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
+  });
+}
+
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
@@ -296,27 +338,7 @@ function registerEventListeners(cytoscapedAST) {
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
       node.data('isCollapsed', false);
-      node.data('hiddenEles').removeData('isHidden');
-      node.data('hiddenEles').animate({
-        style: {
-          opacity: 1,
-          'background-image-opacity': 1,
-        },
-        duration: defaults.animation.nodeCollapsing,
-      });
-
-      unhighlightNodeAndFormula({
-        nodeID: node.id(),
-        presentationID: node.data().presentationID,
-        nodeCollapsed: false
-      });
-
-      formulaAST.layout({
-        name: 'dagre',
-        animate: true,
-        animationDuration: defaults.animation.nodeCollapsing,
-        fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
-      });
+      showChilds(node);
     } else {
       const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
       const nodeHeight = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.HEIGHT);
@@ -327,26 +349,7 @@ function registerEventListeners(cytoscapedAST) {
       node.data('oldWidth', nodeWidth);
       node.data('oldHeight', nodeHeight);
       node.data('isCollapsed', true);
-      const nodesToHide = node.successors('*[!isHidden]');
-      node.data('hiddenEles', nodesToHide);
-      nodesToHide.data('isHidden', true);
-      nodesToHide.animate({
-        style: {
-          'background-image-opacity': 0,
-          opacity: 0,
-        }
-      }, { duration: defaults.animation.nodeCollapsing }
-      );
-      const viewport = {
-        pan: formulaAST.pan(),
-        zoom: formulaAST.zoom(),
-      };
-      formulaAST.layout({
-        name: 'dagre',
-        animate: true,
-        animationDuration: defaults.animation.nodeCollapsing,
-        fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
-      });
+      hideChilds(node);
     }
   });
 }
@@ -368,6 +371,22 @@ function paramsReveived(event) {
         document.body.dispatchEvent(new Event('rendered'));
         document.querySelector('.formula-container').style.display = 'block';
         document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
+        if (collapseApply) {
+          const presentations = {};
+          result.cytoscapedAST.forEach((x) => {
+            const properties = x.data.properties || false;
+            if (properties && properties.applyId) {
+              presentations[x.data.id] = x.data.subtreeSVG || x.data.nodeSVG;
+            }
+          });
+          result.cytoscapedAST = result.cytoscapedAST.map((x) => {
+            const properties = x.data.properties || false;
+            if (properties && properties.firstChild) {
+              x.data.nodeSVG = presentations[`${x.data.source}.${properties.firstChild}`] || x.data.nodeSVG;
+            }
+            return x;
+          });
+        }
         renderAST(result.cytoscapedAST);
         registerEventListeners(result.cytoscapedAST);
         document.querySelector('body').style['background-color'] = eventData.bgColor;
