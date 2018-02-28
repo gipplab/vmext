@@ -1,87 +1,85 @@
-<math xmlns="http://www.w3.org/1998/Math/MathML" id="p1.1.m1.1" class="ltx_Math"
-      alttext="\EulerGamma@{z}=\Int{0}{\infty}@{t}{e^{-t}t^{z-1}}" display="inline">
-  <semantics id="p1.1.m1.1a">
-    <mrow id="p1.1.m1.1.4" xref="p1.1.m1.1.4.cmml">
-      <mrow id="p1.1.m1.1.1.8.2" xref="p1.1.m1.1.1.1.cmml">
-        <mpadded width="-1.7pt" id="p1.1.m1.1.1.2" xref="p1.1.m1.1.1.1.cmml">
-          <mi mathvariant="normal" id="p1.1.m1.1.1.2.1.2" xref="p1.1.m1.1.1.2.1.1.cmml">Γ</mi>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="p1.1.m1.1" class="ltx_Math" alttext="\EulerGamma@{z}=\Int{0}{\infty}@{t}{e^{-t}t^{z-1}}" display="inline">
+  <semantics id="e1">
+    <mrow id="e2" xref="e38">
+      <mrow id="e3" xref="e40">
+        <mpadded width="-1.7pt" id="e4" xref="e40">
+          <mi mathvariant="normal" id="e5" xref="e41">Γ</mi>
         </mpadded>
-        <mo id="p1.1.m1.1.1.8.2a" xref="p1.1.m1.1.1.1.cmml">⁡</mo>
-        <mrow id="p1.1.m1.1.1.8.2.1" xref="p1.1.m1.1.1.1.cmml">
-          <mo id="p1.1.m1.1.1.5" xref="p1.1.m1.1.1.1.cmml">(</mo>
-          <mi id="p1.1.m1.1.1.6" xref="p1.1.m1.1.1.6.cmml">z</mi>
-          <mo id="p1.1.m1.1.1.7" xref="p1.1.m1.1.1.1.cmml">)</mo>
+        <mo id="e6" xref="e40">⁡</mo>
+        <mrow id="e7" xref="e40">
+          <mo id="e8" xref="e40">(</mo>
+          <mi id="e9" xref="e42">z</mi>
+          <mo id="e10" xref="e40">)</mo>
         </mrow>
       </mrow>
-      <mo id="p1.1.m1.1.2" xref="p1.1.m1.1.2.cmml">=</mo>
-      <mrow id="p1.1.m1.1.3.8" xref="p1.1.m1.1.3.1.cmml">
-        <msubsup id="p1.1.m1.1.3.2.1.6" xref="p1.1.m1.1.3.2.1.1.cmml">
-          <mo largeop="true" symmetric="true" id="p1.1.m1.1.3.2.1.2" xref="p1.1.m1.1.3.2.1.1.1.cmml">∫</mo>
-          <mn id="p1.1.m1.1.3.2.1.3.1" xref="p1.1.m1.1.3.2.1.3.1.cmml">0</mn>
-          <mi mathvariant="normal" id="p1.1.m1.1.3.2.1.4.1" xref="p1.1.m1.1.3.2.1.4.1.cmml">∞</mi>
+      <mo id="e11" xref="e39">=</mo>
+      <mrow id="e12" xref="e43">
+        <msubsup id="e13" xref="e44">
+          <mo largeop="true" symmetric="true" id="e14" xref="e45">∫</mo>
+          <mn id="e15" xref="e46">0</mn>
+          <mi mathvariant="normal" id="e16" xref="e47">∞</mi>
         </msubsup>
-        <mo id="p1.1.m1.1.3.8a" xref="p1.1.m1.1.3.1.cmml">⁡</mo>
-        <mrow id="p1.1.m1.1.3.8.1" xref="p1.1.m1.1.3.1.cmml">
-          <mpadded width="+1.7pt" id="p1.1.m1.1.3.4" xref="p1.1.m1.1.3.4.cmml">
-            <mrow id="p1.1.m1.1.3.4a" xref="p1.1.m1.1.3.4.cmml">
-              <msup id="p1.1.m1.1.3.4.6" xref="p1.1.m1.1.3.4.6.cmml">
-                <mi mathvariant="normal" id="p1.1.m1.1.3.4.1" xref="p1.1.m1.1.3.4.1.cmml">e</mi>
-                <mrow id="p1.1.m1.1.3.4.2.1" xref="p1.1.m1.1.3.4.2.1.cmml">
-                  <mo id="p1.1.m1.1.3.4.2.1.1" xref="p1.1.m1.1.3.4.2.1.1.cmml">-</mo>
-                  <mi id="p1.1.m1.1.3.4.2.1.2" xref="p1.1.m1.1.3.4.2.1.2.cmml">t</mi>
+        <mo id="e17" xref="e43">⁡</mo>
+        <mrow id="e18" xref="e43">
+          <mpadded width="+1.7pt" id="e19" xref="e49">
+            <mrow id="e20" xref="e49">
+              <msup id="e21" xref="e51">
+                <mi mathvariant="normal" id="e22" xref="e52">e</mi>
+                <mrow id="e23" xref="e53">
+                  <mo id="e24" xref="e54">-</mo>
+                  <mi id="e25" xref="e55">t</mi>
                 </mrow>
               </msup>
-              <mo id="p1.1.m1.1.3.4.5" xref="p1.1.m1.1.3.4.5.cmml">⁢</mo>
-              <msup id="p1.1.m1.1.3.4.7" xref="p1.1.m1.1.3.4.7.cmml">
-                <mi id="p1.1.m1.1.3.4.3" xref="p1.1.m1.1.3.4.3.cmml">t</mi>
-                <mrow id="p1.1.m1.1.3.4.4.1" xref="p1.1.m1.1.3.4.4.1.cmml">
-                  <mi id="p1.1.m1.1.3.4.4.1.1" xref="p1.1.m1.1.3.4.4.1.1.cmml">z</mi>
-                  <mo id="p1.1.m1.1.3.4.4.1.2" xref="p1.1.m1.1.3.4.4.1.2.cmml">-</mo>
-                  <mn id="p1.1.m1.1.3.4.4.1.3" xref="p1.1.m1.1.3.4.4.1.3.cmml">1</mn>
+              <mo id="e26" xref="e50">⁢</mo>
+              <msup id="e27" xref="e56">
+                <mi id="e28" xref="e57">t</mi>
+                <mrow id="e29" xref="e58">
+                  <mi id="e30" xref="e60">z</mi>
+                  <mo id="e31" xref="e59">-</mo>
+                  <mn id="e32" xref="e61">1</mn>
                 </mrow>
               </msup>
             </mrow>
           </mpadded>
-          <mo id="p1.1.m1.1.3.8.1.1" xref="p1.1.m1.1.3.1.cmml">⁢</mo>
-          <mi mathvariant="normal" id="p1.1.m1.1.3.6" xref="p1.1.m1.1.3.1.cmml">d</mi>
-          <mo id="p1.1.m1.1.3.8.1.1a" xref="p1.1.m1.1.3.1.cmml">⁢</mo>
-          <mi id="p1.1.m1.1.3.7" xref="p1.1.m1.1.3.7.cmml">t</mi>
+          <mo id="e33" xref="e43">⁢</mo>
+          <mi mathvariant="normal" id="e34" xref="e43">d</mi>
+          <mo id="e35" xref="e43">⁢</mo>
+          <mi id="e36" xref="e48">t</mi>
         </mrow>
       </mrow>
     </mrow>
-    <annotation-xml encoding="MathML-Content" id="p1.1.m1.1b">
-      <apply id="p1.1.m1.1.4.cmml" xref="p1.1.m1.1.4">
-        <eq id="p1.1.m1.1.2.cmml" xref="p1.1.m1.1.2"/>
-        <apply id="p1.1.m1.1.1.1.cmml" xref="p1.1.m1.1.1.8.2">
-          <csymbol cd="dlmf" id="p1.1.m1.1.1.2.1.1.cmml" xref="p1.1.m1.1.1.2.1.2">Euler-Gamma</csymbol>
-          <ci id="p1.1.m1.1.1.6.cmml" xref="p1.1.m1.1.1.6">𝑧</ci>
+    <annotation-xml encoding="MathML-Content" id="e37">
+      <apply id="e38" xref="e2">
+        <eq id="e39" xref="e11"/>
+        <apply id="e40" xref="e3">
+          <csymbol cd="dlmf" id="e41" xref="e5">Euler-Gamma</csymbol>
+          <ci id="e42" xref="e9">𝑧</ci>
         </apply>
-        <apply id="p1.1.m1.1.3.1.cmml" xref="p1.1.m1.1.3.8">
-          <apply id="p1.1.m1.1.3.2.1.1.cmml" xref="p1.1.m1.1.3.2.1.6">
-            <csymbol cd="dlmf" id="p1.1.m1.1.3.2.1.1.1.cmml" xref="p1.1.m1.1.3.2.1.2">semantic-definite-integral
+        <apply id="e43" xref="e12">
+          <apply id="e44" xref="e13">
+            <csymbol cd="dlmf" id="e45" xref="e14">semantic-definite-integral
             </csymbol>
-            <cn type="integer" id="p1.1.m1.1.3.2.1.3.1.cmml" xref="p1.1.m1.1.3.2.1.3.1">0</cn>
-            <infinity id="p1.1.m1.1.3.2.1.4.1.cmml" xref="p1.1.m1.1.3.2.1.4.1"/>
+            <cn type="integer" id="e46" xref="e15">0</cn>
+            <infinity id="e47" xref="e16"/>
           </apply>
-          <ci id="p1.1.m1.1.3.7.cmml" xref="p1.1.m1.1.3.7">𝑡</ci>
-          <apply id="p1.1.m1.1.3.4.cmml" xref="p1.1.m1.1.3.4">
-            <times id="p1.1.m1.1.3.4.5.cmml" xref="p1.1.m1.1.3.4.5"/>
-            <apply id="p1.1.m1.1.3.4.6.cmml" xref="p1.1.m1.1.3.4.6">
-              <power
-                xref="p1.1.m1.1.3.4.6"/>
-              <exponentiale id="p1.1.m1.1.3.4.1.cmml" xref="p1.1.m1.1.3.4.1"/>
-              <apply id="p1.1.m1.1.3.4.2.1.cmml" xref="p1.1.m1.1.3.4.2.1">
-                <minus id="p1.1.m1.1.3.4.2.1.1.cmml" xref="p1.1.m1.1.3.4.2.1.1"/>
-                <ci id="p1.1.m1.1.3.4.2.1.2.cmml" xref="p1.1.m1.1.3.4.2.1.2">𝑡</ci>
+          <ci id="e48" xref="e36">𝑡</ci>
+          <apply id="e49" xref="e19">
+            <times id="e50" xref="e26"/>
+            <apply id="e51" xref="e21">
+              <power xref="e21"/>
+              <exponentiale id="e52" xref="e22"/>
+              <apply id="e53" xref="e23">
+                <minus id="e54" xref="e24"/>
+                <ci id="e55" xref="e25">𝑡</ci>
               </apply>
             </apply>
-            <apply id="p1.1.m1.1.3.4.7.cmml" xref="p1.1.m1.1.3.4.7">
-              <power xref="p1.1.m1.1.3.4.7"/>
-              <ci id="p1.1.m1.1.3.4.3.cmml" xref="p1.1.m1.1.3.4.3">𝑡</ci>
-              <apply id="p1.1.m1.1.3.4.4.1.cmml" xref="p1.1.m1.1.3.4.4.1">
-                <minus id="p1.1.m1.1.3.4.4.1.2.cmml" xref="p1.1.m1.1.3.4.4.1.2"/>
-                <ci id="p1.1.m1.1.3.4.4.1.1.cmml" xref="p1.1.m1.1.3.4.4.1.1">𝑧</ci>
-                <cn type="integer" id="p1.1.m1.1.3.4.4.1.3.cmml" xref="p1.1.m1.1.3.4.4.1.3">1</cn>
+            <apply id="e56" xref="e27">
+              <power xref="e27"/>
+              <ci id="e57" xref="e28">𝑡</ci>
+              <apply id="e58" xref="e29">
+                <minus id="e59" xref="e31"/>
+                <ci id="e60" xref="e30">𝑧</ci>
+                <cn type="integer" id="e61" xref="e32">1</cn>
               </apply>
             </apply>
           </apply>
