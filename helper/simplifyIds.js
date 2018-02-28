@@ -1,7 +1,7 @@
 const fs = require('fs');
 const XT = require('xtraverse');
 const xmlDom = require('xmldom');
-const file = '../data/05-einstein.mml.xml';
+const file = '../data/00-euler.mml.xml';
 const xmlString = fs.readFileSync(file, 'utf8');
 const xml = XT(xmlString);
 const ids = {};
@@ -11,12 +11,12 @@ let counter = 1;
 function renameIds(n) {
   for (let child = n.children().first(); child.length > 0; child = child.next()) {
     const id = child.attr('id');
+    const newId = prefix + counter;
     if (id) {
-      const newId = prefix + counter;
       ids[id] = newId;
-      counter++;
-      child[0].setAttribute('id', newId);
     }
+    counter++;
+    child[0].setAttribute('id', newId);
     renameIds(child);
   }
 }
