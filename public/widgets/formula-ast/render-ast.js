@@ -48,7 +48,9 @@ function extractDimensionsFromSVG(dataURI, type) {
 function renderAST(elements) {
   formulaAST = cytoscape({
     container: document.querySelector('.cy-container'),
-    elements: elements.filter(x => !((collapseApply && x.data.properties && x.data.properties.applyId))),
+    elements: elements.filter(x => !((collapseApply && x.data.properties &&
+      ((x.data.properties.applyId || x.data.properties.applyParent))
+    ))),
     style: [
       {
         selector: '.source-A,.source-B',
@@ -106,8 +108,8 @@ function toggleFormulaHighlight(id, addClass, node) {
         const cm = formats[f].cm || false;
         if (line && cm) {
           if (line.next) {
-            formats[f].marker = cm.markText(line,line.next,{ className:'highlight' });
-            cm.scrollIntoView({ from:line,to:line.next });
+            formats[f].marker = cm.markText(line, line.next, { className: 'highlight' });
+            cm.scrollIntoView({ from: line, to: line.next });
           } else {
             cm.getDoc().addLineClass(line.line, 'background', 'highlight');
             cm.scrollIntoView(line);
@@ -217,11 +219,11 @@ function hideChilds(node) {
   node.data('hiddenEles', nodesToHide);
   nodesToHide.data('isHidden', true);
   nodesToHide.animate({
-    style: {
-      'background-image-opacity': 0,
-      opacity: 0,
-    }
-  }, { duration: defaults.animation.nodeCollapsing }
+      style: {
+        'background-image-opacity': 0,
+        opacity: 0,
+      }
+    }, { duration: defaults.animation.nodeCollapsing }
   );
   formulaAST.layout({
     name: 'dagre',
