@@ -57,7 +57,7 @@ function renderAST(elements) {
         css: {
           shape: 'roundrectangle',
           'background-color': 'white',
-          'background-image': 'data(nodeSVG)',
+          'background-image': ele => ele.data('applySVG') || ele.data('nodeSVG'),
           'background-fit': 'none',
           width: ele => extractDimensionsFromSVG(ele.data('nodeSVG'), Dimension.WIDTH),
           height: ele => extractDimensionsFromSVG(ele.data('nodeSVG'), Dimension.HEIGHT),
@@ -219,11 +219,11 @@ function hideChilds(node) {
   node.data('hiddenEles', nodesToHide);
   nodesToHide.data('isHidden', true);
   nodesToHide.animate({
-      style: {
-        'background-image-opacity': 0,
-        opacity: 0,
-      }
-    }, { duration: defaults.animation.nodeCollapsing }
+    style: {
+      'background-image-opacity': 0,
+      opacity: 0,
+    }
+  }, { duration: defaults.animation.nodeCollapsing }
   );
   formulaAST.layout({
     name: 'dagre',
@@ -384,7 +384,7 @@ function paramsReveived(event) {
           result.cytoscapedAST = result.cytoscapedAST.map((x) => {
             const properties = x.data.properties || false;
             if (properties && properties.firstChild) {
-              x.data.nodeSVG = presentations[`${x.data.source}.${properties.firstChild}`] || x.data.nodeSVG;
+              x.data.applySVG = presentations[`${x.data.source}.${properties.firstChild}`] || x.data.nodeSVG;
             }
             return x;
           });
