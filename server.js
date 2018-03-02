@@ -76,6 +76,9 @@ function start() {
   return app.listen(process.env.PORT || 4001, () => {
     log.info(`server started, listening on port: ${process.env.PORT || 4001}`);
     process.on('unhandledRejection', (reason) => {
+      try{
+        log.info(reason.stack);
+      } catch (e) {}
       log.info('Unhandled promise rejection. Reason:', CircularJSON.stringify(reason));
     });
   });
