@@ -45,12 +45,16 @@ function extractDimensionsFromSVG(dataURI, type) {
 }
 
 
+function isHeadNode(x) {
+  return ((collapseApply && x.data().properties &&
+    ((x.data().properties.applyId || x.data().properties.applyParent))
+  ));
+}
+
 function renderAST(elements) {
   formulaAST = cytoscape({
     container: document.querySelector('.cy-container'),
-    elements: elements.filter(x => !((collapseApply && x.data.properties &&
-      ((x.data.properties.applyId || x.data.properties.applyParent))
-    ))),
+    elements,
     style: [
       {
         selector: '.source-A,.source-B',
@@ -83,8 +87,13 @@ function renderAST(elements) {
       name: 'dagre'
     }
   });
+  formulaAST
+     .filter(
+       x => isHeadNode(x))
+     .hide();
   initialViewport.zoom = formulaAST.zoom();
   Object.assign(initialViewport, formulaAST.pan());
+
 }
 
 function createEventStreamFromElementArray(elements, type) {
@@ -168,7 +177,6 @@ function attachFormulaEventListeners() {
   const allSVGGroupsWithIds = Array.from(document.querySelectorAll('svg g[id]'));
   const mouseoverEventStream = createEventStreamFromElementArray(allSVGGroupsWithIds, 'mouseover');
   const mouseoutEventStream = createEventStreamFromElementArray(allSVGGroupsWithIds, 'mouseout');
-
   let activeFormulaElement;
   mouseoverEventStream.subscribe((svgGroups) => {
     if (activeFormulaElement) {
@@ -260,7 +268,7 @@ function showChilds(node) {
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
   formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
-    const node = event.cyTarget;
+    const node = event.target;
     const cd = node.data().cd;
     const cs = node.data().cs;
     if (cd) {
@@ -300,7 +308,7 @@ function registerEventListeners(cytoscapedAST) {
       });
       node.qtip('api').show();
     }
-    sendMessageToParentWindow(event.cyTarget, 'mouseOverNode');
+    sendMessageToParentWindow(event.target, 'mouseOverNode');
     highlightNodeAndFormula({
       nodeID: node.id(),
       presentationID: node.data().presentationID,
@@ -310,14 +318,14 @@ function registerEventListeners(cytoscapedAST) {
   });
 
   formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
-    const node = event.cyTarget;
+    const node = event.target;
     currentMouseOverCytoNode = node;
     const data = node.data();
     if (data.cd || data.cs) {
       const qtip = node.qtip('api');
       qtip.hide();
     }
-    sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
+    sendMessageToParentWindow(event.target, 'mouseOutNode');
     unhighlightNodeAndFormula({
       nodeID: node.id(),
       presentationID: node.data().presentationID,
@@ -326,8 +334,8 @@ function registerEventListeners(cytoscapedAST) {
   });
 
   formulaAST.on('click', 'node[^isLeaf][^isHidden]', (event) => {
-    const node = event.cyTarget;
-    sendMessageToParentWindow(event.cyTarget, 'mouseOutNode');
+    const node = event.target;
+    sendMessageToParentWindow(event.target, 'mouseOutNode');
 
     toggleFormulaHighlight(node.data().presentationID, false, node);
     if (node.data('isCollapsed')) {
