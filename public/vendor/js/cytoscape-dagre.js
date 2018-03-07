@@ -136,13 +136,8 @@ SOFTWARE.
         return {};
       });
 
-      function isHeadNode(x) {
-        return ((x.data().properties &&
-          ((x.data().properties.applyId || x.data().properties.applyParent))
-        ));
-      }
       // add nodes to dagre
-      const nodes = eles.nodes().filter(x => !isHeadNode(x));
+      const nodes = eles.nodes().filter(x => x.visible());
       for (i = 0; i < nodes.length; i++) {
         const node = nodes[i];
         if (node.data().properties.applyId) {
@@ -171,7 +166,7 @@ SOFTWARE.
       // add edges to dagre
       const edges = eles.edges().stdFilter((edge) => {
         return !edge.source().isParent() && !edge.target().isParent() &&
-          !isHeadNode(edge.source()) && !isHeadNode(edge.target()); // dagre can't handle edges on compound nodes
+          edge.source().visible() && edge.target().visible(); // dagre can't handle edges on compound nodes
       });
       for (i = 0; i < edges.length; i++) {
         const edge = edges[i];

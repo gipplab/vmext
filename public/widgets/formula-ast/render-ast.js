@@ -4,6 +4,7 @@
 
 'use strict';
 
+/** @type cytoscape */
 let formulaAST;
 const initialViewport = {};
 let initialAST;
@@ -82,17 +83,17 @@ function renderAST(elements) {
           'line-color': '#ccc'
         }
       },
-    ],
-    layout: {
-      name: 'dagre'
-    }
+    ]
   });
-  formulaAST
+  const nodesToHide = formulaAST
      .filter(
-       x => isHeadNode(x))
-     .hide();
-  initialViewport.zoom = formulaAST.zoom();
-  Object.assign(initialViewport, formulaAST.pan());
+       x => isHeadNode(x));
+  nodesToHide.hide();
+  formulaAST.layout({
+    name: 'dagre'
+  }).run();
+  // initialViewport.zoom = formulaAST.zoom();
+  // Object.assign(initialViewport, formulaAST.pan());
 
 }
 
@@ -187,7 +188,7 @@ function attachFormulaEventListeners() {
     for (const svgGroup of svgGroups) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
-      if (cyNode.length > 0 && !cyNode.data('isHidden')) {
+      if (cyNode.length > 0 && cyNode.visible()) {
         // this next block fixes an edgecase, where cytoscape node's mouseout wont be triggered otherwise
         // if node is dragged underneath the top border of the cyto container and formula triggers mousever
         if (currentMouseOverCytoNode) {
@@ -212,7 +213,7 @@ function attachFormulaEventListeners() {
     for (const svgGroup of svgGroups) {
       const presentationId = svgGroup.getAttribute('id');
       const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
-      if (cyNode.length > 0 && !cyNode.data('isHidden')) {
+      if (cyNode.length > 0 && cyNode.visible()) {
         unhighlightNodeAndSuccessors(cyNode);
         svgGroup.classList.remove('highlight');
         sendMessageToParentWindow(cyNode, 'mouseOutNode');
@@ -222,10 +223,23 @@ function attachFormulaEventListeners() {
   });
 }
 
+/**
+ *
+ * @param {Element} node
+ */
 function hideChilds(node) {
-  const nodesToHide = node.successors('*[!isHidden]');
+  const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
+  const nodeHeight = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.HEIGHT);
+  node.style('background-image', node.data('subtreeSVG'));
+  node.style('width', nodeWidth);
+  node.style('height', nodeHeight);
+  node.style('background-color', node.data('oldColor'));
+  node.data('oldWidth', nodeWidth);
+  node.data('oldHeight', nodeHeight);
+  node.data('isCollapsed', true);
+  const nodesToHide = node.successors(n => n.visible());
   node.data('hiddenEles', nodesToHide);
-  nodesToHide.data('isHidden', true);
+  nodesToHide.hide();
   nodesToHide.animate({
     style: {
       'background-image-opacity': 0,
@@ -241,34 +255,40 @@ function hideChilds(node) {
   });
 }
 
-function showChilds(node) {
-  node.data('hiddenEles').removeData('isHidden');
-  node.data('hiddenEles').animate({
-    style: {
-      opacity: 1,
-      'background-image-opacity': 1,
-    },
-    duration: defaults.animation.nodeCollapsing,
-  });
-
-  unhighlightNodeAndFormula({
-    nodeID: node.id(),
-    presentationID: node.data().presentationID,
-    nodeCollapsed: false
-  });
-
-  formulaAST.layout({
-    name: 'dagre',
-    animate: true,
-    animationDuration: defaults.animation.nodeCollapsing,
-    fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
-  });
+function showChilds(node, recurse) {
+  const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
+  const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
+  node.style('background-image', node.data('nodeSVG'));
+  node.style('width', nodeWidth);
+  node.style('height', nodeHeight);
+  node.style('background-color', node.data('oldColor'));
+  node.data('oldWidth', nodeWidth);
+  node.data('oldHeight', nodeHeight);
+  node.data('isCollapsed', false);
+  const hiddenEles = node.data('hiddenEles');
+  if (hiddenEles) {
+    hiddenEles.show();
+    hiddenEles.animate({
+      style: {
+        opacity: 1,
+        'background-image-opacity': 1,
+      },
+      duration: defaults.animation.nodeCollapsing,
+    });
+  }
+  if (recurse) {
+    node.successors().forEach(ele => showChilds(ele, recurse));
+  }
 }
 
 function registerEventListeners(cytoscapedAST) {
   attachFormulaEventListeners(cytoscapedAST);
-  formulaAST.on('mouseover', 'node[^isHidden]', (event) => {
+
+  formulaAST.elements().on('mouseover', (event) => {
     const node = event.target;
+    if (node.hidden()) {
+      return;
+    }
     const cd = node.data().cd;
     const cs = node.data().cs;
     if (cd) {
@@ -317,8 +337,11 @@ function registerEventListeners(cytoscapedAST) {
 
   });
 
-  formulaAST.on('mouseout', 'node[^isHidden]', (event) => {
+  formulaAST.elements().on('mouseout', (event) => {
     const node = event.target;
+    if (node.hidden()){
+      return;
+    }
     currentMouseOverCytoNode = node;
     const data = node.data();
     if (data.cd || data.cs) {
@@ -333,32 +356,28 @@ function registerEventListeners(cytoscapedAST) {
     });
   });
 
-  formulaAST.on('click', 'node[^isLeaf][^isHidden]', (event) => {
+  formulaAST.elements().on('click', (event) => {
     const node = event.target;
+    if (node.hidden() || node.isEdge()) {
+      return;
+    }
     sendMessageToParentWindow(event.target, 'mouseOutNode');
 
     toggleFormulaHighlight(node.data().presentationID, false, node);
     if (node.data('isCollapsed')) {
-      const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
-      const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
-      node.style('background-image', node.data('nodeSVG'));
-      node.style('width', nodeWidth);
-      node.style('height', nodeHeight);
-      node.style('background-color', node.data('oldColor'));
-      node.data('oldWidth', nodeWidth);
-      node.data('oldHeight', nodeHeight);
-      node.data('isCollapsed', false);
       showChilds(node);
+      unhighlightNodeAndFormula({
+        nodeID: node.id(),
+        presentationID: node.data().presentationID,
+        nodeCollapsed: false
+      });
+      formulaAST.layout({
+        name: 'dagre',
+        animate: true,
+        animationDuration: defaults.animation.nodeCollapsing,
+        fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
+      });
     } else {
-      const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
-      const nodeHeight = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.HEIGHT);
-      node.style('background-image', node.data('subtreeSVG'));
-      node.style('width', nodeWidth);
-      node.style('height', nodeHeight);
-      node.style('background-color', node.data('oldColor'));
-      node.data('oldWidth', nodeWidth);
-      node.data('oldHeight', nodeHeight);
-      node.data('isCollapsed', true);
       hideChilds(node);
     }
   });
@@ -429,12 +448,12 @@ function resetViewport() {
 }
 
 function expandAllNodes() {
-  formulaAST.remove(formulaAST.elements());
-  formulaAST.add(JSON.parse(JSON.stringify(initialAST))); // deep clone to be immutable to cytoscape
+  // showChilds(formulaAST.elements().first(),true);
+  formulaAST.elements().show();
   formulaAST.layout({
     name: 'dagre',
     fit: false,
-  });
+  }).run();
 }
 
 window.addEventListener('message', paramsReveived, false);
