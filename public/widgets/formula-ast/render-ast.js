@@ -10,8 +10,6 @@ const initialViewport = {};
 let initialAST;
 let currentMouseOverCytoNode;
 let formats;
-const collapseApply = true;
-
 
 function fetchData({ mathml, formulaIdentifier = 'A', widgetHost }) {
   const formData = new FormData();
@@ -47,63 +45,29 @@ function extractDimensionsFromSVG(dataURI, type) {
 
 
 function isHeadNode(x) {
-  return ((collapseApply && x.data().properties &&
-    ((x.data().properties.applyId || x.data().properties.applyParent))
-  ));
+  return x.data('properties') &&
+    ((x.data().properties.applyId || x.data().properties.applyParent));
 }
 
-function renderAST(elements) {
-  formulaAST = cytoscape({
-    container: document.querySelector('.cy-container'),
-    elements,
-    style: [
-      {
-        selector: '.source-A,.source-B',
-        css: {
-          shape: 'roundrectangle',
-          'background-color': 'white',
-          'background-image': ele => ele.data('applySVG') || ele.data('nodeSVG'),
-          'background-fit': 'none',
-          width: ele => extractDimensionsFromSVG(ele.data('nodeSVG'), Dimension.WIDTH),
-          height: ele => extractDimensionsFromSVG(ele.data('nodeSVG'), Dimension.HEIGHT),
-          'border-width': '2px',
-          'border-color': 'steelblue'
-        }
-      },
-      {
-        selector: '.ambiguous',
-        css: {
-          'border-color': 'steelblue',
-          'border-style': 'dashed'
-        }
-      },
-      {
-        selector: 'edge',
-        css: {
-          'line-color': '#ccc'
-        }
-      },
-    ]
-  });
-  const nodesToHide = formulaAST
-     .filter(
-       x => isHeadNode(x));
-  nodesToHide.hide();
-  formulaAST.layout({
-    name: 'dagre'
-  }).run();
-  // initialViewport.zoom = formulaAST.zoom();
-  // Object.assign(initialViewport, formulaAST.pan());
-
+function setDimFromSvg(svgData, n) {
+  const nodeWidth = extractDimensionsFromSVG(svgData, Dimension.WIDTH);
+  const nodeHeight = extractDimensionsFromSVG(svgData, Dimension.HEIGHT);
+  n.style('width', nodeWidth);
+  n.style('height', nodeHeight);
 }
 
-function createEventStreamFromElementArray(elements, type) {
-  const observableArray = elements.map(ele => Rx.Observable.fromEvent(ele, type));
-  const eventStream = Rx.Observable.merge(...observableArray);
-  return eventStream
-    .map(e => e.currentTarget)
-    .filter(group => group.getBBox().width * group.getBBox().height > 0)
-    .buffer(eventStream.debounce(1));
+function setBackground(n) {
+  const d = n.data();
+  let svgData;
+  if (d.isCollapsed) {
+    svgData = d.subtreeSVG;
+  } else if (d.applyForm) {
+    svgData = d.applySVG;
+  } else {
+    svgData = d.nodeSVG;
+  }
+  setDimFromSvg(svgData, n);
+  n.style('background-image', svgData);
 }
 
 function toggleFormulaHighlight(id, addClass, node) {
@@ -141,20 +105,101 @@ function toggleFormulaHighlight(id, addClass, node) {
   }
 }
 
-function highlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
-  const node = formulaAST.$(`node[id='${nodeID}']`);
-
-  // highlight all successor nodes if collapsed node was hovered in similarities-widget
-  nodeCollapsed ? highlightNodeAndSuccessors(node) : highlightNode(node);
-  toggleFormulaHighlight(presentationID, true, node);
-}
-
 function unhighlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
   const node = formulaAST.$(`node[id='${nodeID}']`);
 
   // unhighlight all successor nodes if collapsed node was hovered in similarities-widget
   nodeCollapsed ? unhighlightNodeAndSuccessors(node) : unhighlightNode(node);
   toggleFormulaHighlight(presentationID, false, node);
+}
+
+function renderAST(elements) {
+  formulaAST = cytoscape({
+    container: document.querySelector('.cy-container'),
+    elements,
+    style: [
+      {
+        selector: '.source-A,.source-B',
+        css: {
+          shape: 'roundrectangle',
+          'background-color': 'white',
+          'background-fit': 'none',
+          'border-width': '2px',
+          'border-color': 'steelblue'
+        }
+      },
+      {
+        selector: '.ambiguous',
+        css: {
+          'border-color': 'steelblue',
+          'border-style': 'dashed'
+        }
+      },
+      {
+        selector: 'edge',
+        css: {
+          'line-color': '#ccc'
+        }
+      },
+    ]
+  });
+  const nodesToHide = formulaAST
+     .filter(
+       x => isHeadNode(x));
+  nodesToHide.data('aplyForm', true);
+  nodesToHide.on('style', (e) => {
+    const n = e.target;
+    const applyId = n.data('properties').applyId || false;
+    if (applyId) {
+      const ele = formulaAST.getElementById(`A.${applyId}`);
+      if (n.visible()) {
+        ele.data('applyForm', false);
+      }
+      setBackground(ele);
+    } });
+
+  nodesToHide.on('click', (e) => {
+    const n = e.target;
+    const applyId = n.data('properties').applyId || false;
+    if (applyId) {
+      const ele = formulaAST.getElementById(`A.${applyId}`);
+      ele.data('applyForm',true);
+      setBackground(ele);
+      n.hide();
+      unhighlightNodeAndFormula({
+        nodeID: n.id(),
+        presentationID: n.data().presentationID,
+        nodeCollapsed: false
+      });
+    }
+  });
+  nodesToHide.hide();
+  formulaAST.filter(n => n.isNode()).forEach(n => setBackground(n));
+  formulaAST.layout({
+    name: 'dagre',
+    fit:true
+  }).run();
+  initialViewport.zoom = formulaAST.zoom();
+  Object.assign(initialViewport, formulaAST.pan());
+
+}
+
+function createEventStreamFromElementArray(elements, type) {
+  const observableArray = elements.map(ele => Rx.Observable.fromEvent(ele, type));
+  const eventStream = Rx.Observable.merge(...observableArray);
+  return eventStream
+    .map(e => e.currentTarget)
+    .filter(group => group.getBBox().width * group.getBBox().height > 0)
+    .buffer(eventStream.debounce(1));
+}
+
+
+function highlightNodeAndFormula({ nodeID, presentationID, nodeCollapsed }) {
+  const node = formulaAST.$(`node[id='${nodeID}']`);
+
+  // highlight all successor nodes if collapsed node was hovered in similarities-widget
+  nodeCollapsed ? highlightNodeAndSuccessors(node) : highlightNode(node);
+  toggleFormulaHighlight(presentationID, true, node);
 }
 
 function sendMessageToParentWindow(node, type) {
@@ -228,17 +273,10 @@ function attachFormulaEventListeners() {
  * @param {Element} node
  */
 function hideChilds(node) {
-  const nodeWidth = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.WIDTH);
-  const nodeHeight = extractDimensionsFromSVG(node.data('subtreeSVG'), Dimension.HEIGHT);
-  node.style('background-image', node.data('subtreeSVG'));
-  node.style('width', nodeWidth);
-  node.style('height', nodeHeight);
   node.style('background-color', node.data('oldColor'));
-  node.data('oldWidth', nodeWidth);
-  node.data('oldHeight', nodeHeight);
   node.data('isCollapsed', true);
+  setBackground(node);
   const nodesToHide = node.successors(n => n.visible());
-  node.data('hiddenEles', nodesToHide);
   nodesToHide.hide();
   nodesToHide.animate({
     style: {
@@ -256,16 +294,10 @@ function hideChilds(node) {
 }
 
 function showChilds(node, recurse) {
-  const nodeWidth = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.WIDTH);
-  const nodeHeight = extractDimensionsFromSVG(node.data('nodeSVG'), Dimension.HEIGHT);
-  node.style('background-image', node.data('nodeSVG'));
-  node.style('width', nodeWidth);
-  node.style('height', nodeHeight);
   node.style('background-color', node.data('oldColor'));
-  node.data('oldWidth', nodeWidth);
-  node.data('oldHeight', nodeHeight);
   node.data('isCollapsed', false);
-  const hiddenEles = node.data('hiddenEles');
+  setBackground(node);
+  const hiddenEles = node.successors(n => n.hidden() && ((!isHeadNode(n) || n.data('applyForm'))));
   if (hiddenEles) {
     hiddenEles.show();
     hiddenEles.animate({
@@ -339,7 +371,7 @@ function registerEventListeners(cytoscapedAST) {
 
   formulaAST.elements().on('mouseout', (event) => {
     const node = event.target;
-    if (node.hidden()){
+    if (node.hidden()) {
       return;
     }
     currentMouseOverCytoNode = node;
@@ -400,22 +432,21 @@ function paramsReveived(event) {
         document.body.dispatchEvent(new Event('rendered'));
         document.querySelector('.formula-container').style.display = 'block';
         document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
-        if (collapseApply) {
-          const presentations = {};
-          result.cytoscapedAST.forEach((x) => {
-            const properties = x.data.properties || false;
-            if (properties && properties.applyId) {
-              presentations[x.data.id] = x.data.subtreeSVG || x.data.nodeSVG;
-            }
-          });
-          result.cytoscapedAST = result.cytoscapedAST.map((x) => {
-            const properties = x.data.properties || false;
-            if (properties && properties.firstChild) {
-              x.data.applySVG = presentations[`${x.data.source}.${properties.firstChild}`] || x.data.nodeSVG;
-            }
-            return x;
-          });
-        }
+        const presentations = {};
+        result.cytoscapedAST.forEach((x) => {
+          const properties = x.data.properties || false;
+          if (properties && properties.applyId) {
+            presentations[x.data.id] = x.data.subtreeSVG || x.data.nodeSVG;
+          }
+        });
+        result.cytoscapedAST = result.cytoscapedAST.map((x) => {
+          const properties = x.data.properties || false;
+          if (properties && properties.firstChild) {
+            x.data.applyForm = true;
+            x.data.applySVG = presentations[`${x.data.source}.${properties.firstChild}`] || x.data.nodeSVG;
+          }
+          return x;
+        });
         renderAST(result.cytoscapedAST);
         registerEventListeners(result.cytoscapedAST);
         document.querySelector('body').style['background-color'] = eventData.bgColor;
@@ -447,13 +478,22 @@ function resetViewport() {
   });
 }
 
-function expandAllNodes() {
-  // showChilds(formulaAST.elements().first(),true);
-  formulaAST.elements().show();
+function layout() {
   formulaAST.layout({
     name: 'dagre',
-    fit: false,
+    fit: true,
   }).run();
+}
+
+function expandAllNodes() {
+  formulaAST.filter(n => n.isNode()).forEach((n) => {
+    n.data('applyForm',true);
+    n.data('isCollapsed',false);
+    setBackground(n);
+  }
+  );
+  formulaAST.elements().show();
+  layout();
 }
 
 window.addEventListener('message', paramsReveived, false);
