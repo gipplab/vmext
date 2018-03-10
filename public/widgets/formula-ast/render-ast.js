@@ -318,7 +318,7 @@ function registerEventListeners(cytoscapedAST) {
 
   formulaAST.elements().on('mouseover', (event) => {
     const node = event.target;
-    if (node.hidden()) {
+    if (node.hidden() || node.isEdge()) {
       return;
     }
     const cd = node.data().cd;
@@ -371,7 +371,7 @@ function registerEventListeners(cytoscapedAST) {
 
   formulaAST.elements().on('mouseout', (event) => {
     const node = event.target;
-    if (node.hidden()) {
+    if (node.hidden() || node.isEdge()) {
       return;
     }
     currentMouseOverCytoNode = node;

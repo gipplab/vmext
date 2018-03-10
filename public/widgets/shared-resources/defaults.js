@@ -45,14 +45,14 @@ const unhighlightNode = (node) => {
 const highlightNodeAndSuccessors = (node) => {
   highlightNode(node);
   node.successors().nodes().forEach((ele) => {
-    if (!ele.data('isHidden')) highlightNode(ele);
+    if (!ele.data('isHidden')) { highlightNode(ele); }
   });
 };
 
 const unhighlightNodeAndSuccessors = (node) => {
   unhighlightNode(node);
   node.successors().nodes().forEach((ele) => {
-    if (!ele.data('isHidden')) unhighlightNode(ele);
+    if (!ele.data('isHidden')) { unhighlightNode(ele); }
   });
 };
 
@@ -80,11 +80,11 @@ function debounce(func, wait, immediate) {
     const args = arguments;
     const later = () => {
       timeout = null;
-      if (!immediate) func.apply(context, args);
+      if (!immediate) { func.apply(context, args); }
     };
     const callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
+    if (callNow) { func.apply(context, args); }
   };
 }
