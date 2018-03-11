@@ -33,10 +33,11 @@ function fetchData({ mathml, formulaIdentifier = 'A', widgetHost }) {
 
 function extractDimensionsFromSVG(dataURI, type) {
   try {
-    const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*.[0-9]*)ex`)[1];
+    const dimensionInEX = dataURI.match(`${type}%3D%22([0-9]*\.[0-9]*)ex`)[1];
     const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
     return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
   } catch (e) {
+    console.dir(dataURI);
     // eslint-disable-next-line no-console
     console.log(e);
     return defaults.minNodeSize;

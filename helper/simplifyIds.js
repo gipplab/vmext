@@ -1,11 +1,11 @@
 const fs = require('fs');
 const XT = require('xtraverse');
 const xmlDom = require('xmldom');
-const file = '../data/00-euler.mml.xml';
+const file = '../data/10-pmml-annotation.mml.xml';
 const xmlString = fs.readFileSync(file, 'utf8');
 const xml = XT(xmlString);
 const ids = {};
-const prefix = "e";
+const prefix = "w";
 let counter = 1;
 
 function renameIds(n) {

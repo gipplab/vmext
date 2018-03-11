@@ -7,6 +7,7 @@ const SnapRenderer = require('lib/ASTRenderer/SnapRenderer');
 const querystring = require('querystring');
 const Boom = require('boom');
 
+
 module.exports = {
   parseAST: (req, res, next) => {
     return new ASTParser(res.locals.mathml,
@@ -34,13 +35,21 @@ module.exports = {
         throw err;
       })
       .then((ast) => {
+        const graph = new ASTRenderer.Graph(ast);
+        const singleTree = graph.renderSingleTree(source)
+          .catch(err =>
+            next(err,req,res,next));
+        const renderMML = MathJaxRenderer.renderMML(ast.presentation)
+          .catch(err =>
+            next(err,req,res,next)
+          );
         Promise.all([
-          new ASTRenderer.Graph(ast).renderSingleTree(source),
-          MathJaxRenderer.renderMML(ast.presentation)
+          singleTree,
+          renderMML
         ])
           .then(([cytoscapedAST, mathjaxSVG]) => {
             res.json({
-              formulaSVG: `${querystring.escape(mathjaxSVG)}`,
+              formulaSVG: `${querystring.escape(mathjaxSVG.svg)}`,
               cytoscapedAST
             });
           });
@@ -59,12 +68,14 @@ module.exports = {
       .parse()
       .then((ast) => {
         const source = req.query.formulaidentifier || 'A';
+        const singleTree = new ASTRenderer.Graph(ast).renderSingleTree(source);
+        singleTree.catch(err => next(Boom.badImplementation(err)));
         return Promise.all([
-          new ASTRenderer.Graph(ast).renderSingleTree(source),
+          singleTree,
           MathJaxRenderer.renderMML(req.body.mathml)
         ]).then(([cytoscapedAST, mathjaxSVG]) => {
           return (new SnapRenderer())
-            .renderSingleTree(cytoscapedAST, res.locals.width, res.locals.height)
+            .renderSingleTree(cytoscapedAST.svg, res.locals.width, res.locals.height)
             .then((tmpFilename) => {
               res.sendFile(tmpFilename);
             });
@@ -108,7 +119,7 @@ module.exports = {
   renderMML:
     (req, res, next) => {
       MathJaxRenderer.renderMML(req.body.mathml).then((svg) => {
-        res.send(svg);
+        res.send(svg.svg);
       })
         .catch((err) => { next(Boom.badData(err.message, req.body.mathml.toLocaleString())); });
     }
