@@ -197,7 +197,7 @@
         <apply id="w147" xref="w3">
           <apply id="w148" xref="w4">
             <csymbol cd="ambiguous" id="w149">superscript</csymbol>
-            <apply id="w150">
+            <apply id="w150" xref="w4">
               <csymbol cd="ambiguous" id="w151">subscript</csymbol>
               <int id="w152" xref="w6"/>
               <cn type="integer" id="w153" xref="w7">0</cn>

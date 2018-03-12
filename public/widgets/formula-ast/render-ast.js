@@ -37,7 +37,6 @@ function extractDimensionsFromSVG(dataURI, type) {
     const dimensioninPX = dimensionInEX * defaults.exScalingFactor;
     return dimensioninPX > defaults.minNodeSize ? dimensioninPX : defaults.minNodeSize;
   } catch (e) {
-    console.dir(dataURI);
     // eslint-disable-next-line no-console
     console.log(e);
     return defaults.minNodeSize;
