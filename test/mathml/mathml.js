@@ -6,10 +6,12 @@ const path = require('path');
 const assert = require('assert');
 
 describe('MathML reading', () => {
+
   const file = path.resolve('data/09-goat.mml.xml');
   const xmlString = fs.readFileSync(file, 'utf8');
   const pFile = path.resolve('data/10-pmml-annotation.mml.xml');
   const xmlPString = fs.readFileSync(pFile, 'utf8');
+
   it('should initialize with goat input',() => MathML(xmlString));
   it('should get goat content',() => {
     const mathml = MathML(xmlString);
@@ -18,6 +20,15 @@ describe('MathML reading', () => {
     assert.equal(contentRoot.name(),'apply');
     assert.equal(contentRoot.id(),'e40');
   });
+  it('xref should point to coresponding elements',() => {
+    const mathml = MathML(xmlString);
+    const contentRoot = mathml.contentRoot();
+    const presentationRoot = contentRoot.refNode();
+    assert.equal(contentRoot.id(),presentationRoot.xref());
+    assert.equal(presentationRoot.id(),contentRoot.xref());
+  });
+
+
   it('should initialize with pmml annotations',() => MathML(xmlPString));
   it('should get pmml annotations content',() => {
     const mathml = MathML(xmlPString);
@@ -28,5 +39,6 @@ describe('MathML reading', () => {
     assert.equal(contentRoot.xref(),'w29');
     assert(contentRoot.contentRoot());
   });
+
   it('should fail for empty input',() => assert.throws(() => MathML().contentRoot()));
 });
