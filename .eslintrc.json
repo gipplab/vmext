@@ -6,6 +6,7 @@
       "jsx": true
     }
   },
+  "plugins": [ "mocha" ],
   "extends": "eslint-config-node-services",
   "root": true,
   "rules": {
@@ -26,6 +27,7 @@
     "class-methods-use-this": 0,
     "prefer-template": 0,
     "no-restricted-syntax": 0,
-    "func-names": 0
+    "func-names": 0,
+    "mocha/no-exclusive-tests": "error"
   }
 }
