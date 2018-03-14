@@ -40,6 +40,8 @@ describe('MathML reading', () => {
   });
 
   it('should fail for empty input', () => assert.throws(() => MathML().contentRoot()));
+  it('should fail for math elements without presentation', () => assert.throws(() => MathML('<math/>').contentRoot()));
+  it('refNode should be empty if xref not specified', () => assert.equal(MathML('<math/>').refNode().length,0));
 
 
 });
@@ -60,5 +62,13 @@ describe('MathML positions', () => {
     assert.equal(first.start.ch, 7);
     assert.equal(first.end.line, 78);
     assert.equal(first.end.ch, 15);
+  });
+  it('xref should not fail for empty math tag', () => {
+    const mathml = MathML('<math/>');
+    const first = mathml.first().estimateLocation();
+    assert.equal(first.start.line, 1);
+    assert.equal(first.start.ch, 1);
+    assert.equal(first.end.line, 1);
+    assert.equal(first.end.ch, 1);
   });
 });
