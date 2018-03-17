@@ -16,7 +16,7 @@ describe('mathml rendering', () => {
     mathml.render().then((res )=>{
       assert(res);
       assert.equal(res.log,'success');
-      assert(res.success)
+      assert(res.success);
       assert(res.svg.startsWith('<svg'));
       done();
     });

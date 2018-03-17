@@ -428,7 +428,7 @@ function paramsReveived(event) {
   if (eventData.isInitialData) {
     fetchData(eventData)
       .then((result) => {
-        initialAST = JSON.parse(JSON.stringify(result.cytoscapedAST));
+        initialAST = result.cytoscapedAST;
         document.body.dispatchEvent(new Event('rendered'));
         document.querySelector('.formula-container').style.display = 'block';
         document.querySelector('.formula-container').innerHTML = decodeURIComponent(result.formulaSVG);
