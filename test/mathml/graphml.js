@@ -17,7 +17,7 @@ describe('graphml rendering', () => {
     assert(g);
     assert(g.toString().startsWith('<graph'));
     assert.equal(g.attr('xmlns'),'http://graphml.graphdrawing.org/xmlns');
-    const g2 = g.children(); // root->grpahml->graph->(node|edge)*
+    const g2 = g.children('graph'); // root->graphML->graph->(node|edge)*
     assert.equal(g2.children().length,39);
     assert.equal(g2.children('edge').length,19);
     assert.equal(g2.children('node').length,20);

@@ -18,14 +18,14 @@ describe('MathML reading', () => {
     const contentRoot = mathml.contentRoot();
     assert(contentRoot);
     assert.equal(contentRoot.name(), 'apply');
-    assert.equal(contentRoot.id(), 'e40');
+    assert.equal(contentRoot.id, 'e40');
   });
   it('xref should point to coresponding elements', () => {
     const mathml = MathML(xmlString);
     const contentRoot = mathml.contentRoot();
     const presentationRoot = contentRoot.refNode();
-    assert.equal(contentRoot.id(), presentationRoot.xref());
-    assert.equal(presentationRoot.id(), contentRoot.xref());
+    assert.equal(contentRoot.id, presentationRoot.xref());
+    assert.equal(presentationRoot.id, contentRoot.xref());
   });
 
   it('should initialize with pmml annotations', () => MathML(xmlPString));
@@ -34,7 +34,7 @@ describe('MathML reading', () => {
     const contentRoot = mathml.contentRoot();
     assert(contentRoot);
     assert.equal(contentRoot.name(), 'apply');
-    assert.equal(contentRoot.id(), 'w2');
+    assert.equal(contentRoot.id, 'w2');
     assert.equal(contentRoot.xref(), 'w29');
     assert(contentRoot.contentRoot());
   });
