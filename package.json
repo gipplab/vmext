@@ -37,6 +37,7 @@
     "cheerio": "^0.22.0",
     "circular-json": "^0.5.1",
     "compression": "^1.6.2",
+    "config": "^1.30.0",
     "cytoscape": "^2.7.13",
     "cytosnap": "^1.1.2",
     "d3": "^4.3.0",
