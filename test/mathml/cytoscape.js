@@ -13,7 +13,10 @@ describe('cytoscape rendering', () => {
   it('should initialize with goat input', () => cytoscapeRenderer(xmlString));
   it('should get correct number of nodes in goat tree', () => {
     const mathml = cytoscapeRenderer(xmlString);
-    const cy = mathml.toCytoscape();
+    const cy = mathml.toCytoscape({
+      headless : true,
+      styleEnabled: true,
+    });
     assert(cy);
     assert.equal(cy.elements().length,39);
     assert.equal(cy.edges().length,19);
