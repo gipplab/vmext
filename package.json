@@ -38,7 +38,7 @@
     "circular-json": "^0.5.1",
     "compression": "^1.6.2",
     "config": "^1.30.0",
-    "cytoscape": "^2.7.13",
+    "cytoscape": "^3.2.11",
     "cytosnap": "^1.1.2",
     "d3": "^4.3.0",
     "express": "^4.16.2",

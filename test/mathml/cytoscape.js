@@ -14,12 +14,14 @@ describe('cytoscape rendering', () => {
   it('should get correct number of nodes in goat tree', () => {
     const mathml = cytoscapeRenderer(xmlString);
     const cy = mathml.toCytoscape({
-      headless : true,
-      styleEnabled: true,
+      headless: true,
+      styleEnabled: true
     });
     assert(cy);
     assert.equal(cy.elements().length,39);
     assert.equal(cy.edges().length,19);
     assert.equal(cy.nodes().length,20);
+    // required if headless styles are enabled
+    cy.destroy();
   });
 });
