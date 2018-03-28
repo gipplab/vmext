@@ -24,4 +24,18 @@ describe('cytoscape rendering', () => {
     // required if headless styles are enabled
     cy.destroy();
   });
+  it('should get hide apply nodes', () => {
+    const mathml = cytoscapeRenderer(xmlString);
+    const cy = mathml.toCytoscape({
+      headless: true,
+      styleEnabled: true,
+      applyForm: true
+    });
+    assert(cy);
+    assert.equal(cy.elements().filter(e => e.visible()).length,25);
+    assert.equal(cy.edges().filter(e => e.visible()).length,12);
+    assert.equal(cy.nodes().filter(e => e.visible()).length,13);
+    // required if headless styles are enabled
+    cy.destroy();
+  });
 });

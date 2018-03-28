@@ -13,6 +13,7 @@
     "cytoscape": "^3.2.11",
     "cytoscape-dagre": "^2.2.0",
     "preq": "^0.5.4",
+    "winston": "^3.0.0-rc3",
     "xpath": "0.0.27",
     "xtraverse": "^0.1.0"
   },
