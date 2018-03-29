@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dagre = require('cytoscape-dagre');
   const container = document.getElementById('cy-container');
   const mmlIn = document.getElementById('mmlin');
-  const mml = mmlCy(mmlIn.value);
+  const mml = mmlCy.mml(mmlIn.value);
   const cy = mml.toCytoscape({ container,
     boxSelectionEnabled: false,
     autounselectify: true,
@@ -23,12 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     ],
-
+    applyForm: true
   });
   cytoscape.use(dagre);
-  cy.layout({
-    name: 'dagre',
-    fit:true
-  }).run();
+  mmlCy.layout(cy);
 
 });

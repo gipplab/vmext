@@ -1,6 +1,6 @@
 'use strict';
 
-const cytoscapeRenderer = require('../../lib/MathML/cytoscape');
+const cytoscapeRenderer = require('../../lib/MathML/cytoscape').mml;
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
