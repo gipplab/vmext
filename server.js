@@ -32,7 +32,7 @@ const CircularJSON = require('circular-json');
 // });
 
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/frontend/favicon.ico'));
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
 
@@ -45,7 +45,7 @@ readGlob('data/*sim.json', 'utf8')
     app.locals.sim  = contents;
   });
 app.set('view engine', 'pug');
-app.set('views', './public/html');
+app.set('views', './frontend/html');
 // Allow CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -53,8 +53,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// serve static content only from 'public' dir
-app.use(express.static('./public'));
+app.use(express.static('./frontend'));
 // expose routes for templates
 app.use('/', require('./routes/routes'));
 // expose api
