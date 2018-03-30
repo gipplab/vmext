@@ -11,6 +11,9 @@
     "node": ">=6"
   },
   "scripts": {
+    "build": "./node_modules/.bin/brunch build",
+    "prestart": "npm run build",
+    "pretest": "npm run build",
     "start": "nodemon --ignore public/ server.js",
     "debug": "nodemon --ignore public/ --inspect server.js",
     "coverage": "istanbul cover _mocha -- -R spec",

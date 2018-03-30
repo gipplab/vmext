@@ -1,7 +1,7 @@
 'use strict';
 
 exports.paths = {
-  watched: ['frontend/js']
+  watched: ['frontend']
 };
 // See http://brunch.io for documentation.
 exports.files = {

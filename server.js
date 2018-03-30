@@ -53,7 +53,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static('./frontend'));
+app.use(express.static('./public'));
 // expose routes for templates
 app.use('/', require('./routes/routes'));
 // expose api
