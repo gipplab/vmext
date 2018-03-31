@@ -44,8 +44,6 @@ readGlob('data/*sim.json', 'utf8')
   .then((contents) => {
     app.locals.sim  = contents;
   });
-app.set('view engine', 'pug');
-app.set('views', './frontend/html');
 // Allow CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

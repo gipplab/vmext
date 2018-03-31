@@ -15,7 +15,12 @@ exports.files = {
 };
 
 exports.plugins = {
-  babel: { presets: ['latest'] }
+  babel: { presets: ['latest'] },
+  pug: {
+    preCompile: true,
+    locals: { mml: [1,2,3,4,5,6],
+      sim:[1,2,3] }
+  }
 };
 
 exports.modules = {
