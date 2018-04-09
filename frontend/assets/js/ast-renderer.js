@@ -70,7 +70,6 @@ window.onload = function init() {
     callAPI();
   });
   window.formats = formats;
-//  window.cm.scrollIntoView({line:52,ch:1});
 };
 
 const renderPNG = () => {
