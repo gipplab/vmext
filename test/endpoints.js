@@ -7,7 +7,7 @@ describe('loading express', () => {
   afterEach(() => {
     server.close();
   });
-  const endpoints = ['/','/ASTRenderer', '/mergedASTs' ,'/api-docs/#/Math']; // , '/swagger.json'
+  const endpoints = ['/','/ast-renderer.html', '/merged-asts.html' ,'/api-docs/#/Math']; // , '/swagger.json'
   endpoints.forEach((t) => {
     it('responds to ' + t, function testSlash(done) {
       request(server)

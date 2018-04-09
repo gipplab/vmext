@@ -10,7 +10,7 @@ const app = module.exports = express();
 const compression = require('compression');
 const favicon = require('serve-favicon');
 const log = require('./lib/logger');
-const readGlob = require('read-glob-promise');
+const testData = require('testData');
 const CircularJSON = require('circular-json');
 
 
@@ -36,14 +36,8 @@ app.use(favicon(__dirname + '/frontend/favicon.ico'));
 // compress all assets and json-responses if minimal size is reached
 app.use(compression());
 
-readGlob('data/*.mml.xml', 'utf8')
-  .then((contents) => {
-    app.locals.mml  = contents;
-  });
-readGlob('data/*sim.json', 'utf8')
-  .then((contents) => {
-    app.locals.sim  = contents;
-  });
+app.locals = testData.locals;
+
 // Allow CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

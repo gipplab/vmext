@@ -54,7 +54,7 @@
     "phantom": "^4.0.0",
     "preq": "^0.4.10",
     "pugjs-brunch": "^2.10.2",
-    "read-glob-promise": "^2.0.0",
+    "glob": "^7.1.2",
     "serve-favicon": "^2.3.2",
     "whatwg-fetch": "^2.0.2",
     "winston": "^2.3.0",

@@ -1,5 +1,7 @@
 'use strict';
 
+const testData = require('./testData');
+
 exports.paths = {
   watched: ['frontend']
 };
@@ -18,10 +20,10 @@ exports.plugins = {
   babel: { presets: ['latest'] },
   pug: {
     preCompile: true,
-    locals: { mml: [1,2,3,4,5,6],
-      sim:[1,2,3] }
+    locals: testData.locals
   }
 };
+
 
 exports.modules = {
   // nameCleaner: path => path.replace(/^xcx/, '')
