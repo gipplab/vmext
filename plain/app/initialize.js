@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const mmlCy = require('./MathML/cytoscape');
-  const cytoscape = require('cytoscape');
   const container = document.getElementById('cy-container');
   const mmlIn = document.getElementById('mmlin');
   const mml = mmlCy.mml(mmlIn.value);
