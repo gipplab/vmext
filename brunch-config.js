@@ -9,7 +9,8 @@ exports.paths = {
 exports.files = {
   javascripts: {
     joinTo: {
-      //    'vendor.js': /^(?!app)/, // Files that are not in `app` dir.
+      'vendor.js': /^node_modules/, // Files that are not in `app` dir.
+      'lib.js': /^lib/, // Files that are not in `app` dir.
       'app.js': /^frontend\/js/
     }
   },
