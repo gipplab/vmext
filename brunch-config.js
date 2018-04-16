@@ -10,8 +10,7 @@ exports.files = {
   javascripts: {
     joinTo: {
       'vendor.js': /^node_modules/, // Files that are not in `app` dir.
-      'lib.js': /^lib/, // Files that are not in `app` dir.
-      'app.js': /^frontend\/js/
+      'app.js': /^(frontend\/js|lib)/
     }
   },
   stylesheets: { joinTo: 'app.css' }
