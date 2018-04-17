@@ -1,5 +1,7 @@
 # VMEdit: A visual Wikidata aware content MathML editor
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ag-gipp/vmedit.svg)](https://greenkeeper.io/)
+
 VMEdit is a visual content MathML editor.
 In the standard workflow parallel markup is generated from LaTeX input, which we visualize in expression tree form.
 Then, the user alters the tree structure via drag and drop and links symbols to content dictionary entries.
