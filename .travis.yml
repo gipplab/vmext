@@ -3,17 +3,3 @@ language: node_js
 node_js:
 - '6'
 script: npm run-script coverage && (npm run-script coveralls || exit 0)
-before_script:
-- npm i git+https://git@github.com/physikerwelt/mathoid-server.git
-- cd node_modules/mathoid
-- chmod +x server.js
-- "./server.js -c ../../config.dev.yaml &"
-- cd ../..
-deploy:
-  provider: npm
-  email: wiki@physikerwelt.de
-  api_key:
-    secure: QTkrD205Z7NDeHUpb1pI+tyaV6ugh+OwAANpHTW8tlPwdJAyD06lkWVcOCvzCWUIguhyAKKsti45wylddJKD+V5AnnIxGdNG7cwZFnHcI1FuafY3zNJHmlUVV81u0uEnTUSsVpBIJc9d3ybqBd7D/CesRHtE6f0mI8M2a8GHV1MdxllCm5/p4fhm3JCrkanFWtTQEPWhVVAp1BgZ6bYnMZKBHS20EWdr/9MsaZyjrJTYr8FLUyUxEVy26wQ4YqRU/bn+qS75QJm4v0WGx/CdlXI0S15BResHFX9WtpIVrW5JfAmmGx7USmFqu0jZb3o0hI8e/KqomYTxJX5UE0yN8IGmSRP2sHYXvahH7hH11NNMdTL/TLr0W8hQT0GpYJjgk01Nuq4R0EB3XHZ77VSvW21LtQmfFGqtDloC606D9hZg7qfk5S2bJxm9vlVncveUNAGRrLIsIPkw98sI8p0w21i8FvnHN7zR9Xd3G3wY2rCOfSMm3fgcbneCNsGO/sAIfMCimtUfyFHwFqsPaY/Yrd7zSAjKDj4sGh6nlA2ASh37/o8LbRhHy9Wpl69Sl+HkHQdsFPQvXFDejNJ0xzEuNfeFv0+8JnPCGfMkxoosPCG5IwNauU+MZbzzu8neadxWe8cJEBgx2e4wwC8nvg8pSHEreXosAwLMkBUWzTp2ib4=
-  on:
-    tags: true
-    repo: ag-gipp/vmext
