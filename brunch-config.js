@@ -1,6 +1,6 @@
 'use strict';
 
-const testData = require('../testData');
+const testData = require('./testData');
 
 // See http://brunch.io for documentation.
 module.exports = {
