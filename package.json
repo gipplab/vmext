@@ -1,12 +1,16 @@
 {
-  "name": "brunch-app",
-  "description": "Brunch.io application",
-  "private": true,
-  "author": "Brunch",
-  "version": "0.0.1",
-  "repository": "",
+  "name": "vmedit",
+  "version": "1.0.0",
+  "description": "VMEdit is a visual content MathML editor. In the standard workflow parallel markup is generated from LaTeX input, which we visualize in expression tree form.  Then, the user alters the tree structure via drag and drop and links symbols to content dictionary entries.  In addition to the standard OpenMath content dictionaries, Wikidata items can be used as content symbols.",
+  "repository": {
+    "url": "git@github.com:ag-gipp/vmedit.git",
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
-    "build": "./node_modules/.bin/brunch build --production",
+    "build": "./node_modules/.bin/brunch build",
     "prestart": "npm run build",
     "pretest": "./node_modules/.bin/brunch build",
     "start": "./node_modules/.bin/brunch watch --server",
@@ -21,7 +25,6 @@
     "cytoscape": "^3.2.11",
     "cytoscape-dagre": "^2.2.0",
     "cytoscape-popper": "^1.0.1",
-    "preq": "^0.5.4",
     "pugjs-brunch": "^2.10.2",
     "tippy.js": "^2.5.2",
     "winston": "^3.0.0-rc3",
@@ -34,6 +37,12 @@
     "babel-preset-latest": "^6",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "eslint": "^4.11.0",
+    "eslint-config-node-services": "^2.0.2",
+    "eslint-config-wikimedia": "^0.5.0",
+    "eslint-plugin-jsdoc": "^3.0.0",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-mocha": "^4.12.1",
     "mocha": "^5.1.0",
     "mocha-eslint": "^4.1.0",
     "uglify-js-brunch": "^2"
