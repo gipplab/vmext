@@ -5,6 +5,8 @@ const cytoscape = require('cytoscape');
 const dagre = require('cytoscape-dagre');
 const popper = require('cytoscape-popper');
 const tippy = require('tippy.js');
+cytoscape.use(dagre);
+cytoscape.use(popper);
 
 function layout(cy) {
   if (!cy.headless()) {
@@ -109,8 +111,6 @@ mml.base.prototype.toCytoscape = function(options = {}) {
 
   this._addCTreeElements(elements, addNode, addEdge);
   Object.assign(options, { elements });
-  cytoscape.use(dagre);
-  cytoscape.use(popper);
   const cy = cytoscape(options);
 
   cy.startBatch();
