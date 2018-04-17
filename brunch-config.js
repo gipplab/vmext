@@ -7,7 +7,7 @@ module.exports = {
   files :{
     javascripts: {
       joinTo: {
-        'vendor.js': /^node_modules/, // Files that are not in `app` dir.
+        'vendor.js':  /^(?!app)/,
         'app.js': /^app/
       }
     },
@@ -25,4 +25,5 @@ module.exports = {
       codemirror:['lib/codemirror.css'],
       bootstrap: ['dist/css/bootstrap.css']
     }
-  } };
+  }
+};
