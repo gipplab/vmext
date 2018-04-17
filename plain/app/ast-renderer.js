@@ -1,5 +1,9 @@
 'use strict';
 
+
+const CodeMirror = require('codemirror/lib/codemirror.js');
+require('codemirror/mode/xml/xml.js');
+
 const buffers = {};
 const elem = document.getElementById('MathMLexamples');
 const formats = { cmml:{},pmml:{} };
@@ -42,7 +46,7 @@ function callAPI(evt) {
   Object.keys(formats).forEach((f) => {
     selectBuffer(formats[f].cm, elem.options[elem.selectedIndex].label);
   });
-  const mmlCy = require('../../lib/MathML/cytoscape');
+  const mmlCy = require('MathML/cytoscape');
   const container = document.getElementById('mast');
   const mml = mmlCy.mml(formats.cmml.cm.getValue());
   const cy = mml.toCytoscape({ container,
@@ -67,7 +71,6 @@ function callAPI(evt) {
   }
   );
   cy.nodes().on('mouseout',(e) => {
-    const n = e.target.data();
     Object.keys(formats).forEach((f) => {
       const marker = formats[f].marker;
       if (marker) {

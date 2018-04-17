@@ -2,9 +2,8 @@ html
   head
     title Abstract Syntax Tree
 
-    link(rel='stylesheet' type='text/css' href='../vendor/css/bootstrap.min.css')
-    link(rel='stylesheet' type='text/css' href='../lib/codemirror/lib/codemirror.css')
-    link(rel='stylesheet' type='text/css' href='../css/ast-renderer.css')
+    link(rel='stylesheet' type='text/css' href='/app.css')
+    link(rel='stylesheet' type='text/css' href='/node_modules/codemirror/lib/codemirror.css')
     script(src='vendor.js', type='text/javascript')
     script(src='app.js', type='text/javascript')
 body
@@ -33,14 +32,10 @@ body
                   selected='selected'
                   ) Goat
               input.btn.btn-success(type='submit', value='Render')
-              </br>
-              </br>
               a.btn-download(href='#', onclick='renderPNG()' download='ast-formula.png' style="display: none;") download rendering as PNG
           .col-md-8
             div#mast
-  script(src='../lib/codemirror/lib/codemirror.js', type='text/javascript')
-  script(src='../lib/codemirror/mode/xml/xml.js', type='text/javascript')
   div#tooltipTemplate(style="display: none;")
     Loading a new image...
   script.
-    require("frontend/js/ast-renderer.js");
+    require("ast-renderer.js");
