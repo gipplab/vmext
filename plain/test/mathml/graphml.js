@@ -1,6 +1,6 @@
 'use strict';
 
-const graph = require('../../lib/MathML/GraphML');
+const graph = require('../../app/MathML/GraphML');
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');

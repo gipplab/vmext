@@ -1,6 +1,6 @@
 'use strict';
 
-const MathML = require('../../lib/MathML/MathMLReader');
+const MathML = require('../../app/MathML/MathMLReader');
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');

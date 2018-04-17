@@ -1,6 +1,6 @@
 'use strict';
 
-const renderer = require('../../lib/MathML/MathMLRenderer');
+const renderer = require('../../app/MathML/MathMLRenderer');
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
