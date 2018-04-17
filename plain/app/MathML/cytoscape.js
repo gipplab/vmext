@@ -207,131 +207,28 @@ module.exports.mml = mml;
 module.exports.layout = layout;
 
 
-//
-// formulaAST.elements().on('mouseover', (event) => {
-//   const node = event.target;
-//   if (node.hidden() || node.isEdge()) {
-//     return;
-//   }
-//   const cd = node.data().cd;
-//   const cs = node.data().cs;
-//   if (cd) {
-//     const symbol = node.data().symbol;
-//     node.qtip({
-//       content: {
-//         text: (event, api) => {
-//           const fallback = `Fetching information for symbol ${symbol} from content directory ${cd}.`;
-//           $.ajax({
-//             url: `/popupInfo/${cd}/${symbol}`,
-//           })
-//             .then((content) => {
-//               api.set('content.text', content.text);
-//               api.set('content.title', content.title);
-//             }, (xhr, status, error) => {
-//               // Upon failure... set the tooltip content to error
-//               api.set('content.text', fallback + `Failed!`);
-//             });
-//
-//           return fallback; // Set some initial text
-//         },
-//         title: `Fetching information for symbol ${symbol}`
-//       },
-//       show: {
-//         event: 'mouseenter'
+// TODO: inegrate
+// router.get('/popupInfo/:cd/:symbol', (req, res) => {
+//   const cd = req.params.cd;
+//   const symbol = req.params.symbol;
+//   if (symbol.charAt(0) === 'Q') {
+//     preq.get(
+//       {
+//         uri: `http://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`,
 //       }
-//     });
-//     node.qtip('api').show();
-//   } else if (cs) {
-//     node.qtip({
-//       content: {
-//         text: cs
-//       },
-//       show: {
-//         event: 'click mouseenter'
-//       }
-//     });
-//     node.qtip('api').show();
-//   }
-//   sendMessageToParentWindow(event.target, 'mouseOverNode');
-//   highlightNodeAndFormula({
-//     nodeID: node.id(),
-//     presentationID: node.data().presentationID,
-//     nodeCollapsed: false,
-//   });
-//
-// });
-//
-// formulaAST.elements().on('mouseout', (event) => {
-//   const node = event.target;
-//   if (node.hidden() || node.isEdge()) {
-//     return;
-//   }
-//   currentMouseOverCytoNode = node;
-//   const data = node.data();
-//   if (data.cd || data.cs) {
-//     const qtip = node.qtip('api');
-//     qtip.hide();
-//   }
-//   sendMessageToParentWindow(event.target, 'mouseOutNode');
-//   unhighlightNodeAndFormula({
-//     nodeID: node.id(),
-//     presentationID: node.data().presentationID,
-//     nodeCollapsed: false
-//   });
-// });
-//
-// formulaAST.elements().on('click', (event) => {
-//   const node = event.target;
-//   if (node.hidden() || node.isEdge()) {
-//     return;
-//   }
-//   sendMessageToParentWindow(event.target, 'mouseOutNode');
-//
-//   toggleFormulaHighlight(node.data().presentationID, false, node);
-//   if (node.data('isCollapsed')) {
-//     showChilds(node);
-//     unhighlightNodeAndFormula({
-//       nodeID: node.id(),
-//       presentationID: node.data().presentationID,
-//       nodeCollapsed: false
-//     });
-//     formulaAST.layout({
-//       name: 'dagre',
-//       animate: true,
-//       animationDuration: defaults.animation.nodeCollapsing,
-//       fit: formulaAST.zoom() === initialViewport.zoom, // only fit in original viewport
+//     ).then((content) => {
+//       res.json({
+//         title:`<a href="https://wikidata.org/wiki/${symbol}" target="_blank">Wikidata ${symbol}</a>`,
+//         text: '<p>' + _.get(content, `body.entities[${symbol}].labels.en.value`, symbol)  + '</p>' +
+//         '<p>' +  _.get(content, `body.entities[${symbol}].descriptions.en.value`, 'no description') + '</p>'
+//       });
+//     }).catch((e) => {
+//       res.status(400).send('Error while requesting popup Information: ' + e.message);
 //     });
 //   } else {
-//     hideChilds(node);
+//     res.json({
+//       title:`${cd} - ${symbol}`,
+//       text: `No information found for ${cd} - ${symbol}`
+//     });
 //   }
 // });
-// mouseoverEventStream.subscribe((svgGroups) => {
-//   if (activeFormulaElement) {
-//     unhighlightNodeAndSuccessors(activeFormulaElement.cyNode);
-//     activeFormulaElement.svgGroup.classList.remove('highlight');
-//     sendMessageToParentWindow(activeFormulaElement.cyNode, 'mouseOutNode');
-//   }
-//   for (const svgGroup of svgGroups) {
-//     const presentationId = svgGroup.getAttribute('id');
-//     const cyNode = formulaAST.$(`node[presentationID='${presentationId}']`);
-//     if (cyNode.length > 0 && cyNode.visible()) {
-//       // this next block fixes an edgecase, where cytoscape node's mouseout wont be triggered otherwise
-//       // if node is dragged underneath the top border of the cyto container and formula triggers mousever
-//       if (currentMouseOverCytoNode) {
-//         sendMessageToParentWindow(currentMouseOverCytoNode, 'mouseOutNode');
-//         unhighlightNodeAndFormula({
-//           nodeID: currentMouseOverCytoNode.id(),
-//           presentationID: currentMouseOverCytoNode.data().presentationID,
-//           nodeCollapsed: false
-//         });
-//       }
-//
-//       activeFormulaElement = { cyNode, svgGroup };
-//       highlightNodeAndSuccessors(cyNode);
-//       svgGroup.classList.add('highlight');
-//       sendMessageToParentWindow(cyNode, 'mouseOverNode');
-//       break;
-//     }
-//   }
-// });
-//

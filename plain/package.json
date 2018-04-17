@@ -28,6 +28,7 @@
     "babel-preset-latest": "^6",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "mocha": "^5.1.0",
     "uglify-js-brunch": "^2"
   }
 }
