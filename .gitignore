@@ -1,26 +1,28 @@
-# OS generated files #
-######################
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
 .DS_Store
-.DS_Store?
-._*
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
 
-# IDE files          #
-######################
+# NPM packages folder.
+node_modules/
+
+# Brunch output folder.
+public/
+
 .idea/
-.vscode/
-
-# Node files         #
-######################
-node_modules
-npm-debug.log*
-yarn-error.log
-
-# App specific files #
-######################
-logs
-log/
-
-coverage/
-cyto.js
-
-public
