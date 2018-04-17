@@ -45,11 +45,37 @@ function callAPI(evt) {
   const mmlCy = require('../../lib/MathML/cytoscape');
   const container = document.getElementById('mast');
   const mml = mmlCy.mml(formats.cmml.cm.getValue());
-  mml.toCytoscape({ container,
+  const cy = mml.toCytoscape({ container,
     boxSelectionEnabled: false,
     autounselectify: true,
     applyForm: true
   });
+  cy.nodes().on('mouseover',(e) => {
+    const n = e.target.data();
+    const location =    {
+      cmml:n.estimateLocation({line:-1,ch:0}),
+      pmml:n.refNode().estimateLocation({line:-1,ch:0})
+    };
+    Object.keys(formats).forEach((f) => {
+      const cm = formats[f].cm || false;
+      const line = location[f] || false;
+      if (cm && line) {
+        formats[f].marker = cm.markText(line.start, line.end, { className: 'highlight' });
+        cm.scrollIntoView({ from: line.start, to: line.end });
+      }
+    });
+  }
+  );
+  cy.nodes().on('mouseout',(e) => {
+    const n = e.target.data();
+    Object.keys(formats).forEach((f) => {
+      const marker = formats[f].marker;
+      if (marker) {
+        marker.clear();
+      }
+    });
+  }
+  );
 }
 
 window.onload = function init() {
