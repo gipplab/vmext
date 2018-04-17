@@ -3,7 +3,7 @@
 const mml = require('./MathMLReader');
 const opMap = require('./operationMap');
 
-// const config = require('config');
+const conf = require('../config.js');
 
 mml.base.prototype.imgUrl = function(format = false) {
   /**
@@ -27,7 +27,7 @@ mml.base.prototype.imgUrl = function(format = false) {
     node = node.refNode();
   }
   const mml = toMML(node.toString());
-  return 'http://localhost:10044/get/svg/mml/' + encodeURIComponent(mml);
+  return `${conf.get('mathoidUrl')}/get/svg/mml/${encodeURIComponent(mml)}`;
 };
 
 module.exports = mml;

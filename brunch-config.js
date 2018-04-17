@@ -1,13 +1,13 @@
 'use strict';
 
-const testData = require('./testData');
+const testData = require('./locals');
 
 // See http://brunch.io for documentation.
 module.exports = {
   files :{
     javascripts: {
       joinTo: {
-        'vendor.js': /^(?!app)/, // Files that are not in `app` dir.
+        'vendor.js': /^node_modules/, // Files that are not in `app` dir.
         'app.js': /^app/
       }
     },
