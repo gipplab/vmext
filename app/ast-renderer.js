@@ -49,16 +49,17 @@ function callAPI(evt) {
   const mmlCy = require('MathML/cytoscape');
   const container = document.getElementById('mast');
   const mml = mmlCy.mml(formats.cmml.cm.getValue());
-  const cy = mml.toCytoscape({ container,
+  const cy = mml.toCytoscape({
+    container,
     boxSelectionEnabled: false,
     autounselectify: true,
     applyForm: true
   });
-  cy.nodes().on('mouseover',(e) => {
+  cy.nodes().on('mouseover', (e) => {
     const n = e.target.data();
-    const location =    {
-      cmml:n.estimateLocation({line:-1,ch:0}),
-      pmml:n.refNode().estimateLocation({line:-1,ch:0})
+    const location = {
+      cmml: n.estimateLocation({ line: -1, ch: 0 }),
+      pmml: n.refNode().estimateLocation({ line: -1, ch: 0 })
     };
     Object.keys(formats).forEach((f) => {
       const cm = formats[f].cm || false;
@@ -70,7 +71,7 @@ function callAPI(evt) {
     });
   }
   );
-  cy.nodes().on('mouseout',(e) => {
+  cy.nodes().on('mouseout', (e) => {
     Object.keys(formats).forEach((f) => {
       const marker = formats[f].marker;
       if (marker) {
@@ -79,8 +80,35 @@ function callAPI(evt) {
     });
   }
   );
-}
 
+  function getNearest(n) {
+    const pn = n.position();
+    let nearest = n;
+    let minD = Number.MAX_VALUE;
+    cy.nodes().forEach((m) => {
+      if (n.data().id !== m.data().id) {
+        const pm = m.position();
+        const d = Math.hypot(pm.x - pn.x, pm.y - pn.y);
+        if (d < minD) {
+          nearest = m;
+          minD = d;
+        }
+      }
+    });
+    return nearest;
+  }
+
+  cy.nodes().on('free', (e) => {
+    const n = e.target;
+    const nearest = getNearest(n);
+
+    console.log(`free ${n.data().id} near ${nearest.data().id} `);
+  });
+  cy.nodes().on('drag', (e) => {
+    const n = e.target;
+    console.log(`drag ${n.data().id}`);
+  });
+}
 window.onload = function init() {
   Object.keys(formats).forEach((f) => {
     const mml = document.getElementById(f);
