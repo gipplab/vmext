@@ -27,6 +27,7 @@
     "cytoscape-dagre": "^2.2.0",
     "cytoscape-popper": "^1.0.1",
     "glob": "^7.1.2",
+    "lodash": "^4.17.5",
     "pugjs-brunch": "^2.10.2",
     "tippy.js": "^2.5.2",
     "winston": "^3.0.0-rc3",

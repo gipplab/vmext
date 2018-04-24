@@ -5,6 +5,7 @@ const cytoscape = require('cytoscape');
 const dagre = require('cytoscape-dagre');
 const popper = require('cytoscape-popper');
 const tippy = require('tippy.js');
+const _ = require('lodash');
 cytoscape.use(dagre);
 cytoscape.use(popper);
 
@@ -158,17 +159,25 @@ mml.base.prototype.toCytoscape = function(options = {}) {
           const content = this.querySelector('.tippy-content');
           content.innerHTML = `Fetching information for symbol ${symbol} from content directory ${cd}.`;
           if (typeof fetch !== "undefined") {
+            if (cd === 'wikidata') {
             // eslint-disable-next-line no-undef
-            fetch(`/popupInfo/${cd}/${symbol}`).then((res) => {
-              res.json()
-                .then((json) => {
-                  content.innerHTML = json.title;
+              fetch(`http://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`).then((res) => {
+                res.json()
+                  .then((json) => {
+                    // language=HTML
+                    content.innerHTML =
+`<h3><a href="https://wikidata.org/wiki/${symbol}" target="_blank">
+Wikidata ${symbol}</a></h3><p> ${_.get(json, `entities[${symbol}].labels.en.value`, symbol)} </p>
+<p>${_.get(json, `entities[${symbol}].descriptions.en.value`, 'no description')} </p>`;
+                  });
+              })
+                .catch((e) => {
+                  console.error(e);
+                  content.innerHTML = 'Loading failed';
                 });
-            })
-              .catch((e) => {
-                content.innerHTML = 'Loading failed';
-              });
+            }
           }
+
         }
       }).tooltips[0];
       n.on('mouseover', () => t.show());
