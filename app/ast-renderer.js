@@ -117,7 +117,11 @@ window.onload = function init() {
     const cursorPos = editor.getCursor().ch;
     const lineNum = editor.getCursor().line;
     const rdf = require('Wikidata/Rdf');
-    rdf(lineContent,lineNum,cursorPos).done(callback);
+    rdf(lineContent,lineNum,cursorPos).then((hint) => {
+      hint.from = CodeMirror.Pos(hint.from.line, hint.from.char);
+      hint.to = CodeMirror.Pos(hint.to.line, hint.to.char);
+      return hint;
+    }).done(callback);
   });
   CodeMirror.hint.xml.async = true;
   Object.keys(formats).forEach((f) => {
