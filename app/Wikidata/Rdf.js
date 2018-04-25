@@ -84,7 +84,6 @@ function getHint(lineContent, lineNum, cursorPos) {
   }
 
   const term = currentWord.word.trim().substr(1);
-
   if (term.length === 0) { // empty search term
     list = [ {
       text: term,
@@ -103,3 +102,4 @@ function getHint(lineContent, lineNum, cursorPos) {
   return deferred.promise();
 }
 
+module.exports = getHint;

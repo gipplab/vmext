@@ -3,6 +3,7 @@
 
 const CodeMirror = require('codemirror/lib/codemirror.js');
 require('codemirror/mode/xml/xml.js');
+require('codemirror/addon/hint/show-hint.js');
 
 
 const buffers = {};
@@ -111,11 +112,20 @@ function callAPI(evt) {
   });
 }
 window.onload = function init() {
+  CodeMirror.registerHelper('hint','xml',(editor,callback) => {
+    const lineContent = editor.getLine(editor.getCursor().line);
+    const cursorPos = editor.getCursor().ch;
+    const lineNum = editor.getCursor().line;
+    const rdf = require('Wikidata/Rdf');
+    rdf(lineContent,lineNum,cursorPos).done(callback);
+  });
+  CodeMirror.hint.xml.async = true;
   Object.keys(formats).forEach((f) => {
     const mml = document.getElementById(f);
-    formats[f].cm = CodeMirror(mml, { lineNumbers: true });
+    formats[f].cm = CodeMirror(mml, { lineNumbers: true,
+      'extraKeys': {
+        'Ctrl-Space': 'autocomplete' } });
   });
-
   [].forEach.call(
     elem.options,
     o => buffers[o.label] = CodeMirror.Doc(o.value, 'application/xml')
