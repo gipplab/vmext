@@ -53,67 +53,40 @@ wikibase.queryService.ui.editor.hint = wikibase.queryService.ui.editor.hint || {
 		var deferred = new $.Deferred(),
 			currentWord = this._getCurrentWord( lineContent, cursorPos ),
 			list,
-			prefix,
 			term,
-			entityPrefixes,
 			self = this;
-
-		if ( !currentWord.word.match( /\S+:\S*/ ) ) {
+		if ( !currentWord.word.match( /^Q.*/ ) ) {
 			return deferred.reject().promise();
 		}
 
-		prefix = this._getPrefixFromWord( currentWord.word.trim() );
-		term = this._getTermFromWord( currentWord.word.trim() );
-		entityPrefixes = this._extractPrefixes( editorContent );
-
-		if ( !entityPrefixes[prefix] ) { // unknown prefix
-			if ( this._rdfNamespaces.ALL_PREFIXES && this._rdfNamespaces.ALL_PREFIXES[prefix] ) {
-				// Sparql.js may deal with those prefixes
-				return deferred.reject().promise();
-			}
-			list = [ {
-				text: term,
-				displayText: 'Unknown prefix \'' + prefix + ':\''
-			} ];
-			return deferred.resolve( this._getHintCompletion( lineNum, currentWord, prefix, list ) )
-					.promise();
-		}
+		term = currentWord.word.trim().substr(1);
 
 		if ( term.length === 0 ) { // empty search term
 			list = [ {
 				text: term,
 				displayText: 'Type to search for an entity'
 			} ];
-			return deferred.resolve( this._getHintCompletion( lineNum, currentWord, prefix, list ) )
+			return deferred.resolve( this._getHintCompletion( lineNum, currentWord, list ) )
 					.promise();
 		}
 
-		if ( entityPrefixes[prefix] ) { // search entity
-			this._searchEntities( term, entityPrefixes[prefix] ).done(
+			this._searchEntities( term, 'item').done(
 					function( list ) {
 						return deferred.resolve( self._getHintCompletion( lineNum, currentWord,
-								prefix, list ) );
+								 list ) );
 					} );
-		}
 
 		return deferred.promise();
 	};
 
-	SELF.prototype._getPrefixFromWord = function( word ) {
-		return word.split( ':', 1 )[0];
-	};
 
-	SELF.prototype._getTermFromWord = function( word ) {
-		return word.split( ':' ).pop();
-	};
-
-	SELF.prototype._getHintCompletion = function( lineNum, currentWord, prefix, list ) {
+	SELF.prototype._getHintCompletion = function( lineNum, currentWord, list ) {
 		var completion = {
 			list: []
 		};
 		completion.from = {
 			line: lineNum,
-			char: currentWord.start + prefix.length + 1
+			char: currentWord.start
 		};
 		completion.to = {
 			line: lineNum,
@@ -145,20 +118,13 @@ wikibase.queryService.ui.editor.hint = wikibase.queryService.ui.editor.hint || {
 
 	SELF.prototype._getCurrentWord = function( line, position ) {
 		var pos = position - 1,
-			colon = false,
-			wordSeparator = [ '/', '*', '+', ' ', ';', '.', '\n', '\t', '(', ')', '{', '}', '[', ']' ];
+			wordSeparator = [ '>','<'];
 
 		if ( pos < 0 ) {
 			pos = 0;
 		}
 
-		while ( wordSeparator.indexOf( line.charAt( pos ) ) === -1
-				|| ( line.charAt( pos ) === ' ' && colon === false )
-				|| ( line.charAt( pos ) === ':' && colon === false ) ) {
-
-			if ( line.charAt( pos ) === ':' ) {
-				colon = true;
-			}
+		while ( '>'.indexOf( line.charAt( pos ) ) === -1 ) {
 			pos--;
 			if ( pos < 0 ) {
 				break;
@@ -167,7 +133,7 @@ wikibase.queryService.ui.editor.hint = wikibase.queryService.ui.editor.hint || {
 		var left = pos + 1;
 
 		pos = position;
-		while ( wordSeparator.indexOf( line.charAt( pos ) ) === -1 ) {
+		while ( '<'.indexOf( line.charAt( pos ) ) === -1 ) {
 			pos++;
 			if ( pos >= line.length ) {
 				break;
@@ -181,24 +147,6 @@ wikibase.queryService.ui.editor.hint = wikibase.queryService.ui.editor.hint || {
 			start: left,
 			end: right
 		};
-	};
-
-	SELF.prototype._extractPrefixes = function( text ) {
-		var prefixes = this._rdfNamespaces.getPrefixMap( this._rdfNamespaces.ENTITY_TYPES ),
-			types = this._rdfNamespaces.ENTITY_TYPES,
-			lines = text.split( '\n' ),
-			matches;
-
-		$.each( lines, function( index, line ) {
-			// PREFIX wd: <http://www.wikidata.org/entity/>
-			if ( ( matches = line.match( /(PREFIX) (\S+): <([^>]+)>/ ) ) ) {
-				if ( types[matches[3]] ) {
-					prefixes[matches[2]] = types[matches[3]];
-				}
-			}
-		} );
-
-		return prefixes;
 	};
 
 }( jQuery, wikibase ) );
