@@ -4,6 +4,7 @@
 const CodeMirror = require('codemirror/lib/codemirror.js');
 require('codemirror/mode/xml/xml.js');
 
+
 const buffers = {};
 const elem = document.getElementById('MathMLexamples');
 const formats = { cmml:{},pmml:{} };
