@@ -4,6 +4,7 @@
 const CodeMirror = require('codemirror/lib/codemirror.js');
 require('codemirror/mode/xml/xml.js');
 require('codemirror/addon/hint/show-hint.js');
+require('codemirror/addon/display/fullscreen.js');
 
 
 const buffers = {};
@@ -128,7 +129,13 @@ window.onload = function init() {
     const mml = document.getElementById(f);
     formats[f].cm = CodeMirror(mml, { lineNumbers: true,
       'extraKeys': {
-        'Ctrl-Space': 'autocomplete' },
+        'Ctrl-Space': 'autocomplete',
+        "F11": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        }},
       hintOptions:{ completeSingle: false } });
   });
   [].forEach.call(

@@ -14,8 +14,8 @@ body {
 
 .container {
   padding-top: 13px;
-  width: 80%;
-  height: 85%;
+  resize: both;
+  overflow: auto;
 }
 
 .renderedAST {
@@ -42,4 +42,10 @@ a {
   min-height: 500px;
   left: 0;
   z-index: 999;
+}
+.col {
+  border: 1px solid;
+  border-color: black;
+  resize: both;
+  overflow: auto;
 }
