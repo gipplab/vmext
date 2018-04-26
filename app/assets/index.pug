@@ -6,16 +6,16 @@ html
     script(src='vendor.js', type='text/javascript')
     script(src='app.js', type='text/javascript')
 body
-  .container
+  .container-fluid
     .panel.panel-primary
       .panel-heading
         h3.panel-title MathML - AST Renderer
       .panel-body
-        label(for='pmml') Presentation MathML
         .row
           .col
             form(onsubmit='return callAPI(event)')
               .form-group
+                label(for='pmml') Presentation MathML
                 div#pmml
                 label(for='cmml') Content MathML
                 div#cmml
@@ -33,6 +33,7 @@ body
               input.btn.btn-success(type='submit', value='Reset')
               a.btn-download(href='#', onclick='renderPNG()' download='ast-formula.png' style="display: none;") download rendering as PNG
           .col
+            div#preview
             div#mast
   div#tooltipTemplate(style="display: none;")
     Loading a new image...

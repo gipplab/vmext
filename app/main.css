@@ -44,8 +44,7 @@ a {
   z-index: 999;
 }
 .col {
-  border: 1px solid;
-  border-color: black;
+  border: 1px solid black;
   resize: both;
   overflow: auto;
 }

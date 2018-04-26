@@ -5,6 +5,7 @@ const CodeMirror = require('codemirror/lib/codemirror.js');
 require('codemirror/mode/xml/xml.js');
 require('codemirror/addon/hint/show-hint.js');
 require('codemirror/addon/display/fullscreen.js');
+const $ = require('jquery');
 
 
 const buffers = {};
@@ -49,6 +50,10 @@ function callAPI(evt) {
   Object.keys(formats).forEach((f) => {
     selectBuffer(formats[f].cm, elem.options[elem.selectedIndex].label);
   });
+  /**
+   * @const {CodeMirror} code Mirror lib
+   */
+  updatePreview(formats.cmml.cm.doc);
   const mmlCy = require('MathML/cytoscape');
   const container = document.getElementById('mast');
   const mml = mmlCy.mml(formats.cmml.cm.getValue());
@@ -72,6 +77,7 @@ function callAPI(evt) {
         cm.scrollIntoView({ from: line.start, to: line.end });
       }
     });
+    document.getElementById(n.refNode().id).classList.add('highlight');
   }
   );
   cy.nodes().on('mouseout', (e) => {
@@ -80,6 +86,7 @@ function callAPI(evt) {
       if (marker) {
         marker.clear();
       }
+      $('.highlight').removeClass('highlight');
     });
   }
   );
@@ -112,6 +119,11 @@ function callAPI(evt) {
     console.log(`drag ${n.data().id}`);
   });
 }
+
+function updatePreview(doc) {
+  document.getElementById('preview').innerHTML = doc.getValue();
+}
+
 window.onload = function init() {
   CodeMirror.registerHelper('hint','xml',(editor,callback) => {
     const lineContent = editor.getLine(editor.getCursor().line);
@@ -130,17 +142,23 @@ window.onload = function init() {
     formats[f].cm = CodeMirror(mml, { lineNumbers: true,
       'extraKeys': {
         'Ctrl-Space': 'autocomplete',
-        "F11": function(cm) {
+        F11(cm) {
           cm.setOption("fullScreen", !cm.getOption("fullScreen"));
         },
-        "Esc": function(cm) {
-          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-        }},
+        Esc(cm) {
+          if (cm.getOption("fullScreen")) { cm.setOption("fullScreen", false); }
+        } },
       hintOptions:{ completeSingle: false } });
   });
   [].forEach.call(
     elem.options,
-    o => buffers[o.label] = CodeMirror.Doc(o.value, 'application/xml')
+    (o) => {
+      const doc = CodeMirror.Doc(o.value, 'application/xml');
+      doc.on('change',(doc) => {
+        updatePreview(doc);
+      });
+      buffers[o.label] = doc;
+    }
   );
 
   elem.addEventListener('change', () => {
@@ -149,13 +167,3 @@ window.onload = function init() {
   callAPI();
   window.formats = formats;
 };
-
-const renderPNG = () => {
-  const canvas = document.querySelector('iframe').contentDocument.querySelectorAll('canvas')[2];
-  document.querySelector('.btn-download').href = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-
-
-});
