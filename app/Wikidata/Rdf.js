@@ -52,11 +52,11 @@ function getHintCompletion(lineNum, currentWord, list) {
   return completion;
 }
 
-function searchEntities(term, type) {
+function searchEntities(term, type, wikibase) {
   const entityList = [];
   const deferred = $.Deferred();
 
-  (new Wikibase()).searchEntities(term, type).done((data) => {
+  wikibase.searchEntities(term, type).done((data) => {
     $.each(data.search, (key, value) => {
       entityList.push({
         className: 'wikibase-rdf-hint',
@@ -75,30 +75,29 @@ function searchEntities(term, type) {
  * Get list of hints
  * @return {jQuery.Promise} Returns the completion as promise ({list:[], from:, to:})
  */
-function getHint(lineContent, lineNum, cursorPos) {
+function getHint(lineContent, lineNum, cursorPos, wikibase) {
   const deferred = new $.Deferred();
   const currentWord = getCurrentWord(lineContent, cursorPos);
   let list;
-  if (!currentWord.word.match(/^Q.*/)) {
+  const word = currentWord.word.trim();
+  if (!word.match(/^Q.*/)) {
     return deferred.reject().promise();
   }
 
-  const term = currentWord.word.trim().substr(1);
+  const term = word.substr(1);
   if (term.length === 0) { // empty search term
     list = [ {
       text: term,
       displayText: 'Type to search for an entity'
     } ];
-    return deferred.resolve(getHintCompletion(lineNum, currentWord, list))
-      .promise();
+    deferred.resolve(getHintCompletion(lineNum, currentWord, list))
+  } else {
+    searchEntities(term, 'item', wikibase || new Wikibase()).done(
+      (list) => {
+        return deferred.resolve(getHintCompletion(lineNum, currentWord,
+          list));
+      });
   }
-
-  searchEntities(term, 'item').done(
-    (list) => {
-      return deferred.resolve(getHintCompletion(lineNum, currentWord,
-        list));
-    });
-
   return deferred.promise();
 }
 

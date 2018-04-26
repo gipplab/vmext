@@ -22,7 +22,7 @@ module.exports = {
   },
   npm : {
     styles:{
-      codemirror:['lib/codemirror.css'],
+      codemirror:['lib/codemirror.css', 'addon/hint/show-hint.css'],
       bootstrap: ['dist/css/bootstrap.css']
     }
   }

@@ -128,7 +128,8 @@ window.onload = function init() {
     const mml = document.getElementById(f);
     formats[f].cm = CodeMirror(mml, { lineNumbers: true,
       'extraKeys': {
-        'Ctrl-Space': 'autocomplete' } });
+        'Ctrl-Space': 'autocomplete' },
+      hintOptions:{ completeSingle: false } });
   });
   [].forEach.call(
     elem.options,
