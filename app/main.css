@@ -43,8 +43,12 @@ a {
   left: 0;
   z-index: 999;
 }
+#preview {
+  text-align: center;
+  font-size: 150%;
+}
 .col {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   resize: both;
   overflow: auto;
 }

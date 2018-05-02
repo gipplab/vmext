@@ -3,6 +3,8 @@
 
 const CodeMirror = require('codemirror/lib/codemirror.js');
 require('codemirror/mode/xml/xml.js');
+require('codemirror/addon/hint/xml-hint.js');
+require('codemirror/addon/hint/html-hint.js');
 require('codemirror/addon/hint/show-hint.js');
 require('codemirror/addon/display/fullscreen.js');
 const $ = require('jquery');
@@ -125,35 +127,67 @@ function updatePreview(doc) {
 }
 
 window.onload = function init() {
-  CodeMirror.registerHelper('hint','xml',(editor,callback) => {
-    const lineContent = editor.getLine(editor.getCursor().line);
-    const cursorPos = editor.getCursor().ch;
-    const lineNum = editor.getCursor().line;
-    const rdf = require('Wikidata/Rdf');
-    rdf(lineContent,lineNum,cursorPos).then((hint) => {
-      hint.from = CodeMirror.Pos(hint.from.line, hint.from.char);
-      hint.to = CodeMirror.Pos(hint.to.line, hint.to.char);
-      return hint;
-    }).done(callback);
-  });
-  CodeMirror.hint.xml.async = true;
+  // CodeMirror.registerHelper('hint','xml',(editor,callback) => {
+  //   const lineContent = editor.getLine(editor.getCursor().line);
+  //   const cursorPos = editor.getCursor().ch;
+  //   const lineNum = editor.getCursor().line;
+  //   const rdf = require('Wikidata/Rdf');
+  //   rdf(lineContent,lineNum,cursorPos).then((hint) => {
+  //     hint.from = CodeMirror.Pos(hint.from.line, hint.from.char);
+  //     hint.to = CodeMirror.Pos(hint.to.line, hint.to.char);
+  //     return hint;
+  //   }).done(callback);
+  // });
+  // CodeMirror.hint.xml.async = true;
+  function completeAfter(cm, pred) {
+    if (!pred || pred()) {
+      setTimeout(() => {
+        if (!cm.state.completionActive) { cm.showHint({ completeSingle: false }); }
+      }, 100);
+    }
+    return CodeMirror.Pass;
+  }
+
+  function completeIfAfterLt(cm) {
+    return completeAfter(cm, () => {
+      const cur = cm.getCursor();
+      return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) === "<";
+    });
+  }
+
+  function completeIfInTag(cm) {
+    return completeAfter(cm, () => {
+      const tok = cm.getTokenAt(cm.getCursor());
+      if (tok.type === "string" &&
+        (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length === 1)) {
+        return false;
+      }
+      const inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
+      return inner.tagName;
+    });
+  }
   Object.keys(formats).forEach((f) => {
     const mml = document.getElementById(f);
     formats[f].cm = CodeMirror(mml, { lineNumbers: true,
       'extraKeys': {
         'Ctrl-Space': 'autocomplete',
+        "'<'": completeAfter,
+        "'/'": completeIfAfterLt,
+        "' '": completeIfInTag,
+        "'='": completeIfInTag,
         F11(cm) {
           cm.setOption("fullScreen", !cm.getOption("fullScreen"));
         },
         Esc(cm) {
           if (cm.getOption("fullScreen")) { cm.setOption("fullScreen", false); }
         } },
+      mode: "text/html",
       hintOptions:{ completeSingle: false } });
   });
   [].forEach.call(
     elem.options,
     (o) => {
-      const doc = CodeMirror.Doc(o.value, 'application/xml');
+      const doc = CodeMirror.Doc(o.value, 'text/html');
       doc.on('change',(doc) => {
         updatePreview(doc);
       });
