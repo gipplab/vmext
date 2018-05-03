@@ -20,7 +20,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "bootstrap": "^4.1.0",
+    "bomvnotstrap": "^4.1.0",
     "codemirror": "^5.36.0",
     "configstore": "^3.1.2",
     "cytoscape": "^3.2.11",
