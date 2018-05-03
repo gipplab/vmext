@@ -1,0 +1,32 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="p1.1.m1.1" class="ltx_Math" alttext="E=mc^{2}" display="inline">
+  <semantics id="e1">
+    <mrow id="e2" xref="e12">
+      <mi id="e3" xref="e14">E</mi>
+      <mo id="e4" xref="e13">=</mo>
+      <mrow id="e5" xref="e15">
+        <mi id="e6" xref="e17">m</mi>
+        <mo id="e7" xref="e16">⁢</mo>
+        <msup id="e8" xref="e18">
+          <mi id="e9" xref="e20">c</mi>
+          <mn id="e10" xref="e21">2</mn>
+        </msup>
+      </mrow>
+    </mrow>
+    <annotation-xml encoding="MathML-Content" id="e11">
+      <apply id="e12" xref="e2">
+        <eq id="e13" xref="e4"/>
+        <csymbol cd="wikidata" id="e14" xref="e3">Q11379</csymbol>
+        <apply id="e15" xref="e5">
+          <times id="e16" xref="e7"/>
+          <csymbol cd="wikidata" id="e17" xref="e6">Q11423</csymbol>
+          <apply id="e18" xref="e8">
+            <power id="e19" xref="e8"/>
+            <csymbol cd="wikidata" id="e20" xref="e9">Q2111</csymbol>
+            <cs id="e21" xref="e10">the integer number two</cs>
+          </apply>
+        </apply>
+      </apply>
+    </annotation-xml>
+    <annotation encoding="application/x-tex" id="e22">E=mc^{2}</annotation>
+  </semantics>
+</math>

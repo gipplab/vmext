@@ -1,0 +1,82 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="P(C|G)=\frac{P(G|A)P(C)}{P(G)}" class="ltx_Math" display="inline" id="p1.1.m1.1">
+  <semantics id="e1">
+    <mrow id="e2" xref="e40">
+      <mrow id="e3" xref="e42">
+        <mi id="e4" xref="e43">P</mi>
+        <mo id="e5" xref="e42">⁡</mo>
+        <mrow id="e6" xref="e42">
+          <mo id="e7" stretchy="false" xref="e42">(</mo>
+          <mi id="e8" xref="e44">C</mi>
+          <mo id="e9" xref="e42">|</mo>
+          <mi id="e10" xref="e45">G</mi>
+          <mo id="e11" stretchy="false" xref="e42">)</mo>
+        </mrow>
+      </mrow>
+      <mo id="e12" xref="e41">=</mo>
+      <mfrac id="e13" xref="e46">
+        <mrow id="e14" xref="e48">
+          <mrow id="e15" xref="e50">
+            <mi id="e16" xref="e51">P</mi>
+            <mo id="e17" xref="e50">⁡</mo>
+            <mrow id="e18" xref="e50">
+              <mo id="e19" stretchy="false" xref="e50">(</mo>
+              <mi id="e20" xref="e52">G</mi>
+              <mo id="e21" xref="e50">|</mo>
+              <mi id="e22" xref="e53">C</mi>
+              <mo id="e23" stretchy="false" xref="e50">)</mo>
+            </mrow>
+          </mrow>
+          <mo id="e24" xref="e49">⁢</mo>
+          <mrow id="e25" xref="e54">
+            <mi id="e26" xref="e55">P</mi>
+            <mo id="e27" xref="e54">⁡</mo>
+            <mrow id="e28" xref="e54">
+              <mo id="e29" stretchy="false" xref="e54">(</mo>
+              <mi id="e30" xref="e56">C</mi>
+              <mo id="e31" stretchy="false" xref="e54">)</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+        <mrow id="e32" xref="e57">
+          <mi id="e33" xref="e58">P</mi>
+          <mo id="e34" xref="e57">⁡</mo>
+          <mrow id="e35" xref="e57">
+            <mo id="e36" stretchy="false" xref="e57">(</mo>
+            <mi id="e37" xref="e59">G</mi>
+            <mo id="e38" stretchy="false" xref="e57">)</mo>
+          </mrow>
+        </mrow>
+      </mfrac>
+    </mrow>
+    <annotation-xml encoding="MathML-Content" id="e39">
+      <apply id="e40" xref="e2">
+        <eq id="e41" xref="e12"/>
+        <apply id="e42" xref="e3">
+          <csymbol cd="wikidata" id="e43" xref="e4">Q327069</csymbol>
+          <cs id="e44" xref="e8">car is behind door 1</cs>
+          <cs id="e45" xref="e10">Monty opens door 2 to show the goat</cs>
+        </apply>
+        <apply id="e46" xref="e13">
+          <divide id="e47" xref="e13"/>
+          <apply id="e48" xref="e14">
+            <times id="e49" xref="e24"/>
+            <apply id="e50" xref="e15">
+              <csymbol cd="wikidata" id="e51" xref="e16">Q327069</csymbol>
+              <cs id="e52" xref="e20">Monty opens door 2 to show the goat</cs>
+              <cs id="e53" xref="e22">car is behind door 1</cs>
+            </apply>
+            <apply id="e54" xref="e25">
+              <csymbol cd="wikidata" id="e55" xref="e26">Q9492</csymbol>
+              <cs id="e56" xref="e30">car is behind door 1</cs>
+            </apply>
+          </apply>
+          <apply id="e57" xref="e32">
+            <csymbol cd="wikidata" id="e58" xref="e33">Q9492</csymbol>
+            <cs id="e59" xref="e37">Monty opens door 2 to show the goat</cs>
+          </apply>
+        </apply>
+      </apply>
+    </annotation-xml>
+    <annotation encoding="application/x-tex" id="e60">P(C|G)=\frac{P(G|C)P(C)}{P(G)}</annotation>
+  </semantics>
+</math>

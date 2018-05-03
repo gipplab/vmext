@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css">
+
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="formula-container"></div>
+      <div class="cy-container">
+        <button class='btn btn-default viewport-reset' onclick='resetViewport()' title='Reset viewport'>
+          <span class='glyphicon glyphicon-resize-small'></span> Resize
+        </button>
+        <button class='btn btn-default ast-reload' onclick='expandAllNodes()' title='Expand all nodes'>
+          <span class='glyphicon glyphicon-menu-down'></span> Expand
+        </button>
+      </div>
+
+    </div>
+    <img class="gif-loader" src="../../assets/ring.gif" alt="Loading...">
+    <div class="error-container">
+      <div class="alert alert-danger" role="alert"><strong>Oh snap!</strong> An error occurred during rendering.</div>
+        <button class="btn btn-default" onclick="toggleErrorDeails()">Toggle details</button>
+        <div class="panel panel-danger error-details">
+          <div class="panel-heading">
+            Error information
+          </div>
+          <div class="panel-body">
+            <table>
+              <tbody>
+                <tr>
+                  <td><strong>Type:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-type"></td>
+                </tr>
+                <tr>
+                  <td><strong>Description:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-message"></td>
+                </tr>
+                <tr>
+                  <td><strong>StatusCode:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-statuscode"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- polyfill for fetch-API -->
+    <script src='../../vendor/js/fetch.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.9/cytoscape.min.js"></script>
+    <script src="../../vendor/js/dagre.min.js"></script>
+    <script src="../../vendor/js/cytoscape-dagre.js"></script>
+    <script src="../../vendor/js/rx.all.min.js"></script>
+    <script src="../shared-resources/defaults.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <script src="../../vendor/js/cytoscape-qtip.js"></script>
+    <script src="./render-ast.js"></script>
+  </body>
+</html>

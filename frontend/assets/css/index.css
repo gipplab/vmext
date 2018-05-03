@@ -1,0 +1,26 @@
+.container {
+  padding-top: 13px;
+}
+
+body {
+  background-color: #ececec;
+}
+
+.panel-body > img {
+  height: 20em;
+}
+
+.navBoxLink:hover .navBox {
+  transform: scale(1.01);
+  box-shadow: 0 0 10px #000;
+  transition:all .3s;
+}
+
+.margined {
+  margin-top: 2em;
+}
+
+h1, h2, h3, h4, h5 {
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  color: #564c4c;
+}

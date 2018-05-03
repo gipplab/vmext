@@ -24,8 +24,3 @@ node_modules/
 
 # Brunch output folder.
 public/
-
-.idea/
-vmext.iml
-cyto.js
-logs/

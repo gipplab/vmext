@@ -1,0 +1,38 @@
+body {
+  background-color: #ececec;
+}
+
+#referenceAST {
+  height: 40%;
+  overflow: hidden;
+  background-color: #EDF1FA;
+}
+
+#comparisonAST {
+  height: 40%;
+  overflow: hidden;
+  background-color: #edfaf1;
+}
+#mergedAST {
+ height: 60%;
+ overflow: hidden;
+}
+
+.container {
+  padding-top: 13px;
+  width: 80%;
+  height: 85%;
+}
+
+a {
+  margin-left: 1em;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.canvas-label {
+  position: absolute;
+  margin: 2px 0px 0px 3px;
+}

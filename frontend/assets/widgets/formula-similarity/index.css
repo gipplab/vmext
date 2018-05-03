@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+}
+
+.main-cy-container  {
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.error-container {
+  display: none;
+  margin: 10%;
+}
+
+.error-details {
+  margin-top: 2em;
+  display: none;
+}
+
+.error-details--display {
+  display: block;
+}
+
+.flex-container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+}
+
+.reference-ast-container, .comparison-ast-container {
+  width: 50%;
+  height: 100%;
+}
+
+.merged-ast-container {
+  width: 100%;
+  height: 60%;
+}
+
+.gif-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -79px;
+  margin-left: -79px;
+}
+
+iframe {
+  border: none;
+}

@@ -1,0 +1,35 @@
+html
+  head
+    title Merged ASTs
+
+    link(rel='stylesheet' type='text/css' href='../vendor/css/bootstrap.min.css')
+    link(rel='stylesheet' type='text/css' href='../css/merged-asts.css')
+
+  body
+    .container
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title MathML - AST Renderer
+        .panel-body
+          .row
+            .col-md-4
+              form(onsubmit='return callAPI(event)')
+                label(for='referenceMML') referenceMML
+                .form-group
+                  textarea#referenceMML.form-control(rows=5, cols=10, name='mathml')
+                    != mml[7]
+                label(for='comparisonMML') comparisonMML
+                .form-group
+                  textarea#comparisonMML.form-control(rows=5, cols=10, name='mathml')
+                    != mml[8]
+                label(for='similarities') similarities
+                .form-group
+                  textarea#similarities.form-control(rows=5, cols=10, name='mathml')
+                    != sim[1]
+                input.btn.btn-success(type='submit', value='Render')
+                </br>
+                </br>
+                a.btn-download(href='#', onclick='renderPNG()' download='formula-similarities.png' style="display: none;") download rendering as PNG
+            .col-md-8.abstract-syntax-tree
+
+    script(src='/js/merged-asts.js', type='text/javascript')

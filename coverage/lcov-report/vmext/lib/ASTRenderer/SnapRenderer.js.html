@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for vmext/lib/ASTRenderer/SnapRenderer.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">vmext/lib/ASTRenderer/</a> SnapRenderer.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.68% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/60</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable */
+'use strict';
+&nbsp;
+const stream = require('stream');
+const phantom = require('phantom');
+const fs = require('fs');
+&nbsp;
+<span class="fstat-no" title="function not covered" >function getStream(text) {</span>
+<span class="cstat-no" title="statement not covered" >  const s = new stream.Duplex();</span>
+<span class="cstat-no" title="statement not covered" >  s.push(text);</span>
+<span class="cstat-no" title="statement not covered" >  s.push(null);</span>
+<span class="cstat-no" title="statement not covered" >  return s;</span>
+}
+&nbsp;
+/**
+ * Wait until the test condition is true or a timeout occurs. Useful for waiting
+ * on a server response or for a ui change (fadeIn, etc.) to occur.
+ *
+ * @param testFx javascript condition that evaluates to a boolean,
+ * it can be passed in as a string (e.g.: "1 == 1" or "$('#bar').is(':visible')" or
+ * as a callback function.
+ * @param onReady what to do when testFx condition is fulfilled,
+ * it can be passed in as a string (e.g.: "1 == 1" or "$('#bar').is(':visible')" or
+ * as a callback function.
+ * @param timeOutMillis the max amount of time to wait. If not specified, 3 sec is used.
+ */
+<span class="fstat-no" title="function not covered" >function waitFor(testFx, onReady, timeOutMillis) {</span>
+<span class="cstat-no" title="statement not covered" >  const maxtimeOutMillis = timeOutMillis || 3000; </span>// &lt; Default Max Timout is 3s
+<span class="cstat-no" title="statement not covered" >  const start = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >  const condition = false;</span>
+<span class="cstat-no" title="statement not covered" >  const  interval = setInterval(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if ((new Date().getTime() - start &lt; maxtimeOutMillis) &amp;&amp; !condition) {</span>
+      // If not time-out yet and condition not yet fulfilled
+<span class="cstat-no" title="statement not covered" >      testFx().then((res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        condition = res;</span>
+      });
+    } else <span class="cstat-no" title="statement not covered" >if (!condition) {</span>
+      // If condition still not fulfilled (timeout but condition is 'false')
+<span class="cstat-no" title="statement not covered" >      console.log('\'waitFor()\' timeout');</span>
+<span class="cstat-no" title="statement not covered" >      clearInterval(interval);</span>
+    } else {
+      // Condition fulfilled (timeout and/or condition is 'true')
+<span class="cstat-no" title="statement not covered" >      console.log('\'waitFor()\' finished in ' + (new Date().getTime() - start) + 'ms.');</span>
+<span class="cstat-no" title="statement not covered" >      typeof (onReady) === 'string' ? eval(onReady) : onReady();</span>
+<span class="cstat-no" title="statement not covered" >      clearInterval(interval);</span>
+    }
+  }, 250); // &lt; repeat check every 250ms
+}
+&nbsp;
+module.exports = class SnapRenderer {
+  renderSingleTree<span class="fstat-no" title="function not covered" >(cytoNodes, width, height) {</span>
+<span class="cstat-no" title="statement not covered" >    const tmpFilename = '/tmp/phantom/' + Date.now() + '.png';</span>
+<span class="cstat-no" title="statement not covered" >    let _ph, _page;</span>
+<span class="cstat-no" title="statement not covered" >    return phantom.create().then((ph) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      _ph = ph;</span>
+<span class="cstat-no" title="statement not covered" >      return ph.createPage();</span>
+    })
+      .then((page) =&gt; {
+<span class="cstat-no" title="statement not covered" >        _page = page;</span>
+<span class="cstat-no" title="statement not covered" >        _page.property('clipRect', { top: 0, left: 0, width, height });</span>
+<span class="cstat-no" title="statement not covered" >        _page.property('viewportSize', { width, height });</span>
+<span class="cstat-no" title="statement not covered" >        return page.open('./lib/ASTRenderer/renderScripts/singleTree.html');</span>
+      })
+      .then((status) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (status !== 'success') { <span class="cstat-no" title="statement not covered" >return Promise.reject('PhantomJS page load failed.'); </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return _page.evaluate((elements, width, height) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          setDimensions(width, height);</span>
+<span class="cstat-no" title="statement not covered" >          window.beginCyto(elements);</span>
+        }, cytoNodes, width, height);
+      })
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" >_page.render(tmpFilename, { format: 'png', quality: 100 }))</span>
+      .then(() =&gt; {
+<span class="cstat-no" title="statement not covered" >        _page.close();</span>
+<span class="cstat-no" title="statement not covered" >        _ph.exit();</span>
+<span class="cstat-no" title="statement not covered" >        return tmpFilename;</span>
+      })
+      .catch(e =&gt; <span class="cstat-no" title="statement not covered" >_ph.exit())</span>;
+  }
+&nbsp;
+  renderMergedTree<span class="fstat-no" title="function not covered" >(cytoNodes, width, height) {</span>
+<span class="cstat-no" title="statement not covered" >    fs.writeFileSync('./cyto.js', JSON.stringify(cytoNodes));</span>
+<span class="cstat-no" title="statement not covered" >    const tmpFilename = '/tmp/phantom/' + Date.now() + '.png';</span>
+<span class="cstat-no" title="statement not covered" >    let _ph, _page;</span>
+<span class="cstat-no" title="statement not covered" >    return phantom.create().then((ph) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      _ph = ph;</span>
+<span class="cstat-no" title="statement not covered" >      return ph.createPage();</span>
+    })
+      .then((page) =&gt; {
+<span class="cstat-no" title="statement not covered" >        _page = page;</span>
+<span class="cstat-no" title="statement not covered" >        _page.property('clipRect', { top: 0, left: 0, width, height });</span>
+<span class="cstat-no" title="statement not covered" >        _page.property('viewportSize', { width, height });</span>
+<span class="cstat-no" title="statement not covered" >        return page.open('./lib/ASTRenderer/renderScripts/mergedAst.html');</span>
+      })
+      .then((status) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (status !== 'success') { <span class="cstat-no" title="statement not covered" >return Promise.reject('PhantomJS page load failed.'); </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return _page.evaluate((elements, width, height) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          setDimensions(width, height);</span>
+<span class="cstat-no" title="statement not covered" >          window.beginCyto(elements);</span>
+        }, cytoNodes, width, height);
+      })
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" >_page.render(tmpFilename, { format: 'png' }))</span>
+      .then(() =&gt; {
+<span class="cstat-no" title="statement not covered" >        _page.close();</span>
+<span class="cstat-no" title="statement not covered" >        _ph.exit();</span>
+<span class="cstat-no" title="statement not covered" >        return tmpFilename;</span>
+      })
+      .catch(e =&gt; <span class="cstat-no" title="statement not covered" >_ph.exit())</span>;
+  }
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Nov 25 2017 19:07:27 GMT+0100 (CET)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

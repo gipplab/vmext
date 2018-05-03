@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div class="main-cy-container">
+      <div class="flex-container">
+        <div class="reference-ast-container"></div>
+        <div class="comparison-ast-container"></div>
+      </div>
+      <div class="merged-ast-container"></div>
+    </div>
+    <img class="gif-loader" src="../../assets/ring.gif" alt="Loading...">
+
+    <div class="error-container">
+      <div class="alert alert-danger" role="alert"><strong>Oh snap!</strong> An error occurred during rendering.</div>
+        <button class="btn btn-default" onclick="toggleErrorDeails()">Toggle details</button>
+        <div class="panel panel-danger error-details">
+          <div class="panel-heading">
+            Error information
+          </div>
+          <div class="panel-body">
+            <table>
+              <tbody>
+                <tr>
+                  <td><strong>Type:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-type"></td>
+                </tr>
+                <tr>
+                  <td><strong>Description:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-message"></td>
+                </tr>
+                <tr>
+                  <td><strong>StatusCode:</strong></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td class="error-statuscode"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- polyfill for fetch-API -->
+    <script src='../../vendor/js/fetch.js'></script>
+
+    <script src="../../vendor/js/cytoscape-dagre-bundle.min.js"></script>
+    <script src="../shared-resources/defaults.js"></script>
+    <script src="./render-similarities.js"></script>
+  </body>
+</html>

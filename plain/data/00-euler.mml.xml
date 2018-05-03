@@ -1,0 +1,91 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="p1.1.m1.1" class="ltx_Math"
+      alttext="\EulerGamma@{z}=\Int{0}{\infty}@{t}{e^{-t}t^{z-1}}" display="inline">
+  <semantics id="e1">
+    <mrow id="e2" xref="e38">
+      <mrow id="e3" xref="e40">
+        <mpadded width="-1.7pt" id="e4" xref="e40">
+          <mi mathvariant="normal" id="e5" xref="e41">Γ</mi>
+        </mpadded>
+        <mo id="e6" xref="e40">⁡</mo>
+        <mrow id="e7" xref="e40">
+          <mo id="e8" xref="e40">(</mo>
+          <mi id="e9" xref="e42">z</mi>
+          <mo id="e10" xref="e40">)</mo>
+        </mrow>
+      </mrow>
+      <mo id="e11" xref="e39">=</mo>
+      <mrow id="e12" xref="e43">
+        <msubsup id="e13" xref="e44">
+          <mo largeop="true" symmetric="true" id="e14" xref="e45">∫</mo>
+          <mn id="e15" xref="e46">0</mn>
+          <mi mathvariant="normal" id="e16" xref="e47">∞</mi>
+        </msubsup>
+        <mo id="e17" xref="e43">⁡</mo>
+        <mrow id="e18" xref="e43">
+          <mpadded width="+1.7pt" id="e19" xref="e49">
+            <mrow id="e20" xref="e49">
+              <msup id="e21" xref="e51">
+                <mi mathvariant="normal" id="e22" xref="e53">e</mi>
+                <mrow id="e23" xref="e54">
+                  <mo id="e24" xref="e55">-</mo>
+                  <mi id="e25" xref="e56">t</mi>
+                </mrow>
+              </msup>
+              <mo id="e26" xref="e50">⁢</mo>
+              <msup id="e27" xref="e57">
+                <mi id="e28" xref="e59">t</mi>
+                <mrow id="e29" xref="e60">
+                  <mi id="e30" xref="e62">z</mi>
+                  <mo id="e31" xref="e61">-</mo>
+                  <mn id="e32" xref="e63">1</mn>
+                </mrow>
+              </msup>
+            </mrow>
+          </mpadded>
+          <mo id="e33" xref="e43">⁢</mo>
+          <mi mathvariant="normal" id="e34" xref="e43">d</mi>
+          <mo id="e35" xref="e43">⁢</mo>
+          <mi id="e36" xref="e48">t</mi>
+        </mrow>
+      </mrow>
+    </mrow>
+    <annotation-xml encoding="MathML-Content" id="e37">
+      <apply id="e38" xref="e2">
+        <eq id="e39" xref="e11"/>
+        <apply id="e40" xref="e3">
+          <csymbol cd="dlmf" id="e41" xref="e5">Euler-Gamma</csymbol>
+          <ci id="e42" xref="e9">𝑧</ci>
+        </apply>
+        <apply id="e43" xref="e12">
+          <apply id="e44" xref="e13">
+            <csymbol cd="dlmf" id="e45" xref="e14">semantic-definite-integral
+            </csymbol>
+            <cn type="integer" id="e46" xref="e15">0</cn>
+            <infinity id="e47" xref="e16"/>
+          </apply>
+          <ci id="e48" xref="e36">𝑡</ci>
+          <apply id="e49" xref="e19">
+            <times id="e50" xref="e26"/>
+            <apply id="e51" xref="e21">
+              <power xref="e21" id="e52"/>
+              <exponentiale id="e53" xref="e22"/>
+              <apply id="e54" xref="e23">
+                <minus id="e55" xref="e24"/>
+                <ci id="e56" xref="e25">𝑡</ci>
+              </apply>
+            </apply>
+            <apply id="e57" xref="e27">
+              <power xref="e27" id="e58"/>
+              <ci id="e59" xref="e28">𝑡</ci>
+              <apply id="e60" xref="e29">
+                <minus id="e61" xref="e31"/>
+                <ci id="e62" xref="e30">𝑧</ci>
+                <cn type="integer" id="e63" xref="e32">1</cn>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </annotation-xml>
+  </semantics>
+</math>

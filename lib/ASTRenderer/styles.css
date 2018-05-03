@@ -1,0 +1,52 @@
+.node, .legend > rect {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 2;
+}
+
+.legend > rect {
+  fill: #fff;
+  stroke: steelblue;
+  stroke: steelblue;
+  stroke-width: 2;
+  stroke-dasharray: 2, 2;
+}
+
+.node.ambiguous, .legend > rect {
+  fill: steelblue;
+}
+
+.node.ambiguous > g {
+  color: white;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node--leaf circle, .node--leaf rect {
+  stroke-dasharray: 2, 2;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.header {
+  color: grey;
+}
+
+.header__caption, .ast__caption {
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  fill: #5d5d5d;
+  cursor: default;
+}
+
+.header__background {
+  fill: #fff;
+  stroke: grey;
+  stroke-width: 1;
+}

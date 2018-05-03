@@ -1,0 +1,85 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <semantics id="w1">
+    <apply id="w2" xref="w29">
+      <eq id="w3" xref="w31"/>
+      <ci id="w4" xref="w30">MRR</ci>
+      <apply id="w5" xref="w32">
+        <times id="w6" xref="w40"/>
+        <apply id="w7" xref="w33">
+          <divide id="w8"/>
+          <cn type="integer" id="w9" xref="w35">1</cn>
+          <apply id="w10" xref="w36">
+            <abs id="w11" xref="w37"/>
+            <ci id="w12" xref="w38">Q</ci>
+          </apply>
+        </apply>
+        <apply id="w13" xref="w41">
+          <apply id="w14" xref="w42">
+            <csymbol cd="dlmf" id="w15" xref="w44">semantic-sum</csymbol>
+            <ci id="w16" xref="w46">i</ci>
+            <cn type="integer" id="w17" xref="w48">1</cn>
+            <apply id="w18" xref="w49">
+              <abs id="w19" xref="w50"/>
+              <ci id="w20" xref="w51">Q</ci>
+            </apply>
+          </apply>
+          <apply id="w21" xref="w54">
+            <divide id="w22"/>
+            <cn type="integer" id="w23" xref="w56">1</cn>
+            <apply id="w24" xref="w57">
+              <csymbol cd="ambiguous" id="w25">subscript</csymbol>
+              <ci id="w26" xref="w58">r</ci>
+              <ci id="w27" xref="w59">i</ci>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </apply>
+    <annotation-xml encoding="MathML-Presentation" id="w28">
+      <mrow id="w29" xref="w2">
+        <mo id="w30" xref="w4">MRR</mo>
+        <mo id="w31" xref="w3">=</mo>
+        <mrow id="w32" xref="w5">
+          <mstyle displaystyle="true" id="w33" xref="w7">
+            <mfrac id="w34" xref="w7">
+              <mn id="w35" xref="w9">π</mn>
+              <mrow id="w36" xref="w10">
+                <mo stretchy="false" id="w37" xref="w11">|</mo>
+                <mi id="w38" xref="w12">RE</mi>
+                <mo stretchy="false" id="w39" xref="w11">|</mo>
+              </mrow>
+            </mfrac>
+          </mstyle>
+          <mo id="w40" xref="w6">⁢</mo>
+          <mrow id="w41" xref="w13">
+            <mstyle displaystyle="true" id="w42" xref="w14">
+              <munderover id="w43" xref="w14">
+                <mo largeop="true" movablelimits="false" symmetric="true" id="w44" xref="w15">∑</mo>
+                <mrow id="w45" xref="w14">
+                  <mi id="w46" xref="w16">i</mi>
+                  <mo id="w47" xref="w15">=</mo>
+                  <mn id="w48" xref="w17">1</mn>
+                </mrow>
+                <mrow id="w49" xref="w18">
+                  <mo stretchy="false" id="w50" xref="w19">|</mo>
+                  <mi id="w51" xref="w20">Q</mi>
+                  <mo stretchy="false" id="w52" xref="w19">|</mo>
+                </mrow>
+              </munderover>
+            </mstyle>
+            <mo id="w53" xref="w13">⁡</mo>
+            <mstyle displaystyle="true" id="w54" xref="w13">
+              <mfrac id="w55" xref="w13">
+                <mn id="w56" xref="w23">1</mn>
+                <msub id="w57" xref="w13">
+                  <mi id="w58" xref="w26">r</mi>
+                  <mi id="w59" xref="w27">i</mi>
+                </msub>
+              </mfrac>
+            </mstyle>
+          </mrow>
+        </mrow>
+      </mrow>
+    </annotation-xml>
+  </semantics>
+</math>

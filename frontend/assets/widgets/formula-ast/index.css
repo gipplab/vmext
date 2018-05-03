@@ -1,0 +1,76 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.error-container {
+  display: none;
+  margin: 10%;
+}
+
+.error-details {
+  margin-top: 2em;
+  display: none;
+}
+
+.error-details--display {
+  display: block;
+}
+
+.mainContainer {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.formula-container {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #aba8a8;
+  overflow: auto;
+  display: none;
+}
+
+svg g {
+  pointer-events: bounding-box;
+}
+
+.cy-container  {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+}
+
+.gif-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -79px;
+  margin-left: -79px;
+}
+
+.highlight {
+  fill: #e02020;
+  cursor: pointer;
+}
+
+
+.viewport-reset, .ast-reload {
+  position: absolute;
+  right: 1em;
+  z-index: 10;
+  visibility: hidden;
+  min-width: 92px;
+}
+
+.viewport-reset {
+  top: 10px;
+}
+
+.ast-reload {
+  top: 50px;
+}

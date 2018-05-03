@@ -1,0 +1,41 @@
+html
+  head
+    title Abstract Syntax Tree
+
+    link(rel='stylesheet' type='text/css' href='/app.css')
+    link(rel='stylesheet' type='text/css' href='/node_modules/codemirror/lib/codemirror.css')
+    script(src='vendor.js', type='text/javascript')
+    script(src='app.js', type='text/javascript')
+body
+  .container
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title MathML - AST Renderer
+      .panel-body
+        label(for='pmml') Presentation MathML
+        .row
+          .col-md-4
+            form(action='/api/v1/ast/render', method='post', enctype='multipart/form-data' target='renderedAST' onsubmit='return callAPI(event)')
+              .form-group
+                div#pmml
+                label(for='cmml') Content MathML
+                div#cmml
+              .form-group
+                label(for='MathMLexamples') or choose an example
+                select.form-control#MathMLexamples
+                  option(value = mml[0]) Euler
+                  option(value = mml[1]) MRR
+                  option(value = mml[2]) Wide AST
+                  option(value = mml[5]) Einstein
+                  option(
+                  value = mml[9]
+                  selected='selected'
+                  ) Goat
+              input.btn.btn-success(type='submit', value='Render')
+              a.btn-download(href='#', onclick='renderPNG()' download='ast-formula.png' style="display: none;") download rendering as PNG
+          .col-md-8
+            div#mast
+  div#tooltipTemplate(style="display: none;")
+    Loading a new image...
+  script.
+    require("ast-renderer.js");

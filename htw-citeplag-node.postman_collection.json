@@ -1,0 +1,354 @@
+{
+	"id": "292e47ff-9ebb-b67e-e4ae-9c58df09e8f1",
+	"name": "htw-citeplag-node",
+	"description": "",
+	"order": [
+		"e34b7497-c166-853a-0da4-032df6e964b6",
+		"32d6a6c9-473a-7724-bf23-33afc01fb2b9",
+		"f52cfd9f-9af3-cd6c-c7f2-980bcc5e8e06"
+	],
+	"folders": [],
+	"owner": 0,
+	"hasRequests": true,
+	"requests": [
+		{
+			"id": "32d6a6c9-473a-7724-bf23-33afc01fb2b9",
+			"headers": "Accept: image/svg+xml\n",
+			"url": "localhost:4001/api/v1/math/renderAST",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "mathml",
+					"value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" id=\"p1.1.m1.1\" class=\"ltx_Math\" alttext=\"{\\displaystyle\\mathop{\\zeta\\/}\\nolimits\\!\\left(s\\right)=\\frac{1}{(1-2^{1-s})% \\mathop{\\Gamma\\/}\\nolimits\\!\\left(s+1\\right)}\\mathop{\\int_{0}^{\\infty}\\/}% \\nolimits{\\frac{e^{x}x^{s}}{(e^{x}+1)^{2}}}\\,{\\mathrm{d}}x}\"><semantics id=\"p1.1.m1.1a\"><mrow id=\"p1.1.m1.1.5\" xref=\"p1.1.m1.1.5.cmml\"><mrow id=\"p1.1.m1.1.1.8.2\" xref=\"p1.1.m1.1.1.1.cmml\"><mi id=\"p1.1.m1.1.1.2.1.2\" xref=\"p1.1.m1.1.1.2.1.1.cmml\">ζ</mi><mo id=\"p1.1.m1.1.1.8.2a\" xref=\"p1.1.m1.1.1.1.cmml\">⁡</mo><mrow id=\"p1.1.m1.1.1\" xref=\"p1.1.m1.1.1.1.cmml\"><mo id=\"p1.1.m1.1.1.5\" xref=\"p1.1.m1.1.1.1.cmml\">(</mo><mi id=\"p1.1.m1.1.1.6\" xref=\"p1.1.m1.1.1.6.cmml\">s</mi><mo id=\"p1.1.m1.1.1.7\" xref=\"p1.1.m1.1.1.1.cmml\">)</mo></mrow></mrow><mo id=\"p1.1.m1.1.2\" xref=\"p1.1.m1.1.2.cmml\">=</mo><mrow id=\"p1.1.m1.1.5.1\" xref=\"p1.1.m1.1.5.1.cmml\"><mstyle displaystyle=\"true\" id=\"p1.1.m1.1.3\" xref=\"p1.1.m1.1.3.cmml\"><mfrac id=\"p1.1.m1.1.3a\" xref=\"p1.1.m1.1.3.cmml\"><mn id=\"p1.1.m1.1.3.2\" xref=\"p1.1.m1.1.3.2.cmml\">1</mn><mrow id=\"p1.1.m1.1.3.3\" xref=\"p1.1.m1.1.3.3.cmml\"><mrow id=\"p1.1.m1.1.3.3.9\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mo stretchy=\"false\" id=\"p1.1.m1.1.3.3.1\">(</mo><mrow id=\"p1.1.m1.1.3.3.9.2\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mn id=\"p1.1.m1.1.3.3.2\" xref=\"p1.1.m1.1.3.3.2.cmml\">1</mn><mo id=\"p1.1.m1.1.3.3.3\" xref=\"p1.1.m1.1.3.3.3.cmml\">-</mo><msup id=\"p1.1.m1.1.3.3.9.2.1\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mn id=\"p1.1.m1.1.3.3.4\" xref=\"p1.1.m1.1.3.3.4.cmml\">2</mn><mrow id=\"p1.1.m1.1.3.3.5.1\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mn id=\"p1.1.m1.1.3.3.5.1.1\" xref=\"p1.1.m1.1.3.3.5.1.1.cmml\">1</mn><mo id=\"p1.1.m1.1.3.3.5.1.2\" xref=\"p1.1.m1.1.3.3.5.1.2.cmml\">-</mo><mi id=\"p1.1.m1.1.3.3.5.1.3\" xref=\"p1.1.m1.1.3.3.5.1.3.cmml\">s</mi></mrow></msup></mrow><mo stretchy=\"false\" id=\"p1.1.m1.1.3.3.6\">)</mo></mrow><mo id=\"p1.1.m1.1.3.3.8\" xref=\"p1.1.m1.1.3.3.8.cmml\">⁢</mo><mrow id=\"p1.1.m1.1.3.3.7.8.2\" xref=\"p1.1.m1.1.3.3.7.1.cmml\"><mi id=\"p1.1.m1.1.3.3.7.2.1.2\" xref=\"p1.1.m1.1.3.3.7.2.1.1.cmml\" mathvariant=\"normal\">Γ</mi><mo id=\"p1.1.m1.1.3.3.7.8.2a\" xref=\"p1.1.m1.1.3.3.7.1.cmml\">⁡</mo><mrow id=\"p1.1.m1.1.3.3.7\" xref=\"p1.1.m1.1.3.3.7.1.cmml\"><mo id=\"p1.1.m1.1.3.3.7.5\" xref=\"p1.1.m1.1.3.3.7.1.cmml\">(</mo><mrow id=\"p1.1.m1.1.3.3.7.6\" xref=\"p1.1.m1.1.3.3.7.1.cmml\"><mi id=\"p1.1.m1.1.3.3.7.6.1\" xref=\"p1.1.m1.1.3.3.7.6.1.cmml\">s</mi><mo id=\"p1.1.m1.1.3.3.7.6.2\" xref=\"p1.1.m1.1.3.3.7.6.2.cmml\">+</mo><mn id=\"p1.1.m1.1.3.3.7.6.3\" xref=\"p1.1.m1.1.3.3.7.6.3.cmml\">1</mn></mrow><mo id=\"p1.1.m1.1.3.3.7.7\" xref=\"p1.1.m1.1.3.3.7.1.cmml\">)</mo></mrow></mrow></mrow></mfrac></mstyle><mo id=\"p1.1.m1.1.5.1.1\" xref=\"p1.1.m1.1.5.1.1.cmml\">⁢</mo><mrow id=\"p1.1.m1.1.4.8\" xref=\"p1.1.m1.1.4.1.cmml\"><mstyle displaystyle=\"true\" id=\"p1.1.m1.1.4.2.1.6\" xref=\"p1.1.m1.1.4.2.1.1.cmml\"><msubsup id=\"p1.1.m1.1.4.2.1.6a\" xref=\"p1.1.m1.1.4.2.1.1.cmml\"><mo largeop=\"true\" symmetric=\"true\" id=\"p1.1.m1.1.4.2.1.2\" xref=\"p1.1.m1.1.4.2.1.1.1.cmml\">∫</mo><mn id=\"p1.1.m1.1.4.2.1.3.1\" xref=\"p1.1.m1.1.4.2.1.3.1.cmml\">0</mn><mi id=\"p1.1.m1.1.4.2.1.4.1\" xref=\"p1.1.m1.1.4.2.1.4.1.cmml\" mathvariant=\"normal\">∞</mi></msubsup></mstyle><mo id=\"p1.1.m1.1.4.8a\" xref=\"p1.1.m1.1.4.1.cmml\">⁡</mo><mrow id=\"p1.1.m1.1.4.8.1\" xref=\"p1.1.m1.1.4.1.cmml\"><mpadded width=\"+1.7pt\" id=\"p1.1.m1.1.4.4\" xref=\"p1.1.m1.1.4.1.cmml\"><mstyle displaystyle=\"true\" id=\"p1.1.m1.1.4.4a\" xref=\"p1.1.m1.1.4.1.cmml\"><mfrac id=\"p1.1.m1.1.4.4b\" xref=\"p1.1.m1.1.4.1.cmml\"><mrow id=\"p1.1.m1.1.4.4.1.2\" xref=\"p1.1.m1.1.4.1.cmml\"><msup id=\"p1.1.m1.1.4.4.1.2.6\" xref=\"p1.1.m1.1.4.1.cmml\"><mi id=\"p1.1.m1.1.4.4.1.2.1\" xref=\"p1.1.m1.1.4.4.1.2.1.cmml\" mathvariant=\"normal\">e</mi><mi id=\"p1.1.m1.1.4.4.1.2.2.1\" xref=\"p1.1.m1.1.4.4.1.2.2.1.cmml\">x</mi></msup><mo id=\"p1.1.m1.1.4.4.1.2.5\" xref=\"p1.1.m1.1.4.4.1.2.5.cmml\">⁢</mo><msup id=\"p1.1.m1.1.4.4.1.2.7\" xref=\"p1.1.m1.1.4.1.cmml\"><mi id=\"p1.1.m1.1.4.4.1.2.3\" xref=\"p1.1.m1.1.4.4.1.2.3.cmml\">x</mi><mi id=\"p1.1.m1.1.4.4.1.2.4.1\" xref=\"p1.1.m1.1.4.4.1.2.4.1.cmml\">s</mi></msup></mrow><msup id=\"p1.1.m1.1.4.4.1.3\" xref=\"p1.1.m1.1.4.1.cmml\"><mrow id=\"p1.1.m1.1.4.4.1.3.9\" xref=\"p1.1.m1.1.4.4.1.3.9.2.cmml\"><mo stretchy=\"false\" id=\"p1.1.m1.1.4.4.1.3.1\">(</mo><mrow id=\"p1.1.m1.1.4.4.1.3.9.2\" xref=\"p1.1.m1.1.4.4.1.3.9.2.cmml\"><msup id=\"p1.1.m1.1.4.4.1.3.9.2.1\" xref=\"p1.1.m1.1.4.4.1.3.9.2.cmml\"><mi id=\"p1.1.m1.1.4.4.1.3.2\" xref=\"p1.1.m1.1.4.4.1.3.2.cmml\" mathvariant=\"normal\">e</mi><mi id=\"p1.1.m1.1.4.4.1.3.3.1\" xref=\"p1.1.m1.1.4.4.1.3.3.1.cmml\">x</mi></msup><mo id=\"p1.1.m1.1.4.4.1.3.4\" xref=\"p1.1.m1.1.4.4.1.3.4.cmml\">+</mo><mn id=\"p1.1.m1.1.4.4.1.3.5\" xref=\"p1.1.m1.1.4.4.1.3.5.cmml\">1</mn></mrow><mo stretchy=\"false\" id=\"p1.1.m1.1.4.4.1.3.6\">)</mo></mrow><mn id=\"p1.1.m1.1.4.4.1.3.7.1\" xref=\"p1.1.m1.1.4.4.1.3.7.1.cmml\">2</mn></msup></mfrac></mstyle></mpadded><mo id=\"p1.1.m1.1.4.8.1.1\" xref=\"p1.1.m1.1.4.1.cmml\">⁢</mo><mi id=\"p1.1.m1.1.4.6\" xref=\"p1.1.m1.1.4.1.cmml\" mathvariant=\"normal\">d</mi><mo id=\"p1.1.m1.1.4.8.1.1a\" xref=\"p1.1.m1.1.4.1.cmml\">⁢</mo><mi id=\"p1.1.m1.1.4.7\" xref=\"p1.1.m1.1.4.7.cmml\">x</mi></mrow></mrow></mrow></mrow><annotation-xml encoding=\"MathML-Content\" id=\"p1.1.m1.1b\"><apply id=\"p1.1.m1.1.5.cmml\" xref=\"p1.1.m1.1.5\"><eq id=\"p1.1.m1.1.2.cmml\" xref=\"p1.1.m1.1.2\"/><apply id=\"p1.1.m1.1.1.1.cmml\" xref=\"p1.1.m1.1.1.8.2\"><csymbol cd=\"dlmf\" id=\"p1.1.m1.1.1.2.1.1.cmml\" xref=\"p1.1.m1.1.1.2.1.2\">Riemann-zeta</csymbol><ci id=\"p1.1.m1.1.1.6.cmml\" xref=\"p1.1.m1.1.1.6\">s</ci></apply><apply id=\"p1.1.m1.1.5.1.cmml\" xref=\"p1.1.m1.1.5.1\"><times id=\"p1.1.m1.1.5.1.1.cmml\" xref=\"p1.1.m1.1.5.1.1\"/><apply id=\"p1.1.m1.1.3.cmml\" xref=\"p1.1.m1.1.3\"><divide id=\"p1.1.m1.1.3.1.cmml\"/><cn type=\"integer\" id=\"p1.1.m1.1.3.2.cmml\" xref=\"p1.1.m1.1.3.2\">1</cn><apply id=\"p1.1.m1.1.3.3.cmml\" xref=\"p1.1.m1.1.3.3\"><times id=\"p1.1.m1.1.3.3.8.cmml\" xref=\"p1.1.m1.1.3.3.8\"/><apply id=\"p1.1.m1.1.3.3.9.2.cmml\" xref=\"p1.1.m1.1.3.3.9\"><minus id=\"p1.1.m1.1.3.3.3.cmml\" xref=\"p1.1.m1.1.3.3.3\"/><cn type=\"integer\" id=\"p1.1.m1.1.3.3.2.cmml\" xref=\"p1.1.m1.1.3.3.2\">1</cn><apply id=\"p1.1.m1.1.3.3.9.2.1.cmml\" xref=\"p1.1.m1.1.3.3.9\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.3.3.9.2.1.1.cmml\">superscript</csymbol><cn type=\"integer\" id=\"p1.1.m1.1.3.3.4.cmml\" xref=\"p1.1.m1.1.3.3.4\">2</cn><apply id=\"p1.1.m1.1.3.3.5.1.cmml\" xref=\"p1.1.m1.1.3.3.9\"><minus id=\"p1.1.m1.1.3.3.5.1.2.cmml\" xref=\"p1.1.m1.1.3.3.5.1.2\"/><cn type=\"integer\" id=\"p1.1.m1.1.3.3.5.1.1.cmml\" xref=\"p1.1.m1.1.3.3.5.1.1\">1</cn><ci id=\"p1.1.m1.1.3.3.5.1.3.cmml\" xref=\"p1.1.m1.1.3.3.5.1.3\">s</ci></apply></apply></apply><apply id=\"p1.1.m1.1.3.3.7.1.cmml\" xref=\"p1.1.m1.1.3.3.7.8.2\"><csymbol cd=\"dlmf\" id=\"p1.1.m1.1.3.3.7.2.1.1.cmml\" xref=\"p1.1.m1.1.3.3.7.2.1.2\">Euler-Gamma</csymbol><apply id=\"p1.1.m1.1.3.3.7.6.cmml\" xref=\"p1.1.m1.1.3.3.7.6\"><plus id=\"p1.1.m1.1.3.3.7.6.2.cmml\" xref=\"p1.1.m1.1.3.3.7.6.2\"/><ci id=\"p1.1.m1.1.3.3.7.6.1.cmml\" xref=\"p1.1.m1.1.3.3.7.6.1\">s</ci><cn type=\"integer\" id=\"p1.1.m1.1.3.3.7.6.3.cmml\" xref=\"p1.1.m1.1.3.3.7.6.3\">1</cn></apply></apply></apply></apply><apply id=\"p1.1.m1.1.4.1.cmml\" xref=\"p1.1.m1.1.4.8\"><apply id=\"p1.1.m1.1.4.2.1.1.cmml\" xref=\"p1.1.m1.1.4.2.1.6\"><csymbol cd=\"dlmf\" id=\"p1.1.m1.1.4.2.1.1.1.cmml\" xref=\"p1.1.m1.1.4.2.1.2\">semantic-definite-integral</csymbol><cn type=\"integer\" id=\"p1.1.m1.1.4.2.1.3.1.cmml\" xref=\"p1.1.m1.1.4.2.1.3.1\">0</cn><infinity id=\"p1.1.m1.1.4.2.1.4.1.cmml\" xref=\"p1.1.m1.1.4.2.1.4.1\"/></apply><ci id=\"p1.1.m1.1.4.7.cmml\" xref=\"p1.1.m1.1.4.7\">x</ci><apply id=\"p1.1.m1.1.4.4.cmml\" xref=\"p1.1.m1.1.4.8.1\"><divide id=\"p1.1.m1.1.4.4.1.1.cmml\"/><apply id=\"p1.1.m1.1.4.4.1.2.cmml\" xref=\"p1.1.m1.1.4.4.1.2\"><times id=\"p1.1.m1.1.4.4.1.2.5.cmml\" xref=\"p1.1.m1.1.4.4.1.2.5\"/><apply id=\"p1.1.m1.1.4.4.1.2.6.cmml\" xref=\"p1.1.m1.1.4.4.1.2.6\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.2.6.1.cmml\">superscript</csymbol><exponentiale id=\"p1.1.m1.1.4.4.1.2.1.cmml\" xref=\"p1.1.m1.1.4.4.1.2.1\"/><ci id=\"p1.1.m1.1.4.4.1.2.2.1.cmml\" xref=\"p1.1.m1.1.4.4.1.2.2.1\">x</ci></apply><apply id=\"p1.1.m1.1.4.4.1.2.7.cmml\" xref=\"p1.1.m1.1.4.4.1.2.7\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.2.7.1.cmml\">superscript</csymbol><ci id=\"p1.1.m1.1.4.4.1.2.3.cmml\" xref=\"p1.1.m1.1.4.4.1.2.3\">x</ci><ci id=\"p1.1.m1.1.4.4.1.2.4.1.cmml\" xref=\"p1.1.m1.1.4.4.1.2.4.1\">s</ci></apply></apply><apply id=\"p1.1.m1.1.4.4.1.3.cmml\" xref=\"p1.1.m1.1.4.4.1.3\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.3.8.cmml\">superscript</csymbol><apply id=\"p1.1.m1.1.4.4.1.3.9.2.cmml\" xref=\"p1.1.m1.1.4.4.1.3.9\"><plus id=\"p1.1.m1.1.4.4.1.3.4.cmml\" xref=\"p1.1.m1.1.4.4.1.3.4\"/><apply id=\"p1.1.m1.1.4.4.1.3.9.2.1.cmml\" xref=\"p1.1.m1.1.4.4.1.3.9\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.3.9.2.1.1.cmml\">superscript</csymbol><exponentiale id=\"p1.1.m1.1.4.4.1.3.2.cmml\" xref=\"p1.1.m1.1.4.4.1.3.2\"/><ci id=\"p1.1.m1.1.4.4.1.3.3.1.cmml\" xref=\"p1.1.m1.1.4.4.1.3.3.1\">x</ci></apply><cn type=\"integer\" id=\"p1.1.m1.1.4.4.1.3.5.cmml\" xref=\"p1.1.m1.1.4.4.1.3.5\">1</cn></apply><cn type=\"integer\" id=\"p1.1.m1.1.4.4.1.3.7.1.cmml\" xref=\"p1.1.m1.1.4.4.1.3.7.1\">2</cn></apply></apply></apply></apply></apply></annotation-xml><annotation encoding=\"application/x-tex\" id=\"p1.1.m1.1c\">{\\displaystyle\\mathop{\\zeta\\/}\\nolimits\\!\\left(s\\right)=\\frac{1}{(1-2^{1-s})%\\mathop{\\Gamma\\/}\\nolimits\\!\\left(s+1\\right)}\\mathop{\\int_{0}^{\\infty}\\/}%\\nolimits{\\frac{e^{x}x^{s}}{(e^{x}+1)^{2}}}\\,{\\mathrm{d}}x}</annotation></semantics></math>",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "renderFormula",
+					"value": "true",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "collapseSingleOperandNodes",
+					"value": "false",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\ntests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\");\n\ntests[\"Response time is less than 300ms\"] = responseTime < 300;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1483103666591,
+			"name": "http://localhost:4001/api/v1/math/renderAST",
+			"description": "",
+			"collectionId": "292e47ff-9ebb-b67e-e4ae-9c58df09e8f1",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 1197,
+					"headers": [
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "Content-Encoding",
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "image/svg+xml; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Wed, 28 Dec 2016 19:30:42 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "ETag",
+							"key": "ETag",
+							"value": "W/\"8f6d-BggwuG/5o50rl6POvXjm2w\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "nginx/1.4.6 (Ubuntu)",
+							"description": "A name for the server"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Accept, Accept-Encoding",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"Error\":{\"status\":400,\"name\":\"Bad Request\",\"message\":\"renderFormula must be of type boolean\"}}",
+					"language": "xml",
+					"rawDataType": "arraybuffer",
+					"previewType": "image",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"responseData": {},
+					"state": {
+						"size": "normal"
+					},
+					"id": "059b6db2-52e6-985a-fc31-bfec534c1583",
+					"name": "abc",
+					"request": {
+						"url": "http://math.citeplag.org/api/v1/math/renderAST",
+						"headers": [
+							{
+								"key": "Accept",
+								"value": "image/svg+xml",
+								"enabled": true,
+								"warning": ""
+							},
+							{
+								"key": "",
+								"value": "xml",
+								"type": "text",
+								"enabled": true,
+								"warning": ""
+							}
+						],
+						"data": [
+							{
+								"key": "mathml",
+								"value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" id=\"p1.1.m1.1\" class=\"ltx_Math\" alttext=\"{\\displaystyle\\mathop{\\zeta\\/}\\nolimits\\!\\left(s\\right)=\\frac{1}{(1-2^{1-s})% \\mathop{\\Gamma\\/}\\nolimits\\!\\left(s+1\\right)}\\mathop{\\int_{0}^{\\infty}\\/}% \\nolimits{\\frac{e^{x}x^{s}}{(e^{x}+1)^{2}}}\\,{\\mathrm{d}}x}\"><semantics id=\"p1.1.m1.1a\"><mrow id=\"p1.1.m1.1.5\" xref=\"p1.1.m1.1.5.cmml\"><mrow id=\"p1.1.m1.1.1.8.2\" xref=\"p1.1.m1.1.1.1.cmml\"><mi id=\"p1.1.m1.1.1.2.1.2\" xref=\"p1.1.m1.1.1.2.1.1.cmml\">ζ</mi><mo id=\"p1.1.m1.1.1.8.2a\" xref=\"p1.1.m1.1.1.1.cmml\">⁡</mo><mrow id=\"p1.1.m1.1.1\" xref=\"p1.1.m1.1.1.1.cmml\"><mo id=\"p1.1.m1.1.1.5\" xref=\"p1.1.m1.1.1.1.cmml\">(</mo><mi id=\"p1.1.m1.1.1.6\" xref=\"p1.1.m1.1.1.6.cmml\">s</mi><mo id=\"p1.1.m1.1.1.7\" xref=\"p1.1.m1.1.1.1.cmml\">)</mo></mrow></mrow><mo id=\"p1.1.m1.1.2\" xref=\"p1.1.m1.1.2.cmml\">=</mo><mrow id=\"p1.1.m1.1.5.1\" xref=\"p1.1.m1.1.5.1.cmml\"><mstyle displaystyle=\"true\" id=\"p1.1.m1.1.3\" xref=\"p1.1.m1.1.3.cmml\"><mfrac id=\"p1.1.m1.1.3a\" xref=\"p1.1.m1.1.3.cmml\"><mn id=\"p1.1.m1.1.3.2\" xref=\"p1.1.m1.1.3.2.cmml\">1</mn><mrow id=\"p1.1.m1.1.3.3\" xref=\"p1.1.m1.1.3.3.cmml\"><mrow id=\"p1.1.m1.1.3.3.9\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mo stretchy=\"false\" id=\"p1.1.m1.1.3.3.1\">(</mo><mrow id=\"p1.1.m1.1.3.3.9.2\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mn id=\"p1.1.m1.1.3.3.2\" xref=\"p1.1.m1.1.3.3.2.cmml\">1</mn><mo id=\"p1.1.m1.1.3.3.3\" xref=\"p1.1.m1.1.3.3.3.cmml\">-</mo><msup id=\"p1.1.m1.1.3.3.9.2.1\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mn id=\"p1.1.m1.1.3.3.4\" xref=\"p1.1.m1.1.3.3.4.cmml\">2</mn><mrow id=\"p1.1.m1.1.3.3.5.1\" xref=\"p1.1.m1.1.3.3.9.2.cmml\"><mn id=\"p1.1.m1.1.3.3.5.1.1\" xref=\"p1.1.m1.1.3.3.5.1.1.cmml\">1</mn><mo id=\"p1.1.m1.1.3.3.5.1.2\" xref=\"p1.1.m1.1.3.3.5.1.2.cmml\">-</mo><mi id=\"p1.1.m1.1.3.3.5.1.3\" xref=\"p1.1.m1.1.3.3.5.1.3.cmml\">s</mi></mrow></msup></mrow><mo stretchy=\"false\" id=\"p1.1.m1.1.3.3.6\">)</mo></mrow><mo id=\"p1.1.m1.1.3.3.8\" xref=\"p1.1.m1.1.3.3.8.cmml\">⁢</mo><mrow id=\"p1.1.m1.1.3.3.7.8.2\" xref=\"p1.1.m1.1.3.3.7.1.cmml\"><mi id=\"p1.1.m1.1.3.3.7.2.1.2\" xref=\"p1.1.m1.1.3.3.7.2.1.1.cmml\" mathvariant=\"normal\">Γ</mi><mo id=\"p1.1.m1.1.3.3.7.8.2a\" xref=\"p1.1.m1.1.3.3.7.1.cmml\">⁡</mo><mrow id=\"p1.1.m1.1.3.3.7\" xref=\"p1.1.m1.1.3.3.7.1.cmml\"><mo id=\"p1.1.m1.1.3.3.7.5\" xref=\"p1.1.m1.1.3.3.7.1.cmml\">(</mo><mrow id=\"p1.1.m1.1.3.3.7.6\" xref=\"p1.1.m1.1.3.3.7.1.cmml\"><mi id=\"p1.1.m1.1.3.3.7.6.1\" xref=\"p1.1.m1.1.3.3.7.6.1.cmml\">s</mi><mo id=\"p1.1.m1.1.3.3.7.6.2\" xref=\"p1.1.m1.1.3.3.7.6.2.cmml\">+</mo><mn id=\"p1.1.m1.1.3.3.7.6.3\" xref=\"p1.1.m1.1.3.3.7.6.3.cmml\">1</mn></mrow><mo id=\"p1.1.m1.1.3.3.7.7\" xref=\"p1.1.m1.1.3.3.7.1.cmml\">)</mo></mrow></mrow></mrow></mfrac></mstyle><mo id=\"p1.1.m1.1.5.1.1\" xref=\"p1.1.m1.1.5.1.1.cmml\">⁢</mo><mrow id=\"p1.1.m1.1.4.8\" xref=\"p1.1.m1.1.4.1.cmml\"><mstyle displaystyle=\"true\" id=\"p1.1.m1.1.4.2.1.6\" xref=\"p1.1.m1.1.4.2.1.1.cmml\"><msubsup id=\"p1.1.m1.1.4.2.1.6a\" xref=\"p1.1.m1.1.4.2.1.1.cmml\"><mo largeop=\"true\" symmetric=\"true\" id=\"p1.1.m1.1.4.2.1.2\" xref=\"p1.1.m1.1.4.2.1.1.1.cmml\">∫</mo><mn id=\"p1.1.m1.1.4.2.1.3.1\" xref=\"p1.1.m1.1.4.2.1.3.1.cmml\">0</mn><mi id=\"p1.1.m1.1.4.2.1.4.1\" xref=\"p1.1.m1.1.4.2.1.4.1.cmml\" mathvariant=\"normal\">∞</mi></msubsup></mstyle><mo id=\"p1.1.m1.1.4.8a\" xref=\"p1.1.m1.1.4.1.cmml\">⁡</mo><mrow id=\"p1.1.m1.1.4.8.1\" xref=\"p1.1.m1.1.4.1.cmml\"><mpadded width=\"+1.7pt\" id=\"p1.1.m1.1.4.4\" xref=\"p1.1.m1.1.4.1.cmml\"><mstyle displaystyle=\"true\" id=\"p1.1.m1.1.4.4a\" xref=\"p1.1.m1.1.4.1.cmml\"><mfrac id=\"p1.1.m1.1.4.4b\" xref=\"p1.1.m1.1.4.1.cmml\"><mrow id=\"p1.1.m1.1.4.4.1.2\" xref=\"p1.1.m1.1.4.1.cmml\"><msup id=\"p1.1.m1.1.4.4.1.2.6\" xref=\"p1.1.m1.1.4.1.cmml\"><mi id=\"p1.1.m1.1.4.4.1.2.1\" xref=\"p1.1.m1.1.4.4.1.2.1.cmml\" mathvariant=\"normal\">e</mi><mi id=\"p1.1.m1.1.4.4.1.2.2.1\" xref=\"p1.1.m1.1.4.4.1.2.2.1.cmml\">x</mi></msup><mo id=\"p1.1.m1.1.4.4.1.2.5\" xref=\"p1.1.m1.1.4.4.1.2.5.cmml\">⁢</mo><msup id=\"p1.1.m1.1.4.4.1.2.7\" xref=\"p1.1.m1.1.4.1.cmml\"><mi id=\"p1.1.m1.1.4.4.1.2.3\" xref=\"p1.1.m1.1.4.4.1.2.3.cmml\">x</mi><mi id=\"p1.1.m1.1.4.4.1.2.4.1\" xref=\"p1.1.m1.1.4.4.1.2.4.1.cmml\">s</mi></msup></mrow><msup id=\"p1.1.m1.1.4.4.1.3\" xref=\"p1.1.m1.1.4.1.cmml\"><mrow id=\"p1.1.m1.1.4.4.1.3.9\" xref=\"p1.1.m1.1.4.4.1.3.9.2.cmml\"><mo stretchy=\"false\" id=\"p1.1.m1.1.4.4.1.3.1\">(</mo><mrow id=\"p1.1.m1.1.4.4.1.3.9.2\" xref=\"p1.1.m1.1.4.4.1.3.9.2.cmml\"><msup id=\"p1.1.m1.1.4.4.1.3.9.2.1\" xref=\"p1.1.m1.1.4.4.1.3.9.2.cmml\"><mi id=\"p1.1.m1.1.4.4.1.3.2\" xref=\"p1.1.m1.1.4.4.1.3.2.cmml\" mathvariant=\"normal\">e</mi><mi id=\"p1.1.m1.1.4.4.1.3.3.1\" xref=\"p1.1.m1.1.4.4.1.3.3.1.cmml\">x</mi></msup><mo id=\"p1.1.m1.1.4.4.1.3.4\" xref=\"p1.1.m1.1.4.4.1.3.4.cmml\">+</mo><mn id=\"p1.1.m1.1.4.4.1.3.5\" xref=\"p1.1.m1.1.4.4.1.3.5.cmml\">1</mn></mrow><mo stretchy=\"false\" id=\"p1.1.m1.1.4.4.1.3.6\">)</mo></mrow><mn id=\"p1.1.m1.1.4.4.1.3.7.1\" xref=\"p1.1.m1.1.4.4.1.3.7.1.cmml\">2</mn></msup></mfrac></mstyle></mpadded><mo id=\"p1.1.m1.1.4.8.1.1\" xref=\"p1.1.m1.1.4.1.cmml\">⁢</mo><mi id=\"p1.1.m1.1.4.6\" xref=\"p1.1.m1.1.4.1.cmml\" mathvariant=\"normal\">d</mi><mo id=\"p1.1.m1.1.4.8.1.1a\" xref=\"p1.1.m1.1.4.1.cmml\">⁢</mo><mi id=\"p1.1.m1.1.4.7\" xref=\"p1.1.m1.1.4.7.cmml\">x</mi></mrow></mrow></mrow></mrow><annotation-xml encoding=\"MathML-Content\" id=\"p1.1.m1.1b\"><apply id=\"p1.1.m1.1.5.cmml\" xref=\"p1.1.m1.1.5\"><eq id=\"p1.1.m1.1.2.cmml\" xref=\"p1.1.m1.1.2\"/><apply id=\"p1.1.m1.1.1.1.cmml\" xref=\"p1.1.m1.1.1.8.2\"><csymbol cd=\"dlmf\" id=\"p1.1.m1.1.1.2.1.1.cmml\" xref=\"p1.1.m1.1.1.2.1.2\">Riemann-zeta</csymbol><ci id=\"p1.1.m1.1.1.6.cmml\" xref=\"p1.1.m1.1.1.6\">s</ci></apply><apply id=\"p1.1.m1.1.5.1.cmml\" xref=\"p1.1.m1.1.5.1\"><times id=\"p1.1.m1.1.5.1.1.cmml\" xref=\"p1.1.m1.1.5.1.1\"/><apply id=\"p1.1.m1.1.3.cmml\" xref=\"p1.1.m1.1.3\"><divide id=\"p1.1.m1.1.3.1.cmml\"/><cn type=\"integer\" id=\"p1.1.m1.1.3.2.cmml\" xref=\"p1.1.m1.1.3.2\">1</cn><apply id=\"p1.1.m1.1.3.3.cmml\" xref=\"p1.1.m1.1.3.3\"><times id=\"p1.1.m1.1.3.3.8.cmml\" xref=\"p1.1.m1.1.3.3.8\"/><apply id=\"p1.1.m1.1.3.3.9.2.cmml\" xref=\"p1.1.m1.1.3.3.9\"><minus id=\"p1.1.m1.1.3.3.3.cmml\" xref=\"p1.1.m1.1.3.3.3\"/><cn type=\"integer\" id=\"p1.1.m1.1.3.3.2.cmml\" xref=\"p1.1.m1.1.3.3.2\">1</cn><apply id=\"p1.1.m1.1.3.3.9.2.1.cmml\" xref=\"p1.1.m1.1.3.3.9\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.3.3.9.2.1.1.cmml\">superscript</csymbol><cn type=\"integer\" id=\"p1.1.m1.1.3.3.4.cmml\" xref=\"p1.1.m1.1.3.3.4\">2</cn><apply id=\"p1.1.m1.1.3.3.5.1.cmml\" xref=\"p1.1.m1.1.3.3.9\"><minus id=\"p1.1.m1.1.3.3.5.1.2.cmml\" xref=\"p1.1.m1.1.3.3.5.1.2\"/><cn type=\"integer\" id=\"p1.1.m1.1.3.3.5.1.1.cmml\" xref=\"p1.1.m1.1.3.3.5.1.1\">1</cn><ci id=\"p1.1.m1.1.3.3.5.1.3.cmml\" xref=\"p1.1.m1.1.3.3.5.1.3\">s</ci></apply></apply></apply><apply id=\"p1.1.m1.1.3.3.7.1.cmml\" xref=\"p1.1.m1.1.3.3.7.8.2\"><csymbol cd=\"dlmf\" id=\"p1.1.m1.1.3.3.7.2.1.1.cmml\" xref=\"p1.1.m1.1.3.3.7.2.1.2\">Euler-Gamma</csymbol><apply id=\"p1.1.m1.1.3.3.7.6.cmml\" xref=\"p1.1.m1.1.3.3.7.6\"><plus id=\"p1.1.m1.1.3.3.7.6.2.cmml\" xref=\"p1.1.m1.1.3.3.7.6.2\"/><ci id=\"p1.1.m1.1.3.3.7.6.1.cmml\" xref=\"p1.1.m1.1.3.3.7.6.1\">s</ci><cn type=\"integer\" id=\"p1.1.m1.1.3.3.7.6.3.cmml\" xref=\"p1.1.m1.1.3.3.7.6.3\">1</cn></apply></apply></apply></apply><apply id=\"p1.1.m1.1.4.1.cmml\" xref=\"p1.1.m1.1.4.8\"><apply id=\"p1.1.m1.1.4.2.1.1.cmml\" xref=\"p1.1.m1.1.4.2.1.6\"><csymbol cd=\"dlmf\" id=\"p1.1.m1.1.4.2.1.1.1.cmml\" xref=\"p1.1.m1.1.4.2.1.2\">semantic-definite-integral</csymbol><cn type=\"integer\" id=\"p1.1.m1.1.4.2.1.3.1.cmml\" xref=\"p1.1.m1.1.4.2.1.3.1\">0</cn><infinity id=\"p1.1.m1.1.4.2.1.4.1.cmml\" xref=\"p1.1.m1.1.4.2.1.4.1\"/></apply><ci id=\"p1.1.m1.1.4.7.cmml\" xref=\"p1.1.m1.1.4.7\">x</ci><apply id=\"p1.1.m1.1.4.4.cmml\" xref=\"p1.1.m1.1.4.8.1\"><divide id=\"p1.1.m1.1.4.4.1.1.cmml\"/><apply id=\"p1.1.m1.1.4.4.1.2.cmml\" xref=\"p1.1.m1.1.4.4.1.2\"><times id=\"p1.1.m1.1.4.4.1.2.5.cmml\" xref=\"p1.1.m1.1.4.4.1.2.5\"/><apply id=\"p1.1.m1.1.4.4.1.2.6.cmml\" xref=\"p1.1.m1.1.4.4.1.2.6\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.2.6.1.cmml\">superscript</csymbol><exponentiale id=\"p1.1.m1.1.4.4.1.2.1.cmml\" xref=\"p1.1.m1.1.4.4.1.2.1\"/><ci id=\"p1.1.m1.1.4.4.1.2.2.1.cmml\" xref=\"p1.1.m1.1.4.4.1.2.2.1\">x</ci></apply><apply id=\"p1.1.m1.1.4.4.1.2.7.cmml\" xref=\"p1.1.m1.1.4.4.1.2.7\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.2.7.1.cmml\">superscript</csymbol><ci id=\"p1.1.m1.1.4.4.1.2.3.cmml\" xref=\"p1.1.m1.1.4.4.1.2.3\">x</ci><ci id=\"p1.1.m1.1.4.4.1.2.4.1.cmml\" xref=\"p1.1.m1.1.4.4.1.2.4.1\">s</ci></apply></apply><apply id=\"p1.1.m1.1.4.4.1.3.cmml\" xref=\"p1.1.m1.1.4.4.1.3\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.3.8.cmml\">superscript</csymbol><apply id=\"p1.1.m1.1.4.4.1.3.9.2.cmml\" xref=\"p1.1.m1.1.4.4.1.3.9\"><plus id=\"p1.1.m1.1.4.4.1.3.4.cmml\" xref=\"p1.1.m1.1.4.4.1.3.4\"/><apply id=\"p1.1.m1.1.4.4.1.3.9.2.1.cmml\" xref=\"p1.1.m1.1.4.4.1.3.9\"><csymbol cd=\"ambiguous\" id=\"p1.1.m1.1.4.4.1.3.9.2.1.1.cmml\">superscript</csymbol><exponentiale id=\"p1.1.m1.1.4.4.1.3.2.cmml\" xref=\"p1.1.m1.1.4.4.1.3.2\"/><ci id=\"p1.1.m1.1.4.4.1.3.3.1.cmml\" xref=\"p1.1.m1.1.4.4.1.3.3.1\">x</ci></apply><cn type=\"integer\" id=\"p1.1.m1.1.4.4.1.3.5.cmml\" xref=\"p1.1.m1.1.4.4.1.3.5\">1</cn></apply><cn type=\"integer\" id=\"p1.1.m1.1.4.4.1.3.7.1.cmml\" xref=\"p1.1.m1.1.4.4.1.3.7.1\">2</cn></apply></apply></apply></apply></apply></annotation-xml><annotation encoding=\"application/x-tex\" id=\"p1.1.m1.1c\">{\\displaystyle\\mathop{\\zeta\\/}\\nolimits\\!\\left(s\\right)=\\frac{1}{(1-2^{1-s})%\\mathop{\\Gamma\\/}\\nolimits\\!\\left(s+1\\right)}\\mathop{\\int_{0}^{\\infty}\\/}%\\nolimits{\\frac{e^{x}x^{s}}{(e^{x}+1)^{2}}}\\,{\\mathrm{d}}x}</annotation></semantics></math>",
+								"type": "text",
+								"enabled": true
+							},
+							{
+								"key": "renderFormula",
+								"value": "false",
+								"type": "text",
+								"enabled": true
+							},
+							{
+								"key": "collapseSingleOperandNodes",
+								"value": "false",
+								"type": "text",
+								"enabled": false
+							}
+						],
+						"method": "POST",
+						"dataMode": "params"
+					}
+				}
+			]
+		},
+		{
+			"id": "e34b7497-c166-853a-0da4-032df6e964b6",
+			"headers": "//Accept: \n",
+			"url": "http://localhost:4001/api/v1/math/renderPMML",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "mathml",
+					"value": "<mi id=\\\"A.6.2.1.3.1.1\\\" xref=\\\"A.6.2.1.3.1.1.cmml\\\">i</mi>",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1483103616590,
+			"name": "http://localhost:4001/api/v1/math/renderPMML",
+			"description": "",
+			"collectionId": "292e47ff-9ebb-b67e-e4ae-9c58df09e8f1",
+			"responses": []
+		},
+		{
+			"id": "f52cfd9f-9af3-cd6c-c7f2-980bcc5e8e06",
+			"headers": "Accept: application/javascript\n",
+			"url": "http://localhost:4001/api/v1/math/renderMergedAST",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "reference_mathml",
+					"value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" id=\"A\" class=\"ltx_Math\" display=\"inline\">  <semantics id=\"Aa\">    <mrow id=\"A.7\" xref=\"A.7.cmml\">      <mo id=\"A.3\" xref=\"A.3.cmml\">MRR</mo>      <mo id=\"A.4\" xref=\"A.4.cmml\">=</mo>      <mrow id=\"A.7.1\" xref=\"A.7.1.cmml\">        <mstyle displaystyle=\"true\" id=\"A.5\" xref=\"A.5.cmml\">          <mfrac id=\"A.5a\" xref=\"A.5.cmml\">            <mn id=\"A.5.2\" xref=\"A.5.2.cmml\">1</mn>            <mrow id=\"A.5.3\" xref=\"A.5.3.4.cmml\">              <mo stretchy=\"false\" id=\"A.5.3.1\" xref=\"A.5.3.4.1.cmml\">|</mo>              <mi id=\"A.5.3.2\" xref=\"A.5.3.2.cmml\">Q</mi>              <mo stretchy=\"false\" id=\"A.5.3.3\" xref=\"A.5.3.4.1.cmml\">|</mo>            </mrow>          </mfrac>        </mstyle>        <mo id=\"A.7.1.1\" xref=\"A.7.1.1.cmml\">⁢</mo>        <mrow id=\"A.6.5\" xref=\"A.6.1.cmml\">          <mstyle displaystyle=\"true\" id=\"A.6.2.1.6\" xref=\"A.6.2.1.1.cmml\">            <munderover id=\"A.6.2.1.6a\" xref=\"A.6.2.1.1.cmml\">              <mo largeop=\"true\" movablelimits=\"false\" symmetric=\"true\" id=\"A.6.2.1.2\" xref=\"A.6.2.1.1.1.cmml\">∑</mo>              <mrow id=\"A.6.2.1.3.1\" xref=\"A.6.2.1.1.cmml\">                <mi id=\"A.6.2.1.3.1.1\" xref=\"A.6.2.1.3.1.1.cmml\">i</mi>                <mo id=\"A.6.2.1.3.1.2\" xref=\"A.6.2.1.1.1.cmml\">=</mo>                <mn id=\"A.6.2.1.3.1.3\" xref=\"A.6.2.1.3.1.3.cmml\">1</mn>              </mrow>              <mrow id=\"A.6.2.1.4.1\" xref=\"A.6.2.1.4.1.1.4.cmml\">                <mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.1\" xref=\"A.6.2.1.4.1.1.4.1.cmml\">|</mo>                <mi id=\"A.6.2.1.4.1.1.2\" xref=\"A.6.2.1.4.1.1.2.cmml\">Q</mi>                <mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.3\" xref=\"A.6.2.1.4.1.1.4.1.cmml\">|</mo>              </mrow>            </munderover>          </mstyle>          <mo id=\"A.6.5a\" xref=\"A.6.1.cmml\">⁡</mo>          <mstyle displaystyle=\"true\" id=\"A.6.4\" xref=\"A.6.1.cmml\">            <mfrac id=\"A.6.4a\" xref=\"A.6.1.cmml\">              <mn id=\"A.6.4.1.2\" xref=\"A.6.4.1.2.cmml\">1</mn>              <msub id=\"A.6.4.1.3\" xref=\"A.6.1.cmml\">                <mi id=\"A.6.4.1.3.1\" xref=\"A.6.4.1.3.1.cmml\">r</mi>                <mi id=\"A.6.4.1.3.2.1\" xref=\"A.6.4.1.3.2.1.cmml\">i</mi>              </msub>            </mfrac>          </mstyle>        </mrow>      </mrow>    </mrow>    <annotation-xml encoding=\"MathML-Content\" id=\"Ab\">      <apply id=\"A.7.cmml\" xref=\"A.7\">        <eq id=\"A.4.cmml\" xref=\"A.4\"/>        <ci id=\"A.3.cmml\" xref=\"A.3\">MRR</ci>        <apply id=\"A.7.1.cmml\" xref=\"A.7.1\">          <times id=\"A.7.1.1.cmml\" xref=\"A.7.1.1\"/>          <apply id=\"A.5.cmml\" xref=\"A.5\">            <divide id=\"A.5.1.cmml\"/>            <cn type=\"integer\" id=\"A.5.2.cmml\" xref=\"A.5.2\">1</cn>            <apply id=\"A.5.3.4.cmml\" xref=\"A.5.3\">              <abs id=\"A.5.3.4.1.cmml\" xref=\"A.5.3.1\"/>              <ci id=\"A.5.3.2.cmml\" xref=\"A.5.3.2\">Q</ci>            </apply>          </apply>          <apply id=\"A.6.1.cmml\" xref=\"A.6.5\">            <apply id=\"A.6.2.1.1.cmml\" xref=\"A.6.2.1.6\">              <csymbol cd=\"dlmf\" id=\"A.6.2.1.1.1.cmml\" xref=\"A.6.2.1.2\">semantic-sum</csymbol>              <ci id=\"A.6.2.1.3.1.1.cmml\" xref=\"A.6.2.1.3.1.1\">i</ci>              <cn type=\"integer\" id=\"A.6.2.1.3.1.3.cmml\" xref=\"A.6.2.1.3.1.3\">1</cn>              <apply id=\"A.6.2.1.4.1.1.4.cmml\" xref=\"A.6.2.1.4.1\">                <abs id=\"A.6.2.1.4.1.1.4.1.cmml\" xref=\"A.6.2.1.4.1.1.1\"/>                <ci id=\"A.6.2.1.4.1.1.2.cmml\" xref=\"A.6.2.1.4.1.1.2\">Q</ci>              </apply>            </apply>            <apply id=\"A.6.4.cmml\" xref=\"A.6.4\">              <divide id=\"A.6.4.1.1.cmml\"/>              <cn type=\"integer\" id=\"A.6.4.1.2.cmml\" xref=\"A.6.4.1.2\">1</cn>              <apply id=\"A.6.4.1.3.cmml\" xref=\"A.6.4.1.3\">                <csymbol cd=\"ambiguous\" id=\"A.6.4.1.3.3.cmml\">subscript</csymbol>                <ci id=\"A.6.4.1.3.1.cmml\" xref=\"A.6.4.1.3.1\">r</ci>                <ci id=\"A.6.4.1.3.2.1.cmml\" xref=\"A.6.4.1.3.2.1\">i</ci>              </apply>            </apply>          </apply>        </apply>      </apply>    </annotation-xml>  </semantics></math>",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "comparison_mathml",
+					"value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" id=\"A\" class=\"ltx_Math\" display=\"inline\"> \t<semantics id=\"Aa\"> \t\t<mrow id=\"A.7\" xref=\"A.7.cmml\"> \t\t\t<mo id=\"A.3\" xref=\"A.3.cmml\"> \t\t\t\tMMR \t\t\t</mo> \t\t\t<mo id=\"A.4\" xref=\"A.4.cmml\"> \t\t\t\t= \t\t\t</mo> \t\t\t<mrow id=\"A.7.1\" xref=\"A.7.1.cmml\"> \t\t\t\t<mstyle displaystyle=\"true\" id=\"A.5\" xref=\"A.5.cmml\"> \t\t\t\t\t<mfrac id=\"A.5a\" xref=\"A.5.cmml\"> \t\t\t\t\t\t<mn id=\"A.5.2\" xref=\"A.5.2.cmml\"> \t\t\t\t\t\t\t1 \t\t\t\t\t\t</mn> \t\t\t\t\t\t<mrow id=\"A.5.3\" xref=\"A.5.3.4.cmml\"> \t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.5.3.1\" xref=\"A.5.3.4.1.cmml\"> \t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t<mi id=\"A.5.3.2\" xref=\"A.5.3.2.cmml\"> \t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.5.3.3\" xref=\"A.5.3.4.1.cmml\"> \t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t</mo> \t\t\t\t\t\t</mrow> \t\t\t\t\t</mfrac> \t\t\t\t</mstyle> \t\t\t\t<mo id=\"A.7.1.1\" xref=\"A.7.1.1.cmml\"> \t\t\t\t\t⁢ \t\t\t\t</mo> \t\t\t\t<mrow id=\"A.6.5\" xref=\"A.6.1.cmml\"> \t\t\t\t\t<mstyle displaystyle=\"true\" id=\"A.6.2.1.6\" xref=\"A.6.2.1.1.cmml\"> \t\t\t\t\t\t<munderover id=\"A.6.2.1.6a\" xref=\"A.6.2.1.1.cmml\"> \t\t\t\t\t\t\t<mo largeop=\"true\" movablelimits=\"false\" symmetric=\"true\" id=\"A.6.2.1.2\" xref=\"A.6.2.1.1.1.cmml\"> \t\t\t\t\t\t\t\t∑ \t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t<mrow id=\"A.6.2.1.3.1\" xref=\"A.6.2.1.1.cmml\"> \t\t\t\t\t\t\t\t<mi id=\"A.6.2.1.3.1.1\" xref=\"A.6.2.1.3.1.1.cmml\"> \t\t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t\t<mo id=\"A.6.2.1.3.1.2\" xref=\"A.6.2.1.1.1.cmml\"> \t\t\t\t\t\t\t\t\t= \t\t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t\t<mn id=\"A.6.2.1.3.1.3\" xref=\"A.6.2.1.3.1.3.cmml\"> \t\t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t\t</mn> \t\t\t\t\t\t\t</mrow> \t\t\t\t\t\t\t<mrow id=\"A.6.2.1.4.1\" xref=\"A.6.2.1.4.1.1.4.cmml\"> \t\t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.1\" xref=\"A.6.2.1.4.1.1.4.1.cmml\"> \t\t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t\t<mi id=\"A.6.2.1.4.1.1.2\" xref=\"A.6.2.1.4.1.1.2.cmml\"> \t\t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.3\" xref=\"A.6.2.1.4.1.1.4.1.cmml\"> \t\t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t</mrow> \t\t\t\t\t\t</munderover> \t\t\t\t\t</mstyle> \t\t\t\t\t<mo id=\"A.6.5a\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t⁡ \t\t\t\t\t</mo> \t\t\t\t\t<mstyle displaystyle=\"true\" id=\"A.6.4\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t<mfrac id=\"A.6.4a\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t\t<mn id=\"A.6.4.1.2\" xref=\"A.6.4.1.2.cmml\"> \t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t</mn> \t\t\t\t\t\t\t<msub id=\"A.6.4.1.3\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t\t\t<mi id=\"A.6.4.1.3.1\" xref=\"A.6.4.1.3.1.cmml\"> \t\t\t\t\t\t\t\t\tr \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t\t<mi id=\"A.6.4.1.3.2.1\" xref=\"A.6.4.1.3.2.1.cmml\"> \t\t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t</msub> \t\t\t\t\t\t</mfrac> \t\t\t\t\t</mstyle> \t\t\t\t</mrow> \t\t\t</mrow> \t\t</mrow> \t\t<annotation-xml encoding=\"MathML-Content\" id=\"Ab\"> \t\t\t<apply id=\"A.7.cmml\" xref=\"A.7\"> \t\t\t\t<eq id=\"A.4.cmml\" xref=\"A.4\" /> \t\t\t\t<ci id=\"A.3.cmml\" xref=\"A.3\"> \t\t\t\t\tMMR \t\t\t\t</ci> \t\t\t\t<apply id=\"A.7.1.cmml\" xref=\"A.7.1\"> \t\t\t\t\t<times id=\"A.7.1.1.cmml\" xref=\"A.7.1.1\" /> \t\t\t\t\t<apply id=\"A.5.cmml\" xref=\"A.5\"> \t\t\t\t\t\t<divide id=\"A.5.1.cmml\" /> \t\t\t\t\t\t<cn type=\"integer\" id=\"A.5.2.cmml\" xref=\"A.5.2\"> \t\t\t\t\t\t\t1 \t\t\t\t\t\t</cn> \t\t\t\t\t\t<apply id=\"A.5.3.4.cmml\" xref=\"A.5.3\"> \t\t\t\t\t\t\t<abs id=\"A.5.3.4.1.cmml\" xref=\"A.5.3.1\" /> \t\t\t\t\t\t\t<ci id=\"A.5.3.2.cmml\" xref=\"A.5.3.2\"> \t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t</ci> \t\t\t\t\t\t</apply> \t\t\t\t\t</apply> \t\t\t\t\t<apply id=\"A.6.1.cmml\" xref=\"A.6.5\"> \t\t\t\t\t\t<apply id=\"A.6.2.1.1.cmml\" xref=\"A.6.2.1.6\"> \t\t\t\t\t\t\t<csymbol cd=\"dlmf\" id=\"A.6.2.1.1.1.cmml\" xref=\"A.6.2.1.2\"> \t\t\t\t\t\t\t\tsemantic-sum \t\t\t\t\t\t\t</csymbol> \t\t\t\t\t\t\t<ci id=\"A.6.2.1.3.1.1.cmml\" xref=\"A.6.2.1.3.1.1\"> \t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t<cn type=\"integer\" id=\"A.6.2.1.3.1.3.cmml\" xref=\"A.6.2.1.3.1.3\"> \t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t</cn> \t\t\t\t\t\t\t<apply id=\"A.6.2.1.4.1.1.4.cmml\" xref=\"A.6.2.1.4.1\"> \t\t\t\t\t\t\t\t<abs id=\"A.6.2.1.4.1.1.4.1.cmml\" xref=\"A.6.2.1.4.1.1.1\" /> \t\t\t\t\t\t\t\t<ci id=\"A.6.2.1.4.1.1.2.cmml\" xref=\"A.6.2.1.4.1.1.2\"> \t\t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t</apply> \t\t\t\t\t\t</apply> \t\t\t\t\t\t<apply id=\"A.6.4.cmml\" xref=\"A.6.4\"> \t\t\t\t\t\t\t<divide id=\"A.6.4.1.1.cmml\" /> \t\t\t\t\t\t\t<cn type=\"integer\" id=\"A.6.4.1.2.cmml\" xref=\"A.6.4.1.2\"> \t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t</cn> \t\t\t\t\t\t\t<apply id=\"A.6.4.1.3.cmml\" xref=\"A.6.4.1.3\"> \t\t\t\t\t\t\t\t<csymbol cd=\"ambiguous\" id=\"A.6.4.1.3.3.cmml\"> \t\t\t\t\t\t\t\t\tsubscript \t\t\t\t\t\t\t\t</csymbol> \t\t\t\t\t\t\t\t<ci id=\"A.6.4.1.3.1.cmml\" xref=\"A.6.4.1.3.1\"> \t\t\t\t\t\t\t\t\tr \t\t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t\t<ci id=\"A.6.4.1.3.2.1.cmml\" xref=\"A.6.4.1.3.2.1\"> \t\t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t</apply> \t\t\t\t\t\t</apply> \t\t\t\t\t</apply> \t\t\t\t</apply> \t\t\t</apply> \t\t</annotation-xml> \t</semantics> </math>",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "similarities",
+					"value": "[     {         \"id\": \"A.3\",         \"matches\": [             {                 \"id\": \"A.3\",                 \"assessment\": 1.0,                 \"type\": \"match\"             }         ]     } ]",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1483103613012,
+			"name": "http://localhost:4001/api/v1/math/renderMergedAST",
+			"description": "",
+			"collectionId": "292e47ff-9ebb-b67e-e4ae-9c58df09e8f1",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 479,
+					"headers": [
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "Content-Encoding",
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "image/svg+xml; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Tue, 20 Dec 2016 17:10:49 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "ETag",
+							"key": "ETag",
+							"value": "W/\"453a-QZkIvQi3l1Hqhz7zqAhSQw\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Accept, Accept-Encoding",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "",
+					"language": "xml",
+					"rawDataType": "arraybuffer",
+					"previewType": "image",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"responseData": {},
+					"state": {
+						"size": "normal"
+					},
+					"id": "9eda7cf4-d956-8c43-19bb-a7c2ed4141a6",
+					"name": "svg",
+					"request": {
+						"url": "http://localhost:4001/api/v1/math/renderMergedAST",
+						"headers": [
+							{
+								"key": "Accept",
+								"value": "image/svg+xml",
+								"type": "text",
+								"enabled": true,
+								"warning": ""
+							}
+						],
+						"data": [
+							{
+								"key": "reference_mathml",
+								"value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" id=\"A\" class=\"ltx_Math\" display=\"inline\">  <semantics id=\"Aa\">    <mrow id=\"A.7\" xref=\"A.7.cmml\">      <mo id=\"A.3\" xref=\"A.3.cmml\">MRR</mo>      <mo id=\"A.4\" xref=\"A.4.cmml\">=</mo>      <mrow id=\"A.7.1\" xref=\"A.7.1.cmml\">        <mstyle displaystyle=\"true\" id=\"A.5\" xref=\"A.5.cmml\">          <mfrac id=\"A.5a\" xref=\"A.5.cmml\">            <mn id=\"A.5.2\" xref=\"A.5.2.cmml\">1</mn>            <mrow id=\"A.5.3\" xref=\"A.5.3.4.cmml\">              <mo stretchy=\"false\" id=\"A.5.3.1\" xref=\"A.5.3.4.1.cmml\">|</mo>              <mi id=\"A.5.3.2\" xref=\"A.5.3.2.cmml\">Q</mi>              <mo stretchy=\"false\" id=\"A.5.3.3\" xref=\"A.5.3.4.1.cmml\">|</mo>            </mrow>          </mfrac>        </mstyle>        <mo id=\"A.7.1.1\" xref=\"A.7.1.1.cmml\">⁢</mo>        <mrow id=\"A.6.5\" xref=\"A.6.1.cmml\">          <mstyle displaystyle=\"true\" id=\"A.6.2.1.6\" xref=\"A.6.2.1.1.cmml\">            <munderover id=\"A.6.2.1.6a\" xref=\"A.6.2.1.1.cmml\">              <mo largeop=\"true\" movablelimits=\"false\" symmetric=\"true\" id=\"A.6.2.1.2\" xref=\"A.6.2.1.1.1.cmml\">∑</mo>              <mrow id=\"A.6.2.1.3.1\" xref=\"A.6.2.1.1.cmml\">                <mi id=\"A.6.2.1.3.1.1\" xref=\"A.6.2.1.3.1.1.cmml\">i</mi>                <mo id=\"A.6.2.1.3.1.2\" xref=\"A.6.2.1.1.1.cmml\">=</mo>                <mn id=\"A.6.2.1.3.1.3\" xref=\"A.6.2.1.3.1.3.cmml\">1</mn>              </mrow>              <mrow id=\"A.6.2.1.4.1\" xref=\"A.6.2.1.4.1.1.4.cmml\">                <mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.1\" xref=\"A.6.2.1.4.1.1.4.1.cmml\">|</mo>                <mi id=\"A.6.2.1.4.1.1.2\" xref=\"A.6.2.1.4.1.1.2.cmml\">Q</mi>                <mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.3\" xref=\"A.6.2.1.4.1.1.4.1.cmml\">|</mo>              </mrow>            </munderover>          </mstyle>          <mo id=\"A.6.5a\" xref=\"A.6.1.cmml\">⁡</mo>          <mstyle displaystyle=\"true\" id=\"A.6.4\" xref=\"A.6.1.cmml\">            <mfrac id=\"A.6.4a\" xref=\"A.6.1.cmml\">              <mn id=\"A.6.4.1.2\" xref=\"A.6.4.1.2.cmml\">1</mn>              <msub id=\"A.6.4.1.3\" xref=\"A.6.1.cmml\">                <mi id=\"A.6.4.1.3.1\" xref=\"A.6.4.1.3.1.cmml\">r</mi>                <mi id=\"A.6.4.1.3.2.1\" xref=\"A.6.4.1.3.2.1.cmml\">i</mi>              </msub>            </mfrac>          </mstyle>        </mrow>      </mrow>    </mrow>    <annotation-xml encoding=\"MathML-Content\" id=\"Ab\">      <apply id=\"A.7.cmml\" xref=\"A.7\">        <eq id=\"A.4.cmml\" xref=\"A.4\"/>        <ci id=\"A.3.cmml\" xref=\"A.3\">MRR</ci>        <apply id=\"A.7.1.cmml\" xref=\"A.7.1\">          <times id=\"A.7.1.1.cmml\" xref=\"A.7.1.1\"/>          <apply id=\"A.5.cmml\" xref=\"A.5\">            <divide id=\"A.5.1.cmml\"/>            <cn type=\"integer\" id=\"A.5.2.cmml\" xref=\"A.5.2\">1</cn>            <apply id=\"A.5.3.4.cmml\" xref=\"A.5.3\">              <abs id=\"A.5.3.4.1.cmml\" xref=\"A.5.3.1\"/>              <ci id=\"A.5.3.2.cmml\" xref=\"A.5.3.2\">Q</ci>            </apply>          </apply>          <apply id=\"A.6.1.cmml\" xref=\"A.6.5\">            <apply id=\"A.6.2.1.1.cmml\" xref=\"A.6.2.1.6\">              <csymbol cd=\"dlmf\" id=\"A.6.2.1.1.1.cmml\" xref=\"A.6.2.1.2\">semantic-sum</csymbol>              <ci id=\"A.6.2.1.3.1.1.cmml\" xref=\"A.6.2.1.3.1.1\">i</ci>              <cn type=\"integer\" id=\"A.6.2.1.3.1.3.cmml\" xref=\"A.6.2.1.3.1.3\">1</cn>              <apply id=\"A.6.2.1.4.1.1.4.cmml\" xref=\"A.6.2.1.4.1\">                <abs id=\"A.6.2.1.4.1.1.4.1.cmml\" xref=\"A.6.2.1.4.1.1.1\"/>                <ci id=\"A.6.2.1.4.1.1.2.cmml\" xref=\"A.6.2.1.4.1.1.2\">Q</ci>              </apply>            </apply>            <apply id=\"A.6.4.cmml\" xref=\"A.6.4\">              <divide id=\"A.6.4.1.1.cmml\"/>              <cn type=\"integer\" id=\"A.6.4.1.2.cmml\" xref=\"A.6.4.1.2\">1</cn>              <apply id=\"A.6.4.1.3.cmml\" xref=\"A.6.4.1.3\">                <csymbol cd=\"ambiguous\" id=\"A.6.4.1.3.3.cmml\">subscript</csymbol>                <ci id=\"A.6.4.1.3.1.cmml\" xref=\"A.6.4.1.3.1\">r</ci>                <ci id=\"A.6.4.1.3.2.1.cmml\" xref=\"A.6.4.1.3.2.1\">i</ci>              </apply>            </apply>          </apply>        </apply>      </apply>    </annotation-xml>  </semantics></math>",
+								"type": "text",
+								"enabled": true,
+								"warning": ""
+							},
+							{
+								"key": "comparison_mathml",
+								"value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" id=\"A\" class=\"ltx_Math\" display=\"inline\"> \t<semantics id=\"Aa\"> \t\t<mrow id=\"A.7\" xref=\"A.7.cmml\"> \t\t\t<mo id=\"A.3\" xref=\"A.3.cmml\"> \t\t\t\tMMR \t\t\t</mo> \t\t\t<mo id=\"A.4\" xref=\"A.4.cmml\"> \t\t\t\t= \t\t\t</mo> \t\t\t<mrow id=\"A.7.1\" xref=\"A.7.1.cmml\"> \t\t\t\t<mstyle displaystyle=\"true\" id=\"A.5\" xref=\"A.5.cmml\"> \t\t\t\t\t<mfrac id=\"A.5a\" xref=\"A.5.cmml\"> \t\t\t\t\t\t<mn id=\"A.5.2\" xref=\"A.5.2.cmml\"> \t\t\t\t\t\t\t1 \t\t\t\t\t\t</mn> \t\t\t\t\t\t<mrow id=\"A.5.3\" xref=\"A.5.3.4.cmml\"> \t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.5.3.1\" xref=\"A.5.3.4.1.cmml\"> \t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t<mi id=\"A.5.3.2\" xref=\"A.5.3.2.cmml\"> \t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.5.3.3\" xref=\"A.5.3.4.1.cmml\"> \t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t</mo> \t\t\t\t\t\t</mrow> \t\t\t\t\t</mfrac> \t\t\t\t</mstyle> \t\t\t\t<mo id=\"A.7.1.1\" xref=\"A.7.1.1.cmml\"> \t\t\t\t\t⁢ \t\t\t\t</mo> \t\t\t\t<mrow id=\"A.6.5\" xref=\"A.6.1.cmml\"> \t\t\t\t\t<mstyle displaystyle=\"true\" id=\"A.6.2.1.6\" xref=\"A.6.2.1.1.cmml\"> \t\t\t\t\t\t<munderover id=\"A.6.2.1.6a\" xref=\"A.6.2.1.1.cmml\"> \t\t\t\t\t\t\t<mo largeop=\"true\" movablelimits=\"false\" symmetric=\"true\" id=\"A.6.2.1.2\" xref=\"A.6.2.1.1.1.cmml\"> \t\t\t\t\t\t\t\t∑ \t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t<mrow id=\"A.6.2.1.3.1\" xref=\"A.6.2.1.1.cmml\"> \t\t\t\t\t\t\t\t<mi id=\"A.6.2.1.3.1.1\" xref=\"A.6.2.1.3.1.1.cmml\"> \t\t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t\t<mo id=\"A.6.2.1.3.1.2\" xref=\"A.6.2.1.1.1.cmml\"> \t\t\t\t\t\t\t\t\t= \t\t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t\t<mn id=\"A.6.2.1.3.1.3\" xref=\"A.6.2.1.3.1.3.cmml\"> \t\t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t\t</mn> \t\t\t\t\t\t\t</mrow> \t\t\t\t\t\t\t<mrow id=\"A.6.2.1.4.1\" xref=\"A.6.2.1.4.1.1.4.cmml\"> \t\t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.1\" xref=\"A.6.2.1.4.1.1.4.1.cmml\"> \t\t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t\t<mi id=\"A.6.2.1.4.1.1.2\" xref=\"A.6.2.1.4.1.1.2.cmml\"> \t\t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t\t<mo stretchy=\"false\" id=\"A.6.2.1.4.1.1.3\" xref=\"A.6.2.1.4.1.1.4.1.cmml\"> \t\t\t\t\t\t\t\t\t| \t\t\t\t\t\t\t\t</mo> \t\t\t\t\t\t\t</mrow> \t\t\t\t\t\t</munderover> \t\t\t\t\t</mstyle> \t\t\t\t\t<mo id=\"A.6.5a\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t⁡ \t\t\t\t\t</mo> \t\t\t\t\t<mstyle displaystyle=\"true\" id=\"A.6.4\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t<mfrac id=\"A.6.4a\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t\t<mn id=\"A.6.4.1.2\" xref=\"A.6.4.1.2.cmml\"> \t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t</mn> \t\t\t\t\t\t\t<msub id=\"A.6.4.1.3\" xref=\"A.6.1.cmml\"> \t\t\t\t\t\t\t\t<mi id=\"A.6.4.1.3.1\" xref=\"A.6.4.1.3.1.cmml\"> \t\t\t\t\t\t\t\t\tr \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t\t<mi id=\"A.6.4.1.3.2.1\" xref=\"A.6.4.1.3.2.1.cmml\"> \t\t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t\t</mi> \t\t\t\t\t\t\t</msub> \t\t\t\t\t\t</mfrac> \t\t\t\t\t</mstyle> \t\t\t\t</mrow> \t\t\t</mrow> \t\t</mrow> \t\t<annotation-xml encoding=\"MathML-Content\" id=\"Ab\"> \t\t\t<apply id=\"A.7.cmml\" xref=\"A.7\"> \t\t\t\t<eq id=\"A.4.cmml\" xref=\"A.4\" /> \t\t\t\t<ci id=\"A.3.cmml\" xref=\"A.3\"> \t\t\t\t\tMMR \t\t\t\t</ci> \t\t\t\t<apply id=\"A.7.1.cmml\" xref=\"A.7.1\"> \t\t\t\t\t<times id=\"A.7.1.1.cmml\" xref=\"A.7.1.1\" /> \t\t\t\t\t<apply id=\"A.5.cmml\" xref=\"A.5\"> \t\t\t\t\t\t<divide id=\"A.5.1.cmml\" /> \t\t\t\t\t\t<cn type=\"integer\" id=\"A.5.2.cmml\" xref=\"A.5.2\"> \t\t\t\t\t\t\t1 \t\t\t\t\t\t</cn> \t\t\t\t\t\t<apply id=\"A.5.3.4.cmml\" xref=\"A.5.3\"> \t\t\t\t\t\t\t<abs id=\"A.5.3.4.1.cmml\" xref=\"A.5.3.1\" /> \t\t\t\t\t\t\t<ci id=\"A.5.3.2.cmml\" xref=\"A.5.3.2\"> \t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t</ci> \t\t\t\t\t\t</apply> \t\t\t\t\t</apply> \t\t\t\t\t<apply id=\"A.6.1.cmml\" xref=\"A.6.5\"> \t\t\t\t\t\t<apply id=\"A.6.2.1.1.cmml\" xref=\"A.6.2.1.6\"> \t\t\t\t\t\t\t<csymbol cd=\"dlmf\" id=\"A.6.2.1.1.1.cmml\" xref=\"A.6.2.1.2\"> \t\t\t\t\t\t\t\tsemantic-sum \t\t\t\t\t\t\t</csymbol> \t\t\t\t\t\t\t<ci id=\"A.6.2.1.3.1.1.cmml\" xref=\"A.6.2.1.3.1.1\"> \t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t<cn type=\"integer\" id=\"A.6.2.1.3.1.3.cmml\" xref=\"A.6.2.1.3.1.3\"> \t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t</cn> \t\t\t\t\t\t\t<apply id=\"A.6.2.1.4.1.1.4.cmml\" xref=\"A.6.2.1.4.1\"> \t\t\t\t\t\t\t\t<abs id=\"A.6.2.1.4.1.1.4.1.cmml\" xref=\"A.6.2.1.4.1.1.1\" /> \t\t\t\t\t\t\t\t<ci id=\"A.6.2.1.4.1.1.2.cmml\" xref=\"A.6.2.1.4.1.1.2\"> \t\t\t\t\t\t\t\t\tQ \t\t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t</apply> \t\t\t\t\t\t</apply> \t\t\t\t\t\t<apply id=\"A.6.4.cmml\" xref=\"A.6.4\"> \t\t\t\t\t\t\t<divide id=\"A.6.4.1.1.cmml\" /> \t\t\t\t\t\t\t<cn type=\"integer\" id=\"A.6.4.1.2.cmml\" xref=\"A.6.4.1.2\"> \t\t\t\t\t\t\t\t1 \t\t\t\t\t\t\t</cn> \t\t\t\t\t\t\t<apply id=\"A.6.4.1.3.cmml\" xref=\"A.6.4.1.3\"> \t\t\t\t\t\t\t\t<csymbol cd=\"ambiguous\" id=\"A.6.4.1.3.3.cmml\"> \t\t\t\t\t\t\t\t\tsubscript \t\t\t\t\t\t\t\t</csymbol> \t\t\t\t\t\t\t\t<ci id=\"A.6.4.1.3.1.cmml\" xref=\"A.6.4.1.3.1\"> \t\t\t\t\t\t\t\t\tr \t\t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t\t<ci id=\"A.6.4.1.3.2.1.cmml\" xref=\"A.6.4.1.3.2.1\"> \t\t\t\t\t\t\t\t\ti \t\t\t\t\t\t\t\t</ci> \t\t\t\t\t\t\t</apply> \t\t\t\t\t\t</apply> \t\t\t\t\t</apply> \t\t\t\t</apply> \t\t\t</apply> \t\t</annotation-xml> \t</semantics> </math>",
+								"type": "text",
+								"enabled": true,
+								"warning": ""
+							},
+							{
+								"key": "similarities",
+								"value": "[     {         \"id\": \"A.3\",         \"matches\": [             {                 \"id\": \"A.3\",                 \"assessment\": 1.0,                 \"type\": \"match\"             }         ]     } ]",
+								"type": "text",
+								"enabled": true,
+								"warning": ""
+							}
+						],
+						"method": "POST",
+						"dataMode": "params"
+					}
+				}
+			]
+		}
+	]
+}

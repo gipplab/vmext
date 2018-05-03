@@ -1,0 +1,339 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="p1.1.m1.1" class="ltx_Math" alttext="{\displaystyle{\displaystyle\int_{0}^{\infty}\frac{x^{\alpha}}{\left(-x;q% \right)_{\infty}}\mathop{L^{(\alpha)}_{m}\/}\nolimits\!\left(x;q\right)\mathop% {L^{(\alpha)}_{n}\/}\nolimits\!\left(x;q\right)\,dx{}=\frac{\left(q^{-\alpha};% q\right)_{\infty}}{\left(q;q\right)_{\infty}}\frac{\left(q^{\alpha+1};q\right)% _{n}}{\left(q;q\right)_{n}q^{n}}\mathop{\Gamma\/}\nolimits\!\left(-\alpha% \right)\mathop{\Gamma\/}\nolimits\!\left(\alpha+1\right)\,\delta_{m,n}}}">
+  <semantics id="w1">
+    <mrow id="w2" xref="w145">
+      <mrow id="w3" xref="w147">
+        <mstyle displaystyle="true" id="w4" xref="w148">
+          <msubsup id="w5" xref="w148">
+            <mo largeop="true" symmetric="true" id="w6" xref="w152">∫</mo>
+            <mn id="w7" xref="w153">0</mn>
+            <mi id="w8" xref="w154" mathvariant="normal">∞</mi>
+          </msubsup>
+        </mstyle>
+        <mrow id="w9" xref="w155">
+          <mstyle displaystyle="true" id="w10" xref="w157">
+            <mfrac id="w11" xref="w157">
+              <msup id="w12" xref="w159">
+                <mi id="w13" xref="w161">x</mi>
+                <mi id="w14" xref="w162">α</mi>
+              </msup>
+              <msub id="w15" xref="w163">
+                <mrow id="w16" xref="w163">
+                  <mo id="w17" xref="w164">(</mo>
+                  <mrow id="w18" xref="w163">
+                    <mo id="w19" xref="w166">-</mo>
+                    <mi id="w20" xref="w167">x</mi>
+                  </mrow>
+                  <mo id="w21" xref="w164">;</mo>
+                  <mi id="w22" xref="w168">q</mi>
+                  <mo id="w23" xref="w164">)</mo>
+                </mrow>
+                <mi id="w24" xref="w169" mathvariant="normal">∞</mi>
+              </msub>
+            </mfrac>
+          </mstyle>
+          <mo id="w25" xref="w156">⁢</mo>
+          <mrow id="w26" xref="w170">
+            <msubsup id="w27" xref="w171">
+              <mi id="w28" xref="w172">L</mi>
+              <mi id="w29" xref="w174">m</mi>
+              <mrow id="w30" xref="w171">
+                <mo stretchy="false" id="w31" xref="w172">(</mo>
+                <mi id="w32" xref="w173">α</mi>
+                <mo stretchy="false" id="w33" xref="w172">)</mo>
+              </mrow>
+            </msubsup>
+            <mo id="w34" xref="w170">⁡</mo>
+            <mrow id="w35" xref="w170">
+              <mo id="w36" xref="w170">(</mo>
+              <mi id="w37" xref="w175">x</mi>
+              <mo id="w38" xref="w170">;</mo>
+              <mi id="w39" xref="w176">q</mi>
+              <mo id="w40" xref="w170">)</mo>
+            </mrow>
+          </mrow>
+          <mo id="w41" xref="w156">⁢</mo>
+          <mpadded width="+1.7pt" id="w42" xref="w177">
+            <mrow id="w43" xref="w177">
+              <msubsup id="w44" xref="w178">
+                <mi id="w45" xref="w179">L</mi>
+                <mi id="w46" xref="w181">n</mi>
+                <mrow id="w47" xref="w178">
+                  <mo stretchy="false" id="w48" xref="w179">(</mo>
+                  <mi id="w49" xref="w180">α</mi>
+                  <mo stretchy="false" id="w50" xref="w179">)</mo>
+                </mrow>
+              </msubsup>
+              <mo id="w51" xref="w177">⁡</mo>
+              <mrow id="w52" xref="w177">
+                <mo id="w53" xref="w177">(</mo>
+                <mi id="w54" xref="w182">x</mi>
+                <mo id="w55" xref="w177">;</mo>
+                <mi id="w56" xref="w183">q</mi>
+                <mo id="w57" xref="w177">)</mo>
+              </mrow>
+            </mrow>
+          </mpadded>
+          <mo id="w58" xref="w156">⁢</mo>
+          <mrow id="w59" xref="w184">
+            <mo id="w60" xref="w185">𝑑</mo>
+            <mi id="w61" xref="w186">x</mi>
+          </mrow>
+        </mrow>
+      </mrow>
+      <mo id="w62" xref="w146">=</mo>
+      <mrow id="w63" xref="w187">
+        <mstyle displaystyle="true" id="w64" xref="w189">
+          <mfrac id="w65" xref="w189">
+            <msub id="w66" xref="w191">
+              <mrow id="w67" xref="w191">
+                <mo id="w68" xref="w192">(</mo>
+                <msup id="w69" xref="w191">
+                  <mi id="w70" xref="w195">q</mi>
+                  <mrow id="w71" xref="w191">
+                    <mo id="w72" xref="w197">-</mo>
+                    <mi id="w73" xref="w198">α</mi>
+                  </mrow>
+                </msup>
+                <mo id="w74" xref="w192">;</mo>
+                <mi id="w75" xref="w199">q</mi>
+                <mo id="w76" xref="w192">)</mo>
+              </mrow>
+              <mi id="w77" xref="w200" mathvariant="normal">∞</mi>
+            </msub>
+            <msub id="w78" xref="w201">
+              <mrow id="w79" xref="w201">
+                <mo id="w80" xref="w202">(</mo>
+                <mi id="w81" xref="w203">q</mi>
+                <mo id="w82" xref="w202">;</mo>
+                <mi id="w83" xref="w204">q</mi>
+                <mo id="w84" xref="w202">)</mo>
+              </mrow>
+              <mi id="w85" xref="w205" mathvariant="normal">∞</mi>
+            </msub>
+          </mfrac>
+        </mstyle>
+        <mo id="w86" xref="w188">⁢</mo>
+        <mstyle displaystyle="true" id="w87" xref="w206">
+          <mfrac id="w88" xref="w206">
+            <msub id="w89" xref="w208">
+              <mrow id="w90" xref="w208">
+                <mo id="w91" xref="w209">(</mo>
+                <msup id="w92" xref="w208">
+                  <mi id="w93" xref="w212">q</mi>
+                  <mrow id="w94" xref="w208">
+                    <mi id="w95" xref="w215">α</mi>
+                    <mo id="w96" xref="w214">+</mo>
+                    <mn id="w97" xref="w216">1</mn>
+                  </mrow>
+                </msup>
+                <mo id="w98" xref="w209">;</mo>
+                <mi id="w99" xref="w217">q</mi>
+                <mo id="w100" xref="w209">)</mo>
+              </mrow>
+              <mi id="w101" xref="w218">n</mi>
+            </msub>
+            <mrow id="w102" xref="w219">
+              <msub id="w103" xref="w221">
+                <mrow id="w104" xref="w221">
+                  <mo id="w105" xref="w222">(</mo>
+                  <mi id="w106" xref="w223">q</mi>
+                  <mo id="w107" xref="w222">;</mo>
+                  <mi id="w108" xref="w224">q</mi>
+                  <mo id="w109" xref="w222">)</mo>
+                </mrow>
+                <mi id="w110" xref="w225">n</mi>
+              </msub>
+              <mo id="w111" xref="w220">⁢</mo>
+              <msup id="w112" xref="w226">
+                <mi id="w113" xref="w228">q</mi>
+                <mi id="w114" xref="w229">n</mi>
+              </msup>
+            </mrow>
+          </mfrac>
+        </mstyle>
+        <mo id="w115" xref="w188">⁢</mo>
+        <mrow id="w116" xref="w230">
+          <mi id="w117" xref="w231" mathvariant="normal">Γ</mi>
+          <mo id="w118" xref="w230">⁡</mo>
+          <mrow id="w119" xref="w230">
+            <mo id="w120" xref="w230">(</mo>
+            <mrow id="w121" xref="w230">
+              <mo id="w122" xref="w233">-</mo>
+              <mi id="w123" xref="w234">α</mi>
+            </mrow>
+            <mo id="w124" xref="w230">)</mo>
+          </mrow>
+        </mrow>
+        <mo id="w125" xref="w188">⁢</mo>
+        <mpadded width="+1.7pt" id="w126" xref="w235">
+          <mrow id="w127" xref="w235">
+            <mi id="w128" xref="w236" mathvariant="normal">Γ</mi>
+            <mo id="w129" xref="w235">⁡</mo>
+            <mrow id="w130" xref="w235">
+              <mo id="w131" xref="w235">(</mo>
+              <mrow id="w132" xref="w235">
+                <mi id="w133" xref="w239">α</mi>
+                <mo id="w134" xref="w238">+</mo>
+                <mn id="w135" xref="w240">1</mn>
+              </mrow>
+              <mo id="w136" xref="w235">)</mo>
+            </mrow>
+          </mrow>
+        </mpadded>
+        <mo id="w137" xref="w188">⁢</mo>
+        <msub id="w138" xref="w241">
+          <mi id="w139" xref="w242">δ</mi>
+          <mrow id="w140" xref="w241">
+            <mi id="w141" xref="w243">m</mi>
+            <mo id="w142" xref="w242">,</mo>
+            <mi id="w143" xref="w244">n</mi>
+          </mrow>
+        </msub>
+      </mrow>
+    </mrow>
+    <annotation-xml encoding="MathML-Content" id="w144">
+      <apply id="w145" xref="w2">
+        <eq id="w146" xref="w62"/>
+        <apply id="w147" xref="w3">
+          <apply id="w148" xref="w4">
+            <csymbol cd="ambiguous" id="w149">superscript</csymbol>
+            <apply id="w150" xref="w4">
+              <csymbol cd="ambiguous" id="w151">subscript</csymbol>
+              <int id="w152" xref="w6"/>
+              <cn type="integer" id="w153" xref="w7">0</cn>
+            </apply>
+            <infinity id="w154" xref="w8"/>
+          </apply>
+          <apply id="w155" xref="w9">
+            <times id="w156" xref="w25"/>
+            <apply id="w157" xref="w10">
+              <divide id="w158"/>
+              <apply id="w159" xref="w12">
+                <csymbol cd="ambiguous" id="w160">superscript</csymbol>
+                <ci id="w161" xref="w13">x</ci>
+                <ci id="w162" xref="w14">α</ci>
+              </apply>
+              <apply id="w163" xref="w15">
+                <csymbol cd="latexml" id="w164" xref="w17">q-Pochhammer</csymbol>
+                <apply id="w165" xref="w15">
+                  <minus id="w166" xref="w19"/>
+                  <ci id="w167" xref="w20">x</ci>
+                </apply>
+                <ci id="w168" xref="w22">q</ci>
+                <infinity id="w169" xref="w24"/>
+              </apply>
+            </apply>
+            <apply id="w170" xref="w26">
+              <apply id="w171" xref="w27">
+                <csymbol cd="dlmf" id="w172" xref="w28">q-Laguerre-polynomial-L
+                </csymbol>
+                <ci id="w173" xref="w32">α</ci>
+                <ci id="w174" xref="w29">m</ci>
+              </apply>
+              <ci id="w175" xref="w37">x</ci>
+              <ci id="w176" xref="w39">q</ci>
+            </apply>
+            <apply id="w177" xref="w42">
+              <apply id="w178" xref="w44">
+                <csymbol cd="dlmf" id="w179" xref="w45">q-Laguerre-polynomial-L
+                </csymbol>
+                <ci id="w180" xref="w49">α</ci>
+                <ci id="w181" xref="w46">n</ci>
+              </apply>
+              <ci id="w182" xref="w54">x</ci>
+              <ci id="w183" xref="w56">q</ci>
+            </apply>
+            <apply id="w184" xref="w59">
+              <csymbol cd="latexml" id="w185" xref="w60">differential-d</csymbol>
+              <ci id="w186" xref="w61">x</ci>
+            </apply>
+          </apply>
+        </apply>
+        <apply id="w187" xref="w63">
+          <times id="w188" xref="w86"/>
+          <apply id="w189" xref="w64">
+            <divide id="w190"/>
+            <apply id="w191" xref="w66">
+              <csymbol cd="latexml" id="w192" xref="w68">q-Pochhammer</csymbol>
+              <apply id="w193" xref="w66">
+                <csymbol cd="ambiguous" id="w194">superscript</csymbol>
+                <ci id="w195" xref="w70">q</ci>
+                <apply id="w196" xref="w66">
+                  <minus id="w197" xref="w72"/>
+                  <ci id="w198" xref="w73">α</ci>
+                </apply>
+              </apply>
+              <ci id="w199" xref="w75">q</ci>
+              <infinity id="w200" xref="w77"/>
+            </apply>
+            <apply id="w201" xref="w78">
+              <csymbol cd="latexml" id="w202" xref="w80">q-Pochhammer</csymbol>
+              <ci id="w203" xref="w81">q</ci>
+              <ci id="w204" xref="w83">q</ci>
+              <infinity id="w205" xref="w85"/>
+            </apply>
+          </apply>
+          <apply id="w206" xref="w87">
+            <divide id="w207"/>
+            <apply id="w208" xref="w89">
+              <csymbol cd="latexml" id="w209" xref="w91">q-Pochhammer</csymbol>
+              <apply id="w210" xref="w89">
+                <csymbol cd="ambiguous" id="w211">superscript</csymbol>
+                <ci id="w212" xref="w93">q</ci>
+                <apply id="w213" xref="w89">
+                  <plus id="w214" xref="w96"/>
+                  <ci id="w215" xref="w95">α</ci>
+                  <cn type="integer" id="w216" xref="w97">1</cn>
+                </apply>
+              </apply>
+              <ci id="w217" xref="w99">q</ci>
+              <ci id="w218" xref="w101">n</ci>
+            </apply>
+            <apply id="w219" xref="w102">
+              <times id="w220" xref="w111"/>
+              <apply id="w221" xref="w103">
+                <csymbol cd="latexml" id="w222" xref="w105">q-Pochhammer</csymbol>
+                <ci id="w223" xref="w106">q</ci>
+                <ci id="w224" xref="w108">q</ci>
+                <ci id="w225" xref="w110">n</ci>
+              </apply>
+              <apply id="w226" xref="w112">
+                <csymbol cd="ambiguous" id="w227">superscript</csymbol>
+                <ci id="w228" xref="w113">q</ci>
+                <ci id="w229" xref="w114">n</ci>
+              </apply>
+            </apply>
+          </apply>
+          <apply id="w230" xref="w116">
+            <csymbol cd="dlmf" id="w231" xref="w117">Euler-Gamma</csymbol>
+            <apply id="w232" xref="w116">
+              <minus id="w233" xref="w122"/>
+              <ci id="w234" xref="w123">α</ci>
+            </apply>
+          </apply>
+          <apply id="w235" xref="w126">
+            <csymbol cd="dlmf" id="w236" xref="w128">Euler-Gamma</csymbol>
+            <apply id="w237" xref="w126">
+              <plus id="w238" xref="w134"/>
+              <ci id="w239" xref="w133">α</ci>
+              <cn type="integer" id="w240" xref="w135">1</cn>
+            </apply>
+          </apply>
+          <apply id="w241" xref="w138">
+            <csymbol cd="latexml" id="w242" xref="w139">Kronecker</csymbol>
+            <ci id="w243" xref="w141">m</ci>
+            <ci id="w244" xref="w143">n</ci>
+          </apply>
+        </apply>
+      </apply>
+    </annotation-xml>
+    <annotation encoding="application/x-tex" id="w245">
+      {\displaystyle{\displaystyle\int_{0}^{\infty}\frac{x^{\alpha}}{\left(-x;q%
+      \right)_{\infty}}\mathop{L^{(\alpha)}_{m}\/}\nolimits\!\left(x;q\right)\mathop%
+      {L^{(\alpha)}_{n}\/}\nolimits\!\left(x;q\right)\,dx{}=\frac{\left(q^{-\alpha};%
+      q\right)_{\infty}}{\left(q;q\right)_{\infty}}\frac{\left(q^{\alpha+1};q\right)%
+      _{n}}{\left(q;q\right)_{n}q^{n}}\mathop{\Gamma\/}\nolimits\!\left(-\alpha%
+      \right)\mathop{\Gamma\/}\nolimits\!\left(\alpha+1\right)\,\delta_{m,n}}}
+    </annotation>
+  </semantics>
+</math>

@@ -1,0 +1,87 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="A" class="ltx_Math" display="inline">
+  <semantics id="e1">
+    <mrow id="e2" xref="e34">
+      <mo id="e3" xref="e36">MRR</mo>
+      <mo id="e4" xref="e35">=</mo>
+      <mrow id="e5" xref="e37">
+        <mstyle displaystyle="true" id="e6" xref="e39">
+          <mfrac id="e7" xref="e39">
+            <mn id="e8" xref="e41">1</mn>
+            <mrow id="e9" xref="e42">
+              <mo stretchy="false" id="e10" xref="e43">|</mo>
+              <mi id="e11" xref="e44">Q</mi>
+              <mo stretchy="false" id="e12" xref="e43">|</mo>
+            </mrow>
+          </mfrac>
+        </mstyle>
+        <mo id="e13" xref="e38">⁢</mo>
+        <mrow id="e14" xref="e45">
+          <mstyle displaystyle="true" id="e15" xref="e46">
+            <munderover id="e16" xref="e46">
+              <mo largeop="true" movablelimits="false" symmetric="true" id="e17" xref="e47">
+                ∑
+              </mo>
+              <mrow id="e18" xref="e46">
+                <mi id="e19" xref="e48">i</mi>
+                <mo id="e20" xref="e47">=</mo>
+                <mn id="e21" xref="e49">1</mn>
+              </mrow>
+              <mrow id="e22" xref="e50">
+                <mo stretchy="false" id="e23" xref="e51">|</mo>
+                <mi id="e24" xref="e52">Q</mi>
+                <mo stretchy="false" id="e25" xref="e51">|</mo>
+              </mrow>
+            </munderover>
+          </mstyle>
+          <mo id="e26" xref="e45">⁡</mo>
+          <mstyle displaystyle="true" id="e27" xref="e45">
+            <mfrac id="e28" xref="e45">
+              <mn id="e29" xref="e55">1</mn>
+              <msub id="e30" xref="e45">
+                <mi id="e31" xref="e58">r</mi>
+                <mi id="e32" xref="e59">i</mi>
+              </msub>
+            </mfrac>
+          </mstyle>
+        </mrow>
+      </mrow>
+    </mrow>
+    <annotation-xml encoding="MathML-Content" id="e33">
+      <apply id="e34" xref="e2">
+        <eq id="e35" xref="e4"/>
+        <ci id="e36" xref="e3">MRR</ci>
+        <apply id="e37" xref="e5">
+          <times id="e38" xref="e13"/>
+          <apply id="e39" xref="e6">
+            <divide id="e40"/>
+            <cn type="integer" id="e41" xref="e8">1</cn>
+            <apply id="e42" xref="e9">
+              <abs id="e43" xref="e10"/>
+              <ci id="e44" xref="e11">Q</ci>
+            </apply>
+          </apply>
+          <apply id="e45" xref="e14">
+            <apply id="e46" xref="e15">
+              <csymbol cd="dlmf" id="e47" xref="e17">semantic-sum</csymbol>
+              <ci id="e48" xref="e19">i</ci>
+              <cn type="integer" id="e49" xref="e21">1</cn>
+              <apply id="e50" xref="e22">
+                <abs id="e51" xref="e23"/>
+                <ci id="e52" xref="e24">Q</ci>
+              </apply>
+            </apply>
+            <apply id="e53" xref="e27">
+              <divide id="e54"/>
+              <cn type="integer" id="e55" xref="e29">1</cn>
+              <apply id="e56" xref="e30">
+                <csymbol cd="ambiguous" id="e57">subscript</csymbol>
+                <ci id="e58" xref="e31">r</ci>
+                <ci id="e59" xref="e32">i</ci>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </annotation-xml>
+  </semantics>
+</math>
