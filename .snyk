@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.1
+version: v1.12.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:content-type-parser:20170905':
@@ -11,3 +11,13 @@ patch:
   'npm:minimatch:20160620':
     - read-glob-promise > read-glob > glob > minimatch:
         patched: '2017-12-20T13:07:56.760Z'
+  'npm:debug:20170905':
+    - brunch > debug:
+        patched: '2018-05-03T10:52:46.702Z'
+    - brunch > since-app-start > debug:
+        patched: '2018-05-03T10:52:46.702Z'
+  'npm:ms:20170412':
+    - brunch > debug > ms:
+        patched: '2018-05-03T10:52:46.702Z'
+    - brunch > since-app-start > debug > ms:
+        patched: '2018-05-03T10:52:46.702Z'
