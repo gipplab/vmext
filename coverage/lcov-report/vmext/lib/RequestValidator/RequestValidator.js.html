@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30% </span>
+        <span class="strong">85% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/20</span>
+        <span class='fraction'>17/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>10/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/4</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30% </span>
+        <span class="strong">85% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/20</span>
+        <span class='fraction'>17/20</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -91,32 +91,32 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">6×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,33 +129,33 @@ const Boom = require('boom');
 &nbsp;
 module.exports = class RequestValidator {
   static contentType(type) {
-    return <span class="fstat-no" title="function not covered" >function(req, res, next) {</span>
-<span class="cstat-no" title="statement not covered" >      if (req.headers['content-length'] === 0 || req.headers['content-type'].indexOf(type) &lt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        return next(Boom.badRequest(`request body is empty or not ${type} encoded!`));</span>
+    return function(req, res, next) {
+      if (req.headers['content-length'] === 0 || (req.headers['content-type'] || []).indexOf(type) &lt; 0) {
+        return next(Boom.badRequest(`request body is empty or not ${type} encoded!`));
       }
-<span class="cstat-no" title="statement not covered" >      next();</span>
+      next();
     };
   }
 &nbsp;
   static parseParams(params) {
-    return <span class="fstat-no" title="function not covered" >function(req, res, next) {</span>
-<span class="cstat-no" title="statement not covered" >      for (const param of params) {</span>
-<span class="cstat-no" title="statement not covered" >        if (req.body[param.name]) {</span>
-<span class="cstat-no" title="statement not covered" >          try {</span>
-<span class="cstat-no" title="statement not covered" >            res.locals[param.name] = TypeParsingMap[param.type](req.body[param.name]);</span>
+    return function(req, res, next) {
+      for (const param of params) {
+        if (req.body[param.name]) {
+          try {
+            res.locals[param.name] = TypeParsingMap[param.type](req.body[param.name]);
           } catch (e) {
 <span class="cstat-no" title="statement not covered" >            return next(Boom.badRequest(`${param.name} must be of type ${param.type}`));</span>
           }
-        } else <span class="cstat-no" title="statement not covered" >if (!param.optional) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (!param.optional) {
 <span class="cstat-no" title="statement not covered" >          return next(Boom.badRequest(`form-data is missing field: ${param.name}`));</span>
         } else {
-<span class="cstat-no" title="statement not covered" >          if (!('default' in param)) {</span>
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (!('default' in param)) {
 <span class="cstat-no" title="statement not covered" >            log.warn(`param: ${param.name} is optional but no default specified - value will be undefined`);</span>
           }
-<span class="cstat-no" title="statement not covered" >          res.locals[param.name] = param.default;</span>
+          res.locals[param.name] = param.default;
         }
       }
-<span class="cstat-no" title="statement not covered" >      next();</span>
+      next();
     };
   }
 &nbsp;
@@ -166,7 +166,7 @@ module.exports = class RequestValidator {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Nov 25 2017 19:07:27 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 03 2018 12:56:07 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

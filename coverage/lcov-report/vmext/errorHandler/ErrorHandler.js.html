@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">81.25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/15</span>
+        <span class='fraction'>13/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>4/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">81.25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/15</span>
+        <span class='fraction'>13/16</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -70,67 +70,70 @@
 25
 26
 27
-28</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+28
+29</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-const log = require('lib/logger')
-const Boom = require('boom')
+const log = require('lib/logger');
+const Boom = require('boom');
+const CircularJSON = require('circular-json');
 &nbsp;
 module.exports = (app) =&gt; {
   // catch 404s
   app.use((req, res, next) =&gt; {
-<span class="cstat-no" title="statement not covered" >    next(Boom.notFound(`Endpoint ${req.originalUrl} for method ${req.method} is not defined.`))</span>
-  })
+    next(Boom.notFound(`Endpoint ${req.originalUrl} for method ${req.method} is not defined.`));
+  });
 &nbsp;
   app.use((err, req, res, next) =&gt; { // eslint-disable-line no-unused-vars
-<span class="cstat-no" title="statement not covered" >    log.error(err)</span>
-<span class="cstat-no" title="statement not covered" >    const BoomError = !err.isBoom ? Boom.wrap(err) : err</span>
-<span class="cstat-no" title="statement not covered" >    if (res.headersSent) {</span>
-<span class="cstat-no" title="statement not covered" >      console.log('Skip error handler.')</span>
-<span class="cstat-no" title="statement not covered" >      return next(err)</span>
+    log.error(CircularJSON.stringify(err));
+    const BoomError = !err.isBoom ? <span class="branch-0 cbranch-no" title="branch not covered" >Boom.wrap(err) </span>: err;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (res.headersSent) {
+<span class="cstat-no" title="statement not covered" >      app.log('Skip error handler.');</span>
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
     }
-<span class="cstat-no" title="statement not covered" >    res.status(BoomError.output.statusCode || 500);</span>
-<span class="cstat-no" title="statement not covered" >    if(!req.accepts('json')){</span>
-      //res.set('Content-Type', 'application/json; charset=utf-8');
-<span class="cstat-no" title="statement not covered" >      res.end(JSON.stringify(BoomError.output.payload))</span>
+    res.status(BoomError.output.statusCode || <span class="branch-1 cbranch-no" title="branch not covered" >500)</span>;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!req.accepts('json')) {
+      // res.set('Content-Type', 'application/json; charset=utf-8');
+<span class="cstat-no" title="statement not covered" >      res.end(JSON.stringify(BoomError.output.payload));</span>
     } else {
-<span class="cstat-no" title="statement not covered" >      res.json(BoomError.output.payload);</span>
+      res.json(BoomError.output.payload);
     }
-  })
-}
+  });
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Nov 25 2017 19:07:27 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 03 2018 12:56:07 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

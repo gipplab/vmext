@@ -19,7 +19,7 @@
     "coverage": "npm run build && istanbul cover _mocha -- -R spec",
     "test": "PREQ_CONNECT_TIMEOUT=15 mocha",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "check":"nsp check",
+    "check": "nsp check",
     "lint": "eslint ."
   },
   "author": "HTW",
@@ -64,6 +64,7 @@
     "whatwg-fetch": "^2.0.2",
     "winston": "^3.0.0-rc3",
     "winston-daily-rotate-file": "^3.0.1",
+    "winston-slack-hook": "^0.3.0",
     "xml2js": "^0.4.17",
     "xmldom": "^0.1.22",
     "xpath": "^0.0.27",
