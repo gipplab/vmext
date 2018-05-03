@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/ag-gipp/vmext/badge.svg?branch=master)](https://coveralls.io/github/ag-gipp/vmext?branch=master)
 [![npm](https://img.shields.io/npm/v/vmext.svg)](https://www.npmjs.com/package/vmext)
 
-# VMEXT: A Visualization Tool for  Mathematical Expression Trees
+# VMEXT: A Visualization  and Editing Tool for Mathematical Expression Trees
 
 Mathematical expressions can be understood and represented as a tree consisting of functions (non-leaf nodes) and their arguments (child nodes of function nodes). Such expression trees are an important concept to store and process mathematical expressions as well as the most frequently used visualization of the structure of mathematical expressions.
 
@@ -15,14 +15,6 @@ Visualizing expression similarity shall support developers in designing retrieva
 ## Setup
 
 You may install VMEXT using **npm** like so: `npm i && npm start`.
-
-Alternatively, you may use **YARN** which speeds up the installation and deployment processes, saves disk space by removing duplicate packages, and locks all package dependencies - not only the top level dependencies like npm does. For further information, see [YARN](https://www.npmjs.com/package/yarn)
-
-To install **Yarn**, follow the [Installation Guide](https://yarnpkg.com/en/docs/install#mac-tab) for your platform.
-
-To install all dependencies, navigate to the project root and run: `yarn`
-
-After that, you can run the server using `yarn start`
 
 To use use a local mathoid installation install mathoid locally from npm and change the mathoidUrl in the [config](config.yaml).
 
