@@ -54,7 +54,7 @@ function callAPI(evt) {
    * @const {CodeMirror} code Mirror lib
    */
   updatePreview(formats.cmml.cm.doc);
-  const mmlCy = require('MathML/cytoscape');
+  const mmlCy = require('./MathML/cytoscape');
   const container = document.getElementById('mast');
   const mml = mmlCy.mml(formats.cmml.cm.getValue());
   const cy = mml.toCytoscape({
@@ -129,7 +129,7 @@ window.onload = function init() {
     const lineContent = editor.getLine(editor.getCursor().line);
     const cursorPos = editor.getCursor().ch;
     const lineNum = editor.getCursor().line;
-    const rdf = require('Wikidata/Rdf');
+    const rdf = require('./Wikidata/Rdf');
     rdf(lineContent,lineNum,cursorPos).then((hint) => {
       hint.from = CodeMirror.Pos(hint.from.line, hint.from.char);
       hint.to = CodeMirror.Pos(hint.to.line, hint.to.char);

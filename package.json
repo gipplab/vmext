@@ -41,6 +41,7 @@
     "brunch": "^2.10.12",
     "cheerio": "^0.22.0",
     "circular-json": "^0.5.1",
+    "codemirror": "^5.37.0",
     "compression": "^1.6.2",
     "config": "^1.30.0",
     "cytoscape": "^3.2.11",
