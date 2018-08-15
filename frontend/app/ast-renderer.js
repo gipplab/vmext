@@ -10,7 +10,7 @@ const $ = require('jquery');
 
 const buffers = {};
 const elem = document.getElementById('MathMLexamples');
-const formats = { cmml:{},pmml:{} };
+const formats = { cmml: {}, pmml: {} };
 
 
 /**
@@ -111,6 +111,11 @@ function callAPI(evt) {
   cy.nodes().on('free', (e) => {
     const n = e.target;
     const nearest = getNearest(n);
+    const parent = n.data().root().getElementById(nearest.data().id);
+    parent.appendChild(n.data());
+    const newContent = n.data().root().toString();
+    formats.cmml.cm.doc.setValue(newContent);
+    callAPI();
 
     console.log(`free ${n.data().id} near ${nearest.data().id} `);
   });
@@ -118,19 +123,43 @@ function callAPI(evt) {
     const n = e.target;
     console.log(`drag ${n.data().id}`);
   });
+  cy.cxtmenu({
+    selector: 'node',
+    commands: [
+      {
+        content: 'Edit',
+        select: (ele) => {
+          document.getElementById("cmml").focus();
+        }
+      },
+      {
+        content: 'Delete',
+        select: (ele) => {
+          // ele.remove();
+          const node = ele.data();
+          const root = node.root();
+          node.delete();
+          const newContent = root.toString();
+          formats.cmml.cm.doc.setValue(newContent);
+          callAPI();
+        }
+      }
+    ]
+  });
 }
 
 function updatePreview(doc) {
   document.getElementById('preview').innerHTML = doc.getValue();
+  console.log(doc.getValue());
 }
 
 window.onload = function init() {
-  CodeMirror.registerHelper('hint','xml',(editor,callback) => {
+  CodeMirror.registerHelper('hint', 'xml', (editor, callback) => {
     const lineContent = editor.getLine(editor.getCursor().line);
     const cursorPos = editor.getCursor().ch;
     const lineNum = editor.getCursor().line;
     const rdf = require('./Wikidata/Rdf');
-    rdf(lineContent,lineNum,cursorPos).then((hint) => {
+    rdf(lineContent, lineNum, cursorPos).then((hint) => {
       hint.from = CodeMirror.Pos(hint.from.line, hint.from.char);
       hint.to = CodeMirror.Pos(hint.to.line, hint.to.char);
       return hint;
@@ -139,22 +168,27 @@ window.onload = function init() {
   CodeMirror.hint.xml.async = true;
   Object.keys(formats).forEach((f) => {
     const mml = document.getElementById(f);
-    formats[f].cm = CodeMirror(mml, { lineNumbers: true,
+    formats[f].cm = CodeMirror(mml, {
+      lineNumbers: true,
       'extraKeys': {
         'Ctrl-Space': 'autocomplete',
         F11(cm) {
           cm.setOption("fullScreen", !cm.getOption("fullScreen"));
         },
         Esc(cm) {
-          if (cm.getOption("fullScreen")) { cm.setOption("fullScreen", false); }
-        } },
-      hintOptions:{ completeSingle: false } });
+          if (cm.getOption("fullScreen")) {
+            cm.setOption("fullScreen", false);
+          }
+        }
+      },
+      hintOptions: { completeSingle: false }
+    });
   });
   [].forEach.call(
     elem.options,
     (o) => {
       const doc = CodeMirror.Doc(o.value, 'application/xml');
-      doc.on('change',(doc) => {
+      doc.on('change', (doc) => {
         updatePreview(doc);
       });
       buffers[o.label] = doc;
