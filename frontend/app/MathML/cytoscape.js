@@ -1,13 +1,16 @@
 'use strict';
 
-const mml = require('./MathMLRenderer');
+const mml = require('mathml/app/MathML/MathMLRenderer');
 const cytoscape = require('cytoscape');
 const dagre = require('cytoscape-dagre');
 const popper = require('cytoscape-popper');
 const tippy = require('tippy.js');
+const cxtmenu = require('cytoscape-cxtmenu');
 const _ = require('lodash');
+
 cytoscape.use(dagre);
 cytoscape.use(popper);
+cytoscape.use(cxtmenu);
 
 function layout(cy) {
   if (!cy.headless()) {
@@ -160,13 +163,13 @@ mml.base.prototype.toCytoscape = function(options = {}) {
           content.innerHTML = `Fetching information for symbol ${symbol} from content directory ${cd}.`;
           if (typeof fetch !== "undefined") {
             if (cd === 'wikidata') {
-            // eslint-disable-next-line no-undef
+              // eslint-disable-next-line no-undef
               fetch(`http://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`).then((res) => {
                 res.json()
                   .then((json) => {
                     // language=HTML
                     content.innerHTML =
-`<h3><a href="https://wikidata.org/wiki/${symbol}" target="_blank">
+                      `<h3><a href="https://wikidata.org/wiki/${symbol}" target="_blank">
 Wikidata ${symbol}</a></h3><p> ${_.get(json, `entities[${symbol}].labels.en.value`, symbol)} </p>
 <p>${_.get(json, `entities[${symbol}].descriptions.en.value`, 'no description')} </p>`;
                   });
