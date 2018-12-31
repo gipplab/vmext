@@ -111,13 +111,16 @@ function callAPI(evt) {
   cy.nodes().on('free', (e) => {
     const n = e.target;
     const nearest = getNearest(n);
-    const parent = n.data().root().getElementById(nearest.data().id);
-    parent.appendChild(n.data());
-    const newContent = n.data().root().toString();
-    formats.cmml.cm.doc.setValue(newContent);
-    callAPI();
+    if (n.data().move) {
+      console.log(`free ${n.data().id} near ${nearest.data().id} `);
+      const parent = n.data().root().getElementById(nearest.data().id);
+      parent.appendChild(n.data());
+      const newContent = n.data().root().toString();
+      formats.cmml.cm.doc.setValue(newContent);
+      callAPI();
 
-    console.log(`free ${n.data().id} near ${nearest.data().id} `);
+
+    }
   });
   cy.nodes().on('drag', (e) => {
     const n = e.target;
@@ -126,6 +129,12 @@ function callAPI(evt) {
   cy.cxtmenu({
     selector: 'node',
     commands: [
+      {
+        content: 'Move',
+        select: (ele) => {
+          ele.data().move = true;
+        }
+      },
       {
         content: 'Edit',
         select: (ele) => {
@@ -150,7 +159,6 @@ function callAPI(evt) {
 
 function updatePreview(doc) {
   document.getElementById('preview').innerHTML = doc.getValue();
-  console.log(doc.getValue());
 }
 
 window.onload = function init() {
