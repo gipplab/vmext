@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.2.3",
+    "@jsbits/deep-clone": "^1.1.1",
     "auto-reload-brunch": "^2",
     "babel-brunch": "~7.0.0",
     "brunch": "^2",
