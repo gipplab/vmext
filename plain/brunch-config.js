@@ -16,7 +16,7 @@ module.exports = {
   plugins: {
     babel: { presets: ['latest'] },
     pug: {
-      preCompile: true,
+      preCompilePattern: /.pug$/,
       locals: testData.locals
     }
   },
