@@ -6,4 +6,4 @@ slack:
 logs:
     dir: '/logs'
     level: 'debug'
-mathoidUrl: 'http://drmf-mathoid.wmflabs.org'
+mathoidUrl: 'https://drmf-mathoid.wmflabs.org'

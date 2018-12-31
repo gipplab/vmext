@@ -4,7 +4,7 @@
 // const Configstore = require('configstore');
 // new Configstore('vmedit', { mathoidUrl: 'https://mathoid.formulasearchengine.com' });
 // const conf = new Configstore('vmedit', { mathoidUrl: 'https://mathoid.formulasearchengine.com' });
-const values = { mathoidUrl: 'https://mathoid.formulasearchengine.com' };
+const values = { mathoidUrl: 'https://drmf-mathoid.wmflabs.org' };
 const conf = {
   get(name) {
     return values[name];
