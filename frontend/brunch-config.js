@@ -14,7 +14,7 @@ module.exports = {
     stylesheets: { joinTo: 'app.css' }
   },
   plugins: {
-    babel: { presets: ['latest'] },
+    babel: {},
     pug: {
       preCompile: true,
       locals: testData.locals

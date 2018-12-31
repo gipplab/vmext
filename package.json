@@ -37,6 +37,7 @@
     "app-module-path": "^2.2.0",
     "base64-stream": "^1.0.0",
     "boom": "^7.3.0",
+    "brunch": "^2.10.17",
     "cheerio": "^1.0.0-rc.2",
     "circular-json": "^0.5.1",
     "codemirror": "^5.37.0",

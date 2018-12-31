@@ -22,7 +22,7 @@
   "dependencies": {
     "bootstrap": "^4.1.0",
     "codemirror": "^5.36.0",
-    "configstore": "^3.1.2",
+    "configstore": "^4.0.0",
     "cytoscape": "^3.2.11",
     "mathml": "^1.0.2",
     "cytoscape-cxtmenu": "^3.0.1",
@@ -31,28 +31,27 @@
     "glob": "^7.1.2",
     "lodash": "^4.17.5",
     "pugjs-brunch": "^2.10.2",
-    "tippy.js": "^2.5.2",
+    "tippy.js": "^3.3.0",
     "winston": "^3.0.0-rc3",
     "xpath": "0.0.27",
     "xtraverse": "^0.1.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.2.3",
     "auto-reload-brunch": "^2",
-    "babel-brunch": "~6.1.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-latest": "^6",
+    "babel-brunch": "~7.0.0",
     "brunch": "^2",
     "clean-css-brunch": "^2",
-    "eslint": "^4.11.0",
+    "eslint": "^5.11.1",
     "eslint-config-node-services": "^2.0.2",
-    "eslint-config-wikimedia": "^0.5.0",
+    "eslint-config-wikimedia": "^0.9.0",
     "eslint-plugin-jsdoc": "^3.0.0",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-mocha": "^5.0.0",
     "istanbul": "^0.4.5",
     "jquery": "^3.3.1",
     "mocha": "^5.1.0",
-    "mocha-eslint": "^4.1.0",
+    "mocha-eslint": "^5.0.0",
     "uglify-js-brunch": "^2"
   }
 }
