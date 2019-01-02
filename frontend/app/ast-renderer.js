@@ -43,6 +43,10 @@ document.addEventListener('astRendered', (e) => {
   document.querySelector('.btn-download').style.display = 'block';
 });
 
+global.update = function() {
+  callAPI();
+};
+
 function callAPI(evt) {
   if (evt) {
     evt.preventDefault();
