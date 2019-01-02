@@ -12,7 +12,7 @@ module.exports = (app) => {
 
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     log.error(CircularJSON.stringify(err));
-    const BoomError = !err.isBoom ? Boom.wrap(err) : err;
+    const BoomError = !err.isBoom ? Boom.boomify(err) : err;
     if (res.headersSent) {
       app.log('Skip error handler.');
       return next(err);
