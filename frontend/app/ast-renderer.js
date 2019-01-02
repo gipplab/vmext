@@ -54,7 +54,7 @@ function callAPI(evt) {
    * @const {CodeMirror} code Mirror lib
    */
   updatePreview(formats.cmml.cm.doc);
-  const mmlCy = require('./MathML/cytoscape');
+  const mmlCy = require('cytoscape-mathml');
   const container = document.getElementById('mast');
   const mml = mmlCy.mml(formats.cmml.cm.getValue());
   const cy = mml.toCytoscape({
