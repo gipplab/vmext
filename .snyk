@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.1
+version: v1.13.5
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:content-type-parser:20170905':
@@ -11,3 +11,42 @@ patch:
   'npm:minimatch:20160620':
     - read-glob-promise > read-glob > glob > minimatch:
         patched: '2017-12-20T13:07:56.760Z'
+  SNYK-JS-LODASH-450202:
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - cheerio > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - cytoscape-dagre > dagre > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - winston > async > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - preq > requestretry > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > inquirer > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > snyk-config > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - jsdom > request-promise-native > request-promise-core > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - cytoscape-dagre > dagre > graphlib > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2019-07-04T00:25:08.838Z'
+    - phantom > winston > async > lodash:
+        patched: '2019-07-04T00:25:08.838Z'

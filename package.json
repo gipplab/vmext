@@ -71,7 +71,7 @@
     "xmldom": "^0.1.22",
     "xpath": "^0.0.27",
     "xtraverse": "^0.1.0",
-    "snyk": "^1.123.0"
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "bootstrap": "^4.2.1",
