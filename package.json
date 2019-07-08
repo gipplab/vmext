@@ -1,6 +1,6 @@
 {
   "name": "vmext",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "server.js",
   "description": "Mathematical expressions can be understood and represented as a tree con-sisting of functions (non-leaf nodes) and their arguments (child nodes of function nodes). Such expression trees are an important concept to store and process mathematical expressions as well as the most frequently used visual-ization of the structure of mathematical expressions. Typically, researchers visualize expression trees using general purpose tools that are not optimized for mathematics. This approach is laborious, redundant if mathematical ex-pressions are available in a structured markup, such as MathML, and error-prone, since the visualization represents a researcher’s notion of what the markup of an expression should be, but not necessarily what the actual markup is. In this paper, we present VET – a tool to automatically visualize mathematical expression trees from parallel MathML. Additionally, we pre-sent a demo application to convert LaTeX input to parallel MathML, which is then visualized using VET. By visualizing the actual markup of mathematical expressions, VET enables content providers to quickly spot problems in the content MathML markup that do not affect the presentation of the expres-sion. Identifying such discrepancies previously required reading the verbose and complex parallel MathML markup. VET also allows to visualize similar and identical elements of two expressions using arbitrary similarity measures. Visualizing expression similarity shall support developers in designing re-trieval approaches and enable improved interaction concepts for users of mathematical information retrieval systems. The similarity visualization al-lows designers and users of such systems to inspect the reasoning of a simi-larity measure, rather than exclusively being provided with a scalar similarity score as is the case for most current retrieval systems.",
   "repository": {
@@ -55,14 +55,14 @@
     "glob": "^7.1.2",
     "jquery": "^3.1.1",
     "js-yaml": "^3.8.3",
-    "jsdom": "^13.1.0",
+    "jsdom": "^15.1.1",
     "lodash": "^4.17.4",
     "mathml": "^1.0.0",
     "multer": "^1.2.0",
     "phantom": "^6.0.3",
     "preq": "^0.5.4",
     "serve-favicon": "^2.3.2",
-    "tippy.js": "^3.3.0",
+    "tippy.js": "^4.3.4",
     "whatwg-fetch": "^3.0.0",
     "winston": "^3.0.0-rc3",
     "winston-daily-rotate-file": "^3.0.1",
@@ -70,26 +70,25 @@
     "xml2js": "^0.4.17",
     "xmldom": "^0.1.22",
     "xpath": "^0.0.27",
-    "xtraverse": "^0.1.0",
-    "snyk": "^1.123.0"
+    "xtraverse": "^0.1.0"
   },
   "devDependencies": {
     "bootstrap": "^4.2.1",
     "coveralls": "^3.0.0",
-    "eslint": "^5.11.1",
+    "eslint": "^6.0.1",
     "eslint-config-node-services": "^2.0.2",
-    "eslint-config-wikimedia": "^0.9.0",
-    "eslint-plugin-jsdoc": "^3.0.0",
+    "eslint-config-wikimedia": "^0.13.0",
+    "eslint-plugin-jsdoc": "^15.0.1",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-mocha": "^5.2.0",
     "istanbul": "^0.4.5",
     "mathoid": "^0.7.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "mocha-eslint": "^5.0.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.11.0",
     "rx": "^4.1.0",
-    "supertest": "^3.0.0"
+    "supertest": "^4.0.2"
   },
   "snyk": true
 }
