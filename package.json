@@ -20,8 +20,6 @@
     "test": "PREQ_CONNECT_TIMEOUT=15 mocha",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "lint": "eslint .",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
   },
   "author": "HTW",
   "license": "MIT",
@@ -90,5 +88,4 @@
     "rx": "^4.1.0",
     "supertest": "^4.0.2"
   },
-  "snyk": true
 }
