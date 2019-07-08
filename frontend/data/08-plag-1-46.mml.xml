@@ -1,190 +1,190 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" alttext="\displaystyle\overline{F}_{v}(i)=\sum_{i\neq j}|\sum_{k=1}^{N_{C}}c_{N_{U}(i),N_{C}(k),N_{U}(j)}\hat{\ddot{\phi}}_{N_{C}(k)}|" class="ltx_Math" display="inline" id="p1.1.m1.1">
-  <semantics id="a0">
-    <mrow id="a1" xref="a86">
-      <mrow id="a2" xref="a88">
-        <msub id="a3">
-          <mover accent="true" id="a4" xref="a89">
-            <mi id="a5" xref="a91">F</mi>
-            <mo id="a6" xref="a90">¯</mo>
+  <semantics id="b0">
+    <mrow id="b1" xref="b86">
+      <mrow id="b2" xref="b88">
+        <msub id="b3">
+          <mover accent="true" id="b4" xref="b89">
+            <mi id="b5" xref="b91">F</mi>
+            <mo id="b6" xref="b90">¯</mo>
           </mover>
-          <mi id="a7" xref="a92">v</mi>
+          <mi id="b7" xref="b92">v</mi>
         </msub>
-        <mo id="a8">⁢</mo>
-        <mrow id="a9" xref="a88">
-          <mo id="a10" stretchy="false" xref="a88">(</mo>
-          <mi id="a11" xref="a93">i</mi>
-          <mo id="a12" stretchy="false" xref="a88">)</mo>
+        <mo id="b8">⁢</mo>
+        <mrow id="b9" xref="b88">
+          <mo id="b10" stretchy="false" xref="b88">(</mo>
+          <mi id="b11" xref="b93">i</mi>
+          <mo id="b12" stretchy="false" xref="b88">)</mo>
         </mrow>
       </mrow>
-      <mo id="a13" xref="a87">=</mo>
-      <mrow id="a14" xref="a94">
-        <mstyle displaystyle="true" id="a15" xref="a95">
-          <munder id="a16" xref="a95">
-            <mo id="a17" largeop="true" movablelimits="false" symmetric="true" xref="a96">∑</mo>
-            <mrow id="a18" xref="a97">
-              <mi id="a19" xref="a99">i</mi>
-              <mo id="a20" xref="a98">≠</mo>
-              <mi id="a21" xref="a100">j</mi>
+      <mo id="b13" xref="b87">=</mo>
+      <mrow id="b14" xref="b94">
+        <mstyle displaystyle="true" id="b15" xref="b95">
+          <munder id="b16" xref="b95">
+            <mo id="b17" largeop="true" movablelimits="false" symmetric="true" xref="b96">∑</mo>
+            <mrow id="b18" xref="b97">
+              <mi id="b19" xref="b99">i</mi>
+              <mo id="b20" xref="b98">≠</mo>
+              <mi id="b21" xref="b100">j</mi>
             </mrow>
           </munder>
         </mstyle>
-        <mrow id="a22" xref="a101">
-          <mo id="a23" stretchy="false" xref="a102">|</mo>
-          <mrow id="a24" xref="a103">
-            <mstyle displaystyle="true" id="a25">
-              <munderover id="a26">
-                <mo id="a27" largeop="true" movablelimits="false" symmetric="true" xref="a104">∑</mo>
-                <mrow id="a28">
-                  <mi id="a29" xref="a105">k</mi>
-                  <mo id="a30">=</mo>
-                  <mn id="a31" xref="a106">1</mn>
+        <mrow id="b22" xref="b101">
+          <mo id="b23" stretchy="false" xref="b102">|</mo>
+          <mrow id="b24" xref="b103">
+            <mstyle displaystyle="true" id="b25">
+              <munderover id="b26">
+                <mo id="b27" largeop="true" movablelimits="false" symmetric="true" xref="b104">∑</mo>
+                <mrow id="b28">
+                  <mi id="b29" xref="b105">k</mi>
+                  <mo id="b30">=</mo>
+                  <mn id="b31" xref="b106">1</mn>
                 </mrow>
-                <msub id="a32">
-                  <mi id="a33" xref="a107">N</mi>
-                  <mi id="a34">C</mi>
+                <msub id="b32">
+                  <mi id="b33" xref="b107">N</mi>
+                  <mi id="b34">C</mi>
                 </msub>
               </munderover>
             </mstyle>
-            <mrow id="a35" xref="a108">
-              <msub id="a36" xref="a110">
-                <mi id="a37" xref="a111">c</mi>
-                <mrow id="a38">
-                  <mrow id="a39" xref="a112">
-                    <msub id="a40" xref="a113">
-                      <mi id="a41" xref="a114">N</mi>
-                      <mi id="a42" xref="a115">U</mi>
+            <mrow id="b35" xref="b108">
+              <msub id="b36" xref="b110">
+                <mi id="b37" xref="b111">c</mi>
+                <mrow id="b38">
+                  <mrow id="b39" xref="b112">
+                    <msub id="b40" xref="b113">
+                      <mi id="b41" xref="b114">N</mi>
+                      <mi id="b42" xref="b115">U</mi>
                     </msub>
-                    <mo id="a43">⁢</mo>
-                    <mrow id="a44" xref="a112">
-                      <mo id="a45" stretchy="false" xref="a112">(</mo>
-                      <mi id="a46" xref="a116">i</mi>
-                      <mo id="a47" stretchy="false" xref="a112">)</mo>
+                    <mo id="b43">⁢</mo>
+                    <mrow id="b44" xref="b112">
+                      <mo id="b45" stretchy="false" xref="b112">(</mo>
+                      <mi id="b46" xref="b116">i</mi>
+                      <mo id="b47" stretchy="false" xref="b112">)</mo>
                     </mrow>
                   </mrow>
-                  <mo id="a48">,</mo>
-                  <mrow id="a49" xref="a117">
-                    <msub id="a50" xref="a118">
-                      <mi id="a51" xref="a119">N</mi>
-                      <mi id="a52" xref="a120">C</mi>
+                  <mo id="b48">,</mo>
+                  <mrow id="b49" xref="b117">
+                    <msub id="b50" xref="b118">
+                      <mi id="b51" xref="b119">N</mi>
+                      <mi id="b52" xref="b120">C</mi>
                     </msub>
-                    <mo id="a53">⁢</mo>
-                    <mrow id="a54" xref="a117">
-                      <mo id="a55" stretchy="false" xref="a117">(</mo>
-                      <mi id="a56" xref="a121">k</mi>
-                      <mo id="a57" stretchy="false" xref="a117">)</mo>
+                    <mo id="b53">⁢</mo>
+                    <mrow id="b54" xref="b117">
+                      <mo id="b55" stretchy="false" xref="b117">(</mo>
+                      <mi id="b56" xref="b121">k</mi>
+                      <mo id="b57" stretchy="false" xref="b117">)</mo>
                     </mrow>
                   </mrow>
-                  <mo id="a58">,</mo>
-                  <mrow id="a59" xref="a122">
-                    <msub id="a60" xref="a123">
-                      <mi id="a61" xref="a124">N</mi>
-                      <mi id="a62" xref="a125">U</mi>
+                  <mo id="b58">,</mo>
+                  <mrow id="b59" xref="b122">
+                    <msub id="b60" xref="b123">
+                      <mi id="b61" xref="b124">N</mi>
+                      <mi id="b62" xref="b125">U</mi>
                     </msub>
-                    <mo id="a63">⁢</mo>
-                    <mrow id="a64" xref="a122">
-                      <mo id="a65" stretchy="false" xref="a122">(</mo>
-                      <mi id="a66" xref="a126">j</mi>
-                      <mo id="a67" stretchy="false" xref="a122">)</mo>
+                    <mo id="b63">⁢</mo>
+                    <mrow id="b64" xref="b122">
+                      <mo id="b65" stretchy="false" xref="b122">(</mo>
+                      <mi id="b66" xref="b126">j</mi>
+                      <mo id="b67" stretchy="false" xref="b122">)</mo>
                     </mrow>
                   </mrow>
                 </mrow>
               </msub>
-              <mo id="a68">⁢</mo>
-              <msub id="a69" xref="a127">
-                <mover accent="true" id="a70" xref="a128">
-                  <mover accent="true" id="a71" xref="a131">
-                    <mi id="a72" xref="a133">ϕ</mi>
-                    <mo id="a73" stretchy="false" xref="a132">^</mo>
+              <mo id="b68">⁢</mo>
+              <msub id="b69" xref="b127">
+                <mover accent="true" id="b70" xref="b128">
+                  <mover accent="true" id="b71" xref="b131">
+                    <mi id="b72" xref="b133">ϕ</mi>
+                    <mo id="b73" stretchy="false" xref="b132">^</mo>
                   </mover>
-                  <mo id="a74" xref="a129">¨</mo>
+                  <mo id="b74" xref="b129">¨</mo>
                 </mover>
-                <mrow id="a75" xref="a130">
-                  <msub id="a76" xref="a135">
-                    <mi id="a77" xref="a136">N</mi>
-                    <mi id="a78" xref="a137">C</mi>
+                <mrow id="b75" xref="b130">
+                  <msub id="b76" xref="b135">
+                    <mi id="b77" xref="b136">N</mi>
+                    <mi id="b78" xref="b137">C</mi>
                   </msub>
-                  <mo id="a79">⁢</mo>
-                  <mrow id="a80" xref="a130">
-                    <mo id="a81" stretchy="false" xref="a130">(</mo>
-                    <mi id="a82" xref="a138">k</mi>
-                    <mo id="a83" stretchy="false" xref="a130">)</mo>
+                  <mo id="b79">⁢</mo>
+                  <mrow id="b80" xref="b130">
+                    <mo id="b81" stretchy="false" xref="b130">(</mo>
+                    <mi id="b82" xref="b138">k</mi>
+                    <mo id="b83" stretchy="false" xref="b130">)</mo>
                   </mrow>
                 </mrow>
               </msub>
             </mrow>
           </mrow>
-          <mo id="a84" stretchy="false" xref="a102">|</mo>
+          <mo id="b84" stretchy="false" xref="b102">|</mo>
         </mrow>
       </mrow>
     </mrow>
-    <annotation-xml encoding="MathML-Content" id="a85">
-      <apply id="a86" xref="a1">
-        <eq id="a87" xref="a13"/>
-        <apply id="a88" xref="a2">
-          <apply id="a89" xref="a4">
-            <ci id="a90" xref="a6">¯</ci>
-            <ci id="a91" xref="a5">𝐹</ci>
+    <annotation-xml encoding="MathML-Content" id="b85">
+      <apply id="b86" xref="b1">
+        <eq id="b87" xref="b13"/>
+        <apply id="b88" xref="b2">
+          <apply id="b89" xref="b4">
+            <ci id="b90" xref="b6">¯</ci>
+            <ci id="b91" xref="b5">𝐹</ci>
           </apply>
-          <ci id="a92" xref="a7">𝑣</ci>
-          <ci id="a93" xref="a11">𝑖</ci>
+          <ci id="b92" xref="b7">𝑣</ci>
+          <ci id="b93" xref="b11">𝑖</ci>
         </apply>
-        <apply id="a94" xref="a14">
-          <apply id="a95" xref="a15">
-            <sum id="a96" xref="a17"/>
-            <apply id="a97" xref="a18">
-              <neq id="a98" xref="a20"/>
-              <ci id="a99" xref="a19">𝑖</ci>
-              <ci id="a100" xref="a21">𝑗</ci>
+        <apply id="b94" xref="b14">
+          <apply id="b95" xref="b15">
+            <sum id="b96" xref="b17"/>
+            <apply id="b97" xref="b18">
+              <neq id="b98" xref="b20"/>
+              <ci id="b99" xref="b19">𝑖</ci>
+              <ci id="b100" xref="b21">𝑗</ci>
             </apply>
           </apply>
-          <apply id="a101" xref="a22">
-            <abs id="a102" xref="a23"/>
-            <apply id="a103" xref="a24">
-              <sum id="a104" xref="a27"/>
-              <ci id="a105" xref="a29">𝑘</ci>
-              <cn id="a106" type="integer" xref="a31">1</cn>
-              <ci id="a107" xref="a32">Nc</ci>
-              <apply id="a108" xref="a35">
-                <times id="a109"/>
-                <apply id="a110" xref="a36">
-                  <ci id="a111" xref="a37">𝑐</ci>
-                  <apply id="a112" xref="a39">
-                    <apply id="a113" xref="a40">
-                      <ci id="a114" xref="a41">𝑁</ci>
-                      <ci id="a115" xref="a42">𝑈</ci>
+          <apply id="b101" xref="b22">
+            <abs id="b102" xref="b23"/>
+            <apply id="b103" xref="b24">
+              <sum id="b104" xref="b27"/>
+              <ci id="b105" xref="b29">𝑘</ci>
+              <cn id="b106" type="integer" xref="b31">1</cn>
+              <ci id="b107" xref="b32">Nc</ci>
+              <apply id="b108" xref="b35">
+                <times id="b109"/>
+                <apply id="b110" xref="b36">
+                  <ci id="b111" xref="b37">𝑐</ci>
+                  <apply id="b112" xref="b39">
+                    <apply id="b113" xref="b40">
+                      <ci id="b114" xref="b41">𝑁</ci>
+                      <ci id="b115" xref="b42">𝑈</ci>
                     </apply>
-                    <ci id="a116" xref="a46">𝑖</ci>
+                    <ci id="b116" xref="b46">𝑖</ci>
                   </apply>
-                  <apply id="a117" xref="a49">
-                    <apply id="a118" xref="a50">
-                      <ci id="a119" xref="a51">𝑁</ci>
-                      <ci id="a120" xref="a52">𝐶</ci>
+                  <apply id="b117" xref="b49">
+                    <apply id="b118" xref="b50">
+                      <ci id="b119" xref="b51">𝑁</ci>
+                      <ci id="b120" xref="b52">𝐶</ci>
                     </apply>
-                    <ci id="a121" xref="a56">𝑘</ci>
+                    <ci id="b121" xref="b56">𝑘</ci>
                   </apply>
-                  <apply id="a122" xref="a59">
-                    <apply id="a123" xref="a60">
-                      <ci id="a124" xref="a61">𝑁</ci>
-                      <ci id="a125" xref="a62">𝑈</ci>
+                  <apply id="b122" xref="b59">
+                    <apply id="b123" xref="b60">
+                      <ci id="b124" xref="b61">𝑁</ci>
+                      <ci id="b125" xref="b62">𝑈</ci>
                     </apply>
-                    <ci id="a126" xref="a66">𝑗</ci>
+                    <ci id="b126" xref="b66">𝑗</ci>
                   </apply>
                 </apply>
-                <apply id="a127" xref="a69">
-                  <partialdiff id="a128" xref="a70"/>
-                  <cn id="a129" xref="a74">2</cn>
+                <apply id="b127" xref="b69">
+                  <partialdiff id="b128" xref="b70"/>
+                  <cn id="b129" xref="b74">2</cn>
                   <!--<ci id="b143" >¨</ci>-->
-                  <apply id="a130" xref="a75">
-                    <apply id="a131" xref="a71">
-                      <ci id="a132" xref="a73">^</ci>
-                      <ci id="a133" xref="a72">italic-ϕ</ci>
+                  <apply id="b130" xref="b75">
+                    <apply id="b131" xref="b71">
+                      <ci id="b132" xref="b73">^</ci>
+                      <ci id="b133" xref="b72">italic-ϕ</ci>
                     </apply>
-                    <apply id="a134" xref="a76">
-                      <apply id="a135" xref="a76">
-                        <ci id="a136" xref="a77">𝑁</ci>
-                        <ci id="a137" xref="a78">𝐶</ci>
+                    <apply id="b134" xref="b76">
+                      <apply id="b135" xref="b76">
+                        <ci id="b136" xref="b77">𝑁</ci>
+                        <ci id="b137" xref="b78">𝐶</ci>
                       </apply>
-                      <ci id="a138" xref="a82">𝑘</ci>
+                      <ci id="b138" xref="b82">𝑘</ci>
                     </apply>
                   </apply>
                 </apply>
@@ -194,7 +194,7 @@
         </apply>
       </apply>
     </annotation-xml>
-    <annotation encoding="application/x-tex" id="a139">\displaystyle\overline{F}_{v}(i)=\sum_{i\neq
+    <annotation encoding="application/x-tex" id="b139">\displaystyle\overline{F}_{v}(i)=\sum_{i\neq
       j}|\sum_{k=1}^{N_{C}}c_{N_{U}(i),N_{C}(k),N_{U}(j)}\hat{\ddot{\phi}}_{N_{C}(k)}|
     </annotation>
   </semantics>

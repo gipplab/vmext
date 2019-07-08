@@ -2,14 +2,14 @@ body {
   background-color: #ececec;
 }
 
-#referenceAST {
-  height: 40%;
+.reference-ast-container {
+  height: 400px;
   overflow: hidden;
   background-color: #EDF1FA;
 }
 
 #comparisonAST {
-  height: 40%;
+  height: 400px;
   overflow: hidden;
   background-color: #edfaf1;
 }

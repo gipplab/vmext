@@ -26673,7 +26673,7 @@ var util = {
     } if( is.array( obj ) ){
       return obj.slice();
     } else if( is.plainObject( obj ) ){
-      return this.clone( obj );
+      return this.clone( { node: obj } );
     } else {
       return obj;
     }

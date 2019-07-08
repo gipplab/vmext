@@ -23,12 +23,12 @@ body
               .form-group
                 label(for='MathMLexamples') or choose an example
                 select.form-control#MathMLexamples
-                  option(value = mml[0]) Euler
-                  option(value = mml[1]) MRR
-                  option(value = mml[2]) Wide AST
-                  option(value = mml[5]) Einstein
+                  option(value = renderer[0]) Euler
+                  option(value = renderer[1]) MRR
+                  option(value = renderer[2]) Wide AST
+                  option(value = renderer[5]) Einstein
                   option(
-                  value = mml[9]
+                  value = renderer[9]
                   selected='selected'
                   ) Goat
               input.btn.btn-success(type='submit', value='Render')

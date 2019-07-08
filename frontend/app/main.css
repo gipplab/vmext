@@ -48,3 +48,30 @@ a {
   resize: both;
   overflow: auto;
 }
+
+.reference-ast-container {
+  height: 40%;
+  overflow: hidden;
+  background-color: #EDF1FA;
+}
+
+.comparison-ast-container {
+  height: 40%;
+  overflow: hidden;
+  background-color: #edfaf1;
+}
+
+.merged-ast-container {
+  height: 60%;
+  overflow: hidden;
+  background-color: yellow;
+}
+
+.main-cy-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}

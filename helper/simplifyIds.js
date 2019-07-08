@@ -5,7 +5,7 @@ const file = '../frontend/data/08-plag-1-46.mml.xml';
 const xmlString = fs.readFileSync(file, 'utf8');
 const xml = XT(xmlString);
 const ids = {};
-const prefix = "a";
+const prefix = "b";
 let counter = 0;
 
 function renameIds(n) {
