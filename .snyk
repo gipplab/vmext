@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.1
+version: v1.13.5
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:content-type-parser:20170905':
@@ -11,3 +11,6 @@ patch:
   'npm:minimatch:20160620':
     - read-glob-promise > read-glob > glob > minimatch:
         patched: '2017-12-20T13:07:56.760Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - cytosnap > puppeteer > https-proxy-agent:
+        patched: '2019-10-04T00:24:02.472Z'

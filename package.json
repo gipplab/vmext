@@ -19,7 +19,9 @@
     "coverage": "npm run build && istanbul cover _mocha -- -R spec",
     "test": "PREQ_CONNECT_TIMEOUT=15 mocha",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "HTW",
   "license": "MIT",
@@ -68,7 +70,8 @@
     "xml2js": "^0.4.17",
     "xmldom": "^0.1.22",
     "xpath": "^0.0.27",
-    "xtraverse": "^0.1.0"
+    "xtraverse": "^0.1.0",
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "bootstrap": "^4.2.1",
@@ -87,5 +90,6 @@
     "nodemon": "^1.11.0",
     "rx": "^4.1.0",
     "supertest": "^4.0.2"
-  }
+  },
+  "snyk": true
 }
