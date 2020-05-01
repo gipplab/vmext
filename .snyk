@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.1
+version: v1.14.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:content-type-parser:20170905':
@@ -11,3 +11,20 @@ patch:
   'npm:minimatch:20160620':
     - read-glob-promise > read-glob > glob > minimatch:
         patched: '2017-12-20T13:07:56.760Z'
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - cheerio > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - cytoscape-dagre > dagre > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - winston > async > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - preq > requestretry > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - cytoscape-dagre > dagre > graphlib > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - jsdom > request-promise-native > request-promise-core > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
+    - phantom > winston > async > lodash:
+        patched: '2020-05-01T00:25:06.515Z'
