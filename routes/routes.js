@@ -23,7 +23,7 @@ router.get('/popupInfo/:cd/:symbol', (req, res) => {
   if (symbol.charAt(0) === 'Q') {
     preq.get(
       {
-        uri: `http://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`,
+        uri: `https://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`,
       }
     ).then((content) => {
       res.json({
