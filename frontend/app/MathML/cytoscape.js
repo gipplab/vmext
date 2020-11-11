@@ -162,7 +162,7 @@ mml.base.prototype.toCytoscape = function(options = {}) {
           if (typeof fetch !== "undefined") {
             if (cd === 'wikidata') {
               // eslint-disable-next-line no-undef
-              fetch(`http://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`).then((res) => {
+              fetch(`https://www.wikidata.org/wiki/Special:EntityData/${symbol}.json`).then((res) => {
                 res.json()
                   .then((json) => {
                     // language=HTML
