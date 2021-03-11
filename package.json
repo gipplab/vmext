@@ -66,7 +66,7 @@
     "winston-daily-rotate-file": "^3.0.1",
     "winston-slack-hook": "^0.3.0",
     "xml2js": "^0.4.17",
-    "xmldom": "^0.1.22",
+    "xmldom": "^0.5.0",
     "xpath": "^0.0.27",
     "xtraverse": "^0.1.0"
   },
