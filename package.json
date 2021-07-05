@@ -48,7 +48,7 @@
     "cytoscape-dagre": "^2.2.0",
     "cytoscape-popper": "^1.0.1",
     "cytosnap": "^3.0.0",
-    "d3": "^5.7.0",
+    "d3": "^7.0.0",
     "express": "^4.16.2",
     "glob": "^7.1.2",
     "jquery": "^3.1.1",
